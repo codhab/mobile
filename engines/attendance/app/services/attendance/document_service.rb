@@ -1,6 +1,8 @@
 module Attendance
   class DocumentService
 
+    DOCUMENTS = %w(rg cpf residence arrival_df registry payment)
+
     attr_accessor :cadastre, :cadastre_mirror, :ticket, :context_id
 
     def initialize(cadastre: nil, context_id: nil, cadastre_mirror: nil, ticket: nil)
@@ -23,7 +25,15 @@ module Attendance
     end
 
     def is_required? field
-      
+      @ticket.send(field).present?
+    end
+
+    def nothing_required?
+      DOCUMENTS.each do |doc|
+        return false if @ticket.send("#{doc}_uploads").present?
+      end
+
+      return true
     end
     
   end

@@ -3,6 +3,8 @@ PATH
   specs:
     attendance (0.1.0)
       rails (~> 5.0.2)
+    candidate (0.1.0)
+      rails (~> 5.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -188,6 +190,7 @@ PLATFORMS
 DEPENDENCIES
   attendance!
   byebug
+  candidate!
   carrierwave
   client_side_validations
   client_side_validations-simple_form

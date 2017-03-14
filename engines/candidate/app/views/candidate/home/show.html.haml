@@ -1,0 +1,49 @@
+.ui.grid{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar, est id dignissim dignissim, ipsum arcu consequat orci, congue eleifend lorem tellus nec ex. Sed volutpat iaculis lacus ac ornare. Quisque eu turpis nisi. ", position: "bottom"} }
+  .column.text-center
+    .big-divider
+    .ui.one.column.centered.grid
+      .ui.circular
+        %h2.ui.header
+          = link_to image_tag('/images/no-avatar.jpg', class: 'ui small circular image big-yellow-border'), cadastre_path(current_cadastre)
+    .big-divider
+    .title-header 
+      #{current_cadastre.hello}
+    %p
+      %span
+        %i Toque para visualizar seu cadastro
+    %span.ui.label.yellow
+      %h5.font-black
+        %p #{current_cadastre.current_situation_name}
+
+.divider
+.ui.three.column.grid.container.text-center
+  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar. ", position: "right"} }
+    .ui
+      = link_to image_tag('/images/sample-icone.png', width: 100), notifications_path
+    .text-center.bold
+      Notificações
+  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar, est id dignissim dignissim, ipsum arcu consequat orci, congue eleifend lorem tellus nec ex. "} }
+    .ui
+      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.new_ticket_path
+    .text-center.bold
+      Atualizar Meus Dados
+  .column
+    .ui
+      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.tickets_path
+    .text-center.bold
+      Minhas Atualizações
+  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
+    .ui
+      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.chats_path
+    .text-center.bold
+      Meus Chats
+  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+    .ui
+      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.requeriments_path
+    .text-center.bold
+      Meus Requerimentos
+  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ", position: "left"} }
+    .ui
+      = link_to image_tag('/images/sample-icone.png', width: 100), "#"
+    .text-center.bold
+      Serviços

@@ -14,7 +14,9 @@ module Attendance
 
     def update
       if @ticket.update(set_params)
-      
+        @ticket.update(ticket_status_id: 3)
+
+        redirect_to new_ticket_path
       else
         render action: :edit
       end

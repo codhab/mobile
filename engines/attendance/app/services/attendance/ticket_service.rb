@@ -25,6 +25,7 @@ module Attendance
       @ticket          = ticket
     end
 
+
     def create
      
       return false if !create_ticket?
@@ -39,6 +40,16 @@ module Attendance
       })
 
       @ticket.save
+    end
+
+    def link_create_ticket? context_id
+      @context_id = context_id
+
+      create_ticket?
+    end
+
+    def update_allow? context_id
+      [1,2,3].include?(context_id) && ([4,3].include?(@cadastre.current_situation_id) || @cadastre.program_id == 3)
     end
 
     def route_path

@@ -1,6 +1,19 @@
 = simple_form_for @cadastre_mirror, url: update_cadastre_path(@ticket), method: :put, remote: true do |f|
-  = f.input :rg
+  = f.input :name, input_html: { disabled: true }
+  = f.input :cpf, input_html: { class: 'cpf', disabled: true }
+  = f.input :gender, as: :select, include_blank: 'false', collection: {}
+  = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil}
+  = f.input :born_uf
+  = f.input :rg_org
+  = f.input :rg_uf, as: :select, include_blank: false, collection: {}
+  = f.input :place_birth
+  = f.input :special_condition_id, as: :select, include_blank: false
+  = f.input :special_condition_type_id, as: :select, include_blank: "Nenhuma"
+  = f.input :nis
+  = f.input :cid
+  = f.input :adapted_property, as: :select, include_blank: false
   
-  .column
-    = f.submit "Atualizar", class: 'ui button green'
+  .big-divider
+  .column.text-center
+    = f.submit "Atualizar", class: 'ui button green', data: { disabled_with: t(:disabled_with)}
     = link_to "Cancelar atualização",  "#", class: 'ui button red'

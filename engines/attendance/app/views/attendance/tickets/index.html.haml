@@ -8,11 +8,13 @@
   .column
     %table.ui.celled.table
       %tbody
-        - @tickets.each do |index|
+        - @tickets.each do |ticket|
           %tr
             %td
               %h4.ui.image.header
                 .content
+                  = link_to ticket.ticket_context.name.humanize, ticket_path(ticket)
                   .sub.header
                     .mini-divider
-                    01/01/2017 - 08:00
+                      %p
+                        #{ticket.ticket_status.name.humanize} - #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}

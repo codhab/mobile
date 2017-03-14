@@ -35,4 +35,5 @@ end
 
 path 'engines' do 
   gem 'attendance'
+  gem 'candidate'
 end

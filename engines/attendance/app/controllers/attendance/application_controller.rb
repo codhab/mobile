@@ -9,7 +9,7 @@ module Attendance
     private
 
     def current_cadastre
-      cadastre  = CandidateCadastre.find(296560)
+      cadastre  = CandidateCadastre.find(296575)
       presenter = ::CadastrePresenter.new(cadastre, view_context)
       
       return presenter

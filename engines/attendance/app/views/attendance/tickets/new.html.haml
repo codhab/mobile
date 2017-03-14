@@ -5,35 +5,50 @@
     .title-header 
       Atualização cadastral
       %small
-        %p= link_to "Retonar para página inicial", "#"
+        %p= link_to "Retonar para página inicial", main_app.root_path
 
     .big-divider
 .row
   .column
     %table.ui.celled.table
       %tbody
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                = link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                = link_to "Atualização de dependentes", "#"
-                %p
+        - if @ticket_service.update_allow?(1)
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  - if @ticket_service.link_create_ticket?(1)
+                    = link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
+                  - else
+                    = link_to "Atualização de cadastro", attendance.ticket_path(@ticket.current_ticket_by_context(1))
+                  %p 
+                    %small
+                      %i= @ticket.cadastre_update_status
+        - if @ticket_service.update_allow?(2)
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  = link_to "Atualização de dependentes", "#"
+                  %p 
+                    %small
+                      %i= @ticket.dependent_update_status
 
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                = link_to "Atualização de renda", "#"
-                %p
+        - if @ticket_service.update_allow?(3)
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  = link_to "Atualização de renda", "#"
+                  %p 
+                    %small
+                      %i= @ticket.income_update_status
 
         %tr
           %td
             %h4.ui.image.header
               .content
                 = link_to "Atualização de dados de contato", "#"
-                %p
+                %p 
+                  %small
+                    %i= @ticket.contact_update_status

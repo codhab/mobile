@@ -1,3 +1,6 @@
+require_dependency 'attendance/ticket_presenter'
+require_dependency 'attendance/ticket_service'
+
 module Attendance
   class TicketsController < ApplicationController
     before_action :set_cadastre
@@ -7,6 +10,12 @@ module Attendance
     end
 
     def new
+      @ticket          = Attendance::TicketPresenter.new(@cadastre, view_context)
+      @ticket_service  = Attendance::TicketService.new(cadastre: @cadastre)
+    end
+
+    def show
+      @ticket = @cadastre.attendance_tickets.find(params[:id])
     end
 
     def pre_create

@@ -1,0 +1,20 @@
+.big-divider
+.ui.grid
+  .column.text-center
+    .big-divider
+    .title-header 
+      Atualização cadastral
+      %small
+        %p= link_to "Retonar para página inicial", attendance.new_ticket_path
+
+    .big-divider
+.row
+  %table.ui.table.striped.responsive
+    %thead
+      %tr
+        %th Protocolo
+        %th Protocolo
+    %tbody 
+      %tr 
+        %td #{@ticket.id}
+        %td #{@ticket.id}
