@@ -16,6 +16,16 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+begin
+  APP_ENV = YAML.load_file("config/env.yml")
+rescue
+  if Rails.env.development? || Rails.env.test?
+    raise ArgumentError, 'Need to configure config/application.yml'
+  end
+end
+
+
+
 module Mobile
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

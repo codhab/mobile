@@ -5,8 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.0.2'
+gem 'pg'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -17,6 +17,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'carrierwave'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+gem 'file_validators'
+gem 'jquery-validation-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

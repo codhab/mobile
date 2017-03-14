@@ -1,0 +1,134 @@
+body {
+  background-color: #ffffff;
+  font-family: 'Nunito Sans', sans-serif !important;
+}
+
+.ui.grid {
+  margin: 0 !important;
+}
+
+.ui.container {
+  width: auto!important;
+  margin-left: 0.2em !important;
+  margin-right: 0.2em !important;
+}
+
+.clean-font {
+  font-weight: 100 !important;
+}
+
+.ui.label.yellow {
+  background-color: #ffcb08 !important;
+}
+
+.nav-bottom-fixed {
+  top: auto !important;
+  bottom: 0 !important;
+  height: 49px;
+}
+
+.not-read {
+  border-left: 3px solid #ffc740 !important;
+}
+
+.low-opacity {
+  opacity: 0.4;
+}
+
+#animate {
+  position: relative;
+}
+
+.divider {
+  margin-top: 15px !important;
+}
+
+.mini-divider {
+  margin-top: 5px !important;
+}
+
+.big-divider {
+  margin-top: 25px !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+input {
+  -webkit-transition: all 1s !important;
+}
+
+.big-input {
+  height: 60px !important;
+  font-size:20px !important;
+}
+
+.xbig-input {
+  height: 100px !important;
+  font-size:20px !important;
+}
+
+
+.title-header {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+.title-less {
+  font-size: 20px !important;
+}
+
+.bold {
+  font-weight: 600 !important;
+}
+
+.font-yellow {
+  color: black !important;
+}
+
+.font-black {
+  color: black !important;
+}
+
+.big-text {
+  font-size: 25px !important;
+}
+
+.small-text {
+  font-size: 18px !important;
+}
+
+.big-yellow-border {
+  border: #ffcb08 solid 5px;
+  width: 120px !important;
+}
+
+.small-yellow-border {
+  border: #ffcb08 solid 5px;
+  width: 60px !important;
+}
+
+
+
+.file-upload {
+  position: relative;
+  width: 80%;
+}
+
+.file-upload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+

@@ -1,0 +1,18 @@
+.ui.grid
+  .column.text-center
+    .big-divider
+    .title-header 
+      Atualizações (#{@tickets.count})
+    .big-divider
+.row
+  .column
+    %table.ui.celled.table
+      %tbody
+        - @tickets.each do |index|
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    .mini-divider
+                    01/01/2017 - 08:00

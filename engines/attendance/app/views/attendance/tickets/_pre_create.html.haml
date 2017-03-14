@@ -1,0 +1,9 @@
+.content
+  .description.text-center
+    %h4
+      %b Você tem certeza que deseja iniciar a atualização?
+.actions
+  .ui.aligned.center.text-center
+    = link_to "Sim, eu desejo atualizar", create_tickets_path(@context), class: 'ui button green'
+    = link_to "Cancelar", new_ticket_path, class: 'ui button gray'
+  .divider

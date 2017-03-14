@@ -1,0 +1,9 @@
+= simple_form_for @ticket, url: update_document_path(@ticket), validate: true, method: :put, multipart: true, html: {id: 'file-validation'} do |f|
+  = f.fields_for :rg_uploads do |builder|
+    = render 'rg_upload_fields', f: builder
+  = link_to_add_fields "Adicionar arquivo", f, :rg_uploads
+
+  .field
+    = f.submit "Salvar", class: 'ui button green'
+
+    

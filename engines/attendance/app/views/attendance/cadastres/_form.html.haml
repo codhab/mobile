@@ -1,0 +1,6 @@
+= simple_form_for @cadastre_mirror, url: update_cadastre_path(@ticket), method: :put, remote: true do |f|
+  = f.input :rg
+  
+  .column
+    = f.submit "Atualizar", class: 'ui button green'
+    = link_to "Cancelar atualização",  "#", class: 'ui button red'

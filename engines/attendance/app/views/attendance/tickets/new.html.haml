@@ -1,0 +1,39 @@
+.big-divider
+.ui.grid
+  .column.text-center
+    .big-divider
+    .title-header 
+      Atualização cadastral
+      %small
+        %p= link_to "Retonar para página inicial", "#"
+
+    .big-divider
+.row
+  .column
+    %table.ui.celled.table
+      %tbody
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                = link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                = link_to "Atualização de dependentes", "#"
+                %p
+
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                = link_to "Atualização de renda", "#"
+                %p
+
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                = link_to "Atualização de dados de contato", "#"
+                %p
