@@ -3,8 +3,9 @@
 //= require turbolinks
 //= require semantic-ui/semantic.min
 //= require turbolinks_transaction
-//= require custom
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require nested_form
 //= require file_validation
+//= require jquery.mask.min
+//= require custom

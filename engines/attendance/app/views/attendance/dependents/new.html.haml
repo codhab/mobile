@@ -1,0 +1,12 @@
+.big-divider
+.ui.grid.container
+  .column.text-center
+    .title-header 
+      Inclusão de dependente
+      %small
+        %p= link_to "Retonar para página anterior", dependents_path(@ticket)
+.big-divider
+.ui.grid.container
+  .row
+    .column.content-form
+      = render 'create_form'

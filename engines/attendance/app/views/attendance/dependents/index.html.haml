@@ -8,11 +8,19 @@
 .big-divider
 .row
   .column
-    %table.ui.celled.table
-      %tbody
-        - @cadastre_mirror.dependent_mirrors.each do |mirror|
-          %tr
-            %td
-              %b= link_to mirror.name.mb_chars.upcase, edit_dependent_path(ticket_id: @ticket.id, dependent_id: mirror.id)   
-              %p.text-without-bold
-                #{mirror.kinship.name.mb_chars.upcase}, #{mirror.born.strftime("%d/%m/%Y")} 
+    - if @cadastre_mirror.dependent_mirrors.present? 
+      %table.ui.celled.table
+        %tbody
+          - @cadastre_mirror.dependent_mirrors.each do |mirror|
+            %tr
+              %td
+                %b= link_to mirror.name.mb_chars.upcase, edit_dependent_path(ticket_id: @ticket.id, dependent_id: mirror.id)   
+                %p.text-without-bold
+                  #{mirror.kinship.name.mb_chars.upcase}, #{mirror.born.strftime("%d/%m/%Y")} 
+    - else
+      .divider
+      .text-center
+        %i Nenhum dependente cadastrado.
+  .divider
+  .column.text-center
+    = link_to "<i class='add icon'></i>Adicionar dependente".html_safe, new_dependent_path, class: 'ui button yellow'

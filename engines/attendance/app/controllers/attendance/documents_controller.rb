@@ -12,8 +12,6 @@ module Attendance
 
     def update
       if @ticket.update(set_params)
-        @ticket.update(ticket_status_id: 3)
-
         redirect_to new_ticket_path
       else
         @service = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)

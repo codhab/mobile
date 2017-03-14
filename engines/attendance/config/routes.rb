@@ -7,6 +7,8 @@ Attendance::Engine.routes.draw do
   resources :tickets, only: [:new, :index, :show] do 
     collection do 
       get 'pre_create/:context_id',  to: 'tickets#pre_create', as: 'pre_create'
+      get 'pre_finish/:ticket_id',   to: 'tickets#pre_finish', as: 'pre_finish'
+      get 'finish/:ticket_id',       to: 'tickets#finish',     as: 'finish'
       get 'close/:ticket_id',        to: 'tickets#close',      as: 'close'
       get 'cancel/:ticket_id',       to: 'tickets#cancel',     as: 'cancel'
       get 'continue/:ticket_id',     to: 'tickets#continue',   as: 'continue'

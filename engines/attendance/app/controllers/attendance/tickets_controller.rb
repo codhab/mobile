@@ -22,6 +22,10 @@ module Attendance
       @context = params[:context_id] ||= 1
     end
 
+    def pre_finish
+      @ticket = @cadastre.attendance_tickets.find(params[:id])
+    end
+
     def create
       @service = TicketService.new(cadastre: @cadastre, context_id: params[:context_id])
 
