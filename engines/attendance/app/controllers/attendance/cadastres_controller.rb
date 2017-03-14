@@ -17,7 +17,11 @@ module Attendance
     private
 
     def set_params
-      params.require(:handle_cadastre_cadastre_mirror_model).permit(:rg)
+      params.require(:handle_cadastre_cadastre_mirror_model)
+            .permit(:rg, :gender, :born, :born_uf, :rg_org, 
+                    :rg_uf, :place_birth, :cadastre_id, :nis, 
+                    :cid, :adapted_property)
+
     end
 
     def set_ticket

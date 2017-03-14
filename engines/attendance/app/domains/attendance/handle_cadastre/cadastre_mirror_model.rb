@@ -6,7 +6,15 @@ module Attendance
 
       attribute :rg, :string
 
-      validates :rg, presence: true
+      validates_presence_of :rg,
+                            :rg_org,
+                            :gender,
+                            :born_uf,
+                            :rg_uf,
+                            :place_birth,
+                            :special_condition
+
+      validates :special_condition_type, presence: true, if: 'special_condition_id == 2'
     end  
   end
 end

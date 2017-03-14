@@ -27,7 +27,15 @@ module Attendance
 
     def ticket_by_context context
       ticket = self.attendance_tickets.where(ticket_context_id: context).order("created_at ASC").last
-      ticket.present? ? ticket.ticket_status.name : "Toque para iniciar a atualização"
+      if ticket.present?
+        if [2,5,6,7].include? ticket.ticket_status_id
+          "Toque para iniciar a atualização"
+        else
+          ticket.ticket_status.name
+        end 
+      else
+        "Toque para iniciar a atualização"
+      end
     end
 
     def current_ticket context

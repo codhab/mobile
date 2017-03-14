@@ -5,4 +5,10 @@ class CandidateCadastre < ApplicationRecord
   has_many :cadastre_mirrors,    class_name: "CandidateCadastreMirror", foreign_key: :cadastre_id 
   has_many :dependents,          class_name: "CandidateDependent", foreign_key: :cadastre_id
 
+  belongs_to :special_condition, class_name: "CandidateSpecialCondition", foreign_key: :cadastre_id
+  belongs_to :special_condition_type, class_name: "CandidateSpecialConditionType", foreign_key: :cadastre_id
+  
+  has_many :attendance_tickets,  class_name: "Attendance::AttendanceTicket", foreign_key: :cadastre_id
+
+  enum gender: ['N/D', 'masculino', 'feminino']
 end

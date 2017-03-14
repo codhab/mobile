@@ -3,7 +3,7 @@ module Attendance
     storage :file
 
     def store_dir
-      'public/attendance/uploads'
+      'uploads/attendance/document'
     end
 
     def filename

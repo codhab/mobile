@@ -12,8 +12,15 @@ module Attendance
       @ticket          = ticket
     end
 
+    # 1: rg
+    # 2: cpf
+    # 3: residence
+    # 4: arrival_df
+    # 5: registry
+    # 6: payment
 
     def document_required
+
       @ticket.rg_uploads.new                if @cadastre.rg != @cadastre_mirror.rg
       @ticket.cpf_uploads.new               if @cadastre.current_situation_id == 3
       @ticket.residence_uploads.new         if @cadastre.current_situation_id == 3
@@ -25,10 +32,12 @@ module Attendance
     end
 
     def is_required? field
+      return true
       @ticket.send(field).present?
     end
 
     def nothing_required?
+      return false
       DOCUMENTS.each do |doc|
         return false if @ticket.send("#{doc}_uploads").present?
       end

@@ -3,12 +3,15 @@
     .big-divider
     .title-header 
       Atualizações (#{@tickets.count})
+      %small
+        %p= link_to "Retonar para página de atualizações", candidate.root_path
     .big-divider
+
 .row
   .column
     %table.ui.celled.table
       %tbody
-        - @tickets.each do |ticket|
+        - @tickets.order("created_at DESC").each do |ticket|
           %tr
             %td
               %h4.ui.image.header

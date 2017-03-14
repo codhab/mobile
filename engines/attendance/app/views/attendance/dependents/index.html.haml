@@ -1,0 +1,18 @@
+.big-divider
+.ui.grid.container
+  .column.text-center
+    .title-header 
+      Atualização de dependentes
+      %small
+        %p= link_to "Retonar para página de atualizações", new_ticket_path
+.big-divider
+.row
+  .column
+    %table.ui.celled.table
+      %tbody
+        - @cadastre_mirror.dependent_mirrors.each do |mirror|
+          %tr
+            %td
+              %b= link_to mirror.name.mb_chars.upcase, edit_dependent_path(ticket_id: @ticket.id, dependent_id: mirror.id)   
+              %p.text-without-bold
+                #{mirror.kinship.name.mb_chars.upcase}, #{mirror.born.strftime("%d/%m/%Y")} 

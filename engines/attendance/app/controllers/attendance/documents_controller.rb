@@ -6,10 +6,8 @@ module Attendance
     before_action :set_ticket 
   
     def edit
-      @service = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)
-      @service.document_required
-
-      @ticket = @service.ticket
+      @service  = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)
+      @ticket   = @service.ticket
     end
 
     def update
@@ -18,6 +16,9 @@ module Attendance
 
         redirect_to new_ticket_path
       else
+        @service = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)
+        @ticket = @service.ticket
+        
         render action: :edit
       end
     end
@@ -32,6 +33,7 @@ module Attendance
                     residence_uploads_attributes: [:upload_path, :_destroy, :id],
                     arrival_df_uploads_attributes: [:upload_path, :_destroy, :id],
                     registry_uploads_attributes: [:upload_path, :_destroy, :id],
+                    certificate_born_uploads_attributes: [:upload_path, :_destroy, :id]
                     )
     end
     

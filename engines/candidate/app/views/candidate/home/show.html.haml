@@ -19,7 +19,7 @@
 .ui.three.column.grid.container.text-center
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar. ", position: "right"} }
     .ui
-      = link_to image_tag('/images/sample-icone.png', width: 100), notifications_path
+      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.notifications_path
     .text-center.bold
       Notificações
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar, est id dignissim dignissim, ipsum arcu consequat orci, congue eleifend lorem tellus nec ex. "} }
@@ -42,7 +42,7 @@
       = link_to image_tag('/images/sample-icone.png', width: 100), attendance.requeriments_path
     .text-center.bold
       Meus Requerimentos
-  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ", position: "left"} }
+  .column
     .ui
       = link_to image_tag('/images/sample-icone.png', width: 100), "#"
     .text-center.bold

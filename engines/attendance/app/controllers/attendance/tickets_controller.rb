@@ -32,7 +32,21 @@ module Attendance
       end
     end
 
-    def destroy
+    def continue
+      @ticket  = @cadastre.attendance_tickets.find(params[:ticket_id])
+      @service = TicketService.new(cadastre: @cadastre, ticket: @ticket, context_id: @ticket.ticket_context_id)
+      redirect_to @service.route_path
+    end
+
+    def cancel
+      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
+    end
+    
+    def close
+      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
+      @ticket.update(ticket_status_id: 7)
+      
+      redirect_to :back 
     end
 
     private

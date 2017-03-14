@@ -93,7 +93,7 @@ input {
 
 .font-black {
   color: black !important;
-}
+}title-header
 
 .big-text {
   font-size: 25px !important;
@@ -159,4 +159,17 @@ fieldset {
     right: 0;
     text-align: right;
     top: 0;
+}
+
+thead {
+  background-color: #e6e6e6  !important;
+}
+
+
+.link-red {
+  color: #cc1b1b;
+}
+
+.text-without-bold {
+  font-weight: 400 !important;
 }

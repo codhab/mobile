@@ -48,7 +48,9 @@ function validate_file(input) {
     $(input).closest("fieldset").remove()
 
   } else {
-    $(input).closest('label').text("Documento carregado").addClass("yellow")
+    $("#"+ input.id).parents('label').contents('span').text('Arquivo carregado')
+    $("#"+ input.id).parents('label').addClass("yellow")
   }
 
 }
+

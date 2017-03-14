@@ -65,8 +65,11 @@ module Attendance
       when 1
         Attendance::Engine.routes.url_helpers.edit_cadastre_path(ticket_id: @ticket.id)
       when 2
+        Attendance::Engine.routes.url_helpers.dependents_path(ticket_id: @ticket.id)
       when 3
+        Attendance::Engine.routes.url_helpers.edit_income_path(ticket_id: @ticket.id)
       when 4
+        Attendance::Engine.routes.url_helpers.edit_contact_path(ticket_id: @ticket.id)
       end
 
     end
