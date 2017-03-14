@@ -6,7 +6,7 @@ module Attendance
       fields = f.fields_for(association, new_object, child_index: id) do |builder|
         render(association.to_s.singularize + "_fields", f: builder)
       end
-      link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+      link_to("<i class='plus icon'></i> Adicionar arquivo".html_safe, '#', class: "add_fields ui button blue icon mini", data: {id: id, fields: fields.gsub("\n", "")})
     end
   end
 end

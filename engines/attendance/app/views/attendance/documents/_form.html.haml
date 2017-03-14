@@ -1,9 +1,71 @@
-= simple_form_for @ticket, url: update_document_path(@ticket), validate: true, method: :put, multipart: true, html: {id: 'file-validation'} do |f|
-  = f.fields_for :rg_uploads do |builder|
-    = render 'rg_upload_fields', f: builder
-  = link_to_add_fields "Adicionar arquivo", f, :rg_uploads
+= simple_form_for @ticket, url: update_document_path(@ticket), method: :put, multipart: true, html: {id: 'file-validation'} do |f|
+ 
 
-  .field
-    = f.submit "Salvar", class: 'ui button green'
+  .column 
+    %label 
+      %b Certidão de Nascimento ou de Casamento, quando for o caso (nos casos de convivência marital trazes as certidões de nascimento de ambos)
+  .divider
+  .column 
+    = f.fields_for :certificate_born_uploads do |builder|
+      = render 'certificate_born_upload_fields', f: builder
+    = link_to_add_fields "Adicionar arquivo", f, :certificate_born_uploads
+  %hr/
+ 
+  .column 
+    %label 
+      %b Comprovante de identidade
+  .divider
+  .column 
+    = f.fields_for :rg_uploads do |builder|
+      = render 'rg_upload_fields', f: builder
+    = link_to_add_fields "Adicionar arquivo", f, :rg_uploads
+  %hr/
+ 
+  .column 
+    %label 
+      %b Comprovante de CPF
+  .divider
+  .column 
+    = f.fields_for :cpf_uploads do |builder|
+      = render 'cpf_upload_fields', f: builder
+    = link_to_add_fields "Adicionar arquivo", f, :cpf_uploads
+  %hr/
 
-    
+
+  .column 
+    %label 
+      %b Comprovante de Residência no DF, últimos 5 anos (ano a ano)
+  .divider
+  .column 
+    = f.fields_for :residence_uploads do |builder|
+      = render 'residence_upload_fields', f: builder
+    = link_to_add_fields "Adicionar arquivo", f, :residence_uploads
+  %hr/
+
+
+  .column 
+    %label 
+      %b Comprovante de tempo no DF (chegada ao DF)
+  .divider
+  .column 
+    = f.fields_for :arrival_df_uploads do |builder|
+      = render 'arrival_df_upload_fields', f: builder
+    = link_to_add_fields "Adicionar arquivo", f, :arrival_df_uploads
+  %hr/
+
+
+  .column 
+    %label 
+      %b Certidões Negativas de todos os Cartórios de Registro de Imóveis do DF
+  .divider
+  .column 
+    = f.fields_for :registry_uploads do |builder|
+      = render 'registry_upload_fields', f: builder
+    = link_to_add_fields "Adicionar arquivo", f, :registry_uploads
+  %hr/
+
+
+  .big-divider
+  .field.text-center
+    = f.submit "Enviar documentação", class: 'ui button green'
+

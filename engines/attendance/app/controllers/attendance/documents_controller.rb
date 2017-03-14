@@ -6,6 +6,10 @@ module Attendance
     before_action :set_ticket 
   
     def edit
+      @service = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)
+      @service.document_required
+
+      @ticket = @service.ticket
     end
 
     def update
@@ -20,7 +24,13 @@ module Attendance
 
     def set_params
       params.fetch(:attendance_ticket, {})
-            .permit(rg_uploads_attributes: [:upload_path, :_destroy, :id])
+            .permit(
+                    rg_uploads_attributes: [:upload_path, :_destroy, :id],
+                    cpf_uploads_attributes: [:upload_path, :_destroy, :id],
+                    residence_uploads_attributes: [:upload_path, :_destroy, :id],
+                    arrival_df_uploads_attributes: [:upload_path, :_destroy, :id],
+                    registry_uploads_attributes: [:upload_path, :_destroy, :id],
+                    )
     end
     
     def set_ticket
