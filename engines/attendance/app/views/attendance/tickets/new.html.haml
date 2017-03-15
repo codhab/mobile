@@ -17,14 +17,16 @@
             %td
               %h4.ui.image.header
                 .content
-                  %i.mini.home.icon
-                  - if @ticket_service.link_create_ticket?(1)
-                    = link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
-                  - else
-                    = link_to "Atualização de cadastro", attendance.ticket_path(@ticket.current_ticket_by_context(1))
-                  %p 
-                    %small
-                      %i= @ticket.cadastre_update_status
+                  .div{style: 'width: 5%'}
+                    %i.big.home.icon
+                  .columnn{style: 'width: 80%'}
+                    - if @ticket_service.link_create_ticket?(1)
+                      = link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
+                    - else
+                      = link_to "Atualização de cadastro", attendance.ticket_path(@ticket.current_ticket_by_context(1))
+                    %p 
+                      %small
+                        %i= @ticket.cadastre_update_status
 
         - if @ticket_service.update_allow?(2)
           %tr
