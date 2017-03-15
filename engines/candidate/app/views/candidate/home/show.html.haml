@@ -23,36 +23,36 @@
         .floating.ui.red.label{style:"top: -0.8em; left: 100%;"}
           = current_cadastre.attendance_notifications.unread.count 
       %a{href: "#{attendance.notifications_path}"}
-        %i.icon.alarm.huge.gray
+        %i.icon.alarm.big.gray
     .text-center.bold
       Notificações
   .column
-    .ui.segment
+    .ui.segment.text-center
       %a{href: "#{attendance.new_ticket_path}"}
-        %i.icon.edit.huge.gray
+        %i.icon.edit.big.gray
     .text-center.bold
       Atualizar Meus Dados
   .column
-    .ui.segment
+    .ui.segment.text-center
       %a{href: "#{attendance.tickets_path}"}
-        %i.icon.refresh.huge.gray
+        %i.icon.refresh.big.gray
     .text-center.bold
       Minhas Atualizações
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
-    .ui.segment
+    .ui.segment.text-center
       %a{href: "#{attendance.chats_path}"}
-        %i.icon.comment.outline.huge.gray.text-center.bold
+        %i.icon.comment.outline.big.gray.text-center.bold
     .text-center.bold
       Meus Chats
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-    .ui.segment
+    .ui.segment.text-center
       %a{href: "#{attendance.requeriments_path}"}
-        %i.icon.file.text.outline.huge.gray.text-center.bold.text-center.bold
+        %i.icon.file.text.outline.big.gray.text-center.bold.text-center.bold
     .text-center.bold
       Meus Requerimentos
   .column
-    .ui.segment
+    .ui.segment.text-center
       %a{href: "#"}
-        %i.icon.shopping.bag.huge.gray.bold
+        %i.icon.shopping.bag.big.gray.bold
     .text-center.bold
       Serviços
