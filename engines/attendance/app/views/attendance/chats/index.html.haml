@@ -1,7 +1,7 @@
 .big-divider
 .ui.grid.container
   .column.text-center
-    .title-header 
+    .title-header
       Meu Chats
       %small
         %p= link_to "Retonar para página de atualizações", candidate.root_path
@@ -11,8 +11,12 @@
   .column
     %table.ui.celled.table
       %tbody
-        %tr
-          %td
-            %b   
-            %p.text-without-bold
-              
+        - @chats.order('created_at DESC').each do |chat|
+          %tr{class: chat.closed ? 'read' : 'not-read'}
+            %td
+              = link_to chat.chat_category.name, chat_path(chat)
+              %br
+              %p
+                %small= "Quantidade de interações: #{chat.chat_comments.count}"
+                %br
+                %small= chat.created_at.strftime("%d/%m/%Y - %H:%M")

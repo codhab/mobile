@@ -119,6 +119,7 @@ GEM
       mini_portile2 (~> 2.1.0)
     onesignal (0.3.0)
     pg (0.19.0)
+    puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -208,6 +209,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   onesignal
   pg
+  puma
   rails (~> 5.0.2)
   simple_form
   spring
@@ -218,4 +220,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.13.7
+   1.14.4

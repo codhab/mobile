@@ -1,0 +1,22 @@
+.big-divider
+.ui.grid.container
+  .column.text-center
+    .title-header
+      Comentário do chat
+      %small
+        %p= link_to "Retonar para página de chats", chat_path(@chat)
+
+.big-divider
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            %tr{class: @chat_comment.candidate_read ? 'read' : 'not-read'}
+              %td
+                = @chat_comment.content
+            %tr
+              %td
+                %p
+                  %small= @chat_comment.created_at.strftime("%d/%m/%Y - %H:%M")
