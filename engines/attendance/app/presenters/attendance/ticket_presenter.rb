@@ -30,8 +30,8 @@ module Attendance
       if ticket.present?
         if [2,5,6,7].include? ticket.ticket_status_id
           "Toque para iniciar a atualização"
-        else
-          ticket.ticket_status.name
+        else 
+          ticket.ticket_status.name rescue "Sem informação"
         end 
       else
         "Toque para iniciar a atualização"

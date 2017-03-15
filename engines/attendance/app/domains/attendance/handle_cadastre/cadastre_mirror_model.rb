@@ -15,6 +15,7 @@ module Attendance
                             :special_condition
 
       validates :special_condition_type, presence: true, if: 'special_condition_id == 2'
+      validates :cid, presence: true, if: 'special_condition_id == 2'
     end  
   end
 end

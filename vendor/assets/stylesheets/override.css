@@ -1,0 +1,35 @@
+@media only screen and (max-width: 767px) {
+  .ui.table:not(.unstackable) td:first-child,
+  .ui.table:not(.unstackable) th:first-child {
+    font-weight: 0 !important;
+  }
+}
+
+.ui.form .field>label {
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
+.ui.button.yellow {
+  background-color: #ffcb08 !important;
+  color: rgb(35, 35, 35) !important;
+}
+
+.ui.menu .active.item.item-yellow {
+  background-color: #ffcb08 !important;
+}
+
+
+fieldset {
+  border: 0px solid #dedede !important;
+  margin: 0 !important;
+  padding: 0 !important
+}
+
+hr {
+  opacity: 0.3 !important;
+}
+
+a {
+  color: #e2b405 ;
+}

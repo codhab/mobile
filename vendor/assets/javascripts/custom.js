@@ -26,6 +26,14 @@ $(document).on('turbolinks:load', function() {
   $('.percent').mask("00.0", {placeholder: "00.0"});
   $('.coin').mask("######0.00", {reverse: true});
   $('.money').mask('000.000.000.000,00', {reverse: true});
+  $('.phone').blur(function(event) {
+    if($(this).val().length == 15){
+      //(61)9916-60109
+      $(this).mask('(00)0000-0000');
+    } else {
+      $(this).mask('(00)00000-0000');
+    }
+  });
  
 
 

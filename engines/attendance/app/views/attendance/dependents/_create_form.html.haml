@@ -1,23 +1,21 @@
 = simple_form_for @dependent_mirror, url: create_dependent_path(@ticket), method: :post, validate: true, remote: true do |f|
-  = f.input :name
-  = f.input :cpf, input_html: { class: 'cpf'}
-  = f.input :rg
-  = f.input :rg_org
-  = f.input :rg_uf_id
-  = f.input :born, as: :string, input_html: { class: 'date' }
-  = f.input :gender
+  = f.input :name, placeholder: "Digite o nome do dependente"
+  = f.input :cpf, input_html: { class: 'cpf '}
+  = f.input :rg, placeholder: "Informe o RG do dependente"
+  = f.input :rg_org, placeholder: "Informe o orgão do RG"
+  = f.input :rg_uf_id, as: :select, collection: ::AddressState.all, label_method: :acronym, value_method: :acronym, include_blank: 'Nenhuma'
+  = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil }
+  = f.input :gender, as: :select, collection: ::CandidateCadastre.genders.keys, include_blank: false
   = f.input :place_birth
-  = f.input :civil_state_id
-  = f.input :income
-  = f.input :kinship_id
-  = f.input :co_acquirer, as: :select, include_blank: false
-  = f.input :percentage
-  = f.input :special_condition_id
-  = f.input :cid
-  = f.input :nis
+  = f.association :civil_state, include_blank: false
+  = f.input :income, input_html: { class: 'coin' }
+  = f.association :kinship, include_blank: false
+  = f.association :special_condition, include_blank: false
+  = f.input :cid, placeholder: "Informe o CID (se houver)"
+  = f.input :nis, placeholder: "Infomr o NIS (se houver)"
 
   .big-divider
   .column.text-center
-    = f.submit "Cadastrar dependente", class: 'ui button yellow'
-    = link_to "Cancelar", dependents_path(@ticket), class: 'ui button gray'
+    = f.submit "Cadastrar dependente", class: 'ui button yellow', data: { disable_with: t(:disable_with)}
+    = link_to "Cancelar", dependents_path(@ticket), class: 'ui button gray', data: { disable_with: t(:disable_with)}
   

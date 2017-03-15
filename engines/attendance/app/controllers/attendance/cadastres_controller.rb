@@ -20,7 +20,7 @@ module Attendance
       params.require(:handle_cadastre_cadastre_mirror_model)
             .permit(:rg, :gender, :born, :born_uf, :rg_org, 
                     :rg_uf, :place_birth, :cadastre_id, :nis, 
-                    :cid, :adapted_property)
+                    :cid, :adapted_property, :special_condition_id, :special_condition_type_id)
 
     end
 

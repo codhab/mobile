@@ -1,0 +1,91 @@
+.big-divider
+.ui.grid
+  .column.text-center
+    .big-divider
+    .title-header 
+      Finalizar atualização
+      %small
+        %p= link_to "Retonar para página inicial", main_app.root_path
+
+    .big-divider
+.row
+  .column    
+    %table.ui.celled.table
+      %tbody
+        %tr
+          %td.text-center  
+            %h4 Tipo de atualização
+            .text-without-bold= @ticket.ticket_context.name.humanize rescue "Sem informação"
+          
+          - if @ticket.ticket_context_id == 1
+            %tr
+              %td.clean-font
+                %b Nome
+                %p #{@ticket.cadastre_mirror.name.mb_chars.upcase}
+              %td.clean-font
+                %b Data de nascimento
+                %p= @ticket.cadastre_mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
+              %td.clean-font
+                %b CPF
+                %p= @ticket.cadastre_mirror.cpf rescue "Sem informação"
+              %td.clean-font
+                %b RG
+                %p #{@ticket.cadastre_mirror.rg} / #{@ticket.cadastre_mirror.rg_org} - #{@ticket.cadastre_mirror.rg_uf}
+            %tr
+              %td.clean-font
+                %b Estado civil
+                %p= @ticket.cadastre_mirror.civil_state.name rescue "Sem informação"
+              %td.clean-font
+                %b Data de chegada ao DF
+                %p= @ticket.cadastre_mirror.arrival_df.strftime("%d/%m/%Y") rescue "Sem informação"
+              %td.clean-font
+                %b Naturalidade
+                %p= @ticket.cadastre_mirror.born_uf rescue "Sem informação"
+              %td.clean-font
+                %b Nome da mãe
+                %p= @ticket.cadastre_mirror.mother_name rescue "Sem informação"
+              %td.clean-font
+                %b 
+                %p= @ticket.cadastre_mirror.cid rescue "Sem informação"
+            %tr
+              %td.clean-font
+                %b Condição especial
+                %p= @ticket.cadastre_mirror.special_condition.name rescue "Sem informação"
+              %td.clean-font
+                %b Tipo de condição
+                %p= @ticket.cadastre_mirror.special_condition_type.name rescue "Sem informação"
+              %td.clean-font
+                %b Propriedade adaptada
+                %p= @ticket.cadastre_mirror.adapted_property rescue "Sem informação"
+              %td.clean-font
+                %b NIS
+                %p= @ticket.cadastre_mirror.nis rescue "Sem informação"
+              %td.clean-font
+                %b CID
+                %p= @ticket.cadastre_mirror.cid rescue "Sem informação"
+          - if @ticket.ticket_context_id == 2
+            %tr
+              %td
+          - if @ticket.ticket_context_id == 3
+            %tr
+              %td 
+                %p Renda do titular
+                %p.text-without-bold= number_to_currency @ticket.cadastre_mirror.main_income
+
+            - @ticket.cadastre_mirror.dependent_mirrors.each do |dependent|
+              %tr
+                %td
+                  %p= dependent.name.upcase
+                  %p.text-without-bold= number_to_currency dependent.income
+          - if @ticket.ticket_context_id == 4
+            %tr
+              %td
+
+.big-divider
+.row
+  .column.text-center
+    = link_to "Confirmar e prosseguir com a atualização", finish_tickets_path(@ticket), class: 'ui button yellow'
+    .divider
+    = link_to "Cancelar a atualização", cancel_tickets_path(@ticket), class: 'ui button gray', remote: true
+    %br/
+    %br/

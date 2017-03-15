@@ -13,6 +13,22 @@ module Attendance
                             :kinship,
                             :special_condition_id
 
+      validates :cpf, cpf: true, presence: true, if: :is_major?
+      validates_uniqueness_of :cpf, scope: :cadastre_mirror_id
+
+      validates :name, presence: true
+      validates :cid, presence: true, if: 'self.special_condition_id == 2'
+
+      validate :spouse_present?
+
+      private
+
+      def spouse_present?
+        if self.cadastre_mirror.dependent_mirrors.where(kinship_id: 6).present?
+          errors.add(:kinship_id, "Já existe um conjugê cadastrado")
+        end
+      end
+
     end
   end
 end

@@ -1,0 +1,12 @@
+.big-divider
+.ui.grid.container
+  .column.text-center
+    .title-header 
+      Atualização de contatos
+      %small
+        %p= link_to "Retonar para página de atualizações", new_ticket_path
+
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = render 'form'

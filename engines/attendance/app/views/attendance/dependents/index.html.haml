@@ -17,6 +17,8 @@
                 %b= link_to mirror.name.mb_chars.upcase, edit_dependent_path(ticket_id: @ticket.id, dependent_id: mirror.id)   
                 %p.text-without-bold
                   #{mirror.kinship.name.mb_chars.upcase}, #{mirror.born.strftime("%d/%m/%Y")} 
+                = link_to "editar", edit_dependent_path(ticket_id: @ticket.id, dependent_id: mirror.id)
+                = link_to "excluir",remove_dependent_path(ticket_id: @ticket.id, dependent_id: mirror.id), remote: true
     - else
       .divider
       .text-center

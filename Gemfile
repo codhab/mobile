@@ -21,6 +21,8 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'file_validators'
 gem 'jquery-validation-rails'
+gem 'email_validator'
+gem 'validates_cpf_cnpj'
 
 group :development, :test do
   gem 'byebug', platform: :mri

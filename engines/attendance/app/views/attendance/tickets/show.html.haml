@@ -15,11 +15,11 @@
         %tr
           %td    
             %h3 Protocolo - nº #{@ticket.id} 
-            #{@ticket.ticket_context.name.humanize} -
-            #{@ticket.created_at.strftime("%d/%m/%Y - %H:%M")}
+            = @ticket.ticket_context.name.humanize rescue "Sem informação"
+            = @ticket.created_at.strftime("%d/%m/%Y - %H:%M") rescue "Sem informação"
           %td
             %span.ui.label.blue
-              %p= @ticket.ticket_status.name.humanize
+              %p= @ticket.ticket_status.name.humanize rescue "Sem informação"
         - if @ticket.ticket_status_id == 1
           %tr
             %td= link_to "Continuar atualização", continue_tickets_path(@ticket)

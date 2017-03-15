@@ -23,7 +23,21 @@ module Attendance
     end
 
     def pre_finish
-      @ticket = @cadastre.attendance_tickets.find(params[:id])
+      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
+    end
+
+    def finish
+      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
+
+      if @ticket.ticket_context_id == 4
+        @ticket.update(ticket_status_id: 2)
+      else
+        @ticket.update(ticket_status_id: 3)
+      end
+
+      redirect_to ticket_path(@ticket)
+
+      
     end
 
     def create
@@ -44,13 +58,14 @@ module Attendance
 
     def cancel
       @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
+
     end
     
     def close
       @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
       @ticket.update(ticket_status_id: 7)
       
-      redirect_to :back 
+      redirect_to ticket_path(@ticket) 
     end
 
     private

@@ -20,7 +20,7 @@ Attendance::Engine.routes.draw do
   get  'cadastre/edit/:ticket_id',   to: 'cadastres#edit',   as: 'edit_cadastre'
   put  'cadastre/update/:ticket_id', to: 'cadastres#update', as: 'update_cadastre'
 
-  get  'document/edit/:ticket_id',         to: 'documents#edit',    as: 'edit_document'
+  get  'document/edit/:ticket_id',   to: 'documents#edit',    as: 'edit_document'
   put  'document/update/:ticket_id', to: 'documents#update',  as: 'update_document'
 
   
@@ -31,14 +31,16 @@ Attendance::Engine.routes.draw do
   post 'dependent/create/:ticket_id', to: 'dependents#create',  as: 'create_dependent'
 
   get  'dependent/edit/:ticket_id/:dependent_id',   to: 'dependents#edit',   as: 'edit_dependent'
-  put  'dependent/update/:ticket_id/:dependent_id', to: 'dependents#update', as: 'update_dependet'
+  put  'dependent/update/:ticket_id/:dependent_id', to: 'dependents#update', as: 'update_dependent'
   
-  #dependent  
+  get     'dependent/remove/:ticket_id/:dependent_id',  to: 'dependents#remove',  as: 'remove_dependent'
+  delete  'dependent/destroy/:ticket_id/:dependent_id', to: 'dependents#destroy', as: 'destroy_dependent'
+  #income  
   get  'income/edit/:ticket_id',   to: 'incomes#edit',   as: 'edit_income'
   put  'income/update/:ticket_id', to: 'incomes#update', as: 'update_income'
 
 
-  #income
+  #contact
   get  'contact/edit/:ticket_id',   to: 'contacts#edit',   as: 'edit_contact'
   put  'contact/update/:ticket_id', to: 'contacts#update', as: 'update_contact'
 end

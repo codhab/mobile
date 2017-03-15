@@ -1,0 +1,17 @@
+%fieldset
+  - if f.object.upload_path_url.to_s.present?
+    %p
+      %b= link_to "Toque para visualizar o documento", f.object.upload_path_url.to_s, target: '_blank'
+  .ui.buttons
+    %label.button-file-upload.ui.button.mini{class: f.object.upload_path? ? 'green' : 'gray'}
+      - if f.object.upload_path_url.to_s.present?
+        %span
+          Toque para modificar o documento
+      - else
+        %span
+          Toque para inserir um documento
+
+      = f.input :upload_path, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: 'inline'}
+    = f.hidden_field :_destroy
+    = link_to "<i class='remove icon'></i>".html_safe, '#', class: "remove_fields ui button black icon mini inline"
+.divider

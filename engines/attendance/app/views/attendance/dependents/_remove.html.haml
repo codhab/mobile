@@ -1,0 +1,9 @@
+.content
+  .description.text-center
+    %h4
+      %b Você tem certeza que deseja remover este dependente?
+.actions
+  .ui.aligned.center.text-center
+    = link_to "Sim, eu desejo remover", destroy_dependent_path(ticket_id: @ticket.id, dependent_mirror_id: @dependent_mirror.id), class: 'ui button green', method: :delete
+    .ui.grau.deny.button Cancelar
+  .divider
