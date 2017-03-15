@@ -17,6 +17,7 @@
             %td
               %h4.ui.image.header
                 .content
+                  %i.mini.home.icon
                   - if @ticket_service.link_create_ticket?(1)
                     = link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
                   - else
