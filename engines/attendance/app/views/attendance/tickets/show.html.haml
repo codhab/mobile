@@ -36,11 +36,19 @@
   .big-divider
   .column
     %table.ui.celled.table
-      %tbody.text-center
-        %tr
+      %tbody
+        %tr.text-center
           %td    
             %h3 Mensagens
-        %tr
-          %td.text-without-bold 
-            %i Nenhuma mensagem para mostrar
+        - if @ticket.ticket_comments.present?
+          - @ticket.ticket_comments.order("created_at DESC").each do |item|
+            %tr
+              %td.text-without-bold 
+                %small
+                  %b= item.created_at.strftime("%d/%m/%Y - %H:%M")
+                %p= item.comment
+        - else 
+          %tr.text-center
+            %td.text-without-bold
+              %i Nenhuma mensagem para mostrar
   .big-divider

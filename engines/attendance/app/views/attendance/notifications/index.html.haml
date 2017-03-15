@@ -11,8 +11,10 @@
   .column
     %table.ui.celled.table
       %tbody
-        %tr
-          %td
-            %b   
-            %p.text-without-bold
+        - @notifications.order('created_at DESC').each do |notification|
+          %tr{class: notification.read ? 'read' : 'not-read'}
+            %td
+              = link_to notification.title, notification_path(notification)
+              %p
+                %small= notification.created_at.strftime("%d/%m/%Y - %H:%M")
               

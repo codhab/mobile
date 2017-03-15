@@ -1,49 +1,58 @@
-.ui.grid{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar, est id dignissim dignissim, ipsum arcu consequat orci, congue eleifend lorem tellus nec ex. Sed volutpat iaculis lacus ac ornare. Quisque eu turpis nisi. ", position: "bottom"} }
-  .column.text-center
-    .big-divider
-    .ui.one.column.centered.grid
-      .ui.circular
-        %h2.ui.header
-          = link_to image_tag('/images/no-avatar.jpg', class: 'ui small circular image big-yellow-border'), cadastre_path(current_cadastre)
-    .big-divider
+.ui.grid.container
+  .column{style: 'width: 25%'}
+    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image big-yellow-border'), cadastre_path(current_cadastre)
+  .column{style: 'width: 75%'}
     .title-header 
       #{current_cadastre.hello}
-    %p
-      %span
+      %p.mini-text
         %i Toque para visualizar seu cadastro
-    %span.ui.label.yellow
-      %h5.font-black
-        %p #{current_cadastre.current_situation_name}
+      %p
+        %span.ui.label.yellow.mini.font-black
+          #{current_cadastre.current_situation_name}
+
+
+.row
+  .column.wide.four
+    .big-divider
 
 .divider
-.ui.three.column.grid.container.text-center
-  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar. ", position: "right"} }
-    .ui
-      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.notifications_path
+.ui.three.column.grid.container.black
+  .column
+    .ui.segment.text-center
+      - if current_cadastre.attendance_notifications.unread.present?
+        .floating.ui.red.label{style:"top: -0.8em; left: 100%;"}
+          = current_cadastre.attendance_notifications.unread.count 
+      %a{href: "#{attendance.notifications_path}"}
+        %i.icon.alarm.huge.gray
     .text-center.bold
       Notificações
-  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar, est id dignissim dignissim, ipsum arcu consequat orci, congue eleifend lorem tellus nec ex. "} }
-    .ui
-      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.new_ticket_path
+  .column
+    .ui.segment
+      %a{href: "#{attendance.new_ticket_path}"}
+        %i.icon.edit.huge.gray
     .text-center.bold
       Atualizar Meus Dados
   .column
-    .ui
-      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.tickets_path
+    .ui.segment
+      %a{href: "#{attendance.tickets_path}"}
+        %i.icon.refresh.huge.gray
     .text-center.bold
       Minhas Atualizações
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
-    .ui
-      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.chats_path
+    .ui.segment
+      %a{href: "#{attendance.chats_path}"}
+        %i.icon.comment.outline.huge.gray.text-center.bold
     .text-center.bold
       Meus Chats
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-    .ui
-      = link_to image_tag('/images/sample-icone.png', width: 100), attendance.requeriments_path
+    .ui.segment
+      %a{href: "#{attendance.requeriments_path}"}
+        %i.icon.file.text.outline.huge.gray.text-center.bold.text-center.bold
     .text-center.bold
       Meus Requerimentos
   .column
-    .ui
-      = link_to image_tag('/images/sample-icone.png', width: 100), "#"
+    .ui.segment
+      %a{href: "#"}
+        %i.icon.shopping.bag.huge.gray.bold
     .text-center.bold
       Serviços

@@ -32,6 +32,10 @@ module Attendance
       if @ticket.ticket_context_id == 4
         @ticket.update(ticket_status_id: 2)
       else
+
+        notification = Attendance::NotificationService.new(ticket: @ticket, cadastre: @ticket.cadastre)
+        notification.attendance_created
+
         @ticket.update(ticket_status_id: 3)
       end
 

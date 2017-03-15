@@ -2,9 +2,12 @@ module Attendance
   class AttendanceTicket < ApplicationRecord
     self.table_name = 'extranet.attendance_tickets'
 
+    belongs_to :cadastre,        class_name: "CandidateCadastre",       foreign_key: :cadastre_id
     belongs_to :cadastre_mirror, class_name: "CandidateCadastreMirror", foreign_key: :cadastre_mirror_id
     belongs_to :ticket_status,   class_name: "AttendanceTicketStatus",  foreign_key: :ticket_status_id
     belongs_to :ticket_context,  class_name: "AttendanceTicketContext", foreign_key: :ticket_context_id
+    
+    has_many   :ticket_comments, class_name: "AttendanceTicketComment", foreign_key: :ticket_id
 
     has_many :rg_uploads, 
         -> { where(upload_category_id: 1) },

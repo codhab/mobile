@@ -93,7 +93,7 @@ input {
 
 .font-black {
   color: black !important;
-}title-header
+}
 
 .big-text {
   font-size: 25px !important;
@@ -105,7 +105,7 @@ input {
 
 .big-yellow-border {
   border: #ffcb08 solid 5px;
-  width: 120px !important;
+  width: 100px !important;
 }
 
 .small-yellow-border {
@@ -173,3 +173,22 @@ thead {
 .text-without-bold {
   font-weight: 400 !important;
 }
+
+.read {
+  opacity: 0.5 !important;
+}
+
+.black a {
+  color: #4c4c4c !important;
+}
+
+span.ui.label.yellow {
+  color: #4c4c4c !important;
+}
+
+.mini-text {
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 400;
+}
+

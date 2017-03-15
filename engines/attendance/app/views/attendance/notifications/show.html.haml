@@ -1,0 +1,19 @@
+.big-divider
+.ui.grid.container
+  .column.text-center
+    .title-header 
+      Notificações
+      %small
+        %p= link_to "Retonar para página de notifications", notifications_path
+
+.big-divider
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %h3= @notification.title
+        = @notification.created_at.strftime("%d/%m/%Y - %H:%M")
+    .divider
+    .row
+      .column.segment
+        = @notification.content

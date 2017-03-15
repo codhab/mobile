@@ -70,10 +70,8 @@ module Attendance
           @ticket.cpf_uploads.new
         end
 
-        if !@dependent.is_major? || @dependent.kinship_id == 6
-          @ticket.certificate_born_uploads.new
-        end 
-
+        @ticket.certificate_born_uploads.new
+        
         if @dependent.special_condition_id == 2
           @ticket.special_condition_uploads.new
         end

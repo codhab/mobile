@@ -24,7 +24,8 @@ module Attendance
       private
 
       def spouse_present?
-        if self.cadastre_mirror.dependent_mirrors.where(kinship_id: 6).present?
+        if self.cadastre_mirror.dependent_mirrors.where(kinship_id: 6).present? &&
+          self.kinship_id == 6
           errors.add(:kinship_id, "Já existe um conjugê cadastrado")
         end
       end

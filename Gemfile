@@ -23,6 +23,9 @@ gem 'file_validators'
 gem 'jquery-validation-rails'
 gem 'email_validator'
 gem 'validates_cpf_cnpj'
+gem 'onesignal'
+
+gem 'puma'
 
 group :development, :test do
   gem 'byebug', platform: :mri
