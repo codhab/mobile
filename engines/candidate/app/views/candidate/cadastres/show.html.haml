@@ -1,0 +1,75 @@
+.big-divider
+.ui.grid.container
+  .column.center.aligned
+    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image small-yellow-border', style: 'margin: 0 auto'), "#"
+    %br/
+    .title-header 
+      = current_cadastre.name.mb_chars.upcase
+    %small
+      = current_cadastre.current_situation_name
+    %br/
+    %b= link_to "Voltar Para o Início", candidate.root_path
+.divider
+.ui.three.column.grid.container.black
+  .column
+    .ui.segment.text-center
+      - if current_cadastre.attendance_notifications.unread.present?
+        .floating.ui.red.label{style:"top: -0.8em; left: 100%;"}
+          = current_cadastre.attendance_notifications.unread.count 
+      %a{href: "#{detail_cadastres_path}"}
+        %i.icon.user.big.gray
+    .text-center.bold
+      Meu cadastro
+  .column
+    .ui.segment.text-center
+      %a{href: "#{dependent_cadastres_path}"}
+        %i.icon.users.big.gray
+    .text-center.bold
+      Meus dependentes
+  .column
+    .ui.segment.text-center
+      %a{href: "#{pontuation_cadastres_path}"}
+        %i.icon.area.chart.big.gray
+    .text-center.bold
+      Pontuações
+  .column
+    .ui.segment.text-center
+      %a{href: "#{occurrence_cadastres_path}"}
+        %i.icon.flag.big.gray.text-center.bold
+    .text-center.bold
+      Ocorrências
+  .column
+    .ui.segment.text-center
+      %a{href: "#{entity_cadastres_path}"}
+        %i.icon.building.outline.text.outline.big.gray
+    .text-center.bold
+      Minha entidade
+  .column
+    .ui.segment.text-center
+      %a{href: "#{situation_cadastres_path}"}
+        %i.icon.options.bag.big.gray.bold
+    .text-center.bold
+      Minhas situações
+
+  .column
+    .ui.segment.text-center
+      %a{href: "#{address_cadastres_path}"}
+        %i.icon.marker.big.gray.bold
+    .text-center.bold
+      Endereço vínculado
+
+
+  .column
+    .ui.segment.text-center
+      %a{href: "#{document_cadastres_path}"}
+        %i.icon.file.text.outline.bag.big.gray.bold
+    .text-center.bold
+      Processos / Documentos
+
+
+  .column
+    .ui.segment.text-center
+      %a{href: "#{schedule_cadastres_path}"}
+        %i.icon.checked.calendar.bag.big.gray.bold
+    .text-center.bold
+      Agendamentos

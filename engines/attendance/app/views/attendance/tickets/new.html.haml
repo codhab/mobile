@@ -8,57 +8,62 @@
         %p= link_to "Retonar para página inicial", main_app.root_path
 
     .big-divider
-.row
-  .column
-    %table.ui.celled.table
-      %tbody
-        - if @ticket_service.update_allow?(1)
-          %tr
-            %td
-              %h4.ui.image.header
-                .content
-                  .div{style: 'width: 5%'}
-                    %i.big.home.icon
-                  .columnn{style: 'width: 80%'}
-                    - if @ticket_service.link_create_ticket?(1)
-                      = link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
-                    - else
-                      = link_to "Atualização de cadastro", attendance.ticket_path(@ticket.current_ticket_by_context(1))
-                    %p 
-                      %small
-                        %i= @ticket.cadastre_update_status
+.row.nav-links
+  - if @ticket_service.update_allow?(1)
+    .ui.column.grid.segment
+      .ui.stackable.doubling.three.wide.column.grid
+        .column
+          %i.big.refresh.icon
+      .ui.ten.wide.column.grid
+        .column
+          - if @ticket_service.link_create_ticket?(1)
+            %b= link_to "Atualização de cadastro", attendance.pre_create_tickets_path(1), remote: true
+          - else
+            %b= link_to "Atualização de cadastro", attendance.ticket_path(@ticket.current_ticket_by_context(1))
+          %p 
+            %small
+              %i= @ticket.cadastre_update_status
+  
+  - if @ticket_service.update_allow?(2)
+    .ui.column.grid.segment
+      .ui.stackable.doubling.three.wide.column.grid
+        .column
+          %i.big.users.icon
+      .ui.twelve.wide.column.grid
+        .column
+          - if @ticket_service.link_create_ticket?(2)
+            %b= link_to "Atualização de dependentes", attendance.pre_create_tickets_path(2), remote: true
+          - else
+            %b= link_to "Atualização de dependentes", attendance.ticket_path(@ticket.current_ticket_by_context(2))
+          %p 
+            %small
+              %i= @ticket.cadastre_update_status
 
-        - if @ticket_service.update_allow?(2)
-          %tr
-            %td
-              %h4.ui.image.header
-                .content
-                  - if @ticket_service.link_create_ticket?(2)
-                    = link_to "Atualização de dependentes", attendance.pre_create_tickets_path(2), remote: true
-                  - else
-                    = link_to "Atualização de dependentes", attendance.ticket_path(@ticket.current_ticket_by_context(2))
-                  %p 
-                    %small
-                      %i= @ticket.dependent_update_status
-                      
+  - if @ticket_service.update_allow?(3)
+    .ui.column.grid.segment
+      .ui.stackable.doubling.three.wide.column.grid
+        .column
+          %i.big.dollar.icon
+      .ui.twelve.wide.column.grid
+        .column
+          - if @ticket_service.link_create_ticket?(3)
+            %b= link_to "Atualização de renda", attendance.pre_create_tickets_path(3), remote: true
+          - else
+            %b= link_to "Atualização de renda", attendance.ticket_path(@ticket.current_ticket_by_context(3))
+          %p 
+            %small
+              %i= @ticket.cadastre_update_status
 
-        - if @ticket_service.update_allow?(3)
-          %tr
-            %td
-              %h4.ui.image.header
-                .content
-                  - if @ticket_service.link_create_ticket?(3)
-                    = link_to "Atualização de renda", attendance.pre_create_tickets_path(3), remote: true
-                  - else
-                    = link_to "Atualização de renda", attendance.ticket_path(@ticket.current_ticket_by_context(3))
-                  %p 
-                    %small
-                      %i= @ticket.income_update_status
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                = link_to "Atualização de dados de contato", attendance.pre_create_tickets_path(4), remote: true
-                %p 
-                  %small
-                    %i= @ticket.contact_update_status
+  .ui.column.grid.segment
+    .ui.stackable.doubling.three.wide.column.grid
+      .column
+        %i.big.call.icon
+    .ui.twelve.wide.column.grid
+      .column
+        - if @ticket_service.link_create_ticket?(4)
+          %b= link_to "Atualização de contato", attendance.pre_create_tickets_path(4), remote: true
+        - else
+          %b= link_to "Atualização de contato", attendance.ticket_path(@ticket.current_ticket_by_context(4))
+        %p 
+          %small
+            %i= @ticket.cadastre_update_status
