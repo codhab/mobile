@@ -49,16 +49,14 @@ GEM
     arel (7.1.4)
     builder (3.2.3)
     byebug (9.0.6)
-    carrierwave (0.11.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
-    client_side_validations (9.0.1)
+    client_side_validations (9.1.0)
       jquery-rails (~> 4.2)
       js_regex (~> 1.2)
-      rails (~> 5.0.0, >= 5.0.0.1)
+      rails (>= 5.0.0.1, < 5.2)
     client_side_validations-simple_form (6.0.0)
       client_side_validations (~> 9.0)
       simple_form (~> 3.4)
@@ -98,7 +96,6 @@ GEM
     jquery-validation-rails (1.16.0)
     js_regex (1.2.1)
       regexp_parser (>= 0.3.6, <= 0.4.2)
-    json (1.8.6)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -110,7 +107,6 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
@@ -118,12 +114,8 @@ GEM
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     onesignal (0.3.0)
-    pg (0.19.0)
-<<<<<<< HEAD
+    pg (0.20.0)
     puma (3.8.2)
-=======
-    puma (3.8.1)
->>>>>>> 24774ff0f21ff2d75cfb91024aba47849ecbf4ea
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -224,4 +216,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.14.4
+   1.13.7
