@@ -1,0 +1,6 @@
+= simple_form_for @chat do |f|
+  = b.input :income, label: false, input_html: { class: 'coin'}
+  .big-divider
+  .column.text-center
+    = f.submit "Atualizar renda", class: 'ui button yellow'
+    = link_to "Cancelar", chats_path, class: 'ui button gray'
