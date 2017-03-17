@@ -17,7 +17,7 @@ end
 set  :repository, 'https://github.com/codhab/mobile.git'
 set  :branch, ENV["BRANCH"] ||= 'master'
 
-set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public/uploads')
+set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public')
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml', 'config/puma.rb')
 
 set :user, 'root'
@@ -39,8 +39,6 @@ task :deploy do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rails:db_migrate'
-    command %{#{fetch(:rails)} db:seed}
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
