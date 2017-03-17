@@ -39,14 +39,11 @@ task :deploy do
     invoke  :'git:clone'
     invoke  :'deploy:link_shared_paths'
     invoke  :'bundle:install'
-    command %["bundle update core_address #{fetch(:deploy_to)}"]
-    command %["bundle update core_candidate #{fetch(:deploy_to)}"]
-    command %["bundle update core_attendance #{fetch(:deploy_to)}"]
     invoke  :'rails:assets_precompile'
     invoke  :'deploy:cleanup'
-
     on :launch do
       invoke :'puma:phased_restart'
     end
   end
 end
+

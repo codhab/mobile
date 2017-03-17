@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/codhab/core_attendance.git
-  revision: 1433395748b8c2335fde3e491f916ecaf75c715a
+  revision: 76e2e81f81c7cdebd1f791cc1c9430e7f9f8412c
   specs:
     core_attendance (0.1.0)
       core_address

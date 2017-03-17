@@ -13,9 +13,6 @@
 .ui.three.column.grid.container.black
   .column
     .ui.segment.text-center
-      - if current_cadastre.attendance_notifications.unread.present?
-        .floating.ui.red.label{style:"top: -0.8em; left: 100%;"}
-          = current_cadastre.attendance_notifications.unread.count 
       %a{href: "#{detail_cadastres_path}"}
         %i.icon.user.big.gray
     .text-center.bold
