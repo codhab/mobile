@@ -39,9 +39,9 @@ task :deploy do
     invoke  :'git:clone'
     invoke  :'deploy:link_shared_paths'
     invoke  :'bundle:install'
-    command :'bundle update core_address'
-    command :'bundle update core_candidate'
-    command :'bundle update core_attendance'
+    command %['bundle update core_address']
+    command %['bundle update core_candidate']
+    command %['bundle update core_attendance']
     invoke  :'rails:assets_precompile'
     invoke  :'deploy:cleanup'
 
