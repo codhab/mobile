@@ -1,13 +1,12 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{notifications_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Notificações
+    .sub-title Detalhamento de Notificação
 .big-divider
-.ui.grid.container
-  .column.text-center
-    .title-header
-      Notificações
-      %small
-        %p= link_to "Retonar para página de notificações", notifications_path
-
-.big-divider
-.ui.container-fluid
+.ui.grid.container-fluid
   .ui.grid
     .row
       .column.segment

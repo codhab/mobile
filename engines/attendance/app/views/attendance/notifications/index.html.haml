@@ -1,20 +1,22 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Notificações
+    .sub-title Listagem de Notificações
 .big-divider
 .ui.grid.container
-  .column.text-center
-    .title-header 
-      Notificações
-      %small
-        %p= link_to "Retonar para página de atualizações", candidate.root_path
-
-.big-divider
-.row
   .column
     %table.ui.celled.table
-      %tbody
+      %tbody.black
         - @notifications.order('created_at DESC').each do |notification|
           %tr{class: notification.read ? 'read' : 'not-read'}
             %td
-              = link_to notification.title, notification_path(notification)
-              %p
-                %small= notification.created_at.strftime("%d/%m/%Y - %H:%M")
-              
+              %h4.ui.image.header
+                %i.small.user.icon.gray
+                .content
+                  %a{href: "#{notification_path(notification)}"}
+                    #{notification.title}
+                  .sub.header
+                    #{notification.created_at.strftime("%d/%m/%Y - %H:%M")}

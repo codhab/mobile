@@ -3,6 +3,10 @@ body {
   font-family: 'Nunito Sans', sans-serif !important;
 }
 
+.mega-margin {
+  margin-bottom: 200px !important;
+  margin-top: 40px !important;
+}
 .ui.grid {
   margin: 0 !important;
 }
@@ -56,11 +60,11 @@ body {
 }
 
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .text-justify {
-  text-align: justify;
+  text-align: justify !important;
 }
 
 input {

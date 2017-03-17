@@ -1,23 +1,25 @@
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
-      Atualizações (#{@tickets.count})
-      %small
-        %p= link_to "Retonar para página de atualizações", candidate.root_path
-    .big-divider
-
-.row
+  .two.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Minhas Atualizações (#{@tickets.count})
+    .sub-title Listagens Atualizações Realizadas
+.big-divider
+.ui.grid.container-fluid
   .column
     %table.ui.celled.table
-      %tbody
-        - @tickets.order("created_at DESC").each do |ticket|
+      %tbody.black
+        - @tickets.order('created_at DESC').each do |ticket|
           %tr
             %td
               %h4.ui.image.header
+                %i.small.refresh.icon.gray
                 .content
-                  = link_to ticket.ticket_context.name.humanize, ticket_path(ticket)
+                  %a{href: "#{ticket_resume_path(ticket)}"}
+                    = ticket.ticket_context.name.humanize
                   .sub.header
-                    .mini-divider
+                    = ticket.ticket_status.name.humanize
+                    %small
                       %p
-                        #{ticket.ticket_status.name.humanize} - #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}
+                        %i= ticket.created_at.strftime("%d/%m/%Y - %H:%M")

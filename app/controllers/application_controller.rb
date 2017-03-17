@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_cadastre
-    cadastre  = ::CandidateCadastre.find(224507)
+    cadastre  = ::CoreAttendance::Candidate::Cadastre.find(224507)
     presenter = ::CadastrePresenter.new(cadastre, view_context)
     
     return presenter

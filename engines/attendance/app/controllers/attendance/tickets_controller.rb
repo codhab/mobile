@@ -6,7 +6,7 @@ module Attendance
     before_action :set_cadastre
 
     def index
-      @tickets = @cadastre.attendance_tickets
+      @tickets = current_cadastre.tickets
     end
 
     def new
@@ -16,6 +16,10 @@ module Attendance
 
     def show
       @ticket = @cadastre.attendance_tickets.find(params[:id])
+    end
+
+    def resume
+      @ticket = current_cadastre.tickets.find(params[:ticket_id])
     end
 
     def pre_create

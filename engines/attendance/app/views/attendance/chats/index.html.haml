@@ -1,22 +1,22 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Meus Chats (#{@chats.count})
+    .sub-title Listagem Chats 
 .big-divider
 .ui.grid.container
-  .column.text-center
-    .title-header
-      Meu Chats
-      %small
-        %p= link_to "Retonar para página de atualizações", candidate.root_path
-
-.big-divider
-.row
   .column
     %table.ui.celled.table
-      %tbody
+      %tbody.black
         - @chats.order('created_at DESC').each do |chat|
-          %tr{class: chat.closed ? 'read' : 'not-read'}
+          %tr
             %td
-              = link_to chat.chat_category.name, chat_path(chat)
-              %br
-              %p
-                %small= "Quantidade de interações: #{chat.chat_comments.count}"
-                %br
-                %small= chat.created_at.strftime("%d/%m/%Y - %H:%M")
+              %h4.ui.image.header
+                %i.small.chat.icon.gray
+                .content
+                  %a{href: "#{chat_path(chat)}"}
+                    #{chat.chat_category.name}
+                  .sub.header
+                    #{chat.created_at.strftime("%d/%m/%Y - %H:%M")}

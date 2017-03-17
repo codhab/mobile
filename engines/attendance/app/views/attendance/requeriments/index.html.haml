@@ -1,18 +1,17 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Meus Requerimentos
+    .sub-title Listagens de Requerimentos
 .big-divider
-.ui.grid.container
-  .column.text-center
-    .title-header 
-      Meu Requerimentos
-      %small
-        %p= link_to "Retonar para página de atualizações", candidate.root_path
-
-.big-divider
-.row
+.ui.grid.container-fluid
   .column
     %table.ui.celled.table
-      %tbody
+      %tbody.black
         %tr
           %td
-            %b   
-            %p.text-without-bold
-              
+            %h4.ui.image.header
+              %i.small.user.icon.gray
+              .content
