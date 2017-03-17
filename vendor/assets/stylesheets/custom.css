@@ -51,6 +51,10 @@ body {
   margin-top: 25px !important;
 }
 
+.mega-divider {
+  margin-bottom: 100px !important;
+}
+
 .text-center {
   text-align: center;
 }
@@ -178,8 +182,12 @@ thead {
   opacity: 0.5 !important;
 }
 
-.black a {
+.black, .black a {
   color: #4c4c4c !important;
+}
+
+.yellow {
+  color: #e2b405;
 }
 
 span.ui.label.yellow {

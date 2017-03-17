@@ -1,0 +1,47 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{main_app.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atualização Cadastral
+    .sub-title Listagem de contextos
+.big-divider
+.ui.grid.container-fluid
+  %table.ui.celled.table
+    %tbody.black
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.small.user.icon.gray
+            .content
+              %a{href: "#{context_create_path(1)}"}
+                Atualização Cadastral
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.small.users.icon.gray
+            .content
+              %a{href: "#{context_create_path(2)}"}
+                Atualização de Dependentes
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.small.dollar.icon.gray
+            .content
+              %a{href: "#{context_create_path(3)}"}
+                Atualização de Renda
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.small.phone.icon.gray
+            .content
+              %a{href: "#{context_create_path(4)}"}
+                Atualização de Contatos
+              .sub.header
+                Situação

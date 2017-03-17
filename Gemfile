@@ -27,8 +27,14 @@ gem 'onesignal'
 
 gem 'puma'
 
+gem 'core_attendance', github: 'codhab/core_attendance'
+gem 'core_candidate',  github: 'codhab/core_candidate' 
+gem 'core_address',    github: 'codhab/core_address'
+
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'mina', require: false
+  gem 'mina-puma', require: false,  github: 'untitledkingdom/mina-puma'
 end
 
 group :development do
@@ -42,3 +48,4 @@ path 'engines' do
   gem 'attendance'
   gem 'candidate'
 end
+
