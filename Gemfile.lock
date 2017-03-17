@@ -19,10 +19,11 @@ GIT
 
 GIT
   remote: https://github.com/codhab/core_candidate.git
-  revision: 2124c2cc8d8d9ae66da1c80a7f3c90fba416e6b0
+  revision: d466621a33cff8f1e36b49650ad1e13cc78a5762
   specs:
     core_candidate (0.1.0)
       core_address
+      friendly_id
       pg
       rails (~> 5.0.2)
 
@@ -106,6 +107,8 @@ GEM
     file_validators (2.1.0)
       activemodel (>= 3.0)
       mime-types (>= 1.0)
+    friendly_id (5.2.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)

@@ -5,7 +5,7 @@ shared_dir = File.expand_path('../../../shared', __FILE__)
 
 environment "production"
 
-bind  "unix://#{shared_dir}/tmp/sockets/puma.sock"
+bind  "unix:#{shared_dir}/tmp/sockets/puma.sock"
 pidfile "#{shared_dir}/tmp/pids/puma.pid"
 state_path "#{shared_dir}/tmp/sockets/puma.state"
 directory "#{app_dir}/current"
@@ -15,6 +15,6 @@ threads 1,2
 
 daemonize true
 
-activate_control_app "unix://#{shared_dir}/tmp/sockets/pumactl.sock"
+activate_control_app "unix:#{shared_dir}/tmp/sockets/pumactl.sock"
 
 prune_bundler
