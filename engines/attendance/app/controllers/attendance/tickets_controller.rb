@@ -17,7 +17,18 @@ module Attendance
       @ticket.ticket_comments.update_all(read: true)
     end
 
-    # routes to :cancel ticket
+    def close 
+      @ticket = @cadastre.tickets.find(params[:ticket_id])
+        
+      @ticket.update(ticket_status_id: 3)
+
+      flash[:title]      = "Operação realizada com sucesso!"
+      flash[:message]    = "Os seus dados foram atualizados com sucesso, veja o detalhamento abaixo"
+      flash[:html_class] = "success"
+      
+      redirect_to ticket_path @ticket
+    end
+
     def pre_delete
       @ticket = @cadastre.tickets.find(params[:ticket_id])
     end

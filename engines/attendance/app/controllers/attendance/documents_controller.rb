@@ -23,6 +23,12 @@ module Attendance
     def update
       if @ticket.update(set_params)
         @ticket.update(ticket_status_id: 3)
+
+
+        flash[:title]      = "Operação realizada com sucesso!"
+        flash[:message]    = "Os seus dados foram atualizados com sucesso, veja o detalhamento abaixo"
+        flash[:html_class] = "success"
+
         redirect_to ticket_path(@ticket)
       else
         @service = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)

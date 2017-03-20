@@ -29,3 +29,8 @@
 
 
 
+.ui.grid.container
+  .column.text-center
+    = link_to "Finalizar atualização",ticket_close_path(@ticket), class: 'ui button yellow fluid'
+    .divider
+    = link_to "Cancelar", ticket_path(@ticket), class: 'ui button gray fluid' 

@@ -19,6 +19,8 @@ Attendance::Engine.routes.draw do
     get 'pre_delete', to: 'tickets#pre_delete', as: 'pre_delete'
     get 'delete', to: 'tickets#delete', as: 'delete'
 
+    get 'close', to: 'tickets#close', as: :close
+    
     resources :dependents do 
       get 'pre_destroy'
     end

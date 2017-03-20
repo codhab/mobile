@@ -4,7 +4,7 @@
   = f.input :celphone, input_html: { class: 'phone'}
   = f.input :email
   = f.input :address
-  = f.association :city, include_blank: false, collection: ::AddressCity.federal_district
+  = f.association :city, include_blank: false, collection: CoreAttendance::Address::City.federal_district
   = f.association :state, include_blank: false, label_method: :acronym
   = f.input :cep, input_html: { class: 'cep'}
   .big-divider

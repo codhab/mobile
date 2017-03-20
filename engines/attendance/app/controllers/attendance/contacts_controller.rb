@@ -8,11 +8,11 @@ module Attendance
 
 
     def edit
-      @cadastre = CoreAttendance::Candidate::Contact.find(@ticket.cadastre_id)
+      @cadastre = CoreAttendance::HandleContact.find(@ticket.cadastre_id)
     end
 
     def update
-      @cadastre = CoreAttendance::Candidate::Contact.find(@ticket.cadastre_id)
+      @cadastre = CoreAttendance::HandleContact.find(@ticket.cadastre_id)
       
       if @cadastre.update(set_params)
         @ticket.update(ticket_status_id: 2, status: false)
@@ -28,7 +28,7 @@ module Attendance
     private
 
     def set_params
-      params.require(:candidate_contact).permit(:telephone, :telephone_optional, :celphone, 
+      params.require(:handle_contact).permit(:telephone, :telephone_optional, :celphone, 
                                                             :email, :address, :city_id, :state_id, :cep)
     end
 
