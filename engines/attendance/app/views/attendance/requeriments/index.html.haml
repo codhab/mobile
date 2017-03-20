@@ -9,8 +9,23 @@
 .ui.grid.container-fluid
   .column
     %table.ui.celled.table
-      %tbody.black
-        %tr
-          %td
-          %td.text-center
-            %i Nenhum requerimento vínculado ao seu CPF
+      %tbody
+        - if @requeriments.present? 
+          - @requeriments.each do  |requeriment| 
+            %tr
+              %td
+                %h4.ui.file.text.outline.header
+                  %i.icon.user
+                  .content
+                    %a{href:"#{requeriment_path(requeriment)}"}= requeriment.document_number ||= "Nenhum número gerado"
+                    .sub.header= requeriment.document_type.name rescue "Sem informação"
+        - else
+          %tr
+            %td
+            %td.text-center
+              %i Nenhum requerimento vínculado ao seu CPF
+
+  
+.ui.grid.container-fluid
+  .column
+    = link_to "Enviar novo requerimento", new_requeriment_path, class: 'ui button yellow fluid'

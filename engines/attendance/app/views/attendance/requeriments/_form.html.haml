@@ -1,0 +1,12 @@
+= simple_form_for @requeriment, url: requeriments_path do |f|
+  = f.input :description_subject, label: "Descrição da solicitação"
+  = f.simple_fields_for :digital_documents do |builder|
+    = render 'digital_document_fields', f: builder
+  = link_to_add_fields "Adicionar arquivo", f, :digital_documents
+  %br
+  %br
+  %br
+  .column
+    = f.submit "Enviar requerimento", class: 'ui button yellow fluid'
+    .divider
+    = link_to "Cancelar", requeriments_path, class: "ui button fluid gray"

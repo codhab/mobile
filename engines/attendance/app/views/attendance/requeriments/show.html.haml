@@ -1,0 +1,27 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{requeriments_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Criação de requerimento
+    .sub-title Formulário de criação de renda
+
+.big-divider
+.ui.grid.container
+  %table.ui.celled.table
+    %tbody
+      %tr
+        %td
+        %td
+          %b= @requeriment.document_number ||= "Sem informação de Nº"
+          %br
+          = @requeriment.document_type.name rescue "Sem informção de tipo"
+        
+      %tr
+        %td Descrição
+        %td= @requeriment.description_subject
+     
+      %tr
+        %td Arquivos Enviados
+        %td 
+          %i Nenhum arquivo enviado.
