@@ -2,14 +2,14 @@ pt-BR:
   activerecord:
     errors:
       models:
-        'candidate_cadastre_mirror':
+        'core_attendance/candidate/cadastre_mirror':
           attributes:
             born:
               invalid_date: "data inválida"
     models:
-      'candidate_cadastre_mirror': Cadastro Espelho
+      'core_attendance/candidate/cadastre_mirror': Cadastro Espelho
     attributes:
-      'candidate_cadastre_mirror':
+      'core_attendance/candidate/cadastre_mirror':
         name: "Nome Completo"
         employment: "Ocupação"
         admission_date: "Data de admissão"

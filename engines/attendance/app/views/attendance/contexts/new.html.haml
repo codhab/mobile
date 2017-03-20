@@ -10,38 +10,10 @@
   %table.ui.celled.table
     %tbody.black
       %tr
-        %td
-          %h4.ui.image.header
-            %i.small.user.icon.gray
-            .content
-              %a{href: "#{context_create_path(1)}"}
-                Atualização Cadastral
-              .sub.header
-                Situação
+        %td= @context.link_to_action(1)
       %tr
-        %td
-          %h4.ui.image.header
-            %i.small.users.icon.gray
-            .content
-              %a{href: "#{context_create_path(2)}"}
-                Atualização de Dependentes
-              .sub.header
-                Situação
+        %td= @context.link_to_action(2)   
       %tr
-        %td
-          %h4.ui.image.header
-            %i.small.dollar.icon.gray
-            .content
-              %a{href: "#{context_create_path(3)}"}
-                Atualização de Renda
-              .sub.header
-                Situação
+        %td= @context.link_to_action(3)
       %tr
-        %td
-          %h4.ui.image.header
-            %i.small.phone.icon.gray
-            .content
-              %a{href: "#{context_create_path(4)}"}
-                Atualização de Contatos
-              .sub.header
-                Situação
+        %td= @context.link_to_action(4)

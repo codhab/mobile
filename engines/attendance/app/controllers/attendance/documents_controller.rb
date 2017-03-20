@@ -7,18 +7,22 @@ module Attendance
     before_action :set_ticket 
   
     def edit
-      @service = DocumentService.new(ticket: @ticket, 
-                                     cadastre: @cadastre, 
-                                     cadastre_mirror: @ticket.cadastre_mirror, 
-                                     context_id: @ticket.ticket_context_id, 
-                                     dependent_mirror_id: params[:dependent_mirror_id])
+      @service = CoreAttendance::TicketService.new.tap do |service|
+                  service.ticket          = @ticket
+                  service.context_id      = @ticket.ticket_context_id
+                  service.cadastre        = @ticket.cadastre 
+                  service.cadastre_mirror = @ticket.cadastre_mirror
+                end
+
+      @service.upload_required
       
-      @ticket  = @service.document_required
+      @ticket  = @service.ticket 
     end
 
     def update
       if @ticket.update(set_params)
-        redirect_to pre_finish_tickets_path(@ticket)
+        @ticket.update(ticket_status_id: 3)
+        redirect_to ticket_path(@ticket)
       else
         @service = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)
         @ticket = @service.ticket
@@ -30,7 +34,7 @@ module Attendance
     private
 
     def set_params
-      params.fetch(:attendance_ticket, {})
+      params.fetch(:ticket, {})
             .permit(
                     rg_uploads_attributes: [:upload_path, :_destroy, :id],
                     cpf_uploads_attributes: [:upload_path, :_destroy, :id],
@@ -43,7 +47,7 @@ module Attendance
     end
     
     def set_ticket
-      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
+      @ticket = @cadastre.tickets.find(params[:ticket_id])
     end
 
     def set_cadastre

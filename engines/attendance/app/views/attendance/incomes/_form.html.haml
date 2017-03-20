@@ -1,4 +1,4 @@
-= simple_form_for @cadastre_mirror, url: update_income_path(@ticket), method: :put, validate: true, remote: true do |f|
+= simple_form_for @cadastre_mirror, url: ticket_income_path(@ticket, @cadastre_mirror), method: :put, validate: true, remote: true do |f|
   = f.input :main_income, input_html: { class: 'coin'}
 
   = f.simple_fields_for :income_dependet_mirrors do |b|
@@ -8,5 +8,6 @@
 
   .big-divider
   .column.text-center
-    = f.submit "Atualizar renda", class: 'ui button yellow'
-    = link_to "Cancelar", new_ticket_path, class: 'ui button gray'
+    = f.submit "Atualizar renda", class: 'ui button yellow fluid'
+    .divider
+    = link_to "Cancelar", ticket_path(@ticket), class: 'ui button gray fluid'

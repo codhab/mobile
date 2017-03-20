@@ -1,4 +1,4 @@
-= simple_form_for @cadastre_mirror, url: update_cadastre_path(@ticket), method: :put, remote: true do |f|
+= simple_form_for @cadastre_mirror, url: ticket_cadastre_path(ticket_id: @ticket, id: @cadastre_mirror), method: :put, remote: true do |f|
   = f.input :name, input_html: { disabled: true }
   = f.input :cpf, input_html: { class: 'cpf', disabled: true }
   = f.input :gender, as: :select, include_blank: 'false', collection: ::CandidateCadastre.genders.keys
@@ -16,5 +16,6 @@
   
   .big-divider
   .column.text-center
-    = f.submit "Atualizar", class: 'ui button green', data: { disabled_with: t(:disabled_with)}
-    = link_to "Cancelar atualização",  "#", class: 'ui button red'
+    = f.submit "Atualizar", class: 'ui button yellow fluid', data: { disabled_with: t(:disabled_with)}
+    .divider
+    = link_to "Cancelar atualização",  "#", class: 'ui button gray fluid'

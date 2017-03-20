@@ -1,10 +1,10 @@
 .ui.grid
   .two.wide.mobile.column
-    %a{href: "#{candidate.root_path}"}
+    %a{href: "#{attendance.new_context_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
-    .title-header Minhas Atualizações (#{@tickets.count})
-    .sub-title Listagens Atualizações Realizadas
+    .title-header Minhas atualizações
+    .sub-title Resumo de atualizações
 .big-divider
 .ui.grid.container-fluid
   .column
@@ -16,7 +16,7 @@
               %h4.ui.image.header
                 %i.small.refresh.icon.gray
                 .content
-                  %a{href: "#{ticket_resume_path(ticket)}"}
+                  %a{href: "#{ticket_path(ticket)}"}
                     = ticket.ticket_context.name.humanize
                   .sub.header
                     = ticket.ticket_status.name.humanize

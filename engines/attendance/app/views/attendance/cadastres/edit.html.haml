@@ -1,10 +1,10 @@
-.big-divider
-.ui.grid.container
-  .column.text-center
-    .title-header 
-      Atualização de dados cadastrais
-      %small
-        %p= link_to "Retonar para página de atualizações", new_ticket_path
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{ticket_path(@ticket)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atualização Cadastral
+    .sub-title Formulário de edição de dados
 
 .big-divider
 .ui.grid.container

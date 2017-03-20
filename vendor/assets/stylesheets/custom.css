@@ -3,6 +3,9 @@ body {
   font-family: 'Nunito Sans', sans-serif !important;
 }
 
+.vertical-text {
+  vertical-align: middle !important;
+}
 .mega-margin {
   margin-bottom: 200px !important;
   margin-top: 20px !important;

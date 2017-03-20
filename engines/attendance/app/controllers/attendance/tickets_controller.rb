@@ -1,5 +1,5 @@
-require_dependency 'attendance/ticket_presenter'
-require_dependency 'attendance/ticket_service'
+require_dependency 'core_attendance/ticket'
+require_dependency 'core_attendance/ticket_presenter'
 
 module Attendance
   class TicketsController < ApplicationController
@@ -9,72 +9,24 @@ module Attendance
       @tickets = current_cadastre.tickets
     end
 
-    def new
-      @ticket          = Attendance::TicketPresenter.new(@cadastre, view_context)
-      @ticket_service  = Attendance::TicketService.new(cadastre: @cadastre)
-    end
-
     def show
-      @ticket = @cadastre.attendance_tickets.find(params[:id])
+      @ticket = @cadastre.tickets.find(params[:id])
+      @ticket = CoreAttendance::TicketPresenter.new(@ticket, view_context)
+      @ticket = CoreAttendance::TicketPolicy.new(@ticket)
     end
 
-    def resume
-      @ticket = current_cadastre.tickets.find(params[:ticket_id])
+    # routes to :cancel ticket
+    def pre_delete
+      @ticket = @cadastre.tickets.find(params[:ticket_id])
     end
 
-    def pre_create
-      @context = params[:context_id] ||= 1
+    def delete
+      @ticket = @cadastre.tickets.find(params[:ticket_id])
+      @ticket.update(ticket_status_id: 2, status: false)
+
+      redirect_to new_context_path
     end
 
-    def pre_finish
-      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
-    end
-
-    def finish
-      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
-
-      if @ticket.ticket_context_id == 4
-        @ticket.update(ticket_status_id: 2)
-      else
-
-        notification = Attendance::NotificationService.new(ticket: @ticket, cadastre: @ticket.cadastre)
-        notification.attendance_created
-
-        @ticket.update(ticket_status_id: 3)
-      end
-
-      redirect_to ticket_path(@ticket)
-
-      
-    end
-
-    def create
-      @service = TicketService.new(cadastre: @cadastre, context_id: params[:context_id])
-
-      if @service.create
-        redirect_to @service.route_path
-      else
-        redirect_to new_ticket_path
-      end
-    end
-
-    def continue
-      @ticket  = @cadastre.attendance_tickets.find(params[:ticket_id])
-      @service = TicketService.new(cadastre: @cadastre, ticket: @ticket, context_id: @ticket.ticket_context_id)
-      redirect_to @service.route_path
-    end
-
-    def cancel
-      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
-
-    end
-    
-    def close
-      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
-      @ticket.update(ticket_status_id: 7)
-      
-      redirect_to ticket_path(@ticket) 
-    end
 
     private
 
