@@ -7,6 +7,7 @@
     .sub-title Resumo de solicitação de atualização
 .big-divider
 .ui.grid.container-fluid
+  = render 'layouts/flash'
   .row
     .column
       %table.ui.celled.table
@@ -35,7 +36,7 @@
       %table.ui.celled.table
         %thead
           %tr
-            %th Ações
+            %th.text-center  Ações
         %tbody
           - if @ticket.enable_to_update?
             %tr
@@ -52,8 +53,10 @@
               %td
               %td.text-center
                 - if @ticket.waiting_codhab_return?
-                  %p Aguarde o retorno da CODHAB
-                %p Nenhuma ação a ser aplicada
+                  %p 
+                    %i Aguarde o retorno da CODHAB
+                %p 
+                  %i Nenhuma ação a ser aplicada
 
   .row
     .column

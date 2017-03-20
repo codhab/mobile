@@ -33,3 +33,9 @@ hr {
 a {
   color: #e2b405 ;
 }
+
+
+.ui.success.message {
+  background-color: #97e205 !important;
+  color: #2C662D;
+}

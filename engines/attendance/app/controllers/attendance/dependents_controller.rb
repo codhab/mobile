@@ -5,7 +5,7 @@ module Attendance
     before_action :set_ticket 
     
     def index
-      @cadastre_mirror = @ticket.cadastre_mirror
+      @dependents = @ticket.cadastre_mirror.dependent_mirrors
     end
 
     def new
@@ -26,7 +26,6 @@ module Attendance
     
     def edit
       @dependent_mirror = @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_id])
-      @dependent_mirror = Attendance::HandleDependent::DependentMirrorModel.find(@dependent_mirror.id)
     end
 
     def update
@@ -60,7 +59,7 @@ module Attendance
     end
 
     def set_ticket
-      @ticket = @cadastre.attendance_tickets.find(params[:ticket_id])
+      @ticket = @cadastre.tickets.find(params[:ticket_id])
     end
 
 

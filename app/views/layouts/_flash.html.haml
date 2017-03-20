@@ -1,0 +1,7 @@
+- if flash.present?
+  .row
+    .column.text-center
+      .ui.message{class: "#{flash[:html_class]}"}
+        .header
+          #{flash[:title]}
+        %p #{flash[:message]}
