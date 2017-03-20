@@ -1,4 +1,4 @@
-require_dependency 'attendance/handle_contact/cadastre_model'
+require_dependency 'core_attendance/handle_contact'
 
 module Attendance
   class ContactsController < ApplicationController
