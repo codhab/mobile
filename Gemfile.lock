@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/codhab/core_address.git
+  remote: git://github.com/codhab/core_address.git
   revision: 176f7e389a6e0bdf6b184f0e4f7cc7585395a724
   specs:
     core_address (0.1.0)
@@ -7,7 +7,7 @@ GIT
       rails (~> 5.0.2)
 
 GIT
-  remote: https://github.com/codhab/core_attendance.git
+  remote: git://github.com/codhab/core_attendance.git
   revision: 53313b347ef45ce4014b336eaa2f435b63b72c95
   specs:
     core_attendance (0.1.0)
@@ -18,7 +18,7 @@ GIT
       rails (~> 5.0.2)
 
 GIT
-  remote: https://github.com/codhab/core_candidate.git
+  remote: git://github.com/codhab/core_candidate.git
   revision: e99444bccac1b43dccee8570cfa9f4140523c07e
   specs:
     core_candidate (0.1.0)
@@ -28,7 +28,7 @@ GIT
       rails (~> 5.0.2)
 
 GIT
-  remote: https://github.com/untitledkingdom/mina-puma.git
+  remote: git://github.com/untitledkingdom/mina-puma.git
   revision: fa249a11dc83973b4d0824c61419f94817eeac01
   specs:
     mina-puma (1.0.1)
