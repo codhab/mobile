@@ -49,7 +49,8 @@ module Attendance
                     arrival_df_uploads_attributes: [:upload_path, :_destroy, :id],
                     registry_uploads_attributes: [:upload_path, :_destroy, :id],
                     certificate_born_uploads_attributes: [:upload_path, :_destroy, :id],
-                    income_uploads_attributes: [:upload_path, :_destroy, :id]
+                    income_uploads_attributes: [:upload_path, :_destroy, :id],
+                    special_condition_uploads: [:upload_path, :_destroy, :id]
                     )
     end
     
