@@ -7,11 +7,11 @@ module Attendance
     before_action :set_ticket 
 
     def edit
-      @cadastre_mirror = CoreAttendance::Candidate::CadastreMirror.find(@ticket.cadastre_mirror_id)
+      @cadastre_mirror = CoreAttendance::HandleCadastre.find(@ticket.cadastre_mirror_id)
     end
 
     def update
-      @cadastre_mirror = CoreAttendance::Candidate::CadastreMirror.find(@ticket.cadastre_mirror_id)
+      @cadastre_mirror = CoreAttendance::HandleCadastre.find(@ticket.cadastre_mirror_id)
       
       if @cadastre_mirror.update(set_params)
         redirect_to edit_ticket_document_path(@ticket) 
@@ -21,10 +21,11 @@ module Attendance
     private
 
     def set_params
-      params.require(:candidate_cadastre_mirror)
+      params.require(:handle_cadastre)
             .permit(:rg, :gender, :born, :born_uf, :rg_org, 
                     :rg_uf, :place_birth, :cadastre_id, :nis, 
-                    :cid, :adapted_property, :special_condition_id, :special_condition_type_id)
+                    :cid, :adapted_property, :special_condition_id,
+                    :special_condition_type_id, :mother_name)
 
     end
 

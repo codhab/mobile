@@ -1,5 +1,3 @@
-require_dependency 'attendance/handle_income/dependent_mirror_model'
-
 class CandidateCadastreMirror < ApplicationRecord
   self.table_name = 'extranet.candidate_cadastre_mirrors'
 

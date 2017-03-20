@@ -25,7 +25,7 @@
                       
             %td
               = link_to "Editar", edit_ticket_dependent_path(@ticket, dependent), class: 'ui button green icon mini'
-              = link_to "Remover", ticket_dependent_path(@ticket, dependent), remote: true, class: 'ui button red icon mini'
+              = link_to "Remover", ticket_dependent_pre_destroy_path(@ticket, dependent), remote: true, class: 'ui button red icon mini', remote: true if dependent.kinship_id != 6
 
 
 

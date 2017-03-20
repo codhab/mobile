@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/codhab/core_candidate.git
-  revision: d466621a33cff8f1e36b49650ad1e13cc78a5762
+  revision: e99444bccac1b43dccee8570cfa9f4140523c07e
   specs:
     core_candidate (0.1.0)
       core_address

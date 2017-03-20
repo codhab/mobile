@@ -19,7 +19,10 @@ Attendance::Engine.routes.draw do
     get 'pre_delete', to: 'tickets#pre_delete', as: 'pre_delete'
     get 'delete', to: 'tickets#delete', as: 'delete'
 
-    resources :dependents
+    resources :dependents do 
+      get 'pre_destroy'
+    end
+
     resources :cadastres,   only: [:edit, :update]
     resources :contacts,    only: [:edit, :update]
     resources :incomes,     only: [:edit, :update]

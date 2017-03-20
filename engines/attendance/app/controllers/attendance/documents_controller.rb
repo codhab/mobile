@@ -8,10 +8,11 @@ module Attendance
   
     def edit
       @service = CoreAttendance::TicketService.new.tap do |service|
-                  service.ticket          = @ticket
-                  service.context_id      = @ticket.ticket_context_id
-                  service.cadastre        = @ticket.cadastre 
-                  service.cadastre_mirror = @ticket.cadastre_mirror
+                  service.ticket              = @ticket
+                  service.context_id          = @ticket.ticket_context_id
+                  service.cadastre            = @ticket.cadastre 
+                  service.cadastre_mirror     = @ticket.cadastre_mirror
+                  service.dependent_mirror_id = params[:dependent_mirror_id] 
                 end
 
       @service.upload_required

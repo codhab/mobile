@@ -1,4 +1,4 @@
-= simple_form_for @dependent_mirror, url: update_dependent_path(@ticket), method: :put, validate: true, remote: true do |f|
+= simple_form_for @dependent_mirror, url: ticket_dependent_path(@ticket, @dependent_mirror), validate: true, remote: true do |f|
   = f.input :name, placeholder: "Digite o nome do dependente"
   = f.input :cpf, input_html: { class: 'cpf '}
   = f.input :rg, placeholder: "Informe o RG do dependente"
@@ -16,6 +16,7 @@
 
   .big-divider
   .column.text-center
-    = f.submit "Atualizar dependente", class: 'ui button yellow', data: { disable_with: t(:disable_with)}
-    = link_to "Cancelar", dependents_path(@ticket), class: 'ui button gray', data: { disable_with: t(:disable_with)}
+    = f.submit "Cadastrar", class: 'ui button yellow fluid', data: { disable_with: t(:disable_with)}
+    .divider
+    = link_to "Cancelar", ticket_dependents_path(@ticket), class: 'ui button gray fluid', data: { disable_with: t(:disable_with)}
   
