@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
 
   def index
-    @count_notifications =  ::CandidateCadastre.find_by(cpf: params[:cpf]).attendance_notifications.unread.count rescue 0
+    @count_notifications =  ::CoreAttendance::Candidate::Cadastre.find_by(cpf: params[:cpf]).notifications.unread.count rescue 0
 
     render json: @count_notifications
   end

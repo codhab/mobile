@@ -12,8 +12,16 @@ class ApplicationController < ActionController::Base
   private
 
   def current_cadastre
-    cadastre  = ::CoreAttendance::Candidate::Cadastre.find(224507)
-    presenter = ::CadastrePresenter.new(cadastre, view_context)
+
+    if params[:cpf].present?
+      cadastre  = ::CoreAttendance::Candidate::Cadastre.find_by(cpf: params[:cpf])
+      presenter = ::CadastrePresenter.new(cadastre, view_context)
+
+      session[:user_id] = presenter.id
+    else
+      cadastre  = ::CoreAttendance::Candidate::Cadastre.find(session[:user_id])
+      presenter = ::CadastrePresenter.new(cadastre, view_context)
+    end
     
     return presenter
   end
