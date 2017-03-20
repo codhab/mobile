@@ -7,6 +7,17 @@ GIT
       rails (~> 5.0.2)
 
 GIT
+  remote: https://github.com/codhab/core_attendance.git
+  revision: 3599a482796808971d659522bd8f0fece2b12e23
+  specs:
+    core_attendance (0.1.0)
+      core_address
+      core_candidate
+      one_signal
+      pg
+      rails (~> 5.0.2)
+
+GIT
   remote: https://github.com/codhab/core_candidate.git
   revision: e99444bccac1b43dccee8570cfa9f4140523c07e
   specs:
@@ -23,16 +34,6 @@ GIT
     mina-puma (1.0.1)
       mina (~> 1.0.0)
       puma (>= 2.13)
-
-PATH
-  remote: components/core_attendance
-  specs:
-    core_attendance (0.1.0)
-      core_address
-      core_candidate
-      one_signal
-      pg
-      rails (~> 5.0.2)
 
 PATH
   remote: engines
