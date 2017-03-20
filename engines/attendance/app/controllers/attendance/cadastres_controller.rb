@@ -1,4 +1,4 @@
-require_dependency 'core_attendance/candidate/cadastre_mirror'
+require_dependency 'core_attendance/handle_cadastre'
 
 module Attendance
   class CadastresController < ApplicationController
@@ -7,11 +7,11 @@ module Attendance
     before_action :set_ticket 
 
     def edit
-      @cadastre_mirror = CoreAttendance::HandleCadastre.find(@ticket.cadastre_mirror_id)
+      @cadastre_mirror = ::CoreAttendance::HandleCadastre.find(@ticket.cadastre_mirror_id)
     end
 
     def update
-      @cadastre_mirror = CoreAttendance::HandleCadastre.find(@ticket.cadastre_mirror_id)
+      @cadastre_mirror = ::CoreAttendance::HandleCadastre.find(@ticket.cadastre_mirror_id)
       
       if @cadastre_mirror.update(set_params)
         redirect_to edit_ticket_document_path(@ticket) 

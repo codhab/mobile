@@ -1,12 +1,12 @@
 = simple_form_for @cadastre_mirror, url: ticket_cadastre_path(ticket_id: @ticket, id: @cadastre_mirror), method: :put, remote: true, validate: true do |f|
   = f.input :name, input_html: { disabled: true }
   = f.input :cpf, input_html: { class: 'cpf', disabled: true }
-  = f.input :gender, as: :select, include_blank: 'false', collection: ::CandidateCadastre.genders.keys
+  = f.input :gender, as: :select, include_blank: 'false', collection: ::CoreAttendance::HandleCadastre.genders.keys
   = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil}
-  = f.input :born_uf, as: :select, include_blank: false, collection: ::AddressState.all.order(:acronym), label_method: :acronym, value_method: :acronym
+  = f.input :born_uf, as: :select, include_blank: false, collection: ::CoreAttendance::Address::State.all.order(:acronym), label_method: :acronym, value_method: :acronym
   = f.input :rg
   = f.input :rg_org
-  = f.input :rg_uf, as: :select, include_blank: false, collection: ::AddressState.all.order(:acronym), label_method: :acronym, value_method: :acronym
+  = f.input :rg_uf, as: :select, include_blank: false, collection: ::CoreAttendance::Address::State.all.order(:acronym), label_method: :acronym, value_method: :acronym
   = f.input :place_birth
   = f.input :mother_name
   = f.association :special_condition, as: :select, include_blank: false

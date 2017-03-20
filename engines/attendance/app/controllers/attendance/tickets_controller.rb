@@ -13,6 +13,8 @@ module Attendance
       @ticket = @cadastre.tickets.find(params[:id])
       @ticket = CoreAttendance::TicketPresenter.new(@ticket, view_context)
       @ticket = CoreAttendance::TicketPolicy.new(@ticket)
+
+      @ticket.ticket_comments.update_all(read: true)
     end
 
     # routes to :cancel ticket
@@ -22,7 +24,7 @@ module Attendance
 
     def delete
       @ticket = @cadastre.tickets.find(params[:ticket_id])
-      @ticket.update(ticket_status_id: 2, status: false)
+      @ticket.update(ticket_status_id: 7, status: false)
 
       redirect_to new_context_path
     end
