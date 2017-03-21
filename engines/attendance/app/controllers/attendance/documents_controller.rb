@@ -21,6 +21,7 @@ module Attendance
     end
 
     def update
+
       if @ticket.update(set_params)
         @ticket.update(ticket_status_id: 3)
 

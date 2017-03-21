@@ -6,13 +6,16 @@
     .title-header Notificações
     .sub-title Detalhamento de Notificação
 .big-divider
-.ui.grid.container-fluid
-  .ui.grid
-    .row
-      .column.segment
-        %h3= @notification.title
-        = @notification.created_at.strftime("%d/%m/%Y - %H:%M")
-    .divider
-    .row
-      .column.segment
-        = @notification.content
+.ui.grid.container
+  %table.ui.celled.table.striped
+    %tbody
+      %tr
+        %td
+        %td
+          %h3= @notification.title
+          %small= @notification.created_at.strftime("%d/%m/%Y - %H:%M")
+          %hr/
+        %td
+          %b Conteúdo
+        %td
+          = @notification.content
