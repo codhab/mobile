@@ -21,6 +21,15 @@ module Attendance
         flash[:message]    = "Os seus dados de contato foram atualizados com sucesso!"
         flash[:html_class] = "success"
 
+        @notification_service = CoreAttendance::NotificationService.new(cadastre: @cadastre)
+        @notification_service.create_notification({
+          category_id: 2,
+          title:       "Atualização finalizada com sucesso!",
+          content:     "Seus dados de contato foram atualizados. Protocolo #{@ticket.protocol}",
+          link:        '',
+          push:        true
+        }) 
+        
         redirect_to ticket_path(@ticket)
       end
     end

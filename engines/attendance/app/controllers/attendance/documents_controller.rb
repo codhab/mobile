@@ -30,6 +30,15 @@ module Attendance
         flash[:message]    = "Os seus dados foram atualizados com sucesso, veja o detalhamento abaixo"
         flash[:html_class] = "success"
 
+        @notification_service = CoreAttendance::NotificationService.new(cadastre: @cadastre)
+        @notification_service.create_notification({
+          category_id: 2,
+          title:       "Atualização finalizada com sucesso!",
+          content:     "Atualização foi finalizada, aguarde o retorno da CODHAB. Protocolo #{@ticket.protocol}",
+          link:        '',
+          push:        true
+        }) 
+
         redirect_to ticket_path(@ticket)
       else
         @service = DocumentService.new(ticket: @ticket, cadastre: @cadastre, cadastre_mirror: @ticket.cadastre_mirror)
