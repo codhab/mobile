@@ -14,16 +14,13 @@ class ApplicationController < ActionController::Base
   def current_cadastre
 
     if params[:cpf].present?
-      cadastre  = ::CoreAttendance::Candidate::Cadastre.find_by(cpf: params[:cpf])
-      presenter = ::CadastrePresenter.new(cadastre, view_context)
-
+      cadastre = ::Core::Candidate::Cadastre.find_by(cpf: params[:cpf]).presenter
       session[:user_id] = presenter.id
     else
-      cadastre  = ::CoreAttendance::Candidate::Cadastre.find(session[:user_id])
-      presenter = ::CadastrePresenter.new(cadastre, view_context)
+      cadastre = ::Core::Candidate::Cadastre.find(session[:user_id]).presenter
     end
     
-    return presenter
+    return cadastre
   end
 
   def allow_iframe

@@ -1,39 +1,18 @@
 GIT
-  remote: git://github.com/codhab/core_address.git
-  revision: 176f7e389a6e0bdf6b184f0e4f7cc7585395a724
-  specs:
-    core_address (0.1.0)
-      pg
-      rails (~> 5.0.2)
-
-GIT
-  remote: git://github.com/codhab/core_attendance.git
-  revision: 167703afb083c1c8827f4abc7c5b3876fb0dad3b
-  specs:
-    core_attendance (0.1.0)
-      core_address
-      core_candidate
-      one_signal
-      pg
-      rails (~> 5.0.2)
-
-GIT
-  remote: git://github.com/codhab/core_candidate.git
-  revision: e99444bccac1b43dccee8570cfa9f4140523c07e
-  specs:
-    core_candidate (0.1.0)
-      core_address
-      friendly_id
-      pg
-      rails (~> 5.0.2)
-
-GIT
   remote: git://github.com/untitledkingdom/mina-puma.git
   revision: fa249a11dc83973b4d0824c61419f94817eeac01
   specs:
     mina-puma (1.0.1)
       mina (~> 1.0.0)
       puma (>= 2.13)
+
+PATH
+  remote: components/core
+  specs:
+    core (0.1.0)
+      one_signal
+      pg
+      rails (~> 5.0.2)
 
 PATH
   remote: engines
@@ -107,8 +86,6 @@ GEM
     file_validators (2.1.0)
       activemodel (>= 3.0)
       mime-types (>= 1.0)
-    friendly_id (5.2.0)
-      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -240,9 +217,7 @@ DEPENDENCIES
   carrierwave
   client_side_validations
   client_side_validations-simple_form
-  core_address!
-  core_attendance!
-  core_candidate!
+  core!
   email_validator
   file_validators
   haml-rails
