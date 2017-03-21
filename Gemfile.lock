@@ -10,9 +10,13 @@ PATH
   remote: components/core
   specs:
     core (0.1.0)
+      email_validator
+      file_validators
       one_signal
       pg
       rails (~> 5.0.2)
+      validates_cpf_cnpj
+      validates_timeliness
 
 PATH
   remote: engines
@@ -189,6 +193,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    timeliness (0.3.8)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -198,6 +203,8 @@ GEM
       execjs (>= 0.3.0, < 3)
     validates_cpf_cnpj (0.2.0)
       activemodel (>= 3.0.0)
+    validates_timeliness (4.0.2)
+      timeliness (~> 0.3.7)
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
