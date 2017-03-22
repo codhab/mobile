@@ -6,6 +6,7 @@ Attendance::Engine.routes.draw do
 
   resources :requeriments
   resources :notifications
+  resources :tickets
 
   namespace :recadastre do 
     resources :tickets do 
