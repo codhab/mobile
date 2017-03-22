@@ -4,7 +4,7 @@ module Attendance
   class ContextsController < ApplicationController
     
     def new
-      @context = CoreAttendance::ContextPresenter.new(current_cadastre, view_context)
+      @context = Core::Attendance::ContextPresenter.new(current_cadastre, view_context)
     end
 
     def pre_create
@@ -12,7 +12,7 @@ module Attendance
     end
 
     def create
-      @service = CoreAttendance::TicketService.new.tap do |service|
+      @service = Core::Attendance::TicketService.new.tap do |service|
         service.cadastre    = current_cadastre
         service.context_id  = params[:context_id]
       end

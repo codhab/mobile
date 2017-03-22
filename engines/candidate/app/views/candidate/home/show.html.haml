@@ -26,12 +26,27 @@
         %i.icon.alarm.huge.gray
     .text-center.bold
       Notificações
-  .column
-    .ui.segment.text-center
-      %a{href: "#{attendance.new_context_path}"}
-        %i.icon.edit.huge.gray
-    .text-center.bold
-      Atualizar Meus Dados
+  - if current_cadastre.allow_update_cadastre?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_context_path}"}
+          %i.icon.edit.huge.gray
+      .text-center.bold
+        Atualizar Meus Dados
+  - if current_cadastre.allow_recadastre?
+    .column
+      .ui.segment.text-center.semantic-black
+        %a{href: "#{attendance.new_context_path}"}
+          %i.icon.retweet.huge.gray.yellow
+      .text-center.bold
+        Atualização Cadastral
+  - if current_cadastre.allow_habilitation?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_context_path}"}
+          %i.icon.checkmark.huge.green
+      .text-center.bold
+        Habilitação     
   .column
     .ui.segment.text-center
       %a{href: "#{attendance.tickets_path}"}

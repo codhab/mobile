@@ -3,6 +3,10 @@ body {
   font-family: 'Nunito Sans', sans-serif !important;
 }
 
+.semantic-black {
+  background-color: #4c4c4c !important;
+}
+
 .vertical-text {
   vertical-align: middle !important;
 }

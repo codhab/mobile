@@ -14,11 +14,13 @@ class ApplicationController < ActionController::Base
   def current_cadastre
 
     if params[:cpf].present?
-      cadastre = ::Core::Candidate::Cadastre.find_by(cpf: params[:cpf]).presenter
+      cadastre = ::Core::Candidate::Cadastre.find_by(cpf: params[:cpf])
       session[:user_id] = presenter.id
     else
-      cadastre = ::Core::Candidate::Cadastre.find(session[:user_id]).presenter
+      cadastre = ::Core::Candidate::Cadastre.find(session[:user_id])
     end
+    
+    cadastre = cadastre.presenter.policy
     
     return cadastre
   end
