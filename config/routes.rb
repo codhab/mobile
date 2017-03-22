@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   mount Attendance::Engine => '/attendance', as: :attendance
   mount Candidate::Engine  => '/candidate',  as: :candidate
+  mount Entity::Engine     => '/entities',   as: :entity
+  mount Portal::Engine     => '/portal',     as: :portal
   
 end

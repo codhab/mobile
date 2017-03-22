@@ -46,5 +46,7 @@ end
 path 'engines' do 
   gem 'attendance'
   gem 'candidate'
+  gem 'entity'
+  gem 'portal'
 end
 
