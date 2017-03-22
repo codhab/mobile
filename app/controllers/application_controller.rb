@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
     if params[:cpf].present?
       cadastre = ::Core::Candidate::Cadastre.find_by(cpf: params[:cpf])
-      session[:user_id] = presenter.id
+      session[:user_id] = cadastre.id
     else
       cadastre = ::Core::Candidate::Cadastre.find(session[:user_id])
     end
