@@ -1,3 +1,5 @@
+require_dependency 'application_helper'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -15,12 +17,16 @@ class ApplicationController < ActionController::Base
 
     if params[:cpf].present?
       cadastre = ::Core::Candidate::Cadastre.find_by(cpf: params[:cpf])
-      session[:user_id] = cadastre.id
+      session[:user_id] = presenter.id
     else
       cadastre = ::Core::Candidate::Cadastre.find(session[:user_id])
     end
 
-    return cadastre
+    presenter = Core::Candidate::CadastrePresenter.new(cadastre)
+    policy    = Core::Candidate::CadastrePolicy.new(presenter)
+
+    return policy
+
   end
 
   def allow_iframe
