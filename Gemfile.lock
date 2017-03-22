@@ -25,6 +25,10 @@ PATH
       rails (~> 5.0.2)
     candidate (0.1.0)
       rails (~> 5.0.2)
+    entity (0.1.0)
+      rails (~> 5.0.2)
+    portal (0.1.0)
+      rails (~> 5.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -226,6 +230,7 @@ DEPENDENCIES
   client_side_validations-simple_form
   core!
   email_validator
+  entity!
   file_validators
   haml-rails
   jbuilder (~> 2.5)
@@ -236,6 +241,7 @@ DEPENDENCIES
   mina-puma!
   onesignal
   pg
+  portal!
   puma
   rails (~> 5.0.2)
   simple_form
