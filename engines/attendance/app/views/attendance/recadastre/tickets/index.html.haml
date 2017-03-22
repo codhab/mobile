@@ -1,0 +1,52 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{main_app.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atualização Cadastral 
+    .sub-title Protocolo ##{@ticket.protocol}
+.big-divider
+.ui.grid.container
+  %table.ui.celled.table
+    %tbody.black
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big{class: @ticket.recadastre_icon_class(1) }
+            .content
+              = link_to "Atualização de Dados Básicos", context_new_recadastre_ticket_cadastres_path(ticket_id: @ticket)
+              .sub.header
+                Situação
+     
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big{class: @ticket.recadastre_icon_class(2) }
+            .content
+              = link_to "Atualização de Dependentes", new_recadastre_ticket_path(context_id: 2)
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big{class: @ticket.recadastre_icon_class(3) }
+            .content
+              = link_to "Atualização de Renda", context_new_recadastre_ticket_incomes_path(ticket_id: @ticket, context_id: 3)
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big{class: @ticket.recadastre_icon_class(4) }
+            .content
+              = link_to "Atualização de Contatos", new_recadastre_ticket_path(context_id: 4)
+              .sub.header
+                Situação
+
+.divider
+.ui.grid.container
+  .column
+    .text-justify
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam turpis ante, bibendum a efficitur ut, viverra a sem. Aenean vestibulum lacinia tellus ac tempor. Sed suscipit, sem eu feugiat luctus, dolor risus maximus sapien, sed euismod nibh nibh ut risus.
+    .divider
+    = link_to "Finalizar Atualização", "#", class: 'ui button green fluid disabled'

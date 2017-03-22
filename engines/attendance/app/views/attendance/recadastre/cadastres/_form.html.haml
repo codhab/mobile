@@ -1,0 +1,22 @@
+= simple_form_for @cadastre_mirror, url: recadastre_ticket_cadastre_path(ticket_id: @ticket, id: @ticket.cadastre_mirror), method: :put, remote: true, validate: true do |f|
+  = f.input :name, input_html: { disabled: true }
+  = f.input :cpf, input_html: { class: 'cpf', disabled: true }
+  = f.input :gender, as: :select, include_blank: 'false', collection: Core::Candidate::Cadastre.genders.keys
+  = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil}
+  = f.input :born_uf, as: :select, include_blank: false, collection: Core::Address::State.all.order(:acronym), label_method: :acronym, value_method: :acronym
+  = f.input :rg
+  = f.input :rg_org
+  = f.input :rg_uf, as: :select, include_blank: false, collection: Core::Address::State.all.order(:acronym), label_method: :acronym, value_method: :acronym
+  = f.input :place_birth
+  = f.input :mother_name
+  = f.association :special_condition, as: :select, include_blank: false
+  = f.association :special_condition_type, as: :select, include_blank: "Nenhuma"
+  = f.input :nis
+  = f.input :cid
+  = f.input :adapted_property, as: :select, include_blank: false
+  
+  .big-divider
+  .column.text-center
+    = f.submit "Atualizar Meus dados", class: 'ui button yellow fluid', data: { disabled_with: t(:disabled_with)}
+    .divider
+    = link_to "Cancelar Atualização",  recadastre_ticket_cadastre_path(ticket_id: @ticket.id, id: @ticket.cadastre_mirror_id), class: 'ui button gray fluid'

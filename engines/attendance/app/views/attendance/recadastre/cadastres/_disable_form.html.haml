@@ -1,0 +1,29 @@
+= simple_form_for @ticket.cadastre_mirror, url: "#" do |f|
+  = f.input :name, input_html: { disabled: true }
+  = f.input :cpf, input_html: { class: 'cpf', disabled: true }
+  = f.input :gender, as: :select, include_blank: 'false', collection: {}, input_html: { disabled: true }
+  = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil, disabled: true}
+  = f.input :born_uf, as: :select, include_blank: false, collection: {}, label_method: :acronym, value_method: :acronym, input_html: { disabled: true }
+  = f.input :rg, input_html: { disabled: true }
+  = f.input :rg_org, input_html: { disabled: true }
+  = f.input :rg_uf, as: :select, include_blank: false, collection: {}, label_method: :acronym, value_method: :acronym, input_html: {disabled: true}
+  = f.input :place_birth, input_html: { disabled: true }
+  = f.input :mother_name, input_html: { disabled: true }
+  = f.association :special_condition, as: :select, include_blank: false, input_html: { disabled: true }
+  = f.association :special_condition_type, as: :select, include_blank: "Nenhuma", input_html: { disabled: true }
+  = f.input :nis, input_html: { disabled: true }
+  = f.input :cid, input_html: { disabled: true }
+  = f.input :adapted_property, as: :select, include_blank: false, input_html: { disabled: true }
+  
+  .big-divider
+  .column.text-center
+    - if @ticket.allow_recadastre_cadastre?
+      = link_to "Meus dados estão corretos",confirm_recadastre_ticket_cadastres_path(@ticket), class: 'ui button green fluid', data: { disabled_with: t(:disabled_with)}
+      .divider
+      = link_to "Atualizar Meus Dados", edit_recadastre_ticket_cadastre_path(ticket_id: @ticket, id: @ticket.cadastre_mirror_id), class: 'ui button yellow fluid'
+    - else
+      .big-divider
+      %i.icon.checkmark.huge.green
+      .divider
+      .text-center
+        %h3 Os dados básicos do cadastro já foram confirmados.

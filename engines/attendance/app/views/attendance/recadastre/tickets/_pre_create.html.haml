@@ -1,0 +1,9 @@
+.content
+  .description.text-center
+    %h4
+      %b Você tem certeza que deseja iniciar a atualização cadastral?
+.actions
+  .ui.aligned.center.text-center
+    = link_to "Sim, eu desejo atualizar", recadastre_tickets_path(pre_create: true), class: 'ui button yellow'
+    .ui.grau.deny.button Cancelar
+  .divider

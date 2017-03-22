@@ -10,6 +10,7 @@ PATH
   remote: components/core
   specs:
     core (0.1.0)
+      carrierwave
       email_validator
       file_validators
       one_signal

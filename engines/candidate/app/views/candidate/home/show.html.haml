@@ -29,33 +29,33 @@
   - if current_cadastre.allow_update_cadastre?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_context_path}"}
+        %a{href: "#"}
           %i.icon.edit.huge.gray
       .text-center.bold
         Atualizar Meus Dados
   - if current_cadastre.allow_recadastre?
     .column
       .ui.segment.text-center.semantic-black
-        %a{href: "#{attendance.new_context_path}"}
+        %a{href: "#{attendance.pre_create_recadastre_tickets_path}", data: { remote: true }}
           %i.icon.retweet.huge.gray.yellow
       .text-center.bold
         Atualização Cadastral
   - if current_cadastre.allow_habilitation?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_context_path}"}
+        %a{href: "#"}
           %i.icon.checkmark.huge.green
       .text-center.bold
         Habilitação     
   .column
     .ui.segment.text-center
-      %a{href: "#{attendance.tickets_path}"}
+      %a{href: "#"}
         %i.icon.refresh.huge.gray
     .text-center.bold
       Minhas Atualizações
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
     .ui.segment.text-center
-      %a{href: "#{attendance.chats_path}"}
+      %a{href: "#"}
         %i.icon.comment.outline.huge.gray.text-center.bold
     .text-center.bold
       Meus Chats
