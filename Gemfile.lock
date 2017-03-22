@@ -13,6 +13,7 @@ PATH
       carrierwave
       email_validator
       file_validators
+      friendly_id
       one_signal
       pg
       rails (~> 5.0.2)
@@ -95,6 +96,8 @@ GEM
     file_validators (2.1.0)
       activemodel (>= 3.0)
       mime-types (>= 1.0)
+    friendly_id (5.2.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)

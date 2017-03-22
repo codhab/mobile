@@ -2,7 +2,7 @@
   .column{style: 'width: 25%'}
     = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image big-yellow-border'), cadastre_path(current_cadastre)
   .column{style: 'width: 75%'}
-    .title-header
+    .title-header 
       #{current_cadastre.hello}
       %p.mini-text
         %i Toque para visualizar seu cadastro
@@ -21,7 +21,7 @@
     .ui.segment.text-center
       - if current_cadastre.notifications.unread.present?
         .floating.ui.red.label{style:"top: -0.8em; left: 100%;"}
-          = current_cadastre.notifications.unread.count
+          = current_cadastre.notifications.unread.count 
       %a{href: "#{attendance.notifications_path}"}
         %i.icon.alarm.huge.gray
     .text-center.bold
@@ -29,24 +29,24 @@
   - if current_cadastre.allow_update_cadastre?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_context_path}"}
+        %a{href: "#"}
           %i.icon.edit.huge.gray
       .text-center.bold
         Atualizar Meus Dados
   - if current_cadastre.allow_recadastre?
     .column
       .ui.segment.text-center.semantic-black
-        %a{href: "#{attendance.new_context_path}"}
+        %a{href: "#{attendance.pre_create_recadastre_tickets_path}", data: { remote: true }}
           %i.icon.retweet.huge.gray.yellow
       .text-center.bold
         Atualização Cadastral
   - if current_cadastre.allow_habilitation?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_context_path}"}
+        %a{href: "#"}
           %i.icon.checkmark.huge.green
       .text-center.bold
-        Habilitação
+        Habilitação     
   .column
     .ui.segment.text-center
       %a{href: "#{attendance.tickets_path}"}
@@ -58,7 +58,7 @@
       %a{href: "#{attendance.chats_path}"}
         %i.icon.comment.outline.huge.gray.text-center.bold
     .text-center.bold
-      Minhas Conversas
+      Meus Chats
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
     .ui.segment.text-center
       %a{href: "#{attendance.requeriments_path}"}

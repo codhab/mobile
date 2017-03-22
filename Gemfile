@@ -22,13 +22,8 @@ gem 'onesignal'
 
 gem 'puma'
 
-#gem 'core_attendance', github: 'codhab/core_attendance'
-#gem 'core_attendance', path: 'components/core_attendance'
-#gem 'core_candidate',  github: 'codhab/core_candidate' 
-#gem 'core_address',    github: 'codhab/core_address'
-
-#gem 'core', github: 'codhab/core'
 gem 'core', path: 'components/core'
+#gem 'core', github: 'codhab/core'
 
 group :development, :test do
   gem 'byebug', platform: :mri
