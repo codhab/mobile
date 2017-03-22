@@ -1,4 +1,4 @@
-= simple_form_for chat_chat_comments_path(@chat,@chat_comment) do |f|
+= simple_form_for @chat_comment, url: chat_chat_comments_path do |f|
   = f.input :content, as: :text, label: false, input_html: { placeholder: 'Escreva aqui', rows: 3}
   .big-divider
   .column.text-center

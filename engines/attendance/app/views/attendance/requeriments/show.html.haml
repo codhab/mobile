@@ -16,12 +16,15 @@
           %b= @requeriment.document_number ||= "Sem informação de Nº"
           %br
           = @requeriment.document_type.name rescue "Sem informção de tipo"
-        
+
       %tr
         %td Descrição
         %td= @requeriment.description_subject
-     
+
       %tr
         %td Arquivos Enviados
-        %td 
-          %i Nenhum arquivo enviado.
+        %td
+          - if @requeriment.digital_documents.present?
+            = "#{@requeriment.digital_documents.count} documento(s) enviado(s)."
+          - else
+            %i Nenhum arquivo enviado.
