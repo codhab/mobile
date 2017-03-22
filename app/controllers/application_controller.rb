@@ -1,3 +1,5 @@
+require_dependency 'application_helper'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -9,6 +11,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_cadastre
   
+
   private
 
   def current_cadastre
@@ -20,9 +23,10 @@ class ApplicationController < ActionController::Base
       cadastre = ::Core::Candidate::Cadastre.find(session[:user_id])
     end
     
-    cadastre = cadastre.presenter.policy
-    
-    return cadastre
+    presenter = Core::Candidate::CadastrePresenter.new(cadastre)
+    policy    = Core::Candidate::CadastrePolicy.new(presenter)
+
+    return policy
   end
 
   def allow_iframe
