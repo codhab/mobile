@@ -4,7 +4,7 @@
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Minhas Conversas (#{@chats.count})
-    .sub-title Listagem Chats
+    .sub-title Listagem de conversas
     .divider
     - unless @chats.present?
       = link_to "Nova Conversa", new_chat_path, class: 'ui button yellow fluid'

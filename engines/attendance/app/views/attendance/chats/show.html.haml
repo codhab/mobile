@@ -1,12 +1,13 @@
-.big-divider
-.ui.grid.container
-  .column.text-center
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{chats_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
     .title-header
-      Chats
-      %small
-        %p= link_to "Retonar para página de chats", chats_path
+      Minhas Conversas
       %br
-      = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow' if @chat.closed == false && @chat.chat_comments.last.candidate == false
+      %br
+      = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid' if @chat.closed == false && @chat.chat_comments.last.candidate == false
 .big-divider
 .ui.container-fluid
   .ui.grid
