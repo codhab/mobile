@@ -19,15 +19,16 @@ module Attendance
       @requeriment.subject_id       = 1498 #request
       @requeriment.recipient        = current_cadastre.name
       service = Core::Protocol::AssessmentService.new(@requeriment)
-      number = service.set_number!(nil,27)
+
+      sector =  ([1,2,4,5,7,9,10].include? current_cadastre.program_id) ? 27 : 30
+
+      number = service.set_number!(nil,sector)
+
       @requeriment.document_number = number
+
       if @requeriment.save
-
-        flash[:title]      = "Operação realizada com sucesso!"
-        flash[:message]    = "Os seus dados foram atualizados com sucesso, veja o detalhamento abaixo"
-        flash[:html_class] = "success"     
-
-        redirect_to requeriments_path
+         service.set_conduct!(@requeriment,nil,sector)
+         redirect_to requeriments_path
       else
         render action: :new
       end
