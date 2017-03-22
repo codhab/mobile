@@ -1,24 +1,24 @@
 GIT
-  remote: git://github.com/codhab/core.git
-  revision: 74432210cee332be57f5c380601a3023fe519ad1
-  specs:
-    core (0.1.0)
-      carrierwave
-      email_validator
-      file_validators
-      one_signal
-      pg
-      rails (~> 5.0.2)
-      validates_cpf_cnpj
-      validates_timeliness
-
-GIT
   remote: git://github.com/untitledkingdom/mina-puma.git
   revision: fa249a11dc83973b4d0824c61419f94817eeac01
   specs:
     mina-puma (1.0.1)
       mina (~> 1.0.0)
       puma (>= 2.13)
+
+PATH
+  remote: components/core
+  specs:
+    core (0.1.0)
+      carrierwave
+      email_validator
+      file_validators
+      friendly_id
+      one_signal
+      pg
+      rails (~> 5.0.2)
+      validates_cpf_cnpj
+      validates_timeliness
 
 PATH
   remote: engines
@@ -96,6 +96,8 @@ GEM
     file_validators (2.1.0)
       activemodel (>= 3.0)
       mime-types (>= 1.0)
+    friendly_id (5.2.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
