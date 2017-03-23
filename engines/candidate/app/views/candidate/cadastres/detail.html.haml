@@ -1,10 +1,177 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
-      Detalhamento
-      %small
-        %p= link_to "Retonar para página anterior", :back
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(@cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Meu Cadastro
+.big.divider
+.ui.container
+  %table.ui.celled.table
+    %thead
+      %tr
+        %th
+          Dados Básicos
+    %tbody
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Nome
+              = @cadastre.name
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                CPF
+              = @cadastre.cpf
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                RG
+              = "#{@cadastre.rg} - #{@cadastre.rg_org}/#{@cadastre.rg_uf}"
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Data de nascimento
+              = @cadastre.born.strftime('%d/%m/%Y') rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Sexo
+              = @cadastre.gender rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Local de Nascimento
+              = @cadastre.place_birth
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Chegada no DF
+              = @cadastre.arrival_df.strftime('%d/%m/%Y') rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Estado Civil
+              = @cadastre.civil_state.name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Nome da Mãe
+              = @cadastre.mother_name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Condicão Especial
+              = @cadastre.special_condition.name rescue nil
+      - if @cadastre.special_condition_id > 1
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  CID
+                = @cadastre.cid rescue nil
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Tipo de Condição Especial
+                = @cadastre.special_condition_type.name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                NIS
+              = @cadastre.nis rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Renda do Titular
+              = @cadastre.main_income rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Renda Familiar
+              = @cadastre.income rescue nil
 
-    .big-divider
+    %thead
+      %tr
+        %th
+          Dados de Contato
+    %tbody
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Cidade
+              = @cadastre.city.name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Endereço
+              = @cadastre.address rescue nil
+      - if @cadastre.address_complement.present?
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Complemento do Endereço
+                = @cadastre.address_complement rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Email
+              = @cadastre.email rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Telefone
+              = @cadastre.telephone rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Telefone Opcional
+              = @cadastre.telephone_optional rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Celular
+              = @cadastre.celphone rescue nil

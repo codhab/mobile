@@ -1,10 +1,117 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
-      Meus dependentes
-      %small
-        %p= link_to "Retonar para página anterior", :back
-
-    .big-divider
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(1)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Meus Dependentes
+.big.divider
+.ui.container
+  %table.ui.celled.table
+    - if @spouse.present?
+      %thead
+        %tr
+          %th
+            Cônjuge
+      %tbody
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Nome
+                = @spouse.name
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  CPF
+                = @spouse.cpf
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  RG
+                = "#{@spouse.rg} - #{@spouse.rg_org}/#{@spouse.rg_uf_id}"
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Sexo
+                = @spouse.gender
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Data de Nascimento
+                = @spouse.born.strftime('%d/%m/%Y') rescue nil
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Renda
+                = @spouse.income rescue nil
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Condição Especial
+                = @spouse.special_condition.name rescue nil
+        - if @spouse.special_condition_id > 1
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    CID
+                  = @spouse.cid rescue nil
+    - if @dependents.present?
+      - @dependents.each do |dependent|
+        %thead
+          %tr
+            %th
+              = dependent.kinship.name rescue nil
+        %tbody
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    Nome
+                  = dependent.name                    
+          - if dependent.cpf.present?
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      CPF
+                    = dependent.cpf
+          - if dependent.rg.present?
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      RG
+                    = "#{dependent.rg} - #{dependent.rg_org}/#{dependent.rg_uf_id}"
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    Sexo
+                  = dependent.gender
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    Data de Nascimento
+                  = dependent.born.strftime('%d/%m/%Y') rescue nil
