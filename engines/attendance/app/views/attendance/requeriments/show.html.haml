@@ -25,6 +25,8 @@
         %td Arquivos Enviados
         %td
           - if @requeriment.digital_documents.present?
-            = "#{@requeriment.digital_documents.count} documento(s) enviado(s)."
+            - @requeriment.digital_documents.each_with_index do |req, index|
+              %br
+              = link_to "Arquivo #{index +1}", req.doc_path_url, target: '_blank'
           - else
             %i Nenhum arquivo enviado.
