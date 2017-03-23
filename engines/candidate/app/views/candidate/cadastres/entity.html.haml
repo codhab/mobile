@@ -1,10 +1,62 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
-      Entidades
-      %small
-        %p= link_to "Retonar para página anterior", :back
-
-    .big-divider
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Minha Entidade
+.big.divider
+.ui.container
+  - if @entity.present? && current_cadastre.program_id == 2
+    %table.ui.celled.table
+      %thead
+        %tr
+          %th
+            Entidade
+      %tbody
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Sigla
+                = @entity.old.fantasy_name
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Nome
+                = @entity.old.name
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  CNPJ
+                = @entity.old.cnpj
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Presidente da Entidade
+                = @entity.old.president_name
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Cidade
+                = @entity.old.city
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Endereço
+                = @entity.old.address
+  - else
+    .column
+      .ui.segment
+        %i Candidato não tem vínculo com entidade

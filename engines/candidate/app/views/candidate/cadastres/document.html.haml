@@ -1,0 +1,51 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Documentos
+.big.divider
+.ui.container
+  - if @documents.present?
+    - @documents.each do |document|
+      .ui.styled.accordion
+        .title
+          %i.dropdown.icon
+          = document.document_number rescue nil
+        .content
+          %table.ui.celled
+            %tbody
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Tipo de Documento
+                      = document.document_type.name rescue nil
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Assunto
+                      = document.subject.name rescue nil
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Data do Documento
+                      = document.created_at.strftime('%d/%m/%Y')
+  - else
+    .column
+      .ui.segment
+        %i Nenhum documento encontrado.
+
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });

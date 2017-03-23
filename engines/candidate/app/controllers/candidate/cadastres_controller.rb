@@ -17,7 +17,21 @@ module Candidate
       @pontuations = current_cadastre.pontuations
     end
 
+    def entity
+      @entity = current_cadastre.old_candidates.last
+    end
 
+    def situation
+      @situations = current_cadastre.cadastre_situations
+    end
+
+    def schedule
+      @schedules = current_cadastre.schedules
+    end
+
+    def document
+      @documents = current_cadastre.assessments.where('document_type_id <> 26')
+    end
 
   end
 end

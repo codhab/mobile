@@ -1,10 +1,24 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
       Minhas Situações
-      %small
-        %p= link_to "Retonar para página anterior", :back
-
-    .big-divider
+.big.divider
+.ui.container
+  - if @situations.present?
+    %table.ui.celled.table
+      - @situations.order('created_at desc').each do |situation|
+        %thead
+          %tr
+            %th
+              = situation.situation_status.name
+        %tbody
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    Data
+                  = situation.created_at.strftime('%d/%m/%Y') rescue nil

@@ -1,117 +1,122 @@
 .ui.grid
   .one.wide.mobile.column
-    %a{href: "#{candidate.cadastre_path(1)}"}
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header
       Meus Dependentes
 .big.divider
 .ui.container
-  %table.ui.celled.table
-    - if @spouse.present?
-      %thead
-        %tr
-          %th
-            Cônjuge
-      %tbody
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  Nome
-                = @spouse.name
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  CPF
-                = @spouse.cpf
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  RG
-                = "#{@spouse.rg} - #{@spouse.rg_org}/#{@spouse.rg_uf_id}"
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  Sexo
-                = @spouse.gender
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  Data de Nascimento
-                = @spouse.born.strftime('%d/%m/%Y') rescue nil
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  Renda
-                = @spouse.income rescue nil
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  Condição Especial
-                = @spouse.special_condition.name rescue nil
-        - if @spouse.special_condition_id > 1
-          %tr
-            %td
-              %h4.ui.image.header
-                .content
-                  .sub.header
-                    CID
-                  = @spouse.cid rescue nil
+  - if @spouse.present?
+    .ui.styled.accordion
+      .title
+        %i.dropdown.icon
+        = "#{@spouse.name} - Cônjuge"
+      .content
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      CPF
+                    .description
+                      = @spouse.cpf.present? ? @spouse.cpf : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      RG
+                    .description
+                      = @spouse.rg.present? ? "#{@spouse.rg} - #{@spouse.rg_org}/#{@spouse.rg_uf_id}" : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Sexo
+                    .description
+                      = @spouse.gender.present? ? @spouse.gender : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Data de Nascimento
+                    .description
+                      = @spouse.born.present? ? @spouse.born.strftime('%d/%m/%Y') : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Renda
+                    .description
+                      = @spouse.income.present? ? @spouse.income : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Condição Especial
+                    .description
+                      = @spouse.special_condition.present? ? @spouse.special_condition.name : "Sem informação"
+            - if @spouse.special_condition_id > 1
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        CID
+                      .description
+                        = @spouse.cid.present? ? @spouse.cid : "Sem informação"
     - if @dependents.present?
       - @dependents.each do |dependent|
-        %thead
-          %tr
-            %th
-              = dependent.kinship.name rescue nil
-        %tbody
-          %tr
-            %td
-              %h4.ui.image.header
-                .content
-                  .sub.header
-                    Nome
-                  = dependent.name                    
-          - if dependent.cpf.present?
-            %tr
-              %td
-                %h4.ui.image.header
-                  .content
-                    .sub.header
-                      CPF
-                    = dependent.cpf
-          - if dependent.rg.present?
-            %tr
-              %td
-                %h4.ui.image.header
-                  .content
-                    .sub.header
-                      RG
-                    = "#{dependent.rg} - #{dependent.rg_org}/#{dependent.rg_uf_id}"
-          %tr
-            %td
-              %h4.ui.image.header
-                .content
-                  .sub.header
-                    Sexo
-                  = dependent.gender
-          %tr
-            %td
-              %h4.ui.image.header
-                .content
-                  .sub.header
-                    Data de Nascimento
-                  = dependent.born.strftime('%d/%m/%Y') rescue nil
+        .ui.styled.accordion
+          .title
+            %i.dropdown.icon
+            = "#{dependent.name} - #{dependent.kinship.name rescue nil}"
+          .content
+            %table.ui.celled.table
+              %tbody
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          CPF
+                        .description
+                          = dependent.cpf.present? ? dependent.cpf : "Sem informação"
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          RG
+                        .description
+                          = dependent.rg.present? ? "#{dependent.rg} - #{dependent.rg_org}/#{dependent.rg_uf_id}" : "Sem informação"
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          Sexo
+                        .description
+                          = dependent.gender.present? ? dependent.gender : "Sem informação"
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          Data de Nascimento
+                        .description
+                          = dependent.born.present? ? dependent.born.strftime('%d/%m/%Y') : "Sem informação"
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });
