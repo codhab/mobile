@@ -22,7 +22,7 @@ module Attendance
       @chat = current_cadastre.attendance_chats.find(params[:id])
       @chat_comments = @chat.chat_comments
       if @chat.chat_comments.where(candidate_read: false, candidate: false).present?
-        @chat_comments.where(candidate: true).update_all(candidate_read: true, candidate_read_datetime: DateTime.now)
+        @chat_comments.where(candidate: false).update_all(candidate_read: true, candidate_read_datetime: DateTime.now)
       end
     end
 

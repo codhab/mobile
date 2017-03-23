@@ -1,10 +1,71 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
-      Minhas Pontuações
-      %small
-        %p= link_to "Retonar para página anterior", :back
-
-    .big-divider
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Pontuações
+.big.divider
+.ui.container
+  - if @pontuations.present?
+    - @pontuations.each do |pontuation|
+      .ui.styled.accordion
+        .title
+          %i.dropdown.icon
+          = "Pontuação em: #{pontuation.created_at.strftime('%d/%m/%Y') rescue nil}"
+        .content
+          %table.ui.celled
+            %tbody
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Total de Pontos
+                      = pontuation.total
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Tempo de Brasília
+                      = pontuation.bsb
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Tempo de Lista
+                      = pontuation.timelist
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Dependentes
+                      = pontuation.dependent
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Renda
+                      = pontuation.income
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Membro Especial
+                      = pontuation.special_condition
+  - else
+    .column
+      .ui.segment
+        %i Candidato sem pontuação
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });

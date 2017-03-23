@@ -5,10 +5,10 @@
   .thirteen.wide.mobile.column.text-center
     .title-header
       Minhas Conversas
-      %br
-      %br
-      = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid' if @chat.closed == false && @chat.chat_comments.last.candidate == false
-.big-divider
+      - if @chat.closed == false && @chat.chat_comments.last.candidate == false
+        %br
+        %br
+        = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid'
 .ui.container-fluid
   .ui.grid
     .row
@@ -22,22 +22,28 @@
             - if @chat.closed
               %tr
                 %td
-                  %h4 Chat encerrado
-                  = @chat.close_comment
+                  %a.ui.red.ribbon.label
+                    Conversa encerrada
+                  %p
+                    = @chat.close_comment
     .divider
     .row
       .column.segment
         %table.ui.celled.table
           %tbody
             - @chat_comments.order('created_at DESC').each do |comment|
-              %tr{class: comment.candidate_read ? 'read' : 'not-read'}
+              %tr
                 %td
-                  = comment.content
-                  %p
-                    %small= comment.created_at.strftime("%d/%m/%Y - %H:%M")
-                    %br
-                    %small
-                      - if comment.staff_id.present?
+                  %small
+                    - if comment.staff_id.present?
+                      %a.ui.yellow.ribbon.label
                         CODHAB
-                      - else
+                    - else
+                      %a.ui.green.ribbon.label
                         Eu
+                  %p
+                    %small
+                      .ui.label
+                        = comment.created_at.strftime("%d/%m/%Y - %H:%M")
+                  %p{style: 'text-align: justify'}
+                    = comment.content

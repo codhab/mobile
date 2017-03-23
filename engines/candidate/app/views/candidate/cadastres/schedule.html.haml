@@ -1,10 +1,63 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
       Meus Agendamentos
-      %small
-        %p= link_to "Retonar para página anterior", :back
+.big.divider
+.ui.container
+  - if @schedules.present?
+    - @schedules.order('created_at desc').each do |schedule|
+      .ui.styled.accordion
+        .title
+          %i.dropdown.icon
+          = "Data agendada: #{schedule.date.strftime('%d/%m/%Y') rescue nil}"
+        .content
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Agenda
+                      .description
+                        = schedule.agenda.title rescue nil
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Data agendada
+                      .description
+                        = schedule.date.strftime('%d/%m/%Y') rescue nil
 
-    .big-divider
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Hora
+                      .description
+                        = schedule.hour.strftime('%H:%M') rescue nil
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Data do Agendamento
+                      .description
+                        = schedule.created_at.strftime('%d/%m/%Y') rescue nil
+  - else
+    .column
+      .ui.segment
+        %i Nenhum agendamento realizado.
+
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });
