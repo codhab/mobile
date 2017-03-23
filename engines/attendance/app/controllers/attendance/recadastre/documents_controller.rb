@@ -15,7 +15,7 @@ module Attendance
       end
 
       def create
-        if @context.update(set_params)
+        if @context.update_attributes!(set_params)
           @context.update(status: 2)
           flash[:success] = "Atualização realizada com sucesso!"
           redirect_to recadastre_path
