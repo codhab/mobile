@@ -16,23 +16,24 @@ module Attendance
 
       def confirm
         @service = Core::Attendance::RecadastreService.new(ticket: @ticket)
-        @service.confirm_by_context 1
+        @service.confirm_by_context 3
 
         redirect_to recadastre_tickets_path
       end
 
       def show
+        @cadastre_mirror = @ticket.cadastre_mirror
       end
 
       def edit
-        @cadastre_mirror = Core::Attendance::CadastreForm.find(@ticket.cadastre_mirror_id)
+        @cadastre_mirror = Core::Attendance::IncomeForm.find(@ticket.cadastre_mirror_id)
       end
 
       def update
-        @cadastre_mirror = Core::Attendance::CadastreForm.find(@ticket.cadastre_mirror_id)
+        @cadastre_mirror = Core::Attendance::IncomeForm.find(@ticket.cadastre_mirror_id)
         
         if @cadastre_mirror.update(set_params)
-          redirect_to new_recadastre_ticket_document_path(ticket_id: @ticket)
+          redirect_to edit_recadastre_ticket_context_document_path(ticket_id: @ticket, context_id: 3, id: @cadastre_mirror)
         else
           render action: :edit
         end
