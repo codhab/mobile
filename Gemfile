@@ -38,10 +38,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-path 'engines' do 
+path 'engines' do
   gem 'attendance'
   gem 'candidate'
   gem 'entity'
   gem 'portal'
 end
-
