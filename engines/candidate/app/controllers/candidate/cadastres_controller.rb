@@ -33,5 +33,13 @@ module Candidate
       @documents = current_cadastre.assessments.where('document_type_id <> 26')
     end
 
+    def address
+      @address = current_cadastre.current_cadastre_address
+    end
+
+    def occurrence
+      @iptus = current_cadastre.iptus
+    end
+
   end
 end

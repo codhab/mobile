@@ -1,10 +1,41 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
-      Endereço vínculado
-      %small
-        %p= link_to "Retonar para página anterior", :back
-
-    .big-divider
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Endereço Vinculado
+.big.divider
+.ui.container
+  - if @address.present?
+    %table.ui.celled.table
+      %thead
+        %tr
+          %th
+            = @address.unit.city.name rescue nil
+      %tbody
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Endereço
+                = @address.unit.complete_address rescue nil
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Situação
+                = @address.situation_id.mb_chars.upcase  rescue nil
+        %tr
+          %td
+            %h4.ui.image.header
+              .content
+                .sub.header
+                  Data
+                = @address.created_at.strftime('%d/%m/%Y') rescue nil
+  - else
+    .column
+      .ui.segment
+        %i Candidato não tem vínculo com endereço.
