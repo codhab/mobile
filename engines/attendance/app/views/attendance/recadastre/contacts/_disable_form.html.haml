@@ -1,4 +1,4 @@
-= simple_form_for @ticket.cadastre_mirror, url: "#" do |f|
+= simple_form_for @cadastre_mirror, url: "#" do |f|
   = f.input :telephone, input_html: { class: 'phone', disabled: true}
   = f.input :telephone_optional, input_html: { class: 'phone', disabled: true}
   = f.input :celphone, input_html: { class: 'phone', disabled: true}
@@ -8,15 +8,8 @@
   = f.association :state, include_blank: false, label_method: :acronym, input_html: { disabled: true}
   = f.input :cep, input_html: { class: 'cep', disabled: true}
   
-  .big-divider
   .column.text-center
-    - if @ticket.allow_recadastre_contact?
-      = link_to "Meus dados estão corretos",confirm_recadastre_ticket_contacts_path(@ticket), class: 'ui button green fluid', data: { disabled_with: t(:disabled_with)}
+    - if @context.aberto?
+      = link_to "Meus dados estão corretos", recadastre_ticket_context_contact_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid', data: { disabled_with: t(:disabled_with)}
       .divider
-      = link_to "Atualizar Meus Dados", edit_recadastre_ticket_contact_path(ticket_id: @ticket, id: @ticket.cadastre_mirror_id), class: 'ui button yellow fluid'
-    - else
-      .big-divider
-      %i.icon.checkmark.huge.green
-      .divider
-      .text-center
-        %h3 Os dados básicos do cadastro já foram confirmados.
+      = link_to "Atualizar Meus Dados", edit_recadastre_ticket_context_cadastre_path(@ticket, @context, @cadastre_mirror), class: 'ui button yellow fluid'

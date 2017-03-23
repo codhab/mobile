@@ -216,3 +216,7 @@ span.ui.label.yellow {
   font-weight: 400;
 }
 
+
+.ui.form .disabled.field, .ui.form .disabled.fields .field, .ui.form .field input[type="file"]:disabled {
+  opacity: 0 !important;
+}

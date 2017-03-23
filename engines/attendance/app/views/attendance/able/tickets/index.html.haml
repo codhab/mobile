@@ -1,0 +1,43 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{main_app.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atualização Cadastral 
+    .sub-title Contextos para atualização
+.big-divider
+.ui.grid.container
+  %table.ui.celled.table
+    %tbody.black
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              = link_to "Atualização de dados básicos", new_able_ticket_path(context_id: 1)
+              .sub.header
+     
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              = link_to "Atualização de dependentes", new_able_ticket_path(context_id: 1)
+              .sub.header
+             
+                
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              = link_to "Atualização de renda", new_able_ticket_path(context_id: 1)
+              .sub.header
+               
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              = link_to "Atualização de contatos", new_able_ticket_path(context_id: 1)
+              .sub.header

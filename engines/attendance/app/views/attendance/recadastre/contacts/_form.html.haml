@@ -1,4 +1,4 @@
-= simple_form_for @cadastre_mirror, url: recadastre_ticket_income_path(ticket_id: @ticket, id: @ticket.cadastre_mirror), method: :put, remote: true, validate: true do |f|
+= simple_form_for @cadastre_mirror, url: recadastre_ticket_contact_path(ticket_id: @ticket, id: @ticket.cadastre_mirror), method: :put, remote: true, validate: true do |f|
   = f.input :telephone, input_html: { class: 'phone'}
   = f.input :telephone_optional, input_html: { class: 'phone'}
   = f.input :celphone, input_html: { class: 'phone'}

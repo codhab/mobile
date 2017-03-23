@@ -9,6 +9,59 @@ Attendance::Engine.routes.draw do
   resources :tickets
 
   namespace :recadastre do 
+    
+    get '/', to: 'tickets#new'
+    
+    resources :tickets, only: :new do 
+      get 'pre_confirm', to: 'tickets#pre_confirm', as: :pre_confirm
+      get 'confirm',     to: 'tickets#confirm',     as: :confirm
+
+      resources :contexts, only: [:index, :new] do 
+        resources :cadastres, only: [:show, :edit, :update] do
+          get 'confirm', to: 'cadastres#confirm', as: :confirm
+        end
+        resources :contacts do
+          get 'confirm', to: 'contacts#confirm',  as: :confirm
+        end
+        resources :incomes do
+          get 'confirm', to: 'incomes#confirm',   as: :confirm
+        end
+        resources :dependents do
+          get 'confirm', to: 'dependents#confirm',as: :confirm
+        end
+        
+        resources :documents, only: [:new, :create]
+      end
+
+    end
+  end
+
+  namespace :able do 
+    resources :tickets, only: [:index, :new] do 
+      resources :contexts, only: [:index, :new] do 
+        resources :cadastres
+        resources :contacts
+        resources :incomes
+        resources :dependents
+        resources :documents        
+      end
+    end
+
+  end
+
+  namespace :convoked do 
+    resources :tickets do 
+      resources :contexts do 
+        resources :cadastres
+        resources :contacts
+        resources :incomes
+        resources :dependents
+        resources :documents        
+      end
+    end
+  end
+=begin
+  namespace :recadastre do 
     resources :tickets do 
       get 'pre_create',   to: 'tickets#pre_create', as: :pre_create, on: :collection
       get 'pre_close',    to: 'tickets#pre_close',  as: :pre_close
@@ -41,6 +94,6 @@ Attendance::Engine.routes.draw do
       
     end
   end
-
+=end
 
 end

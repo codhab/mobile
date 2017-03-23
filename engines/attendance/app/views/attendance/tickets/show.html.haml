@@ -1,0 +1,56 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Minhas atualizações
+    .sub-title Detalhamento de atualização
+.ui.container
+  %table.ui.celled.table
+    %thead
+      %tr
+        %th Protocolo: #{@ticket.protocol}
+        %th #{@ticket.ticket_type.name}
+    %tbody
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              Situação da atualização
+              .sub.header
+                #{@ticket.ticket_status.external_name.humanize}
+                %p
+                  %small
+                    #{@ticket.created_at.strftime("%d/%m/%Y - %H:%M")}
+  %table.ui.celled.table
+    %thead
+      %tr
+        %th Atualizações
+    %tbody
+      - @ticket.ticket_context_actions.each do |action|
+        %tr
+          %td
+          %td
+            .content
+              .sub.header
+                %b #{action.ticket_context.name.humanize}
+                %p
+                  %small
+                    Criado em #{action.created_at.strftime("%d/%m/%Y - %H:%M")}
+          %td
+            .content
+              %b Situação
+              .sub.header
+              #{action.status.humanize}
+
+          %td
+            .content
+              %b Documentos enviados
+              .sub.header
+              - if action.ticket_uploads.present?
+                - action.ticket_uploads.each do |upload|
+                  = upload.inspect
+              - else
+                %i Nenhum documento enviado.
+
+

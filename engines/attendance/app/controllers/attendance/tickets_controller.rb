@@ -1,10 +1,15 @@
 module Attendance
   class TicketsController < ApplicationController
-    before_action :set_cadastre
 
     def index
       @tickets = current_cadastre.tickets
     end
+
+    def show
+      @ticket = Core::Attendance::Ticket.find(params[:id]).presenter
+    end
+
+    private
 
   end
 end

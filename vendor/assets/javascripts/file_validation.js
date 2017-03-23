@@ -45,11 +45,26 @@ function validate_file(input) {
             
     $('.ui.modal').html(html);
     $('.ui.modal').modal('show');
-    $(input).closest("fieldset").remove()
 
+    if ($(input).data('destroy') == false) {
+      $(input).val(null);
+      $("#"+ input.id).parents('label').contents('span').text('Toque para inserir um documento')
+      $("#"+ input.id).parents('label').removeClass("yellow")
+      $("input[type='submit']").addClass('disabled')
+      $(".add_fields").addClass('disabled')
+    } else {
+      $(input).closest('fieldset').remove();
+      $(".add_fields").removeClass('disabled')
+      $("input[type='submit']").removeClass('disabled')
+    }
+
+    
   } else {
     $("#"+ input.id).parents('label').contents('span').text('Arquivo carregado')
     $("#"+ input.id).parents('label').addClass("yellow")
+    $("input[type='submit']").removeClass('disabled')
+    $(".add_fields").removeClass('disabled')
+    
   }
 
 }

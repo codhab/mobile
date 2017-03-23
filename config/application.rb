@@ -16,8 +16,10 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+rails_root = Pathname.new('..').expand_path(File.dirname(__FILE__))
+
 begin
-  APP_ENV = YAML.load_file("config/env.yml")
+  APP_ENV = YAML.load_file("#{rails_root}/config/env.yml")
 rescue
   if Rails.env.development? || Rails.env.test?
     raise ArgumentError, 'Need to configure config/application.yml'

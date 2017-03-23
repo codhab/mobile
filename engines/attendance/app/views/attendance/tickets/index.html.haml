@@ -1,0 +1,23 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Minhas atualizações
+    .sub-title Listagem de atualizações
+.ui.grid.container
+  .column
+    %table.ui.celled.table
+      %tbody.black
+        - @tickets.order('created_at DESC').each do |ticket|
+          %tr
+            %td
+              %h4.ui.image.header
+                %i.small.refresh.icon.gray
+                .content
+                  = link_to ticket.ticket_type.name, ticket_path(ticket)
+                  .sub.header
+                    = ticket.ticket_status.external_name.humanize
+                    %p
+                      %small
+                        Criado em #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}             

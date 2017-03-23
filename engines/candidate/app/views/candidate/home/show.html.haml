@@ -26,17 +26,17 @@
         %i.icon.alarm.huge.gray
     .text-center.bold
       Notificações
-  - if current_cadastre.allow_update_cadastre?
+  - if current_cadastre.allow_update_button?
     .column
       .ui.segment.text-center
-        %a{href: "#"}
+        %a{href: "#{attendance.able_tickets_path}"}
           %i.icon.edit.huge.gray
       .text-center.bold
         Atualizar Meus Dados
-  - if current_cadastre.allow_recadastre?
+  - if current_cadastre.allow_recadastre_button?
     .column
       .ui.segment.text-center.semantic-black
-        %a{href: "#{attendance.pre_create_recadastre_tickets_path}", data: { remote: true }}
+        %a{href: "#{attendance.recadastre_path}"}
           %i.icon.retweet.huge.gray.yellow
       .text-center.bold
         Atualização Cadastral

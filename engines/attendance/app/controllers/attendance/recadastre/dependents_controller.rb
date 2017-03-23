@@ -3,7 +3,7 @@ require_dependency 'core/attendance/recadastre_service'
 
 module Attendance
   module Recadastre
-    class IncomesController < ApplicationController
+    class DependentsController < ApplicationController
       
       before_action :set_ticket
       before_action :set_context
@@ -39,7 +39,6 @@ module Attendance
         @ticket = Core::Attendance::TicketPolicy.new(@ticket)
         @ticket = Core::Attendance::TicketPresenter.new(@ticket)
       end
-
     end
   end
 end
