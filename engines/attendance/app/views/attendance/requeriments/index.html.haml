@@ -10,12 +10,12 @@
   .column
     %table.ui.celled.table
       %tbody
-        - if @requeriments.present? 
-          - @requeriments.each do  |requeriment| 
+        - if @requeriments.present?
+          - @requeriments.each do  |requeriment|
             %tr
               %td
                 %h4.ui.file.text.outline.header
-                  %i.icon.user
+                  %i.icon.file
                   .content
                     %a{href:"#{requeriment_path(requeriment)}"}= requeriment.document_number ||= "Nenhum número gerado"
                     .sub.header= requeriment.document_type.name rescue "Sem informação"
@@ -25,7 +25,7 @@
             %td.text-center
               %i Nenhum requerimento vínculado ao seu CPF
 
-  
+
 .ui.grid.container-fluid
   .column
     = link_to "Enviar novo requerimento", new_requeriment_path, class: 'ui button yellow fluid'

@@ -22,9 +22,9 @@
                   %i.small.chat.icon.gray
                   .content
                     %a{href: "#{chat_path(chat)}"}
-                      #{chat.chat_category.name}
-                    %br
-                    %small
-                      Quantidade de interações: #{chat.chat_comments.count}
-                    .sub.header
-                      #{chat.created_at.strftime("%d/%m/%Y - %H:%M")}
+                      #{chat.chat_category.name rescue nil}
+                      %br
+                      %small
+                        Quantidade de interações: #{chat.chat_comments.count}
+                      .sub.header
+                        #{chat.created_at.strftime("%d/%m/%Y - %H:%M")}
