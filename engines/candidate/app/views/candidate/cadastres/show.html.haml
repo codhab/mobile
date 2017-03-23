@@ -3,7 +3,7 @@
   .column.center.aligned
     = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image small-yellow-border', style: 'margin: 0 auto'), "#"
     %br/
-    .title-header 
+    .title-header
       = current_cadastre.name.mb_chars.upcase
     %small
       = current_cadastre.current_situation_name
@@ -34,7 +34,7 @@
       %a{href: "#{occurrence_cadastres_path}"}
         %i.icon.flag.big.gray.text-center.bold
     .text-center.bold
-      Ocorrências
+      Ocorrências de IPTU
   .column
     .ui.segment.text-center
       %a{href: "#{entity_cadastres_path}"}
@@ -51,7 +51,7 @@
   .column
     .ui.segment.text-center
       %a{href: "#{address_cadastres_path}"}
-        %i.icon.marker.big.gray.bold
+        %i.icon.home.big.gray.bold
     .text-center.bold
       Endereço vínculado
 

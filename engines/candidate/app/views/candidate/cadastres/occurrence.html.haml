@@ -1,10 +1,46 @@
-.big-divider
 .ui.grid
-  .column.text-center
-    .big-divider
-    .title-header 
-      Ocorrências
-      %small
-        %p= link_to "Retonar para página anterior", :back
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Registro de IPTU
+.big.divider
+.ui.container
+  - if @iptus.present?
+    - @iptus.each do |iptu|
+      .ui.styled.accordion
+        .title
+          %i.dropdown.icon
+          = iptu.address rescue nil
+        .content
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Cidade
+                      .description
+                        = iptu.city
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Nº da Inscrição
+                      .description
+                        = iptu.registration rescue nil
+  - else
+    .column
+      .ui.segment
+        %i Nenhum ocorrência encontrada.
 
-    .big-divider
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });

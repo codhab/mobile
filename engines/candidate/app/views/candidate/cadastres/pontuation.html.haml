@@ -14,50 +14,55 @@
           %i.dropdown.icon
           = "Pontuação em: #{pontuation.created_at.strftime('%d/%m/%Y') rescue nil}"
         .content
-          %table.ui.celled
+          %table.ui.celled.table
             %tbody
               %tr
                 %td
-                  %h4.ui.image.header
-                    .content
-                      .sub.header
+                  .ui.list
+                    .item
+                      %a.header
                         Total de Pontos
-                      = pontuation.total
+                      .description
+                        = pontuation.total
               %tr
                 %td
-                  %h4.ui.image.header
-                    .content
-                      .sub.header
+                  .ui.list
+                    .item
+                      %a.header
                         Tempo de Brasília
-                      = pontuation.bsb
+                      .description
+                        = pontuation.bsb
               %tr
                 %td
-                  %h4.ui.image.header
-                    .content
-                      .sub.header
+                  .ui.list
+                    .item
+                      %a.header
                         Tempo de Lista
                       = pontuation.timelist
               %tr
                 %td
-                  %h4.ui.image.header
-                    .content
-                      .sub.header
+                  .ui.list
+                    .item
+                      %a.header
                         Dependentes
-                      = pontuation.dependent
+                      .description
+                        = pontuation.dependent
               %tr
                 %td
-                  %h4.ui.image.header
-                    .content
-                      .sub.header
+                  .ui.list
+                    .item
+                      %a.header
                         Renda
-                      = pontuation.income
+                      .description
+                        = pontuation.income
               %tr
                 %td
-                  %h4.ui.image.header
-                    .content
-                      .sub.header
+                  .ui.list
+                    .item
+                      %a.header
                         Membro Especial
-                      = pontuation.special_condition
+                      .description
+                        = pontuation.special_condition
   - else
     .column
       .ui.segment
