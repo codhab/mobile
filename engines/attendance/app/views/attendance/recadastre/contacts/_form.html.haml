@@ -1,0 +1,16 @@
+= simple_form_for @cadastre_mirror, url: recadastre_ticket_income_path(ticket_id: @ticket, id: @ticket.cadastre_mirror), method: :put, remote: true, validate: true do |f|
+  = f.input :telephone, input_html: { class: 'phone'}
+  = f.input :telephone_optional, input_html: { class: 'phone'}
+  = f.input :celphone, input_html: { class: 'phone'}
+  = f.input :email
+  = f.input :address
+  = f.association :city, include_blank: false, collection: Core::Address::City.federal_district
+  = f.association :state, include_blank: false, label_method: :acronym
+  = f.input :cep, input_html: { class: 'cep'}
+  .big-divider
+  .column.text-center
+    = f.submit "Atualizar Renda", class: 'ui button yellow fluid'
+    .divider
+    = link_to "Cancelar", "#", class: 'ui button gray fluid'
+ 
+  

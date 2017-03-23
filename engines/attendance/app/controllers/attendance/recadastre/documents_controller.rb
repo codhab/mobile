@@ -14,7 +14,7 @@ module Attendance
       def create
         if @ticket.update(set_params)
           @service = Core::Attendance::RecadastreService.new(ticket: @ticket)
-          @service.close_by_candidate
+          @service.close_by_candidate 1
           redirect_to recadastre_tickets_path
         else
           render action: :new

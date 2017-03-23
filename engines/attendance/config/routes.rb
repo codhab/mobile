@@ -24,8 +24,21 @@ Attendance::Engine.routes.draw do
         get 'confirm',     to: 'incomes#confirm',     as: :confirm, on: :collection
       end
       
-      resources :dependents
-      resources :documents
+      resources :dependents do 
+        get 'context_new', to: 'dependents#context_new', as: :context_new, on: :collection
+        get 'confirm',     to: 'dependents#confirm',     as: :confirm, on: :collection
+      end
+
+       
+      resources :contacts do 
+        get 'context_new', to: 'contacts#context_new', as: :context_new, on: :collection
+        get 'confirm',     to: 'contacts#confirm',     as: :confirm, on: :collection
+      end     
+      
+      resources :contexts do 
+        resources :documents
+      end
+      
     end
   end
 

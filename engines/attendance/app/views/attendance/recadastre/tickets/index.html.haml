@@ -23,7 +23,7 @@
           %h4.ui.image.header
             %i.icon.big{class: @ticket.recadastre_icon_class(2) }
             .content
-              = link_to "Atualização de Dependentes", new_recadastre_ticket_path(context_id: 2)
+              = link_to "Atualização de Dependentes", context_new_recadastre_ticket_dependents_path(ticket_id: @ticket)
               .sub.header
                 Situação
       %tr
@@ -31,7 +31,7 @@
           %h4.ui.image.header
             %i.icon.big{class: @ticket.recadastre_icon_class(3) }
             .content
-              = link_to "Atualização de Renda", context_new_recadastre_ticket_incomes_path(ticket_id: @ticket, context_id: 3)
+              = link_to "Atualização de Renda", context_new_recadastre_ticket_incomes_path(ticket_id: @ticket)
               .sub.header
                 Situação
       %tr
@@ -39,7 +39,7 @@
           %h4.ui.image.header
             %i.icon.big{class: @ticket.recadastre_icon_class(4) }
             .content
-              = link_to "Atualização de Contatos", new_recadastre_ticket_path(context_id: 4)
+              = link_to "Atualização de Contatos", context_new_recadastre_ticket_contacts_path(ticket_id: @ticket)
               .sub.header
                 Situação
 

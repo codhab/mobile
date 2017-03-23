@@ -1,0 +1,12 @@
+= simple_form_for @cadastre_mirror, url: recadastre_ticket_income_path(ticket_id: @ticket, id: @ticket.cadastre_mirror), method: :put, remote: true, validate: true do |f|
+  = f.input :main_income, input_html: { class: 'coin'}
+
+  = f.simple_fields_for :dependent_mirrors do |nested|
+    %b= nested.label nested.object.name.titleize 
+    = nested.input :income, label: false, input_html: { class: 'coin'}
+
+  .big-divider
+  .column.text-center
+    = f.submit "Atualizar renda", class: 'ui button yellow fluid'
+    .divider
+    = link_to "Cancelar", ticket_path(@ticket), class: 'ui button gray fluid'
