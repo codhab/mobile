@@ -2,11 +2,12 @@
   = f.input :main_income, input_html: { class: 'coin', disabled: true}
 
   = f.simple_fields_for :dependent_mirrors do |nested|
-    %b= nested.label nested.object.name.titleize 
+    %b= nested.label nested.object.name.titleize rescue nil
     = nested.input :income, label: false, input_html: { disabled: true}
   .big-divider
   .column.text-center
-    - if @ticket.allow_recadastre_income?
-      = link_to "Meus dados estão corretos", recadastre_ticket_context_income_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid', data: { disabled_with: t(:disabled_with)}
+    - if @context.iniciado? || @context.em_atualização?
+      = link_to "Atualizar Meus Dados", edit_recadastre_ticket_context_income_path(@ticket, @context, @cadastre_mirror), class: 'ui button yellow fluid'
+    - if @context.iniciado?
       .divider
-      = link_to "Atualizar Meus Dados", edit_recadastre_ticket_context_cadastre_path(@ticket, @context, @cadastre_mirror), class: 'ui button yellow fluid'
+      = link_to "Meus dados estão corretos", recadastre_ticket_context_income_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid', data: { disabled_with: t(:disabled_with)}

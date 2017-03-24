@@ -1,0 +1,38 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{able_tickets_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atualização de Dependentes
+    .sub-title Confirmação de dependentes
+
+.big-divider
+.ui.grid.container
+  .column.content-form
+    - if @context.finalizado?
+      .text-center
+        %h3 Os dados de dependentes estão confirmados.
+        %i.ui.icon.green.check.huge
+        .big-divider
+    %table.ui.celled.table
+      %tbody
+        - @cadastre_mirror.dependent_mirrors.each do |mirror|
+          %tr
+            %td
+            %td
+              .content
+                %b= mirror.name
+                .sub.header
+                  %small
+                    = mirror.kinship.name rescue "Sem informação"
+                    |
+                    = mirror.born.strftime("%d/%m/%Y")
+                  %p
+                    = link_to "editar",edit_able_ticket_context_dependent_path(@ticket, @context, mirror), class: 'ui button mini blue icon'
+                    = link_to "remover",edit_able_ticket_context_dependent_path(@ticket, @context, mirror),  class: 'ui button mini red icon' if mirror.kinship_id != 6
+         
+  
+.big-divider
+.ui.grid.container
+  .column.text-center
+    = link_to "Finalizar atualização", able_ticket_context_dependent_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid'

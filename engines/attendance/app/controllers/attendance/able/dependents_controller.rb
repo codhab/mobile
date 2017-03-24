@@ -1,33 +1,28 @@
 require_dependency 'attendance/application_controller'
-require_dependency 'core/attendance/recadastre_service'
+require_dependency 'core/attendance/able_service'
 
 module Attendance
-  module Recadastre
-    class CadastresController < ApplicationController
+  module Able
+    class DependentsController < ApplicationController
       
       before_action :set_ticket
       before_action :set_context
-      before_action :set_cadastre_mirror, only: [:show, :edit, :update]
-
-      def confirm
-        # Update status to 'finalizado' => 1
-        @context.update(status: 'finalizado')
+      before_action :set_cadastre_mirror, only: [:index, :show, :edit, :update]
         
-        redirect_to recadastre_ticket_contexts_path(@ticket)
+      def index
       end
 
-      def show
-      end
-
-      def edit
-        @context.update(status: 'em_atualização')
+      def edit 
       end
 
       def update
         if @cadastre_mirror.update(set_params)
-          redirect_to new_recadastre_ticket_context_document_path(@ticket, @context)
+          redirect_to new_able_ticket_context_document_path(@ticket, @context)
+        else
+          render action: :edit
         end
       end
+
 
       private
 
@@ -48,6 +43,7 @@ module Attendance
         @ticket = Core::Attendance::TicketPolicy.new(@ticket)
         @ticket = Core::Attendance::TicketPresenter.new(@ticket)
       end
+
     end
   end
 end

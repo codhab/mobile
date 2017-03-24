@@ -17,7 +17,8 @@
   
   .big-divider
   .column.text-center
-    - if @context.aberto?
-      = link_to "Meus dados estão corretos", recadastre_ticket_context_cadastre_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid'
-      .divider
+    - if @context.iniciado? || @context.em_atualização?
       = link_to "Atualizar Meus dados",  edit_recadastre_ticket_context_cadastre_path(@ticket, @context, @cadastre_mirror), class: 'ui button yellow fluid', data: { disabled_with: t(:disabled_with)}
+    - if @context.iniciado?
+      .divider
+      = link_to "Meus dados estão corretos", recadastre_ticket_context_cadastre_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid'
