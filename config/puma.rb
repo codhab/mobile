@@ -11,8 +11,8 @@ if ENV['RAILS_ENV'] == 'production'
   state_path "#{shared_dir}/tmp/sockets/puma.state"
   directory "#{app_dir}/current"
 
-  workers 2
-  threads 1,2
+  workers 4
+  threads 16,4
 
   daemonize true
 
