@@ -1,7 +1,22 @@
 module Candidate
   class CadastresController < ApplicationController
 
+    has_scope :by_cpf
+
+    def search
+      if params[:by_cpf].present?
+        @cadastre = apply_scopes(Core::Candidate::Cadastre).first
+      else
+        flash[:warning] = "Cadastro não encontrado."
+      end
+    end
+
+    def result
+      @cadastre = Core::Candidate::Cadastre.find(params[:id])
+    end
+
     def show
+
     end
 
     def detail

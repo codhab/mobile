@@ -4,7 +4,8 @@ Candidate::Engine.routes.draw do
 
   resources :cadastres, only: [:show] do
     get '/search', to: 'cadastres#search', as: :search, on: :collection
-    collection do  
+    get '/result', to: 'cadastres#result', as: :result, on: :collection
+    collection do
       get 'detail',     to: 'cadastres#detail'
       get 'pontuation', to: 'cadastres#pontuation'
       get 'dependent',  to: 'cadastres#dependent'
@@ -16,5 +17,5 @@ Candidate::Engine.routes.draw do
       get 'document',   to: 'cadastres#document'
     end
   end
-  
+
 end

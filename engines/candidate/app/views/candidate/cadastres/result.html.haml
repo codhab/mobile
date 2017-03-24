@@ -1,0 +1,72 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.search_cadastres_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Dados de Cadastro
+.big.divider
+.ui.container
+  .ui.styled.accordion
+    .title
+      %i.dropdown.icon
+      Dados de Cadastro
+    .content
+      %table.ui.celled.table
+        %tbody
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    Nome
+                  .description
+                    = @cadastre.name
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    CPF
+                  .description
+                    = @cadastre.cpf
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    Sexo
+                  .description
+                    = @cadastre.gender.present? ? @cadastre.gender : "Sem informação"
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    Estado Civil
+                  .description
+                    = @cadastre.civil_state.present? ? @cadastre.civil_state.name : "Sem informação"
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    Chegada ao DF
+                  .description
+                    = @cadastre.arrival_df.present? ? @cadastre.arrival_df.strftime('%d/%m/%Y') : "Sem informação"
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    Naturalidade
+                  .description
+                    = @cadastre.born_uf.present? ? @cadastre.born_uf : "Sem informação"
+
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });

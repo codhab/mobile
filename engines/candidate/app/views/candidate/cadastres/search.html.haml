@@ -1,0 +1,21 @@
+.ui.grid.container
+  .column.center.aligned
+    .title-header
+      Pesquisa Geral
+    .big-divider
+    .content
+      = simple_form_for url_for, method: :get do |f|
+        = f.input :by_cpf, label: false, input_html: { name: 'by_cpf', class: 'cpf'}
+        .big-divider
+        .column.text-center
+          = f.submit "Pesquisar", class: 'ui button yellow'
+    - if @cadastre.present?
+      .big-divider
+      %table.ui.celled.table
+        %tbody
+          %tr
+            %td
+              = @cadastre.name
+              %br
+              CPF:
+              = link_to @cadastre.cpf, result_cadastres_path(id: @cadastre.id)

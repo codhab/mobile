@@ -7,7 +7,14 @@
       = current_cadastre.name.mb_chars.upcase
     %small
       = current_cadastre.current_situation_name
-    %br/
+    - current_cadastre.list.each do |list|
+      %br
+      %small
+        = "#{I18n.t(list[0])} -"
+        = "Faixa: #{list[1][0]} -"
+        = "Posição: #{list[2]}"
+    %br
+    %br
     %b= link_to "Voltar Para o Início", candidate.root_path
 .divider
 .ui.three.column.grid.container.black

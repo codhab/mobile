@@ -18,6 +18,7 @@ gem 'jquery-validation-rails'
 gem 'email_validator'
 gem 'validates_cpf_cnpj'
 gem 'onesignal'
+gem 'has_scope'
 
 gem 'puma'
 
