@@ -9,14 +9,17 @@ module Attendance
       before_action :set_context
 
       def new
-        @service = Core::Attendance::RecadastreService.new(cadastre: current_cadastre, ticket: @ticket, context: @context)
+        @service = Core::Attendance::RecadastreService.new(cadastre: current_cadastre, 
+                                                           ticket: @ticket, 
+                                                           context: @context,
+                                                           dependent_mirror_id: params[:dependent_mirror_id])
         @service.set_required_documents
         @context = @service.context
       end
 
       def create
         if @context.update_attributes!(set_params)
-          @context.update(status: 2)
+          @context.update(status: 3)
           flash[:success] = "Atualização realizada com sucesso!"
           redirect_to recadastre_path
         else
@@ -27,7 +30,11 @@ module Attendance
       private
 
       def set_params
-        params.fetch(:attendance_ticket_context_action, {}).permit(rg_uploads_attributes: [:upload_path, :id, :_destroy])
+        params.fetch(:attendance_ticket_context_action, {})
+              .permit(
+                rg_uploads_attributes: [:upload_path, :id, :_destroy],
+                income_uploads_attributes: [:upload_path, :id, :_destroy],
+               )
       end
 
       def set_cadastre_mirror

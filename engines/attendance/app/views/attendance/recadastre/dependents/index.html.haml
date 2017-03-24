@@ -24,13 +24,17 @@
                 %b= mirror.name
                 .sub.header
                   %small
-                    = mirror.kinship.name rescue "Sem informação"
+                    = mirror.kinship.name rescue nil
                     |
                     = mirror.born.strftime("%d/%m/%Y")
+                  %p
+                    = link_to "Visualizar", recadastre_ticket_context_dependent_path(@ticket, @context, mirror), class: 'ui button green mini'
+                    - if @context.em_atualização? || @context.iniciado?
+                      = link_to "Editar", edit_recadastre_ticket_context_dependent_path(@ticket, @context, mirror), class: 'ui button blue mini'
+                      = link_to "Remover", recadastre_ticket_context_dependent_path(@ticket, @context, mirror), class: 'ui button red mini' if mirror.kinship_id != 6
          
   
 .big-divider
 .ui.grid.container
   .column.text-center
-    - if @context.aberto?
-      = link_to "Confirmar dados de dependentes", recadastre_ticket_context_dependent_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid'
+    = link_to "Confirmar dados de dependentes", recadastre_ticket_context_dependent_confirm_path(@ticket, @context, @cadastre_mirror), class: 'ui button green fluid' if @context.em_atualização? || @context.iniciado?

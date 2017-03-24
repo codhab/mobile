@@ -1,0 +1,12 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{recadastre_ticket_context_dependents_path(@ticket, @context)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Edição de dependente
+    .sub-title Formulário de edição de dependente
+
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = render 'form'

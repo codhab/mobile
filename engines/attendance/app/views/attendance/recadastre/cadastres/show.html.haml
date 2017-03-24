@@ -14,7 +14,7 @@
         %h3 Seus dados básicos estão confirmados.
         %i.ui.icon.green.check.huge
         .big-divider
-    - if @context.finalizado_pendente_análise?
+    - if @context.em_análise?
       .text-center
         %h3 Seus dados foram atualizados com sucesso!
         %i.ui.icon.green.check.huge

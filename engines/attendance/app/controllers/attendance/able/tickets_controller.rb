@@ -7,6 +7,11 @@ module Attendance
       
       def index
         @service = Core::Attendance::AbleService.new(cadastre: current_cadastre)
+
+        @context_cadastre  = @service.able_situation_by_context(1)
+        @context_dependent = @service.able_situation_by_context(2)
+        @context_income    = @service.able_situation_by_context(3)
+        @context_contact   = @service.able_situation_by_context(4)
       end
 
       def new

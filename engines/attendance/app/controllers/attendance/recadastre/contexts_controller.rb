@@ -13,10 +13,10 @@ module Attendance
         @context = @ticket.ticket_context_actions.find_by(ticket_context_id: params[:context_id]) rescue nil
         
         if @context.nil?
-          @context = @ticket.ticket_context_actions.new.tap do |context|
-            context.ticket_context_id = params[:context_id]
-            context.status            = 0
-          end
+          @context = @ticket.ticket_context_actions.new({
+            ticket_context_id: params[:context_id],
+            status: 0
+          })
           
           @context.save
         end

@@ -12,36 +12,36 @@
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big.user
+            %i.icon.big{class: @context_cadastre.present? ? 'flag blue' : 'users'}
             .content
               = link_to "Atualização de dados básicos", new_able_ticket_path(context_id: 1)
               .sub.header
-                = @service.able_situation_by_context(1)
+                = @context_cadastre.present? ? @context_cadastre.status.humanize : "Toque para atualizar"
      
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big.users
+            %i.icon.big{class: @context_dependent.present? ? 'flag' : 'users'}
             .content
               = link_to "Atualização de dependentes", new_able_ticket_path(context_id: 2)
               .sub.header
-                = @service.able_situation_by_context(2)
+                = @context_dependent.present? ? @context_dependent.status.humanize : "Toque para atualizar"
              
                 
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big.dollar
+            %i.icon.big{class: @context_income.present? ? 'flag' : 'dollar'}
             .content
               = link_to "Atualização de renda", new_able_ticket_path(context_id: 3)
               .sub.header
-                = @service.able_situation_by_context(3)
+                = @context_income.present? ? @context_income.status.humanize : "Toque para atualizar"
                
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big.phone
+            %i.icon.big{class: @context_contact.present? ? 'flag' : 'phone'}
             .content
               = link_to "Atualização de contatos", new_able_ticket_path(context_id: 4)
               .sub.header
-                = @service.able_situation_by_context(4)
+                = @context_contact.present? ? @context_contact.status.humanize : "Toque para atualizar"

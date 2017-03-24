@@ -10,8 +10,57 @@
         = render 'upload_fields', f: builder
       = link_to_add_upload_fields "Adicionar arquivo", f, :rg_uploads
     %hr/
-  
+
+  - if @context.cpf_uploads.any?
+    .column 
+      %label 
+        %b Comprovante de CPF
+    .divider
+    .column 
+      = f.fields_for :cpf_uploads do |builder|
+        = render 'upload_fields', f: builder
+      = link_to_add_upload_fields "Adicionar arquivo", f, :cpf_uploads
+    %hr/  
+
+  - if @context.certificate_born_uploads.any?
+    .column 
+      %label 
+        %b Certidão de nascimento dos filhos e demais dependentes legais e CPF se a idade for maior ou igual a 14 anos
+    .divider
+    .column 
+      = f.fields_for :certificate_born_uploads do |builder|
+        = render 'upload_fields', f: builder
+      = link_to_add_upload_fields "Adicionar arquivo", f, :certificate_born_uploads
+    %hr/ 
+    
+  - if @context.special_condition_uploads.any?
+    .column 
+      %label 
+        %b Comprovantes da deficiência declarada
+    .divider
+    .column 
+      = f.fields_for :special_condition_uploads do |builder|
+        = render 'upload_fields', f: builder
+      = link_to_add_upload_fields "Adicionar arquivo", f, :special_condition_uploads
+    %hr/  
+
+
+  - if @context.income_uploads.any? 
+    .column 
+      %label 
+        %b Comprovantes de renda 
+    .divider
+    .column 
+      = f.fields_for :income_uploads do |builder|
+        = render 'upload_fields', f: builder
+      = link_to_add_upload_fields "Adicionar arquivo", f, :income_uploads
+    %hr/
+    
   .big-divider
   - if @service.document_required_any?
     = f.button :submit, "Enviar documentação", class: 'ui button green fluid disabled', data: { disable_with: "Enviando documentos, aguarde..."}
-
+  - else
+    .text-center
+      %h4 Nenhuma documentação necessária a ser enviada.
+    .big-divider
+    = f.button :submit, "Confirmar alterações", class: 'ui button green fluid', data: { disable_with: "Enviando documentos, aguarde..."}

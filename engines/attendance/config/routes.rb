@@ -42,7 +42,9 @@ Attendance::Engine.routes.draw do
         resources :cadastres
         resources :contacts
         resources :incomes
-        resources :dependents
+        resources :dependents do 
+          get 'confirm', to: 'dependents#confirm',as: :confirm
+        end
         resources :documents        
       end
     end

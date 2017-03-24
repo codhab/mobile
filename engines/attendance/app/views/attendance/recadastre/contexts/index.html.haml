@@ -16,7 +16,7 @@
             .content
               = link_to "Atualização de Dados Básicos", new_recadastre_ticket_context_path(@ticket, context_id: 1)
               .sub.header
-                = @ticket.situation_action_by_context(1)
+                = @ticket.recadastre_situation_action_by_context(1)
      
       %tr
         %td
@@ -25,7 +25,7 @@
             .content
               = link_to "Atualização de Dependentes", new_recadastre_ticket_context_path(@ticket, context_id: 2)
               .sub.header
-                = @ticket.situation_action_by_context(2)
+                = @ticket.recadastre_situation_action_by_context(2)
                 
       %tr
         %td
@@ -34,7 +34,7 @@
             .content
               = link_to "Atualização de Renda", new_recadastre_ticket_context_path(@ticket, context_id: 3)
               .sub.header
-                = @ticket.situation_action_by_context(3)
+                = @ticket.recadastre_situation_action_by_context(3)
       %tr
         %td
           %h4.ui.image.header
@@ -42,7 +42,7 @@
             .content
               = link_to "Atualização de Contatos", new_recadastre_ticket_context_path(@ticket,  context_id: 4)
               .sub.header
-                = @ticket.situation_action_by_context(4)
+                = @ticket.recadastre_situation_action_by_context(4)
 
 .divider
 .ui.grid.container
@@ -53,7 +53,14 @@
         %br/
         %br/
         .text-justify
-          Estou ciente da obrigatoriedade da atualização dos meus dados cadastrais junto à CODHAB sempre que ocorrer a necessidade de alteração de telefone, endereço, estado civil, inclusão/exclusão de dependentes ou renda. As informações cadastrais, atualizadas ou não, são de minha inteira responsabilidade e entendo que a falta dos dados corretos poderá acarretar prejuízos à minha contemplação no Programa Habita Brasília/Morar Bem.
+          %p Declaro estar ciente da obrigatoriedade da atualização dos meus dados cadastrais junto à CODHAB sempre que ocorrer alteração de telefone, endereço, dependentes ou renda.
+          Declaro ter conhecimento completo da 
+          
+          %b.yellow{style: 'text-decoration: underline'}
+            %a{href: 'http://www.codhab.df.gov.br/uploads/archive/files/3239b1f0464376f64e267eae43b2cfcb.pdf', target: '_blank'} Lei 3.877/2006
+          e das exigências e critérios para participação dos programas habitacionais do Distrito Federal.
+          %p Declaro que resido no Distrito Federal há pelo menos 5 anos consecutivos, possuo renda inferior a 12 salários mínimos, não sou usufrutuário(a) de imóvel residencial do Distrito Federal e que não sou, nem nunca fui proprietário(a), promitente comprador(a) ou cessionário(a) de imóvel residencial no Distrito Federal.
+          %p Responsabilizo-me civil e criminalmente pela veracidade dessas declarações e tenho conhecimento das penalidades existentes por falsa declaração, conforme dispõe o artigo 299 do Código Penal.
       .divider
       - if @ticket.closed?
         %label.ui.label.green

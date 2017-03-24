@@ -9,9 +9,14 @@
 .big-divider
 .ui.grid.container
   .column.content-form
-    - if @context.finalizado?
+    - if @context.finalizado? 
       .text-center
         %h3 Seus dados de renda estão confirmados.
+        %i.ui.icon.green.check.huge
+        .big-divider
+    - if @context.em_análise? 
+      .text-center
+        %h3 Seus dados de renda foram atualizados.
         %i.ui.icon.green.check.huge
         .big-divider
     = render 'disable_form'
