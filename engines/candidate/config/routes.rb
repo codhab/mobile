@@ -3,6 +3,7 @@ Candidate::Engine.routes.draw do
   root 'home#show'
 
   resources :cadastres, only: [:show] do
+    get '/search', to: 'cadastres#search', as: :search, on: :collection
     collection do  
       get 'detail',     to: 'cadastres#detail'
       get 'pontuation', to: 'cadastres#pontuation'

@@ -12,32 +12,36 @@
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big.user
             .content
               = link_to "Atualização de dados básicos", new_able_ticket_path(context_id: 1)
               .sub.header
+                = @service.able_situation_by_context(1)
      
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big.users
             .content
-              = link_to "Atualização de dependentes", new_able_ticket_path(context_id: 1)
+              = link_to "Atualização de dependentes", new_able_ticket_path(context_id: 2)
               .sub.header
+                = @service.able_situation_by_context(2)
              
                 
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big.dollar
             .content
-              = link_to "Atualização de renda", new_able_ticket_path(context_id: 1)
+              = link_to "Atualização de renda", new_able_ticket_path(context_id: 3)
               .sub.header
+                = @service.able_situation_by_context(3)
                
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big.phone
             .content
-              = link_to "Atualização de contatos", new_able_ticket_path(context_id: 1)
+              = link_to "Atualização de contatos", new_able_ticket_path(context_id: 4)
               .sub.header
+                = @service.able_situation_by_context(4)

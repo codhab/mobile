@@ -1,0 +1,17 @@
+= simple_form_for @context, url: able_ticket_context_documents_path(@ticket, @context), method: :post do |f|
+
+  - if @context.rg_uploads.any?
+    .column 
+      %label 
+        %b Comprovante de Identidade
+    .divider
+    .column 
+      = f.fields_for :rg_uploads do |builder|
+        = render 'upload_fields', f: builder
+      = link_to_add_upload_fields "Adicionar arquivo", f, :rg_uploads
+    %hr/
+  
+  .big-divider
+  - if @service.document_required_any?
+    = f.button :submit, "Enviar documentação", class: 'ui button green fluid disabled', data: { disable_with: "Enviando documentos, aguarde..."}
+
