@@ -20,3 +20,4 @@
 .byebug_history
 /public/uploads
 components
+/config/env.yml

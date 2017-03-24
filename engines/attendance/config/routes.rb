@@ -8,6 +8,16 @@ Attendance::Engine.routes.draw do
   resources :notifications
   resources :tickets
 
+  resources :tickets do
+    get '/confirm',  to: 'tickets#confirm', as: :confirm 
+    get '/close',    to: 'tickets#close',   as: :close
+    
+    resources :cadastres
+    resources :dependents
+    resources :incomes
+    resources :contacts
+  end
+=begin
   namespace :recadastre do 
     
     get '/', to: 'tickets#new'
@@ -62,7 +72,6 @@ Attendance::Engine.routes.draw do
       end
     end
   end
-=begin
   namespace :recadastre do 
     resources :tickets do 
       get 'pre_create',   to: 'tickets#pre_create', as: :pre_create, on: :collection
