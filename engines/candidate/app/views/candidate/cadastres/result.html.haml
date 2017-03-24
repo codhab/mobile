@@ -5,6 +5,18 @@
   .thirteen.wide.mobile.column.text-center
     .title-header
       Dados de Cadastro
+    .big.divider
+    %small
+      = current_cadastre.name.mb_chars.upcase
+    %br
+    %small
+      = current_cadastre.current_situation_name
+    - current_cadastre.list.each do |list|
+      %br
+      %small
+        = "#{I18n.t(list[0])} -"
+        = "Faixa: #{list[1][0]}"
+        = "- Posição: #{list[2]}" if list[2].present?
 .big.divider
 .ui.container
   .ui.styled.accordion
@@ -62,6 +74,93 @@
                     Naturalidade
                   .description
                     = @cadastre.born_uf.present? ? @cadastre.born_uf : "Sem informação"
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    CID
+                  .description
+                    = @cadastre.cid.present? ? @cadastre.cid.name : "Sem informação"
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    NIS
+                  .description
+                    = @cadastre.nis.present? ? @cadastre.nis : "Sem informação"
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    Data de Inscrição
+                  .description
+                    = @cadastre.created_at.strftime('%d/%m/%Y')
+          %tr
+            %td
+              .ui.list
+                .item
+                  %a.header
+                    Total de dependentes
+                  .description
+                    = @cadastre.dependents.count
+  - if @cadastre.cadastre_situations.present?
+    .ui.styled.accordion
+      .title
+        %i.dropdown.icon
+        Situação do Candidato
+      .content
+        %table.ui.very.basic.celled.table
+          %tbody
+            - @cadastre.cadastre_situations.order('created_at desc').each do |situation|
+              %tr
+                %td= situation.situation_status.name.humanize rescue nil
+                %td= situation.created_at.strftime('%d/%m/%Y') rescue nil
+  - if @cadastre.enterprise_cadastres.present?
+    .ui.styled.accordion
+      .title
+        %i.dropdown.icon
+        Indicação ao empreendimento
+      .content
+        %table.ui.very.basic.celled.table
+          %tbody
+            - @cadastre.enterprise_cadastres.order('created_at desc').each do |enter|
+              %tr
+                %td= enter.enterprise.name rescue nil
+                %td= enter.created_at.strftime('%d/%m/%Y') rescue nil
+                %td= enter.inactive == false ? "Indicação ativa" : "Indicação inativa"
+  - if @cadastre.pontuations.present?
+    .ui.styled.accordion
+      .title
+        %i.dropdown.icon
+        Pontuação
+      .content
+        %table.ui.very.basic.celled.table
+          %tbody
+            - @cadastre.pontuations.order('created_at desc').each do |pontuation|
+              %tr
+                %td= pontuation.created_at.strftime('%d/%m/%Y') rescue nil
+                %td= "Total: #{pontuation.total}"
+                %td= "Tempo de Bsb: #{pontuation.bsb}"
+                %td= "Tempo de lista: #{pontuation.timelist}"
+                %td= "Dependentes: #{pontuation.dependent}"
+                %td= "Membro especial: #{pontuation.special_condition}"
+  - if @cadastre.schedules.present?
+    .ui.styled.accordion
+      .title
+        %i.dropdown.icon
+        Agendamentos
+      .content
+        %table.ui.very.basic.celled.table
+          %tbody
+            - @cadastre.schedules.order('created_at desc').each do |schedule|
+              %tr
+                %td= "Data agendada: #{schedule.date.strftime('%d/%m/%Y')}" rescue nil
+                %td= schedule.agenda.title rescue nil
+                %td= schedule.hour.strftime('%H:%M') rescue nil
+                %td= "Data do agendamento: #{schedule.date.strftime('%d/%m/%Y')}"
 
 :javascript
   $('.accordion')
