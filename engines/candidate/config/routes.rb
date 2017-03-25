@@ -6,15 +6,16 @@ Candidate::Engine.routes.draw do
     get '/search', to: 'cadastres#search', as: :search, on: :collection
     get '/result', to: 'cadastres#result', as: :result, on: :collection
     collection do
-      get 'detail',     to: 'cadastres#detail'
-      get 'pontuation', to: 'cadastres#pontuation'
-      get 'dependent',  to: 'cadastres#dependent'
-      get 'occurrence', to: 'cadastres#occurrence'
-      get 'entity',     to: 'cadastres#entity'
-      get 'situation',  to: 'cadastres#situation'
-      get 'address',    to: 'cadastres#address'
-      get 'schedule',   to: 'cadastres#schedule'
-      get 'document',   to: 'cadastres#document'
+      get 'detail',       to: 'cadastres#detail'
+      get 'pontuation',   to: 'cadastres#pontuation'
+      get 'dependent',    to: 'cadastres#dependent'
+      get 'occurrence',   to: 'cadastres#occurrence'
+      get 'entity',       to: 'cadastres#entity'
+      get 'situation',    to: 'cadastres#situation'
+      get 'address',      to: 'cadastres#address'
+      get 'schedule',     to: 'cadastres#schedule'
+      get 'document',     to: 'cadastres#document'
+      get 'indication',   to: 'cadastres#indication'
     end
   end
 

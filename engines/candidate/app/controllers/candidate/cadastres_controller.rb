@@ -13,6 +13,7 @@ module Candidate
 
     def result
       @cadastre = Core::Candidate::Cadastre.find(params[:id])
+      @cadastre = Core::Candidate::CadastrePresenter.new(@cadastre)
     end
 
     def show
@@ -54,6 +55,10 @@ module Candidate
 
     def occurrence
       @iptus = current_cadastre.iptus
+    end
+
+    def indication
+      @indications = current_cadastre.enterprise_cadastres
     end
 
   end
