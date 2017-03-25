@@ -40,8 +40,8 @@
         %b Documentos enviados
         %br/
         - if action.uploads.present?
-          - action.uploads.each do |upload|
-            = upload.inspect
+          - action.uploads.each_with_index do |upload, index|
+            %p.black= link_to "Visualizar arquivo #{index + 1}", upload.document_url, target: '_blank'
         - else
           %i Nenhum documento enviado.
 
