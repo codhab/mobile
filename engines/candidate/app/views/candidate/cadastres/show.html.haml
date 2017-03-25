@@ -11,8 +11,8 @@
       %br
       %small
         = "#{I18n.t(list[0])} -"
-        = "Faixa: #{list[1][0]} -"
-        = "Posição: #{list[2]}"
+        = "Faixa: #{list[1][0]}"
+        = "- Posição: #{list[2]}" if list[2].present?
     %br
     %br
     %b= link_to "Voltar Para o Início", candidate.root_path
@@ -57,7 +57,7 @@
   .column
     .ui.segment.text-center
       %a{href: "#{situation_cadastres_path}"}
-        %i.icon.options.bag.big.gray.bold
+        %i.icon.list.layout.bag.big.gray.bold
     .text-center.bold
       Minhas situações
 
