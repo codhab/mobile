@@ -29,21 +29,21 @@
   - if @ticket_policy.allow_other_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 5)}"}
           %i.icon.edit.huge.yellow
       .text-center
         Atualizar Meus Dados
   - if @ticket_policy.allow_regularization_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 4)}"}
           %i.icon.edit.huge.yellow
       .text-center
         Atualizar Meus Dados
   - if @ticket_policy.allow_able_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 3)}"}
           %i.icon.edit.huge.yellow
       .text-center
         Atualizar Meus Dados
@@ -57,7 +57,7 @@
   - if @ticket_policy.allow_convoked_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 2)}"}
           %i.icon.checkmark.huge.yellow
       .text-center
         Habilitação

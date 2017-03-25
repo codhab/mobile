@@ -1,6 +1,6 @@
 .ui.grid
   .one.wide.mobile.column
-    %a{href: "#{candidate.root_path}"}
+    %a{href: "#{attendance.tickets_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Minhas atualizações
@@ -9,8 +9,10 @@
   %table.ui.celled.table
     %thead
       %tr
-        %th Protocolo: #{@ticket.protocol}
-        %th #{@ticket.ticket_type.name}
+        %th 
+          %h3 Protocolo: #{@ticket.protocol}
+        %th
+          %h4 #{@ticket.context.name.humanize}
     %tbody
       %tr
         %td
@@ -18,39 +20,29 @@
             .content
               Situação da atualização
               .sub.header
-                #{@ticket.ticket_status.external_name.humanize}
+                #{@ticket.situation.external_name}
                 %p
                   %small
                     #{@ticket.created_at.strftime("%d/%m/%Y - %H:%M")}
-  %table.ui.celled.table
-    %thead
-      %tr
-        %th Atualizações
-    %tbody
-      - @ticket.ticket_context_actions.each do |action|
-        %tr
-          %td
-          %td
-            .content
-              .sub.header
-                %b #{action.ticket_context.name.humanize}
-                %p
-                  %small
-                    Criado em #{action.created_at.strftime("%d/%m/%Y - %H:%M")}
-          %td
-            .content
-              %b Situação
-              .sub.header
-              #{action.status.humanize}
 
-          %td
-            .content
-              %b Documentos enviados
-              .sub.header
-              - if action.ticket_uploads.present?
-                - action.ticket_uploads.each do |upload|
-                  = upload.inspect
-              - else
-                %i Nenhum documento enviado.
+  - @ticket.actions.each do |action|
+    .ui.raised.segment
+      %a.ui.blue.ribbon.label #{action.context.name.humanize}
+      %p
+        %small
+          Criado em #{action.created_at.strftime("%d/%m/%Y - %H:%M")}
+      %p
+        %b Situação
+        %br/
+        #{action.situation.external_name.humanize}
+
+      %p
+        %b Documentos enviados
+        %br/
+        - if action.uploads.present?
+          - action.uploads.each do |upload|
+            = upload.inspect
+        - else
+          %i Nenhum documento enviado.
 
 

@@ -10,7 +10,7 @@
   .big-divider
   .column.text-center
     - if @ticket.confirmation_required?(@action)
-      = link_to "Meus dados estão corretos", "#", class: 'ui button green fluid'
+      = link_to "Meus dados estão corretos", ticket_confirm_path(@ticket, @action), class: 'ui button green fluid'
       .divider
       = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
     - elsif @ticket.open?(@action)

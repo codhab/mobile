@@ -5,14 +5,15 @@ module Attendance
     before_action :set_ticket, except: [:index, :show, :new]
     before_action :set_action, only:   [:confirm, :open, 
                                         :continue_cadastre, :continue_dependent,
-                                        :continue_income,  :continue_contact]
+                                        :continue_income,  :continue_contact,
+                                        :close_action]
 
     def index
-      @tickets = current_candidate.tickets.order('created_at DESC')
+      @tickets = current_cadastre.tickets.order('created_at DESC')
     end
 
     def show
-      @ticket = current_candidate.tickets.find(params[:id])
+      @ticket = current_cadastre.tickets.find(params[:id]).presenter
     end
 
     def new
@@ -24,12 +25,10 @@ module Attendance
     end
 
     def confirm
-      @service = Core::Attendance::TicketService.new.tap do |service|
-        service.cadastre = current_candidate
-        service.ticket   = @ticket
-      end
+      @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket, action: @action)
+      @service.confirm_action
 
-      @service.confirm
+      redirect_to new_ticket_path
     end
 
     def open
@@ -44,6 +43,12 @@ module Attendance
       @service.close_ticket
 
       redirect_to main_app.root_path
+    end
+
+    def close_action 
+      @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket, action: @action)
+      @service.close_action
+      redirect_to new_ticket_path
     end
 
     def update_cadastre
