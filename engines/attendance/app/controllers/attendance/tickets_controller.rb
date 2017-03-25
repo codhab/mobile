@@ -3,6 +3,7 @@ require_dependency 'core/attendance/ticket_service'
 module Attendance
   class TicketsController < ApplicationController
     before_action :set_ticket, except: [:index, :show, :new]
+    before_action :set_action, only:   [:confirm, :open, :close, :continue_cadastre]
 
     def index
       @tickets = current_candidate.tickets.order('created_at DESC')
@@ -26,6 +27,13 @@ module Attendance
       end
 
       @service.confirm
+    end
+
+    def open
+      @service = Core::Attendance::TicketService.new(ticket: @ticket, action: @action)
+      @service.open_action
+
+      redirect_to :back
     end
 
     def close
@@ -73,10 +81,27 @@ module Attendance
       redirect_to edit_ticket_contact_path(@ticket, @ticket.cadastre_mirror)
     end
 
+    def continue_cadastre
+      redirect_to new_ticket_action_document_path(@ticket, @action)
+    end
+
+    def continue_dependent
+    end
+
+    def continue_income
+    end
+
+    def continue_contact
+    end
+
     private
 
     def set_ticket
-      @ticket = Core::Attendance::Ticket.find(params[:ticket_id])
+      @ticket = current_cadastre.tickets.find(params[:ticket_id])
+    end
+
+    def set_action
+      @action = @ticket.actions.find(params[:action_id])
     end
 
   end

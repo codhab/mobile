@@ -1,4 +1,4 @@
-= simple_form_for @cadastre_mirror, url: "#", validate: true do |f|
+= simple_form_for @cadastre_mirror, url: ticket_cadastre_path(@ticket, @cadastre_mirror), validate: true do |f|
   = f.input :name, input_html: { disabled: true }
   = f.input :cpf, input_html: { class: 'cpf', disabled: true }
   = f.input :gender, as: :select, include_blank: 'false', collection: Core::Candidate::Cadastre.genders.keys
@@ -17,10 +17,10 @@
   
   .big-divider
   .column.text-center
-    - if @ticket.confirmation_required?
+    - if @ticket.confirmation_required?(@action)
       = link_to "Meus dados estão corretos", "#", class: 'ui button green fluid'
       .divider
-      = link_to "Atualizar meus dados", "#", class: 'ui button yellow fluid'
+      = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
     - else
       .divider
       = f.submit "Salvar dados", class: "ui button green fluid"
