@@ -9,12 +9,12 @@ module Attendance
     end
 
     def new
-      @requeriment = current_cadastre.assessments.new
-      @requeriment.digital_documents.build
+      @requeriment = current_cadastre.assessment_forms.new
+      @requeriment.digital_document_forms.build
     end
 
     def create
-      @requeriment = current_cadastre.assessments.new(set_params)
+      @requeriment = current_cadastre.assessment_forms.new(set_params)
       @requeriment.document_type_id = 26 #external requeriment
       @requeriment.subject_id       = 1498 #request
       @requeriment.recipient        = current_cadastre.name
@@ -41,7 +41,7 @@ module Attendance
     private
 
     def set_params
-      params.require(:protocol_assessment).permit(:description_subject, digital_documents_attributes: [:doc_path, :_destroy, :id])
+      params.require(:protocol_assessment_form).permit(:description_subject, digital_document_forms_attributes: [:doc_path, :_destroy, :id])
     end
 
   end

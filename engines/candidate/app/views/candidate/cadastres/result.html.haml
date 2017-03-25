@@ -7,11 +7,11 @@
       Dados de Cadastro
     .big.divider
     %small
-      = current_cadastre.name.mb_chars.upcase
+      = @cadastre.name.mb_chars.upcase
     %br
     %small
-      = current_cadastre.current_situation_name
-    - current_cadastre.list.each do |list|
+      = @cadastre.current_situation_name
+    - @cadastre.list.each do |list|
       %br
       %small
         = "#{I18n.t(list[0])} -"

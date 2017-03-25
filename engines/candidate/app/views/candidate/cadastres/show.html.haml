@@ -11,8 +11,8 @@
       %br
       %small
         = "#{I18n.t(list[0])} -"
-        = "Faixa: #{list[1][0]} -"
-        = "Posição: #{list[2]}"
+        = "Faixa: #{list[1][0]}"
+        = "- Posição: #{list[2]}" if list[2].present?
     %br
     %br
     %b= link_to "Voltar Para o Início", candidate.root_path
@@ -32,6 +32,12 @@
       Meus dependentes
   .column
     .ui.segment.text-center
+      %a{href: "#{indication_cadastres_path}"}
+        %i.icon.mail.forward.big.gray
+    .text-center.bold
+      Minhas Indicações
+  .column
+    .ui.segment.text-center
       %a{href: "#{pontuation_cadastres_path}"}
         %i.icon.area.chart.big.gray
     .text-center.bold
@@ -39,7 +45,7 @@
   .column
     .ui.segment.text-center
       %a{href: "#{occurrence_cadastres_path}"}
-        %i.icon.flag.big.gray.text-center.bold
+        %i.icon.warning.sign.text.outline.big.gray
     .text-center.bold
       Ocorrências de IPTU
   .column
@@ -51,14 +57,14 @@
   .column
     .ui.segment.text-center
       %a{href: "#{situation_cadastres_path}"}
-        %i.icon.options.bag.big.gray.bold
+        %i.icon.list.layout.bag.big.gray.bold
     .text-center.bold
       Minhas situações
 
   .column
     .ui.segment.text-center
       %a{href: "#{address_cadastres_path}"}
-        %i.icon.home.big.gray.bold
+        %i.icon.privacy.text.outline.big.gray
     .text-center.bold
       Endereço vínculado
 

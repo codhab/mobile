@@ -1,0 +1,54 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.cadastre_path(current_cadastre.id)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Indicação ao Empreendimento
+.big.divider
+.ui.container
+  - if @indications.present?
+    - @indications.order(created_at: :desc).each do |indication|
+      .ui.styled.accordion
+        .title
+          %i.dropdown.icon
+          = indication.enterprise.name rescue nil
+        .content
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Data de Indicação
+                      .description
+                        = indication.created_at.strftime('%d/%m/%Y')
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Situação da indicação
+                      .description
+                        = indication.inactive == true ? "Indicação Inativa" : "Indicação Ativa"
+              - if indication.inactive == true
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          Data de inativação
+                        .description
+                          = indication.inactive_date.strftime('%d/%m/%Y')
+  - else
+    .column
+      .ui.segment
+        %i Nenhuma indicação para este candidato
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });
