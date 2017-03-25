@@ -1,4 +1,4 @@
-= simple_form_for @dependent_mirror, url: @ticket.confirmation_required?(@action) ? "#" : ticket_dependents_path(@ticket, @dependent_mirror), validate: true do |f|
+= simple_form_for @dependent_mirror, url: @ticket.confirmation_required?(@action) ? "#" : ticket_dependent_path(@ticket, @dependent_mirror), validate: true do |f|
   = f.input :name, input_html: { disabled: true, disabled: @ticket.input_disabled?(@action) }
   = f.input :cpf, input_html: { class: 'cpf', disabled: @ticket.input_disabled?(@action) }
   = f.input :rg, input_html: { disabled: @ticket.input_disabled?(@action) }

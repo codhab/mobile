@@ -28,7 +28,7 @@
                   %small
                     = mirror.kinship.name rescue nil
                     |
-                    = mirror.born.strftime("%d/%m/%Y")
+                    = mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
                 .sub.header
                   - if !@ticket.input_disabled?(@action) 
                     = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
@@ -40,6 +40,7 @@
       .divider
       = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
     - elsif @ticket.open?(@action)
+      = link_to "Adicionar dependente", new_ticket_dependent_path(@ticket), class: 'ui button blue fluid'
       .divider
       = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid'
       

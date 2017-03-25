@@ -31,8 +31,14 @@ Attendance::Engine.routes.draw do
     resources :contacts
 
     resources :action, only: nil do
-      resources :documents
+      resources :documents do 
+        collection do 
+          get  'new_dependent', to: 'documents#new_dependent', as: :new_dependent
+          post 'create_dependent', to: 'documents#create_dependent', as: :create_dependent
+        end
+      end
     end
+    
   end
 
 =begin

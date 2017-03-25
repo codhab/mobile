@@ -6,7 +6,7 @@ module Attendance
     before_action :set_ticket
     before_action :set_cadastre_mirror
     before_action :set_action
-    before_action :set_dependent_mirror, only: [:edit, :update, :show]
+    before_action :set_dependent_mirror, only: [:edit, :update, :show, :destroy]
 
     def index
       @cadastre_mirror = Core::Attendance::CadastreForm.find(@cadastre_mirror.id)
@@ -17,9 +17,20 @@ module Attendance
     end
 
     def new
+      @dependent_mirror = Core::Attendance::DependentForm.new
     end
 
     def create
+      @dependent_mirror = Core::Attendance::DependentForm.new(set_params)
+      
+      if @dependent_mirror.valid?
+        @new_dependent_mirror =@cadastre_mirror.dependent_mirrors.new(@dependent_mirror.attributes)
+        @new_dependent_mirror.save
+        
+        redirect_to ticket_continue_dependent_path(@ticket, @action)
+      else
+        render action: :new
+      end
     end
 
     def edit
@@ -30,10 +41,16 @@ module Attendance
       @dependent_mirror = Core::Attendance::DependentForm.find(@dependent_mirror.id)
       
       if @dependent_mirror.update(set_params)
-        redirect_to ticket_continue_income_path(@ticket, @action)
+        redirect_to ticket_continue_dependent_path(@ticket, @action)
       else
         render action: :edit
       end
+    end
+
+    def destroy
+      @dependent_mirror.destroy
+
+      redirect_to ticket_dependents_path(@ticket)
     end
 
     private

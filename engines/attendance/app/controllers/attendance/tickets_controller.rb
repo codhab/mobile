@@ -92,7 +92,7 @@ module Attendance
     end
 
     def continue_dependent
-      redirect_to new_ticket_action_document_path(@ticket, @action)
+      redirect_to new_dependent_ticket_action_documents_path(@ticket, @action)
     end
 
     def continue_income

@@ -7,6 +7,27 @@ module Attendance
     before_action :set_ticket
     before_action :set_action 
 
+    def new_dependent      
+      @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
+      
+      @service  = Core::Attendance::DocumentService.new(cadastre: @cadastre,
+                                                        action: @action,
+                                                        ticket: @ticket) 
+      
+      @service.documents_required!
+
+      @action = @service.action
+    end
+
+    def create_dependent
+      if @action.update(set_params)
+        redirect_to ticket_dependents_path(@ticket)
+      else
+        render action: :new
+      end
+
+    end   
+    
     def new      
       @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
       
@@ -54,7 +75,7 @@ module Attendance
     end
 
     def set_ticket
-      @ticket   = @cadastre.tickets.find(params[:ticket_id]) 
+      @ticket   = @cadastre.tickets.find(params[:ticket_id]).policy
     end
 
     def set_action

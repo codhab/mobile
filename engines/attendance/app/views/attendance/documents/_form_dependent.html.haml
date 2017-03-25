@@ -1,4 +1,4 @@
-= simple_form_for @action, url: ticket_action_documents_path(@ticket, @action), multipart: true, method: :put,  html: {id: 'file-validation'} do |f|
+= simple_form_for @action, url: create_dependent_ticket_action_documents_path(@ticket, @action), method: :post, multipart: true, html: {id: 'file-validation'} do |f|
   
   - @service.documents.each do |document|
     - if f.object.send(document.target_method).any?
