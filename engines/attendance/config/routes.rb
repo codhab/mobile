@@ -9,9 +9,15 @@ Attendance::Engine.routes.draw do
   resources :tickets
 
   resources :tickets do
+    
     get '/confirm',  to: 'tickets#confirm', as: :confirm 
     get '/close',    to: 'tickets#close',   as: :close
-    
+
+    get '/update_cadastre',  to: 'tickets#update_cadastre',   as: :update_cadastre
+    get '/update_dependent', to: 'tickets#update_dependent',  as: :update_dependent
+    get '/update_income',    to: 'tickets#update_income',     as: :update_income
+    get '/update_contact',   to: 'tickets#update_contact',    as: :update_contact
+
     resources :cadastres
     resources :dependents
     resources :incomes

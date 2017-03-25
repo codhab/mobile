@@ -4,42 +4,42 @@
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Atualização Cadastral
-    .sub-title Protocolo X
+    .sub-title Protocolo #{@ticket.protocol}
 .ui.grid.container
   %table.ui.celled.table
     %tbody.black
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big{class: @ticket.icon_by_action_context(1)}
             .content
-              Atualização de dados básicos
+              = link_to "Atualização de dados básicos", ticket_update_cadastre_path(@ticket)
               .sub.header
-                Situação
+                #{@ticket.situation_by_action_context(1)}
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big{class: @ticket.icon_by_action_context(2)}
             .content
-              Atualização de dependentes
+              = link_to "Atualização de dependentes", ticket_update_dependent_path(@ticket)
               .sub.header
-                Situação
+                #{@ticket.situation_by_action_context(2)}
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big{class: @ticket.icon_by_action_context(3)}
             .content
-              Atualização de renda
+              = link_to "Atualização de renda", ticket_update_income_path(@ticket)
               .sub.header
-                Situação
+                #{@ticket.situation_by_action_context(3)}
       %tr
         %td
           %h4.ui.image.header
-            %i.icon.big
+            %i.icon.big{class: @ticket.icon_by_action_context(4)}
             .content
-              Atualização de dados de contato
+              = link_to "Atualização de dados de contato", ticket_update_contact_path(@ticket)
               .sub.header
-                Situação
+                #{@ticket.situation_by_action_context(4)}
    
 
 .divider
@@ -51,7 +51,7 @@
         %br/
         %br/
         .text-justify
-          TEXTO TEXTO TEXTO
+          = @ticket.confirmation_text
       .divider
       = link_to "Finalizar Atualização", "#", class: "ui button green fluid"
       
