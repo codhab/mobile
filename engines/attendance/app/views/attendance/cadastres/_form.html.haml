@@ -1,0 +1,26 @@
+= simple_form_for @cadastre_mirror, url: ticket_cadastre_path(@ticket, @cadastre_mirror), validate: true do |f|
+  = f.input :name, input_html: { disabled: true }
+  = f.input :cpf, input_html: { class: 'cpf', disabled: true }
+  = f.input :gender, as: :select, include_blank: 'false', collection: Core::Candidate::Cadastre.genders.keys
+  = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil}
+  = f.input :born_uf, as: :select, include_blank: false, collection: Core::Address::State.all.order(:acronym), label_method: :acronym, value_method: :acronym
+  = f.input :rg
+  = f.input :rg_org
+  = f.input :rg_uf, as: :select, include_blank: false, collection: Core::Address::State.all.order(:acronym), label_method: :acronym, value_method: :acronym
+  = f.input :place_birth
+  = f.input :mother_name
+  = f.association :special_condition, as: :select, include_blank: false
+  = f.association :special_condition_type, as: :select, include_blank: "Nenhuma"
+  = f.input :nis
+  = f.input :cid
+  = f.input :adapted_property, as: :select, include_blank: false
+  
+  .big-divider
+  .column.text-center
+    - if @ticket.confirmation_required?(@action)
+      = link_to "Meus dados estão corretos", "#", class: 'ui button green fluid'
+      .divider
+      = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
+    - else
+      .divider
+      = f.submit "Salvar dados", class: "ui button green fluid"

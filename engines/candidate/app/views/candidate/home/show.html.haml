@@ -26,24 +26,41 @@
         %i.icon.alarm.huge.gray
     .text-center
       Notificações
-  .column
-    .ui.segment.text-center
-      %a{href: "#{attendance.new_ticket_path}"}
-        %i.icon.edit.huge.yellow
-    .text-center
-      Atualizar Meus Dados
-  .column
-    .ui.segment.text-center.semantic-black
-      %a{href: "#{attendance.new_ticket_path}"}
-        %i.icon.retweet.huge.gray.yellow
-    .text-center
-      Atualização Cadastral
-  .column
-    .ui.segment.text-center
-      %a{href: "#{attendance.new_ticket_path}"}
-        %i.icon.checkmark.huge.yellow
-    .text-center
-      Habilitação
+  - if @ticket_policy.allow_other_update?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_ticket_path}"}
+          %i.icon.edit.huge.yellow
+      .text-center
+        Atualizar Meus Dados
+  - if @ticket_policy.allow_regularization_update?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_ticket_path}"}
+          %i.icon.edit.huge.yellow
+      .text-center
+        Atualizar Meus Dados
+  - if @ticket_policy.allow_able_update?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_ticket_path}"}
+          %i.icon.edit.huge.yellow
+      .text-center
+        Atualizar Meus Dados
+  - if @ticket_policy.allow_recadastre_update?
+    .column
+      .ui.segment.text-center.semantic-black
+        %a{href: "#{attendance.new_ticket_path(context_id: 1)}"}
+          %i.icon.retweet.huge.gray.yellow
+      .text-center
+        Atualização Cadastral
+  - if @ticket_policy.allow_convoked_update?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_ticket_path}"}
+          %i.icon.checkmark.huge.yellow
+      .text-center
+        Habilitação
   .column
     .ui.segment.text-center
       %a{href: "#{attendance.tickets_path}"}

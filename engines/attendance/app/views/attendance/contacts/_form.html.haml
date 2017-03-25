@@ -1,0 +1,18 @@
+= simple_form_for @cadastre_mirror, url: "#", method: :put, validate: true do |f|
+  = f.input :telephone, input_html: { class: 'phone'}
+  = f.input :telephone_optional, input_html: { class: 'phone'}
+  = f.input :celphone, input_html: { class: 'phone'}
+  = f.input :email
+  = f.input :address
+  = f.association :city, include_blank: false, collection: Core::Address::City.federal_district
+  = f.association :state, include_blank: false, label_method: :acronym
+  = f.input :cep, input_html: { class: 'cep'}
+  .big-divider
+  .column.text-center
+    - if @ticket.confirmation_required?
+      = link_to "Meus dados estão corretos", "#", class: 'ui button green fluid'
+      .divider
+      = link_to "Atualizar meus dados", "#", class: 'ui button yellow fluid'
+    - else
+      .divider
+      = f.submit "Salvar dados", class: "ui button green fluid"

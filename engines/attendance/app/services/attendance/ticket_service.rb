@@ -42,6 +42,10 @@ module Attendance
       @ticket.save
     end
 
+    def create_action
+      
+    end
+
     def link_create_ticket? context_id
       @context_id = context_id
 
