@@ -1,4 +1,4 @@
-= simple_form_for @cadastre_mirror, url: "#", method: :put, validate: true do |f|
+= simple_form_for @cadastre_mirror, url: @ticket.input_disabled?(@action) ? "#" : ticket_contact_path(@ticket, @cadastre_mirror), method: :put, validate: true do |f|
   = f.input :telephone, input_html: { class: 'phone'}
   = f.input :telephone_optional, input_html: { class: 'phone'}
   = f.input :celphone, input_html: { class: 'phone'}
@@ -9,10 +9,10 @@
   = f.input :cep, input_html: { class: 'cep'}
   .big-divider
   .column.text-center
-    - if @ticket.confirmation_required?
+    - if @ticket.confirmation_required?(@action)
       = link_to "Meus dados estão corretos", "#", class: 'ui button green fluid'
       .divider
-      = link_to "Atualizar meus dados", "#", class: 'ui button yellow fluid'
-    - else
+      = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
+    - elsif @ticket.open?(@action)
       .divider
       = f.submit "Salvar dados", class: "ui button green fluid"

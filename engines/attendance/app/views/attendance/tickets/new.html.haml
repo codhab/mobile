@@ -53,5 +53,7 @@
         .text-justify
           = @ticket.confirmation_text
       .divider
-      = link_to "Finalizar Atualização", "#", class: "ui button green fluid"
-      
+      - if @ticket.allow_close?
+        = link_to "Finalizar Atualização", ticket_close_path(@ticket), class: "ui button green fluid"
+      - else
+        = link_to "Finalizar Atualização", "#", class: "ui button green fluid disabled"

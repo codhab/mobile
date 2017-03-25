@@ -9,6 +9,13 @@
 .big-divider
 .ui.grid.container
   .column.content-form
+    - if @ticket.closed?(@action)
+      .text-center
+        %p 
+          %h2 Dados #{@action.situation.name.pluralize}
+        %p
+          %i.icon.checkmark.huge.green
+      .big-divider
     %table.ui.celled.table
       %tbody
         - @cadastre_mirror.dependent_mirrors.each do |mirror|
@@ -16,10 +23,23 @@
             %td
             %td
               .content
-                %b= mirror.name
+                %b= link_to mirror.name, ticket_dependent_path(@ticket, mirror), remote: true
                 .sub.header
                   %small
                     = mirror.kinship.name rescue nil
                     |
                     = mirror.born.strftime("%d/%m/%Y")
-                 
+                .sub.header
+                  - if !@ticket.input_disabled?(@action) 
+                    = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
+                    = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'ui button red mini', method: :delete
+.ui.grid.container
+  .column.text-center
+    - if @ticket.confirmation_required?(@action)
+      = link_to "Meus dados estão corretos", "#", class: 'ui button green fluid'
+      .divider
+      = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
+    - elsif @ticket.open?(@action)
+      .divider
+      = link_to "Atualizar meus dados", "#", class: 'ui button yellow fluid'
+      
