@@ -14,8 +14,11 @@ module Attendance
 
     def create
       @chat = current_cadastre.attendance_chats.new(set_params)
-      @chat.save
-      redirect_to chats_path
+      if @chat.save
+        redirect_to chats_path
+      else
+        render :new
+      end
     end
 
     def show

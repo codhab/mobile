@@ -10,8 +10,11 @@ module Attendance
 
     def create
       @chat_comment = @chat.chat_comments.new(set_params)
-      @chat_comment.save
-      redirect_to chats_path
+      if @chat_comment.save
+       redirect_to chats_path
+      else
+       render :new
+     end
     end
 
     private
