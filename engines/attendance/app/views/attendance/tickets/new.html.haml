@@ -1,0 +1,57 @@
+.ui.grid
+  .one.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atualização Cadastral
+    .sub-title Protocolo X
+.ui.grid.container
+  %table.ui.celled.table
+    %tbody.black
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              Atualização de dados básicos
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              Atualização de dependentes
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              Atualização de renda
+              .sub.header
+                Situação
+      %tr
+        %td
+          %h4.ui.image.header
+            %i.icon.big
+            .content
+              Atualização de dados de contato
+              .sub.header
+                Situação
+   
+
+.divider
+.ui.grid.container
+  .column
+    .ui.raised.segment
+      %a.ui.red.ribbon.label.bold Importante
+      %span
+        %br/
+        %br/
+        .text-justify
+          TEXTO TEXTO TEXTO
+      .divider
+      = link_to "Finalizar Atualização", "#", class: "ui button green fluid"
+      

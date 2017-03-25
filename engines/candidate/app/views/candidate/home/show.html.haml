@@ -24,50 +24,47 @@
           = current_cadastre.notifications.unread.count
       %a{href: "#{attendance.notifications_path}"}
         %i.icon.alarm.huge.gray
-    .text-center.bold
+    .text-center
       Notificações
-  - if current_cadastre.allow_update_button?
-    .column
-      .ui.segment.text-center
-        %a{href: "#{attendance.able_tickets_path}"}
-          %i.icon.edit.huge.gray
-      .text-center.bold
-        Atualizar Meus Dados
-  - if current_cadastre.allow_recadastre_button?
-    .column
-      .ui.segment.text-center.semantic-black
-        %a{href: "#{attendance.recadastre_path}"}
-          %i.icon.retweet.huge.gray.yellow
-      .text-center.bold
-        Atualização Cadastral
-  - if current_cadastre.allow_habilitation?
-    .column
-      .ui.segment.text-center
-        %a{href: "#"}
-          %i.icon.checkmark.huge.green
-      .text-center.bold
-        Habilitação
+  .column
+    .ui.segment.text-center
+      %a{href: "#{attendance.new_ticket_path}"}
+        %i.icon.edit.huge.yellow
+    .text-center
+      Atualizar Meus Dados
+  .column
+    .ui.segment.text-center.semantic-black
+      %a{href: "#{attendance.new_ticket_path}"}
+        %i.icon.retweet.huge.gray.yellow
+    .text-center
+      Atualização Cadastral
+  .column
+    .ui.segment.text-center
+      %a{href: "#{attendance.new_ticket_path}"}
+        %i.icon.checkmark.huge.yellow
+    .text-center
+      Habilitação
   .column
     .ui.segment.text-center
       %a{href: "#{attendance.tickets_path}"}
         %i.icon.refresh.huge.gray
-    .text-center.bold
+    .text-center
       Minhas Atualizações
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
     .ui.segment.text-center
       %a{href: "#{attendance.chats_path}"}
-        %i.icon.comment.outline.huge.gray.text-center.bold
-    .text-center.bold
+        %i.icon.comment.outline.huge.gray.text-center
+    .text-center
       Minhas Conversas
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
     .ui.segment.text-center
       %a{href: "#{attendance.requeriments_path}"}
-        %i.icon.file.text.outline.huge.gray.text-center.bold.text-center.bold
-    .text-center.bold
+        %i.icon.file.text.outline.huge.gray.text-center.text-center
+    .text-center
       Meus Requerimentos
   .column
     .ui.segment.text-center
       %a{href: "#"}
-        %i.icon.shopping.bag.huge.gray.bold
-    .text-center.bold
+        %i.icon.shopping.bag.huge.gray
+    .text-center
       Serviços

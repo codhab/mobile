@@ -13,13 +13,10 @@ module Attendance
     end
 
     def new
-      @service = Core::Attendance::TicketService.new.tap do |service|
-        service.cadastre = current_candidate
-      end
-      
-      @service.create_or_find
-      
-      @ticket = @service.ticket
+      @ticket_service = Core::Attendance::TicketService.new(cadastre: current_candidate)
+      @ticket_service.create_of_find
+
+      @ticket = @ticket_service.ticket
     end
 
     def confirm

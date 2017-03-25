@@ -17,6 +17,7 @@ Attendance::Engine.routes.draw do
     resources :incomes
     resources :contacts
   end
+
 =begin
   namespace :recadastre do 
     
