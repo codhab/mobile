@@ -45,5 +45,7 @@
                     %small
                       .ui.label
                         = comment.created_at.strftime("%d/%m/%Y - %H:%M")
+                    -if comment.chat_uploads.present?
+                      %i.attach.icon
                   %p{style: 'text-align: justify'}
                     = comment.content

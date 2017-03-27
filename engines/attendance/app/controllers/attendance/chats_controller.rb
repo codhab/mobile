@@ -35,7 +35,7 @@ module Attendance
     private
 
       def set_params
-        params.require(:attendance_chat).permit(:chat_category_id, chat_comments_attributes: [:content, :id])
+        params.require(:attendance_chat).permit(:chat_category_id, chat_comments_attributes: [:content, :id], chat_uploads_attributes:[:chat_comment_id,:document, :_destroy, :id])
       end
 
   end
