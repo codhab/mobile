@@ -1,5 +1,7 @@
 = simple_form_for @chat_comment, url: chat_chat_comments_path do |f|
   = f.input :content, as: :text, label: false, input_html: { placeholder: 'Escreva aqui', rows: 3}
+  = f.simple_fields_for :chat_uploads do |builder|
+    = render 'chat_upload_fields', f: builder
   .big-divider
   .column.text-center
     = f.submit "Enviar", class: 'ui button yellow'
