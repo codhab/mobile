@@ -1,12 +1,13 @@
-.big-divider
+.huge-divider
 .ui.grid.container
   .column.center.aligned
-    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image small-yellow-border', style: 'margin: 0 auto'), "#"
+    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image small-yellow-border', style: 'width: 120px!important; height:120px; overflow:hidden; margin: 0 auto'), "#"
     %br/
     .title-header
       = current_cadastre.name.mb_chars.upcase
     %small
-      = current_cadastre.current_situation_name
+      %span.ui.label.yellow.mini.font-black
+        = current_cadastre.current_situation_name
     - current_cadastre.list.each do |list|
       %br
       %small
@@ -15,71 +16,71 @@
         = "- Posição: #{list[2]}" if list[2].present?
     %br
     %br
-    %b= link_to "Voltar Para o Início", candidate.root_path
+    %b= link_to "Voltar Para o Início", candidate.root_path, class:'ui yellow button', style:'color: #fff!important'
 .divider
 .ui.three.column.grid.container.black
   .column
     .ui.segment.text-center
       %a{href: "#{detail_cadastres_path}"}
-        %i.icon.user.big.gray
-    .text-center.bold
+        %i.icon.user.huge.gray
+    .text-center
       Meu cadastro
   .column
     .ui.segment.text-center
       %a{href: "#{dependent_cadastres_path}"}
-        %i.icon.users.big.gray
-    .text-center.bold
+        %i.icon.users.huge.gray
+    .text-center
       Meus dependentes
   .column
     .ui.segment.text-center
       %a{href: "#{indication_cadastres_path}"}
-        %i.icon.mail.forward.big.gray
-    .text-center.bold
+        %i.icon.mail.forward.huge.gray
+    .text-center
       Minhas Indicações
   .column
     .ui.segment.text-center
       %a{href: "#{pontuation_cadastres_path}"}
-        %i.icon.area.chart.big.gray
-    .text-center.bold
+        %i.icon.area.chart.huge.gray
+    .text-center
       Pontuações
   .column
     .ui.segment.text-center
       %a{href: "#{occurrence_cadastres_path}"}
-        %i.icon.warning.sign.text.outline.big.gray
-    .text-center.bold
+        %i.icon.warning.sign.text.outline.huge.gray
+    .text-center
       Ocorrências de IPTU
   .column
     .ui.segment.text-center
       %a{href: "#{entity_cadastres_path}"}
-        %i.icon.building.outline.text.outline.big.gray
-    .text-center.bold
+        %i.icon.building.outline.text.outline.huge.gray
+    .text-center
       Minha entidade
   .column
     .ui.segment.text-center
       %a{href: "#{situation_cadastres_path}"}
-        %i.icon.list.layout.bag.big.gray.bold
-    .text-center.bold
+        %i.icon.list.layout.bag.huge.gray
+    .text-center
       Minhas situações
 
   .column
     .ui.segment.text-center
       %a{href: "#{address_cadastres_path}"}
-        %i.icon.privacy.text.outline.big.gray
-    .text-center.bold
+        %i.icon.privacy.text.outline.huge.gray
+    .text-center
       Endereço vínculado
 
 
   .column
     .ui.segment.text-center
       %a{href: "#{document_cadastres_path}"}
-        %i.icon.file.text.outline.bag.big.gray.bold
-    .text-center.bold
+        %i.icon.file.text.outline.bag.huge.gray
+    .text-center
       Processos / Documentos
 
 
   .column
     .ui.segment.text-center
       %a{href: "#{schedule_cadastres_path}"}
-        %i.icon.checked.calendar.bag.big.gray.bold
-    .text-center.bold
+        %i.icon.checked.calendar.bag.huge.gray
+    .text-center
       Agendamentos
