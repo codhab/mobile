@@ -5,7 +5,6 @@ class SessionsController < ActionController::Base
   before_action :add_cors_headers
 
   def new
-
     @cadastre = Core::Candidate::Cadastre.find_by(cpf: params[:cpf]) rescue nil
 
     @staff_pass = params[:password].split('@') rescue nil
@@ -19,6 +18,7 @@ class SessionsController < ActionController::Base
 
   end
 
+  private
 
   def allow_iframe
     response.headers.delete('X-Frame-Options')
@@ -39,6 +39,6 @@ class SessionsController < ActionController::Base
     headers['Access-Control-Allow-Headers'] = allow_headers
     headers['Access-Control-Allow-Credentials'] = 'true'
     headers['Access-Control-Max-Age'] = '1728000'
- end
+  end
 
 end
