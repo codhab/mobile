@@ -25,6 +25,13 @@
                       %br
                       %small
                         = "Criado em: #{requeriment.created_at.strftime('%d/%m/%Y - %H:%M')}" rescue "Sem informação"
+                      %br
+                      - if requeriment.finalized == true
+                        .ui.mini.red.label
+                          Fechado
+                      - else
+                        .ui.mini.green.label
+                          Aberto
         - else
           %tr
             %td
