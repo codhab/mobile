@@ -62,29 +62,35 @@ module Attendance
 
     def update_dependent
       @service = Core::Attendance::TicketService.new(ticket: @ticket)
-      @service.create_or_find_action 2
-
-      @action = @service.action
-
-      redirect_to ticket_dependents_path(@ticket)
+      
+      if @service.create_or_find_action 2
+        @action = @service.action
+        redirect_to ticket_dependents_path(@ticket)
+      else
+        redirect_to :back
+      end
     end
 
     def update_income
       @service = Core::Attendance::TicketService.new(ticket: @ticket)
-      @service.create_or_find_action 3
-
-      @action = @service.action
-
-      redirect_to edit_ticket_income_path(@ticket, @ticket.cadastre_mirror)
+      
+      if @service.create_or_find_action 3
+        @action = @service.action
+        redirect_to edit_ticket_income_path(@ticket, @ticket.cadastre_mirror)
+      else
+        redirect_to :back
+      end 
     end
 
     def update_contact
       @service = Core::Attendance::TicketService.new(ticket: @ticket)
-      @service.create_or_find_action 4
 
-      @action = @service.action
-
-      redirect_to edit_ticket_contact_path(@ticket, @ticket.cadastre_mirror)
+      if @service.create_or_find_action 4
+        @action = @service.action
+        redirect_to edit_ticket_contact_path(@ticket, @ticket.cadastre_mirror)
+      else
+        redirect_to :back
+      end 
     end
 
     def continue_cadastre
