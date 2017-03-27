@@ -11,7 +11,22 @@ module Attendance
       @cadastre_mirror = Core::Attendance::IncomeForm.find(@cadastre_mirror.id)
     end
 
+    def update
+      @cadastre_mirror = Core::Attendance::IncomeForm.find(@cadastre_mirror.id)
+      if @cadastre_mirror.update(set_params)
+        redirect_to ticket_continue_income_path(@ticket, @action)
+      else
+        render action: :edit
+      end
+    end
+
+
     private
+
+    def set_params
+      params.require(:attendance_income_form)
+            .permit(:main_income, dependent_mirrors_attributes: [:income, :id])
+    end
 
     def set_ticket
       @ticket = @cadastre.tickets.find(params[:ticket_id])
@@ -19,7 +34,7 @@ module Attendance
     end
 
     def set_action
-      @action = @ticket.actions.find_by(context_id: 1)
+      @action = @ticket.actions.find_by(context_id: 3)
     end
 
     def set_cadastre

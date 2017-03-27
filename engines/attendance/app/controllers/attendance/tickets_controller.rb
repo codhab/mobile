@@ -3,14 +3,17 @@ require_dependency 'core/attendance/ticket_service'
 module Attendance
   class TicketsController < ApplicationController
     before_action :set_ticket, except: [:index, :show, :new]
-    before_action :set_action, only:   [:confirm, :open, :close, :continue_cadastre]
+    before_action :set_action, only:   [:confirm, :open, 
+                                        :continue_cadastre, :continue_dependent,
+                                        :continue_income,  :continue_contact,
+                                        :close_action]
 
     def index
-      @tickets = current_candidate.tickets.order('created_at DESC')
+      @tickets = current_cadastre.tickets.order('created_at DESC')
     end
 
     def show
-      @ticket = current_candidate.tickets.find(params[:id])
+      @ticket = current_cadastre.tickets.find(params[:id]).presenter
     end
 
     def new
@@ -18,15 +21,14 @@ module Attendance
       @ticket_service.create_or_find(params[:context_id].to_i)
 
       @ticket = Core::Attendance::TicketPresenter.new(@ticket_service.ticket)
+      @ticket = Core::Attendance::TicketPolicy.new(@ticket)
     end
 
     def confirm
-      @service = Core::Attendance::TicketService.new.tap do |service|
-        service.cadastre = current_candidate
-        service.ticket   = @ticket
-      end
+      @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket, action: @action)
+      @service.confirm_action
 
-      @service.confirm
+      redirect_to new_ticket_path
     end
 
     def open
@@ -37,12 +39,16 @@ module Attendance
     end
 
     def close
-      @service = Core::Attendance::TicketService.new.tap do |service|
-        service.cadastre = current_candidate
-        service.ticket   = @ticket
-      end
+      @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket)
+      @service.close_ticket
 
-      @service.close      
+      redirect_to main_app.root_path
+    end
+
+    def close_action 
+      @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket, action: @action)
+      @service.close_action
+      redirect_to new_ticket_path
     end
 
     def update_cadastre
@@ -86,12 +92,18 @@ module Attendance
     end
 
     def continue_dependent
+      redirect_to new_dependent_ticket_action_documents_path(@ticket, @action)
     end
 
     def continue_income
+      redirect_to new_ticket_action_document_path(@ticket, @action)
     end
 
     def continue_contact
+      @service = Core::Attendance::TicketService.new(ticket: @ticket, action: @action)
+      @service.close_action
+
+      redirect_to new_ticket_path
     end
 
     private

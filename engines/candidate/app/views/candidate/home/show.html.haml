@@ -1,7 +1,6 @@
 .ui.grid.container
   .column{style: 'width: 25%'}
-    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image big-yellow-border'), cadastre_path(current_cadastre)
-  .column{style: 'width: 75%'}
+    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image big-yellow-border'), cadastre_path(current_cadastre), style:"width:60px!important; height:60px!important;"
     .title-header
       #{current_cadastre.hello}
       %p.mini-text
@@ -9,8 +8,6 @@
       %p
         %span.ui.label.yellow.mini.font-black
           #{current_cadastre.current_situation_name}
-
-
 .row
   .column.wide.four
     .big-divider
@@ -29,21 +26,21 @@
   - if @ticket_policy.allow_other_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 5)}"}
           %i.icon.edit.huge.yellow
       .text-center
         Atualizar Meus Dados
   - if @ticket_policy.allow_regularization_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 4)}"}
           %i.icon.edit.huge.yellow
       .text-center
         Atualizar Meus Dados
   - if @ticket_policy.allow_able_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 3)}"}
           %i.icon.edit.huge.yellow
       .text-center
         Atualizar Meus Dados
@@ -57,7 +54,7 @@
   - if @ticket_policy.allow_convoked_update?
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path}"}
+        %a{href: "#{attendance.new_ticket_path(context_id: 2)}"}
           %i.icon.checkmark.huge.yellow
       .text-center
         Habilitação

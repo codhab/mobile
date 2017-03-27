@@ -15,9 +15,9 @@
               %h4.ui.image.header
                 %i.small.refresh.icon.gray
                 .content
-                  = link_to ticket.ticket_type.name, ticket_path(ticket)
+                  = link_to ticket.context.name, ticket_path(ticket)
                   .sub.header
-                    = ticket.ticket_status.external_name.humanize
+                    = ticket.situation.external_name
                     %p
                       %small
                         Criado em #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}             

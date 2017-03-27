@@ -1,0 +1,34 @@
+%i.close.icon
+.content
+  .ui.medium.image
+  .description
+    .ui.header 
+      #{@dependent_mirror.name.titleize}
+    %p 
+      %b CPF:
+      %br/ 
+      = @dependent_mirror.cpf rescue "Sem informação"
+    %p 
+      %b RG:
+      %br/
+      = @dependent_mirror.rg rescue "Sem informação"
+    %p 
+      %b RG ORG:
+      %br/ 
+      = @dependent_mirror.rg_org rescue "Sem informação"
+    %p 
+      %b Renda: 
+      %br/
+      = @dependent_mirror.income 
+    %p 
+      %b Data de nascimento: 
+      %br/
+      = @dependent_mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
+    %p 
+      %b Parentesco: 
+      %br/
+      = @dependent_mirror.kinship.name rescue "Sem informação"
+    %p 
+      %b Condição especial:
+      %br/ 
+      = @dependent_mirror.special_condition.name rescue "Sem informação"

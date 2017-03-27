@@ -1,9 +1,9 @@
 .ui.grid
   .one.wide.mobile.column
-    %a{href: "#{new_ticket_path}"}
+    %a{href: "#{ticket_dependents_path(@ticket)}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
-    .title-header Atualização de contatos
+    .title-header Adicionar dependente
     .sub-title frase
 
 .big-divider
@@ -15,5 +15,5 @@
           %h2 Dados #{@action.situation.name.pluralize}
         %p
           %i.icon.checkmark.huge.green
-      .big-divider
-    = render 'form'    
+    = render 'form'
+    

@@ -25,7 +25,9 @@ module Attendance
 
     def set_params
       params.require(:attendance_cadastre_form)
-            .permit(:rg, :rg_org)
+            .permit(:rg, :rg_org, :gender, :born, :born_uf, 
+                    :rg_uf, :place_birth, :mother_name, :special_condition_id, 
+                    :special_condition_type_id, :nis, :cid, :adapted_property)
     end
 
     def set_ticket

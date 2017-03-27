@@ -10,7 +10,22 @@ module Attendance
       @cadastre_mirror = Core::Attendance::ContactForm.find(@cadastre.id)
     end
 
+    def update
+      @cadastre_mirror = Core::Attendance::ContactForm.find(@cadastre.id)
+
+      if @cadastre_mirror.update(set_params)
+        redirect_to ticket_continue_contact_path(@ticket, @action)
+      else
+        render action: :edit
+      end
+    end
+
     private
+
+    def set_params
+      params.require(:attendance_contact_form)
+            .permit(:rg)
+    end
 
     def set_ticket
       @ticket = @cadastre.tickets.find(params[:ticket_id])
@@ -18,12 +33,15 @@ module Attendance
     end
 
     def set_action
-      @action = @ticket.actions.find_by(context_id: 1)
+      @action = @ticket.actions.find_by(context_id: 4)
     end
 
     def set_cadastre
       @cadastre = current_cadastre
     end
 
+    def set_cadastre_mirror
+      @cadastre_mirror = @cadastre.cadastre_mirrors.find(@ticket.cadastre_mirror_id)
+    end
   end
 end

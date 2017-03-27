@@ -1,18 +1,18 @@
-= simple_form_for @cadastre_mirror, url: "#", method: :put, validate: true do |f|
-  = f.input :telephone, input_html: { class: 'phone'}
-  = f.input :telephone_optional, input_html: { class: 'phone'}
-  = f.input :celphone, input_html: { class: 'phone'}
-  = f.input :email
-  = f.input :address
-  = f.association :city, include_blank: false, collection: Core::Address::City.federal_district
-  = f.association :state, include_blank: false, label_method: :acronym
-  = f.input :cep, input_html: { class: 'cep'}
+= simple_form_for @cadastre_mirror, url: @ticket.input_disabled?(@action) ? "#" : ticket_contact_path(@ticket, @cadastre_mirror), method: :put, validate: true do |f|
+  = f.input :telephone, input_html: { class: 'phone', disabled: @ticket.input_disabled?(@action) }
+  = f.input :telephone_optional, input_html: { class: 'phone',  disabled: @ticket.input_disabled?(@action) }
+  = f.input :celphone, input_html: { class: 'phone', disabled: @ticket.input_disabled?(@action) }
+  = f.input :email, input_html: { disabled: @ticket.input_disabled?(@action) }
+  = f.input :address, input_html: { disabled: @ticket.input_disabled?(@action) }
+  = f.association :city, include_blank: false, collection: Core::Address::City.federal_district, input_html: { disabled: @ticket.input_disabled?(@action) }
+  = f.association :state, include_blank: false, label_method: :acronym, input_html: { disabled: @ticket.input_disabled?(@action) }
+  = f.input :cep, input_html: { class: 'cep',disabled: @ticket.input_disabled?(@action)}
   .big-divider
   .column.text-center
-    - if @ticket.confirmation_required?
-      = link_to "Meus dados estão corretos", "#", class: 'ui button green fluid'
+    - if @ticket.confirmation_required?(@action)
+      = link_to "Meus dados estão corretos", ticket_confirm_path(@ticket, @action), class: 'ui button green fluid'
       .divider
-      = link_to "Atualizar meus dados", "#", class: 'ui button yellow fluid'
-    - else
+      = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
+    - elsif @ticket.open?(@action)
       .divider
       = f.submit "Salvar dados", class: "ui button green fluid"
