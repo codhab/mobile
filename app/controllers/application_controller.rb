@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     if params[:cpf].present?
       cadastre = ::Core::Candidate::Cadastre.find_by(cpf: params[:cpf])
       session[:user_id] = cadastre.id
+
+      if params[:deviceid].present? && params[:pushtoken].present?
+        cadastre.update(mobile_user_token: params[:deviceid], mobile_push_token: params[:pushtoken])
+      end
     else
       cadastre = ::Core::Candidate::Cadastre.find(session[:user_id])
     end
