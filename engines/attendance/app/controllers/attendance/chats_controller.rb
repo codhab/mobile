@@ -27,7 +27,7 @@ module Attendance
       if @chat.chat_comments.where(candidate_read: false, candidate: false).present?
         comments = @chat_comments.where(candidate: false)
         comments.update_all(candidate_read: true, candidate_read_datetime: DateTime.now)
-        notifications = Core::Attendance::Notification.where(target_model: 'Attendance::ChatComment', target_id: comments.ids)
+        notifications = Core::Attendance::Notification.where(target_model: 'Core::Attendance::ChatComment', target_id: comments.ids)
         notifications.update_all(read: true, read_at: DateTime.now)
       end
     end
