@@ -32,7 +32,8 @@
                 .sub.header
                   - if !@ticket.input_disabled?(@action) 
                     = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
-                    = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'ui button red mini', method: :delete
+                    - if @ticket.disable_remove_spouse(mirror)
+                      = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'ui button red mini', method: :delete
 .ui.grid.container
   .column.text-center
     - if @ticket.confirmation_required?(@action)
