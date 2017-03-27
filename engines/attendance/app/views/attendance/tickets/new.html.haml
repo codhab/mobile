@@ -66,10 +66,16 @@
         %a.ui.blue.ribbon.label.bold Interações (#{@ticket.comments.count})
         %span
           .text-justify
-          - @ticket.comments.each do |comment|
-            .divider
-            %span
-              %a.ui.orange.right.ribbon.label= comment.created_at.strftime("%d/%m/%Y %H:%M")
-            %span
+          - if @ticket.comments.present?
+            - @ticket.comments.each do |comment|
               .divider
-              %p= comment.message
+              %span
+                %a.ui.orange.right.ribbon.label= comment.created_at.strftime("%d/%m/%Y %H:%M")
+              %span
+                .divider
+                %p= comment.message
+          - else
+            .divider
+              .text-center
+                %p
+                  %i Nenhuma mensagem registrada.
