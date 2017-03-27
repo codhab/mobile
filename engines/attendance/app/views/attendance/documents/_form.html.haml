@@ -12,7 +12,7 @@
         = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method
       %hr/
 
-  - if @ticket.document_required? @action
+  - if @ticket.document_required?(@action)
     = f.submit "Enviar documentação", class: 'ui button green fluid disabled'
   - else
     .text-center
