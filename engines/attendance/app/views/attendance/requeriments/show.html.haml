@@ -8,25 +8,19 @@
 
 .big-divider
 .ui.grid.container
-  %table.ui.celled.table
-    %tbody
-      %tr
-        %td
-        %td
-          %b= @requeriment.document_number ||= "Sem informação de Nº"
+  .column
+    .ui.raised.segment
+      %a.ui.yellow.ribbon.label= @requeriment.document_number ||= "Sem informação de Nº"
+      %span
+        .big-divider
+        %h4
+          %b= @requeriment.document_type.name rescue "Sem informção de tipo"
+      .divider
+      %p= @requeriment.description_subject
+      .divider
+      - if @requeriment.digital_documents.present?
+        - @requeriment.digital_document_forms.each_with_index do |req, index|
           %br
-          = @requeriment.document_type.name rescue "Sem informção de tipo"
-
-      %tr
-        %td Descrição
-        %td= @requeriment.description_subject
-
-      %tr
-        %td Arquivos Enviados
-        %td
-          - if @requeriment.digital_documents.present?
-            - @requeriment.digital_document_forms.each_with_index do |req, index|
-              %br
-              = link_to "Arquivo #{index +1}", req.doc_path_url, target: '_blank'
-          - else
-            %i Nenhum arquivo enviado.
+          = link_to "Arquivo #{index +1}", req.doc_path_url, target: '_blank'
+      - else
+        %i Nenhum arquivo enviado.
