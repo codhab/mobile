@@ -63,6 +63,13 @@
   - else
     .sixteen.wide.column
       .ui.raised.segment
-        %a.ui.blue.ribbon.label.bold Interações
+        %a.ui.blue.ribbon.label.bold Interações (#{@ticket.comments.count})
         %span
           .text-justify
+          - @ticket.comments.each do |comment|
+            .divider
+            %span
+              %a.ui.orange.right.ribbon.label= comment.created_at.strftime("%d/%m/%Y %H:%M")
+            %span
+              .divider
+              %p= comment.message
