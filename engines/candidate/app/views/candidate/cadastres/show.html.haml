@@ -9,10 +9,10 @@
       %span.ui.label.yellow.mini.font-black
         = current_cadastre.current_situation_name
     - current_cadastre.list.each do |list|
-      %br
-      %medium
+      %medium.positionlabel
         = "#{I18n.t(list[0])} -"
-        = "Faixa: #{list[1][0]}"
+        %span.ui.label.yellow.mini
+          = "Faixa: #{list[1][0]}"
         = "- Posição: #{list[2]}" if list[2].present?
     %br
     %br

@@ -91,7 +91,7 @@ module Attendance
     end
 
     def continue_dependent
-      redirect_to new_dependent_ticket_action_documents_path(@ticket, @action)
+      redirect_to new_dependent_ticket_action_documents_path(ticket_id: @ticket, action_id: @action, dependent_mirror_id: params[:dependent_mirror_id])
     end
 
     def continue_income

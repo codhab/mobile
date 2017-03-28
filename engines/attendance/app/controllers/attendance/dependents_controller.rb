@@ -41,7 +41,7 @@ module Attendance
       @dependent_mirror = Core::Attendance::DependentForm.find(@dependent_mirror.id)
       
       if @dependent_mirror.update(set_params)
-        redirect_to ticket_continue_dependent_path(@ticket, @action)
+        redirect_to ticket_continue_dependent_path(ticket_id: @ticket, action_id: @action, dependent_mirror_id: @dependent_mirror.id)
       else
         render action: :edit
       end
