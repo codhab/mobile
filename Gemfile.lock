@@ -1,13 +1,6 @@
 GIT
-  remote: git://github.com/untitledkingdom/mina-puma.git
-  revision: fa249a11dc83973b4d0824c61419f94817eeac01
-  specs:
-    mina-puma (1.0.1)
-      mina (~> 1.0.0)
-      puma (>= 2.13)
-
-PATH
-  remote: components/core
+  remote: git://github.com/codhab/core.git
+  revision: 0627ded55a4664e0298b79db24f20c0d2c9c886c
   specs:
     core (0.1.0)
       carrierwave
@@ -19,6 +12,14 @@ PATH
       rails (~> 5.0.2)
       validates_cpf_cnpj
       validates_timeliness
+
+GIT
+  remote: git://github.com/untitledkingdom/mina-puma.git
+  revision: fa249a11dc83973b4d0824c61419f94817eeac01
+  specs:
+    mina-puma (1.0.1)
+      mina (~> 1.0.0)
+      puma (>= 2.13)
 
 PATH
   remote: engines
