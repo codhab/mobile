@@ -15,12 +15,18 @@ module Attendance
     def create
       @requeriment = current_cadastre.assessment_forms.new(set_params)
       @requeriment.document_type_id = 26 #external requeriment
-      @requeriment.subject_id       = 1498 #request
+
       @requeriment.recipient        = current_cadastre.name
       @requeriment.finalized        = false
       service = Core::Protocol::AssessmentService.new(@requeriment)
 
-      sector =  ([1,2,4,5,7,9,10].include? current_cadastre.program_id) ? 27 : 30
+     if ([1,2,4,5,7,9,10].include? current_cadastre.program_id)
+       sector = 27
+       @requeriment.subject_id = 1746 #request
+     else
+        sector = 30
+        @requeriment.subject_id = 1747 #request
+     end
 
       number = service.set_number!(nil,sector)
 

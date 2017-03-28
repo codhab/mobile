@@ -9,7 +9,7 @@
     - unless @chats.present?
       = link_to "Nova Conversa", new_chat_path, class: 'ui button yellow fluid'
     - else
-      = link_to "Nova Conversa", new_chat_path, class: 'ui button yellow fluid' if @chats.last.closed != true
+      = link_to "Nova Conversa", new_chat_path, class: 'ui button yellow fluid' if @chats.last.closed == true
 .ui.grid.container
   .column
     - if @chats.present?

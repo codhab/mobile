@@ -216,7 +216,14 @@ span.ui.label.yellow {
   font-weight: 400;
 }
 
-
+.custom-avatar-tiny{
+  width: 60px!important;
+  height: 60px!important;
+}
+.positionlabel{
+  display: block;
+  margin-top: 5px
+}
 .ui.form .disabled.field, .ui.form .disabled.fields .field, .ui.form .field input[type="file"]:disabled {
   opacity: 0 !important;
 }
