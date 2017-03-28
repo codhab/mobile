@@ -60,7 +60,7 @@ module Attendance
       params.fetch(:attendance_action_document_form, {})
             .permit(
               born_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
-              certificate_born_documents: [:id, :_destroy, :document, :target_id, :target_model],
+              certificate_born_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
               income_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
               rg_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
               cpf_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],

@@ -1,6 +1,6 @@
 class ApplicationPresenter < SimpleDelegator
   
-  def initialize(model, view)
+  def initialize(model, view = nil)
     @view = view
     super(model)
   end
