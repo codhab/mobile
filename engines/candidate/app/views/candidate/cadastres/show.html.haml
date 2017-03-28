@@ -1,7 +1,7 @@
 .huge-divider
 .ui.grid.container
   .column.center.aligned
-    = link_to image_tag('http://www.geekninjas.com.br/img/sergio.jpg', class: 'ui mini circular image small-yellow-border', style: 'width: 120px!important; height:120px; overflow:hidden; margin: 0 auto'), "#"
+    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image small-yellow-border', style: 'width: 120px!important; height:120px; overflow:hidden; margin: 0 auto'), "#"
     %br/
     .title-header
       = current_cadastre.name.mb_chars.upcase
@@ -11,7 +11,8 @@
     - current_cadastre.list.each do |list|
       %medium.positionlabel
         = "#{I18n.t(list[0])} -"
-        = "Faixa: #{list[1][0]}"
+        %span.ui.label.yellow.mini
+          = "Faixa: #{list[1][0]}"
         = "- Posição: #{list[2]}" if list[2].present?
     %br
     %br
