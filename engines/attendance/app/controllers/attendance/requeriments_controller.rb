@@ -26,7 +26,7 @@ module Attendance
       number = service.set_number!(nil,sector)
 
       @requeriment.document_number = number
-
+      
       if @requeriment.save
          service.set_conduct!(@requeriment,nil,sector)
          redirect_to requeriments_path
