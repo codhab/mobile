@@ -8,14 +8,14 @@ module Attendance
     before_action :set_action 
 
     def new_dependent      
-      @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
-      
-      @service  = Core::Attendance::DocumentService.new(cadastre: @cadastre,
-                                                        action: @action,
-                                                        ticket: @ticket) 
+      @action     = Core::Attendance::ActionDocumentForm.find(@action.id)
+      @dependent  = Core::Candidate::DependentMirror.find(params[:dependent_mirror_id])
+      @service    = Core::Attendance::DocumentService.new(cadastre: @cadastre,
+                                                          action: @action,
+                                                          ticket: @ticket,
+                                                          dependent_mirror: @dependent) 
       
       @service.documents_required!
-
       @action = @service.action
     end
 
@@ -59,14 +59,14 @@ module Attendance
             .permit(
               certificate_born_documents: [:id, :_destroy, :document],
               income_documents_attributes: [:id, :_destroy, :document],
-              rg_documents: [:id, :_destroy, :document],
-              cpf_documents: [:id, :_destroy, :document],
-              residence_documents: [:id, :_destroy, :document],
-              arrival_df_documents: [:id, :_destroy, :document],
-              registry_documents: [:id, :_destroy, :document],
-              payment_documents: [:id, :_destroy, :document],
-              income_documents: [:id, :_destroy, :document],
-              special_condition_documents: [:id, :_destroy, :document],
+              rg_documents_attributes: [:id, :_destroy, :document],
+              cpf_documents_attributes: [:id, :_destroy, :document],
+              residence_documents_attributes: [:id, :_destroy, :document],
+              arrival_df_documents_attributes: [:id, :_destroy, :document],
+              registry_documents_attributes: [:id, :_destroy, :document],
+              payment_documents_attributes: [:id, :_destroy, :document],
+              income_documents_attributes: [:id, :_destroy, :document],
+              special_condition_documents_attributes: [:id, :_destroy, :document],
               )
     end
 

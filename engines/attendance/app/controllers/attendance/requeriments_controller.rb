@@ -18,6 +18,7 @@ module Attendance
       @requeriment.document_type_id = 26 #external requeriment
       @requeriment.subject_id       = 1498 #request
       @requeriment.recipient        = current_cadastre.name
+      @requeriment.finalized        = false
       service = Core::Protocol::AssessmentService.new(@requeriment)
 
       sector =  ([1,2,4,5,7,9,10].include? current_cadastre.program_id) ? 27 : 30

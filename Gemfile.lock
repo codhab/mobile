@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 81ba4d2fd584d0c1415cf701f95518f283bdde54
+  revision: 243df0a2f0b5f517fd068326a4d2641ee17c413c
   specs:
     core (0.1.0)
       carrierwave
@@ -80,11 +80,11 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    client_side_validations (9.1.0)
-      jquery-rails (~> 4.2)
+    client_side_validations (9.2.0)
+      jquery-rails (~> 4.3)
       js_regex (~> 1.2)
       rails (>= 5.0.0.1, < 5.2)
-    client_side_validations-simple_form (6.0.0)
+    client_side_validations-simple_form (6.1.0)
       client_side_validations (~> 9.0)
       simple_form (~> 3.4)
     concurrent-ruby (1.0.5)
@@ -211,7 +211,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.9)
+    uglifier (3.1.10)
       execjs (>= 0.3.0, < 3)
     validates_cpf_cnpj (0.2.0)
       activemodel (>= 3.0.0)

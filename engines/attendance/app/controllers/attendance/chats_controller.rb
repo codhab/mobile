@@ -25,14 +25,17 @@ module Attendance
       @chat = current_cadastre.attendance_chats.find(params[:id])
       @chat_comments = @chat.chat_comments
       if @chat.chat_comments.where(candidate_read: false, candidate: false).present?
-        @chat_comments.where(candidate: false).update_all(candidate_read: true, candidate_read_datetime: DateTime.now)
+        comments = @chat_comments.where(candidate: false)
+        comments.update_all(candidate_read: true, candidate_read_datetime: DateTime.now)
+        notifications = Core::Attendance::Notification.where(target_model: 'Core::Attendance::ChatComment', target_id: comments.ids)
+        notifications.update_all(read: true, read_at: DateTime.now)
       end
     end
 
     private
 
       def set_params
-        params.require(:attendance_chat).permit(:chat_category_id, chat_comments_attributes: [:content, :id])
+        params.require(:attendance_chat).permit(:chat_category_id, chat_comments_attributes: [:content, :id], chat_uploads_attributes:[:chat_comment_id,:document, :_destroy, :id])
       end
 
   end

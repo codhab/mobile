@@ -16,6 +16,6 @@
                 %i.small.user.icon.gray
                 .content
                   %a{href: "#{notification_path(notification)}"}
-                    #{notification.title}
+                    #{notification.title.humanize}
                   .sub.header
                     #{notification.created_at.strftime("%d/%m/%Y - %H:%M")}
