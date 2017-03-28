@@ -24,7 +24,7 @@ module Attendance
 
     def set_params
       params.require(:attendance_contact_form)
-            .permit(:rg)
+            .permit(:telephone, :telephone_optional, :celphone, :email, :address, :city_id, :cep)
     end
 
     def set_ticket

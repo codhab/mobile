@@ -1,8 +1,9 @@
 = simple_form_for @requeriment, url: requeriments_path do |f|
   = f.input :description_subject, label: "Descrição da solicitação"
-  = f.simple_fields_for :digital_document_forms do |builder|
-    = render 'digital_document_fields', f: builder
-  = link_to_add_fields "Adicionar arquivo", f, :digital_documents
+  
+  = f.simple_fields_for :digital_documents do |builder|
+    = render 'document_fields', f: builder
+  = link_to_add_upload_fields "Adicionar arquivo", f, :digital_documents
   %br
   %br
   %br

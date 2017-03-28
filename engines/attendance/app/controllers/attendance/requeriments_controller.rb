@@ -10,7 +10,6 @@ module Attendance
 
     def new
       @requeriment = current_cadastre.assessment_forms.new
-      @requeriment.digital_document_forms.build
     end
 
     def create
@@ -42,7 +41,7 @@ module Attendance
     private
 
     def set_params
-      params.require(:protocol_assessment_form).permit(:description_subject, digital_document_forms_attributes: [:doc_path, :_destroy, :id])
+      params.require(:protocol_assessment_form).permit(:description_subject, digital_documents_attributes: [:doc_path, :_destroy, :id])
     end
 
   end
