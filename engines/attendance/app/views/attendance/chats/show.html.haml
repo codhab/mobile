@@ -5,10 +5,15 @@
   .thirteen.wide.mobile.column.text-center
     .title-header
       Minhas Conversas
-      - if @chat.closed == false && @chat.chat_comments.last.candidate == false
+      - unless @chat.chat_comments.present?
         %br
         %br
         = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid'
+      - else
+        - if @chat.closed == false && @chat.chat_comments.last.candidate == false
+          %br
+          %br
+          = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid'
 .ui.container-fluid
   .ui.grid
     .row
@@ -46,6 +51,9 @@
                       .ui.label
                         = comment.created_at.strftime("%d/%m/%Y - %H:%M")
                     -if comment.chat_uploads.present?
-                      %i.attach.icon
+                      %p
+                      - comment.chat_uploads.each do |arq|
+                        %i
+                          = link_to '<i class="attach icon large"></i>'.html_safe , arq.document_url, target: '_blank'
                   %p{style: 'text-align: justify'}
                     = comment.content

@@ -19,8 +19,9 @@
       %p= @requeriment.description_subject
       .divider
       - if @requeriment.digital_documents.present?
-        - @requeriment.digital_document_forms.each_with_index do |req, index|
-          %br
-          = link_to "Arquivo #{index +1}", req.doc_path_url, target: '_blank'
+        - @requeriment.digital_document_forms.each do |req|
+          %i
+            = link_to '<i class="attach icon large"></i>'.html_safe , req.doc_path_url, target: '_blank'
+
       - else
         %i Nenhum arquivo enviado.

@@ -1,6 +1,13 @@
 GIT
-  remote: git://github.com/codhab/core.git
-  revision: 243df0a2f0b5f517fd068326a4d2641ee17c413c
+  remote: git://github.com/untitledkingdom/mina-puma.git
+  revision: fa249a11dc83973b4d0824c61419f94817eeac01
+  specs:
+    mina-puma (1.0.1)
+      mina (~> 1.0.0)
+      puma (>= 2.13)
+
+PATH
+  remote: components/core
   specs:
     core (0.1.0)
       carrierwave
@@ -12,14 +19,6 @@ GIT
       rails (~> 5.0.2)
       validates_cpf_cnpj
       validates_timeliness
-
-GIT
-  remote: git://github.com/untitledkingdom/mina-puma.git
-  revision: fa249a11dc83973b4d0824c61419f94817eeac01
-  specs:
-    mina-puma (1.0.1)
-      mina (~> 1.0.0)
-      puma (>= 2.13)
 
 PATH
   remote: engines
@@ -74,6 +73,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    bindex (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
     carrierwave (1.0.0)
@@ -88,7 +88,6 @@ GEM
       client_side_validations (~> 9.0)
       simple_form (~> 3.4)
     concurrent-ruby (1.0.5)
-    debug_inspector (0.0.2)
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
@@ -126,8 +125,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery-validation-rails (1.16.0)
-    js_regex (1.2.1)
-      regexp_parser (>= 0.3.6, <= 0.4.2)
+    js_regex (1.2.2)
+      regexp_parser (>= 0.3.6, <= 0.5.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -183,7 +182,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
-    regexp_parser (0.4.2)
+    regexp_parser (0.4.3)
     ruby_parser (3.8.4)
       sexp_processor (~> 4.1)
     sexp_processor (4.8.0)
@@ -211,16 +210,16 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.10)
+    uglifier (3.1.11)
       execjs (>= 0.3.0, < 3)
     validates_cpf_cnpj (0.2.0)
       activemodel (>= 3.0.0)
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
-    web-console (3.4.0)
+    web-console (3.5.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
-      debug_inspector
+      bindex (>= 0.4.0)
       railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)

@@ -1,11 +1,10 @@
 = simple_form_for @requeriment, url: requeriments_path,  html: { :multipart => true } do |f|
   = f.input :description_subject, label: "Descrição da solicitação"
   = f.simple_fields_for :digital_document_forms do |builder|
-    = render 'digital_document_fields', f: builder
+    = render 'digital_document_form_fields', f: builder
+  = link_to_add_fields "Adicionar arquivo", f, :digital_document_forms
   %br
   %br
   %br
   .column
     = f.submit "Enviar requerimento", class: 'ui button yellow fluid'
-    .divider
-    = link_to "Cancelar", requeriments_path, class: "ui button fluid gray"

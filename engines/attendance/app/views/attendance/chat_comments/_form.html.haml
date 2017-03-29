@@ -2,7 +2,8 @@
   = f.input :content, as: :text, label: false, input_html: { placeholder: 'Escreva aqui', rows: 3}
   = f.simple_fields_for :chat_uploads do |builder|
     = render 'chat_upload_fields', f: builder
+  = link_to_add_fields "Adicionar arquivo", f, :chat_uploads
   .big-divider
   .column.text-center
     = f.submit "Enviar", class: 'ui button yellow'
-    = link_to "Cancelar", chats_path, class: 'ui button gray'
+    = link_to "Cancelar", chats_path, class: 'ui button gray' if @chat.chat_comments.count > 0

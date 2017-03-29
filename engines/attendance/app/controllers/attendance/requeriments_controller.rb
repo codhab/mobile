@@ -10,31 +10,14 @@ module Attendance
 
     def new
       @requeriment = current_cadastre.assessment_forms.new
-      @requeriment.digital_document_forms.build
     end
 
     def create
       @requeriment = current_cadastre.assessment_forms.new(set_params)
-      @requeriment.document_type_id = 26 #external requeriment
-
-      @requeriment.recipient        = current_cadastre.name
-      @requeriment.finalized        = false
       service = Core::Protocol::AssessmentService.new(@requeriment)
+      @requeriment = service.app_requeriment!(current_cadastre)
 
-     if ([1,2,4,5,7,9,10].include? current_cadastre.program_id)
-       sector = 27
-       @requeriment.subject_id = 1746 #request
-     else
-        sector = 30
-        @requeriment.subject_id = 1747 #request
-     end
-
-      number = service.set_number!(nil,sector)
-
-      @requeriment.document_number = number
-
-      if @requeriment.save
-         service.set_conduct!(@requeriment,nil,sector)
+      if @requeriment
          redirect_to requeriments_path
       else
         render action: :new

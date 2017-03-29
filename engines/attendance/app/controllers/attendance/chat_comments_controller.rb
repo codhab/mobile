@@ -5,7 +5,6 @@ module Attendance
 
     def new
       @chat_comment = @chat.chat_comments.new
-      @chat_comment.chat_uploads.build
     end
 
     def create
