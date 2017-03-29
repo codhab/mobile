@@ -8,12 +8,12 @@
 .big.divider
 .ui.container
   - if @documents.present?
-    - @documents.each do |document|
+    - @documents.each_with_index do |document,i|
       .ui.styled.accordion
-        .title
+        %div{ class: i == 0 ? 'title active' : 'title'}
           %i.dropdown.icon
           = document.document_number rescue nil
-        .content
+        %div{ class: i == 0 ? 'content active' : 'content'}
           %table.ui.celled
             %tbody
               %tr

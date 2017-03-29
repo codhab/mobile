@@ -8,11 +8,11 @@
 .big.divider
 .ui.container
   - if @spouse.present?
-    .ui.styled.accordion
-      .title
+    .ui.styled.accordion.custom_accordion
+      .title.active
         %i.dropdown.icon
         = "#{@spouse.name} - Cônjuge"
-      .content
+      .content.active
         %table.ui.celled.table
           %tbody
             %tr
@@ -74,7 +74,7 @@
                         = @spouse.cid.present? ? @spouse.cid : "Sem informação"
     - if @dependents.present?
       - @dependents.each do |dependent|
-        .ui.styled.accordion
+        .ui.styled.accordion.custom_accordion
           .title
             %i.dropdown.icon
             = "#{dependent.name} - #{dependent.kinship.name rescue nil}"
