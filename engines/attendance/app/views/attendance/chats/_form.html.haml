@@ -1,9 +1,6 @@
 = simple_form_for @chat, url: chats_path, method: :post do |f|
   = f.label "Assunto"
   = f.association :chat_category, label: false, prompt: 'Selecione'
-  = f.simple_fields_for :chat_comments do |b|
-    = b.input :content, as: :text, label: false, input_html: { placeholder: 'Escreva aqui', rows: 3}
-    = b.input :upload, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: 'inline'}
   .big-divider
   .column.text-center
     = f.submit "Enviar", class: 'ui button yellow'

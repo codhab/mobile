@@ -15,14 +15,7 @@ module Attendance
     def create
       @chat = current_cadastre.attendance_chats.new(set_params)
       if @chat.save
-        if @chat.chat_comments[0].upload.present?
-          chat_comments = @chat.chat_comments.last
-          @chat_upload = chat_comments.chat_uploads.new(
-            document: @chat.chat_comments[0].upload
-          )
-          @chat_upload.save
-        end
-        redirect_to chats_path
+        redirect_to new_chat_chat_comment_path(@chat)
       else
         render :new
       end
@@ -42,7 +35,7 @@ module Attendance
     private
 
       def set_params
-        params.require(:attendance_chat).permit(:chat_category_id, chat_comments_attributes: [:content, :upload, :id])
+        params.require(:attendance_chat).permit(:chat_category_id)
       end
 
   end
