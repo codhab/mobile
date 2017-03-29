@@ -10,7 +10,7 @@
         %br
         = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid'
       - else
-        - if @chat.closed == false && @chat.chat_comments.last.candidate == false
+        - if @chat.allow_comment?
           %br
           %br
           = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid'
@@ -22,8 +22,11 @@
           %tbody
             %tr
               %td
-                %h3= @chat.chat_category.name rescue nil
-                = @chat.created_at.strftime("%d/%m/%Y - %H:%M")
+                %p
+                  = "Conversa Nº:  #{@chat.id}/#{@chat.created_at.year}"
+                  %br
+                  = @chat.chat_category.name rescue nil
+                  = @chat.created_at.strftime("%d/%m/%Y - %H:%M")
             - if @chat.closed
               %tr
                 %td
@@ -36,7 +39,7 @@
       .column.segment
         %table.ui.celled.table
           %tbody
-            - @chat_comments.order('created_at DESC').each do |comment|
+            - @chat.chat_comments.order('created_at DESC').each do |comment|
               %tr
                 %td
                   %small

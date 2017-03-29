@@ -1,10 +1,12 @@
+require_dependency 'attendance/application_controller'
 
 module Attendance
   class ChatsController < ApplicationController
 
-
     def index
       @chats = current_cadastre.attendance_chats
+      @chats = Core::Attendance::ChatPolicy.new(@chats)
+      
     end
 
     def new
@@ -15,6 +17,8 @@ module Attendance
     def create
       @chat = current_cadastre.attendance_chats.new(set_params)
       if @chat.save
+        @service = Core::Attendance::ChatCommentService.new(@chat, nil, nil)
+        @service.candidate_start_notification!
         redirect_to new_chat_chat_comment_path(@chat)
       else
         render :new
@@ -23,13 +27,9 @@ module Attendance
 
     def show
       @chat = current_cadastre.attendance_chats.find(params[:id])
-      @chat_comments = @chat.chat_comments
-      if @chat.chat_comments.where(candidate_read: false, candidate: false).present?
-        comments = @chat_comments.where(candidate: false)
-        comments.update_all(candidate_read: true, candidate_read_datetime: DateTime.now)
-        notifications = Core::Attendance::Notification.where(target_model: 'Core::Attendance::ChatComment', target_id: comments.ids)
-        notifications.update_all(read: true, read_at: DateTime.now)
-      end
+      @chat = Core::Attendance::ChatPolicy.new(@chat)
+      @service = Core::Attendance::ChatCommentService.new(nil, nil, @chat.chat_comments)
+      @service.reading_comment!
     end
 
     private

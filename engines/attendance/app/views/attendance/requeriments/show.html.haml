@@ -24,4 +24,15 @@
             = link_to '<i class="attach icon large"></i>'.html_safe , req.doc_path_url, target: '_blank'
 
       - else
-        %i Nenhum arquivo enviado.
+        %i Nenhum arquivo enviado
+      - if @requeriment.finalized == true
+        %br
+        %br
+        %p
+          %b Parecer da CODHAB
+        %p
+          = @requeriment.observation
+        %p
+          %b Finalizado em
+        %p
+          = @requeriment.finalized_date.strftime('%d/%m/%Y - %H:%M') rescue nil

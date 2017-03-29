@@ -1,9 +1,0 @@
-%fieldset
-  .ui.buttons
-    %label.button-file-upload.ui.button.mini.gray
-      %span
-        Toque para inserir um documento
-      = f.input :doc_path, as: :file, label: false, multiple: true, input_html: { onchange: 'validate_file(this);', class: 'inline'}
-    = f.hidden_field :_destroy
-    = link_to "<i class='remove icon'></i>".html_safe, '#', class: "remove_fields ui button black icon mini inline"
-.divider

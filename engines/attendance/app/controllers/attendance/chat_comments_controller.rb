@@ -10,6 +10,8 @@ module Attendance
     def create
       @chat_comment = @chat.chat_comments.new(set_params)
       if @chat_comment.save
+        @service = Core::Attendance::ChatCommentService.new(@chat, @chat_comment, nil)
+        @service.candidate_notification!
        redirect_to chats_path
       else
        render :new

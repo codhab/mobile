@@ -3,16 +3,11 @@ require_dependency 'application_controller'
 module Entity
   class CadastresController < ApplicationController
     has_scope :by_cnpj
+    has_scope :by_name
+    has_scope :by_fantasy_name
 
     def index
-    end
-
-    def search
-      if params[:by_cnpj].present?
-        @cadastre = apply_scopes(Core::Entity::Cadastre).first
-      else
-        flash[:warning] = "Cadastro não encontrado."
-      end
+      @cadastres = apply_scopes(Core::Entity::Cadastre)
     end
 
     def show

@@ -9,7 +9,7 @@
     - unless @chats.present?
       = link_to "Nova Conversa", new_chat_path, class: 'ui button yellow fluid'
     - else
-      = link_to "Nova Conversa", new_chat_path, class: 'ui button yellow fluid' if @chats.last.closed == true
+      = link_to "Nova Conversa", new_chat_path, class: 'ui button yellow fluid' if @chats.chat_closed?
 .ui.grid.container
   .column
     - if @chats.present?
@@ -25,6 +25,8 @@
                     %i.small.talk.outline.icon.gray
                   .content
                     %a{href: "#{chat_path(chat)}"}
+                      = "Conversa Nº:  #{chat.id}/#{chat.created_at.year}"
+                      %br
                       #{chat.chat_category.name rescue nil}
                       %br
                       %small
