@@ -4,7 +4,7 @@
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Atualização de dependentes
-    .sub-title frase
+    .sub-title Listagem de dependentes
 
 .big-divider
 .ui.grid.container
@@ -18,22 +18,31 @@
       .big-divider
     %table.ui.celled.table
       %tbody
-        - @cadastre_mirror.dependent_mirrors.each do |mirror|
+        - if @cadastre_mirror.dependent_mirrors.present?
+          - @cadastre_mirror.dependent_mirrors.each do |mirror|
+            %tr
+              %td
+              %td
+                .content
+                  - if mirror.name.present?
+                    %b= link_to mirror.name, ticket_dependent_path(@ticket, mirror), remote: true
+                  - else
+                    %b= link_to "Sem nome", ticket_dependent_path(@ticket, mirror), remote: true
+                  .sub.header
+                    %small
+                      = mirror.kinship.name rescue "Sem parentesco"
+                      |
+                      = mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
+                  .sub.header
+                    - if !@ticket.input_disabled?(@action) 
+                      = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
+                      - if @ticket.disable_remove_spouse(mirror)
+                        = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'ui button red mini', method: :delete
+        - else
           %tr
             %td
-            %td
-              .content
-                %b= link_to mirror.name, ticket_dependent_path(@ticket, mirror), remote: true
-                .sub.header
-                  %small
-                    = mirror.kinship.name rescue nil
-                    |
-                    = mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
-                .sub.header
-                  - if !@ticket.input_disabled?(@action) 
-                    = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
-                    - if @ticket.disable_remove_spouse(mirror)
-                      = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'ui button red mini', method: :delete
+            %td.text-center
+              %i Nenhum dependente cadastrado
 .ui.grid.container
   .column.text-center
     - if @ticket.confirmation_required?(@action)
@@ -43,5 +52,5 @@
     - elsif @ticket.open?(@action)
       = link_to "Adicionar dependente", new_ticket_dependent_path(@ticket), class: 'ui button blue fluid'
       .divider
-      = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid'
+      = link_to "Finalizar minha atualização", ticket_close_dependent_path(@ticket, @action), class: 'ui button yellow fluid'
       

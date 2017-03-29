@@ -6,7 +6,7 @@ module Attendance
     before_action :set_action, only:   [:confirm, :open, 
                                         :continue_cadastre, :continue_dependent,
                                         :continue_income,  :continue_contact,
-                                        :close_action]
+                                        :close_action, :close_dependent]
 
     def index
       @tickets = current_cadastre.tickets.order('created_at DESC')
@@ -43,6 +43,10 @@ module Attendance
       @service.close_ticket
 
       redirect_to main_app.root_path
+    end
+
+    def close_dependent
+      redirect_to new_ticket_action_document_path(ticket_id: @ticket, action_id: @action, dependent_all: true)
     end
 
     def close_action 

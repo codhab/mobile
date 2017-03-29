@@ -8,12 +8,13 @@ module Attendance
     before_action :set_action 
 
     def new_dependent      
+
       @action     = Core::Attendance::ActionDocumentForm.find(@action.id)
-      @dependent  = Core::Candidate::DependentMirror.find(params[:dependent_mirror_id])
+      @dependent  = Core::Candidate::DependentMirror.find(params[:dependent_mirror_id]) rescue nil
       @service    = Core::Attendance::DocumentService.new(cadastre: @cadastre,
                                                           action: @action,
                                                           ticket: @ticket,
-                                                          dependent_mirror: @dependent) 
+                                                          dependent_mirror: @dependent)
       
       @service.documents_required!
       @action = @service.action
@@ -33,7 +34,8 @@ module Attendance
       
       @service  = Core::Attendance::DocumentService.new(cadastre: @cadastre,
                                                         action: @action,
-                                                        ticket: @ticket) 
+                                                        ticket: @ticket,
+                                                        dependent_all: params[:dependent_all])  
       
       @service.documents_required!
 
@@ -57,16 +59,17 @@ module Attendance
     def set_params
       params.fetch(:attendance_action_document_form, {})
             .permit(
-              certificate_born_documents: [:id, :_destroy, :document],
-              income_documents_attributes: [:id, :_destroy, :document],
-              rg_documents_attributes: [:id, :_destroy, :document],
-              cpf_documents_attributes: [:id, :_destroy, :document],
-              residence_documents_attributes: [:id, :_destroy, :document],
-              arrival_df_documents_attributes: [:id, :_destroy, :document],
-              registry_documents_attributes: [:id, :_destroy, :document],
-              payment_documents_attributes: [:id, :_destroy, :document],
-              income_documents_attributes: [:id, :_destroy, :document],
-              special_condition_documents_attributes: [:id, :_destroy, :document],
+              born_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              certificate_born_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              income_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              rg_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              cpf_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              residence_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              arrival_df_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              registry_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              payment_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              income_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
+              special_condition_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model]
               )
     end
 

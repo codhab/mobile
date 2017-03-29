@@ -227,3 +227,21 @@ span.ui.label.yellow {
 .ui.form .disabled.field, .ui.form .disabled.fields .field, .ui.form .field input[type="file"]:disabled {
   opacity: 0 !important;
 }
+
+
+/*Media Queries*/
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : portrait) {
+
+  i.huge.icon, i.huge.icons {
+    font-size: 3em!important;
+  }
+
+  .custom-avatar-tiny {
+    width: 56px!important;
+    height: 56px!important;
+  }
+}

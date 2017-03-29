@@ -46,26 +46,30 @@ function validate_file(input) {
     $('.ui.modal').html(html);
     $('.ui.modal').modal('show');
 
-    if ($(input).data('destroy') == false) {
+    if ($(input).data('destroy') == true) {
       $(input).val(null);
       $("#"+ input.id).parents('label').contents('span').text('Toque para inserir um documento')
       $("#"+ input.id).parents('label').removeClass("yellow")
-      $("input[type='submit']").addClass('disabled')
-      $(".add_fields").addClass('disabled')
+      $(input).closest('fieldset').nextAll(".add_fields").addClass('disabled')
+
     } else {
+      $(input).closest('fieldset').nextAll(".add_fields").removeClass('disabled')
       $(input).closest('fieldset').remove();
-      $(".add_fields").removeClass('disabled')
-      $("input[type='submit']").removeClass('disabled')
     }
 
     
   } else {
     $("#"+ input.id).parents('label').contents('span').text('Arquivo carregado')
-    $("#"+ input.id).parents('label').addClass("yellow")
-    $("input[type='submit']").removeClass('disabled')
-    $(".add_fields").removeClass('disabled')
-    
+    $("#"+ input.id).parents('label').addClass("yellow").addClass("fluid")
+    $(input).closest('fieldset').nextAll(".add_fields").removeClass('disabled')
+
   }
+
+  if($("fieldset input[type='file']").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
+    $('form').find('input:submit').removeClass('disabled')
+  } else {
+    $('form').find('input:submit').addClass('disabled')
+  } 
 
 }
 

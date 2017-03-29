@@ -5,7 +5,6 @@
   = f.input :email, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :address, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.association :city, include_blank: false, collection: Core::Address::City.federal_district, input_html: { disabled: @ticket.input_disabled?(@action) }
-  = f.association :state, include_blank: false, label_method: :acronym, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :cep, input_html: { class: 'cep',disabled: @ticket.input_disabled?(@action)}
   .big-divider
   .column.text-center
