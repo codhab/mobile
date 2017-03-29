@@ -8,12 +8,12 @@
 .big.divider
 .ui.container
   - if @iptus.present?
-    - @iptus.each do |iptu|
+    - @iptus.each_with_index do |iptu, i|
       .ui.styled.accordion
-        .title
+        %div{ class: i == 0 ? 'title active' : 'title'}
           %i.dropdown.icon
           = iptu.address rescue nil
-        .content
+        %div{ class: i == 0 ? 'content active' : 'content'}
           %table.ui.celled.table
             %tbody
               %tr

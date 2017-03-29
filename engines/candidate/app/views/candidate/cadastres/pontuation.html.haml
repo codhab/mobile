@@ -10,10 +10,10 @@
   - if @pontuations.present?
     - @pontuations.each do |pontuation|
       .ui.styled.accordion
-        .title
+        .title.active
           %i.dropdown.icon
           = "Pontuação em: #{pontuation.created_at.strftime('%d/%m/%Y') rescue nil}"
-        .content
+        .content.active
           %table.ui.celled.table
             %tbody
               %tr

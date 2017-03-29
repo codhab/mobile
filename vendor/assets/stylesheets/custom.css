@@ -224,10 +224,17 @@ span.ui.label.yellow {
   display: block;
   margin-top: 5px
 }
+
 .ui.form .disabled.field, .ui.form .disabled.fields .field, .ui.form .field input[type="file"]:disabled {
   opacity: 0 !important;
 }
 
+.no_container table{
+  border-radius: 0px!important;
+}
+.custom_accordion{
+  border-radius: 0px!important;
+}
 
 /*Media Queries*/
 
@@ -235,11 +242,9 @@ span.ui.label.yellow {
 and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : portrait) {
-
   i.huge.icon, i.huge.icons {
     font-size: 3em!important;
   }
-
   .custom-avatar-tiny {
     width: 56px!important;
     height: 56px!important;
