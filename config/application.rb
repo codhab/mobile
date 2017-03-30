@@ -14,8 +14,6 @@ require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
-
 rails_root = Pathname.new('..').expand_path(File.dirname(__FILE__))
 
 begin
@@ -25,6 +23,8 @@ rescue
     raise ArgumentError, 'Need to configure config/application.yml'
   end
 end
+
+Bundler.require(*Rails.groups)
 
 
 

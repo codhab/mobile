@@ -11,7 +11,6 @@ else
   set :domain, '10.233.38.18'
 end
 
-set :sudo, 'true'
 set :rvm_use_path, '/usr/local/rvm/scripts/rvm'
 
 if ENV["STAGE"] == "dev"
@@ -26,7 +25,7 @@ set  :branch, ENV["BRANCH"] ||= 'master'
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public')
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml', 'config/unicorn.rb', 'config/env.yml')
 
-set :user, 'codhab'
+set :user, 'root'
 
 task :setup do
   command %[touch "#{fetch(:shared_path)}/config/database.yml"]
