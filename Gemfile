@@ -20,15 +20,14 @@ gem 'validates_cpf_cnpj'
 gem 'onesignal'
 gem 'has_scope'
 
-gem 'puma'
 
-gem 'core', path: 'components/core'
-#gem 'core', github: 'codhab/core'
+#gem 'core', path: 'components/core'
+gem 'core', github: 'codhab/core'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'mina', require: false
-  gem 'mina-puma', require: false,  github: 'untitledkingdom/mina-puma'
+  gem 'mina-unicorn', require: false
 end
 
 group :development do
@@ -36,6 +35,10 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  gem 'unicorn'
 end
 
 path 'engines' do
