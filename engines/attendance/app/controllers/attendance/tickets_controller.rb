@@ -8,6 +8,8 @@ module Attendance
                                         :continue_income,  :continue_contact,
                                         :close_action, :close_dependent]
 
+    before_action :allow_action?, only: [:update_cadastre, :update_dependent, :update_income, :update_contact]
+
     def index
       @tickets = current_cadastre.tickets.order('created_at DESC')
     end
@@ -78,7 +80,7 @@ module Attendance
       @service.create_or_find_action 3
       @action = @service.action
       
-      redirect_to edit_ticket_income_path(@ticket, @ticket.cadastre_mirror) 
+      redirect_to ticket_incomes_path(@ticket, @ticket.cadastre_mirror) 
     end
 
     def update_contact
@@ -95,7 +97,7 @@ module Attendance
     end
 
     def continue_dependent
-      redirect_to new_dependent_ticket_action_documents_path(ticket_id: @ticket, action_id: @action, dependent_mirror_id: params[:dependent_mirror_id])
+      redirect_to new_ticket_action_document_path(ticket_id: @ticket, action_id: @action, dependent_mirror_id: params[:dependent_mirror_id])
     end
 
     def continue_income
@@ -110,6 +112,10 @@ module Attendance
     end
 
     private
+
+    def allow_action?
+      redirect_to new_ticket_path if @ticket.situation_id != 1 
+    end
 
     def set_ticket
       @ticket = current_cadastre.tickets.find(params[:ticket_id])

@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   root 'candidate/home#show'
 
+  get '404', :to => 'application#page_not_found'
+
   get   '/notifications', to: 'notifications#index'
   post  '/auth',          to: 'sessions#new'
+
 
   mount Attendance::Engine => '/attendance', as: :attendance
   mount Candidate::Engine  => '/candidate',  as: :candidate

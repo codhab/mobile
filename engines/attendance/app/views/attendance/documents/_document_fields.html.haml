@@ -1,17 +1,9 @@
 %fieldset
   - if f.object.document_url.to_s.present?
     %small
-      %p{style: 'margin-bottom: 0'}
-        %b
-          %i= f.object.target_indentify
-
-    %small
       %p
         %b= link_to "Toque para visualizar o documento", f.object.document_url.to_s, target: '_blank'
   - else
-    %p{style: 'margin-bottom: 0'}
-      %b
-        %i= f.object.target_indentify
   .ui.buttons
     %label.button-file-upload.ui.button.fluid.mini{class: f.object.document? ? 'green' : 'gray'}
       - if f.object.document_url.to_s.present?

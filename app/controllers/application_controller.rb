@@ -3,7 +3,6 @@ require_dependency 'application_helper'
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-
   layout 'application'
 
   before_action :allow_iframe
@@ -11,7 +10,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_cadastre
 
+  def page_not_found
+    redirect_to main_app.root_path if controller_name != "candidates" 
+  end
+
   private
+
 
   def current_cadastre
 
