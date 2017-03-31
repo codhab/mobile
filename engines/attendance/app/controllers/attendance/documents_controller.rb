@@ -7,35 +7,13 @@ module Attendance
     before_action :set_ticket
     before_action :set_action 
 
-    def new_dependent      
 
-      @action     = Core::Attendance::ActionDocumentForm.find(@action.id)
-      @dependent  = Core::Candidate::DependentMirror.find(params[:dependent_mirror_id]) rescue nil
-      @service    = Core::Attendance::DocumentService.new(cadastre: @cadastre,
-                                                          action: @action,
-                                                          ticket: @ticket,
-                                                          dependent_mirror: @dependent)
-      
-      @service.documents_required!
-      @action = @service.action
-    end
-
-    def create_dependent
-      if @action.update(set_params)
-        redirect_to ticket_dependents_path(@ticket)
-      else
-        render action: :new
-      end
-
-    end   
-    
     def new      
       @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
-      
-      @service  = Core::Attendance::DocumentService.new(cadastre: @cadastre,
-                                                        action: @action,
-                                                        ticket: @ticket,
-                                                        dependent_all: params[:dependent_all])  
+      @service  = Core::Attendance::DocumentService.new({cadastre: @cadastre,
+                                                         action: @action,
+                                                         ticket: @ticket,
+                                                         dependent_id: session[:dependent_id]})  
       
       @service.documents_required!
 
@@ -43,11 +21,19 @@ module Attendance
     end
 
     def create
-      if @action.update(set_params)
-        @service = Core::Attendance::TicketService.new(cadastre: @cadastre, ticket: @ticket, action: @action)
-        @service.close_action
 
-        redirect_to new_ticket_path
+      if @action.update(set_params)
+        
+        if @action.context_id == 2
+          redirect_to ticket_dependents_path(@ticket)
+        elsif @action.context_id == 3
+          redirect_to ticket_incomes_path(@ticket)
+        else
+          @service = Core::Attendance::TicketService.new(cadastre: @cadastre, ticket: @ticket, action: @action)
+          @service.close_action
+
+          redirect_to new_ticket_path
+        end
       else
         render action: :new
       end

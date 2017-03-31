@@ -52,5 +52,5 @@
     - elsif @ticket.open?(@action)
       = link_to "Adicionar dependente", new_ticket_dependent_path(@ticket), class: 'ui button blue fluid'
       .divider
-      = link_to "Finalizar minha atualização", ticket_close_dependent_path(@ticket, @action), class: 'ui button yellow fluid'
+      = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid'
       

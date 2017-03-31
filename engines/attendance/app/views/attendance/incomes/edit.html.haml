@@ -4,16 +4,15 @@
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Atualização de renda
-    .sub-title frase
+    .sub-title Formulário de atualização
 
 .big-divider
 .ui.grid.container
   .column.content-form
-    - if @ticket.closed?(@action)
-      .text-center
-        %p 
-          %h2 Dados #{@action.situation.name.pluralize}
-        %p
-          %i.icon.checkmark.huge.green
-    = render 'form'
-    
+    = simple_form_for @mirror, url: ticket_income_path(@ticket, @mirror, dependent: @dependent) do |f|
+      - if f.object.respond_to?(:main_income) 
+        = f.input :main_income, input_html: { class: 'coin'}
+      - else
+        = f.input :income, input_html: { class: 'coin'}
+
+      = f.submit "Atualizar renda", class: 'ui button green fluid'

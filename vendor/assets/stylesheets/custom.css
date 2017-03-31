@@ -3,6 +3,9 @@ body {
   font-family: 'Nunito Sans', sans-serif !important;
 }
 
+.ui.yellow.ribbon {
+  color: black !important;
+}
 .semantic-black {
   background-color: #4c4c4c !important;
 }

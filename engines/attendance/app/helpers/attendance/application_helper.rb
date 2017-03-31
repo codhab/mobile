@@ -9,13 +9,20 @@ module Attendance
       link_to("<i class='plus icon'></i> Adicionar arquivo".html_safe, '#', class: "add_fields ui button blue fluid icon mini", data: {id: id, fields: fields.gsub("\n", "")})
     end
 
-    def link_to_add_upload_fields(name, f, association)
-      new_object = f.object.send(association).klass.new
+    def link_to_add_upload_fields(name, f, association, target_id = nil, target_model = nil)
+      if target_id.nil?
+        new_object = f.object.send(association).new
+      else 
+        new_object = f.object.send(association).where(target_id: target_id, target_model: target_model).new
+      end
+
       id = new_object.object_id
       fields = f.fields_for(association, new_object, child_index: id) do |builder|
         render('document_fields', f: builder)
       end
       link_to("<i class='plus icon'></i> Adicionar arquivo".html_safe, '#', class: "add_fields ui disabled button blue fluid icon mini", data: {id: id, fields: fields.gsub("\n", "")})
     end
+
+
   end
 end

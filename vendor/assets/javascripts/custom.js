@@ -1,5 +1,6 @@
 
 $(document).on('turbolinks:load', function() {
+
   $('input').focus(function() {
     if($(this).attr('type') != 'submit') {   
       label_selector = "label[for=" + $(this).attr('id') +"]"

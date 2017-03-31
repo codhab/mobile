@@ -7,25 +7,52 @@ module Attendance
     before_action :set_cadastre_mirror
     before_action :set_action
 
+    def index
+    end
+
     def edit
-      @cadastre_mirror = Core::Attendance::IncomeForm.find(@cadastre_mirror.id)
+      @dependent = params[:dependent]
+      
+      if @dependent.present?
+        @mirror = Core::Attendance::IncomeDependentForm.find(params[:id]) rescue nil
+      else
+        @mirror = Core::Attendance::IncomeForm.find(params[:id]) rescue nil
+      end
     end
 
     def update
-      @cadastre_mirror = Core::Attendance::IncomeForm.find(@cadastre_mirror.id)
-      if @cadastre_mirror.update(set_params)
-        redirect_to ticket_continue_income_path(@ticket, @action)
+      @dependent_params = params[:dependent]
+
+      if @dependent_params.present?
+        @cadastre_mirror = Core::Attendance::IncomeDependentForm.find(params[:id]) rescue nil
+
+        if @cadastre_mirror.update(set_dependent_params)
+          session[:dependent_id] = @cadastre_mirror.id if !@mirror.nil?
+          redirect_to ticket_continue_income_path(@ticket, @action)
+        else
+          render action: :edit
+        end
       else
-        render action: :edit
+        @cadastre_mirror = Core::Attendance::IncomeForm.find(params[:id]) rescue nil
+        
+        if @cadastre_mirror.update(set_params)
+          redirect_to ticket_continue_income_path(@ticket, @action)
+        else
+          render action: :edit
+        end
       end
+      
     end
 
 
     private
 
     def set_params
-      params.require(:attendance_income_form)
-            .permit(:main_income, dependent_mirrors_attributes: [:income, :id])
+      params.require(:attendance_income_form).permit(:main_income, :income)
+    end
+    
+    def set_dependent_params
+      params.require(:attendance_income_dependent_form).permit(:income)
     end
 
     def set_ticket

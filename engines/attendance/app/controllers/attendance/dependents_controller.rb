@@ -26,8 +26,9 @@ module Attendance
       if @dependent_mirror.valid?
         @new_dependent_mirror =@cadastre_mirror.dependent_mirrors.new(@dependent_mirror.attributes)
         @new_dependent_mirror.save
-        
-        redirect_to ticket_dependents_path(@ticket, @action)
+          
+        session[:dependent_id] = @new_dependent_mirror.id
+        redirect_to ticket_continue_dependent_path(@ticket, @action)
       else
         render action: :new
       end
@@ -41,7 +42,8 @@ module Attendance
       @dependent_mirror = Core::Attendance::DependentForm.find(@dependent_mirror.id)
       
       if @dependent_mirror.update(set_params)
-        redirect_to ticket_dependents_path(ticket_id: @ticket, action_id: @action)
+        session[:dependent_id] = @dependent_mirror.id
+        redirect_to ticket_continue_dependent_path(@ticket, @action)
       else
         render action: :edit
       end

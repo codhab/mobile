@@ -1,4 +1,4 @@
-= simple_form_for @cadastre_mirror, url: @ticket.input_disabled?(@action) ? "#" : ticket_cadastre_path(@ticket, @cadastre_mirror), validate: true do |f|
+= simple_form_for @cadastre_mirror, url: @ticket.input_disabled?(@action) ? "#" : ticket_cadastre_path(@ticket, @cadastre_mirror) do |f|
   = f.input :name, input_html: { disabled: true }
   = f.input :cpf, input_html: { class: 'cpf', disabled: true }
   = f.input :gender, as: :select, include_blank: 'false', collection: Core::Candidate::Cadastre.genders.keys, input_html: { disabled: @ticket.input_disabled?(@action) }
@@ -14,7 +14,7 @@
   = f.input :nis, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :cid, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :adapted_property, as: :select, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) }
-  = f.input :arrival_df, as: :string, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) , class: 'date'}
+  = f.input :arrival_df, as: :string, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) , class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : nil}
   
   .big-divider
   .column.text-center
