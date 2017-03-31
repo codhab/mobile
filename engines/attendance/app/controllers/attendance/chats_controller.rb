@@ -6,7 +6,7 @@ module Attendance
     def index
       @chats = current_cadastre.attendance_chats
       @chats = Core::Attendance::ChatPolicy.new(@chats)
-      
+
     end
 
     def new
@@ -17,8 +17,6 @@ module Attendance
     def create
       @chat = current_cadastre.attendance_chats.new(set_params)
       if @chat.save
-        @service = Core::Attendance::ChatCommentService.new(@chat, nil, nil)
-        @service.candidate_start_notification!
         redirect_to new_chat_chat_comment_path(@chat)
       else
         render :new
