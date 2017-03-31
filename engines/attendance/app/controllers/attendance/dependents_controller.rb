@@ -24,7 +24,7 @@ module Attendance
       @dependent_mirror = Core::Attendance::DependentForm.new(set_params)
       
       if @dependent_mirror.valid?
-        @new_dependent_mirror =@cadastre_mirror.dependent_mirrors.new(@dependent_mirror.attributes)
+        @new_dependent_mirror = @cadastre_mirror.dependent_mirrors.new(@dependent_mirror.attributes)
         @new_dependent_mirror.save
           
         session[:dependent_id] = @new_dependent_mirror.id
