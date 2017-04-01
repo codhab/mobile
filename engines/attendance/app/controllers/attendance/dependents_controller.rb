@@ -59,7 +59,7 @@ module Attendance
 
     def set_params
       params.require(:attendance_dependent_form)
-            .permit(:rg, :name, :cpf, :rg_org, :income, :born, :kinship_id, :special_condition_id)
+            .permit(:rg, :name, :cpf, :rg_org, :income, :born, :kinship_id, :special_condition_id, :cid)
     end
 
     def set_dependent_mirror
