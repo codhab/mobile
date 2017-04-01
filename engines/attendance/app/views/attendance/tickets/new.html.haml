@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{candidate.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -45,8 +45,8 @@
                 = link_to "Atualização de dados de contato", ticket_update_contact_path(@ticket)
                 .sub.header
                   #{@ticket.situation_by_action_context(4)}
-     
-  - if !@ticket.on_attendance?            
+
+  - if !@ticket.on_attendance?
     .sixteen.wide.column
       .ui.raised.segment
         %a.ui.red.ribbon.label.bold Importante

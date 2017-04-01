@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{candidate.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -27,8 +27,8 @@
                         = "Criado em: #{requeriment.created_at.strftime('%d/%m/%Y - %H:%M')}" rescue "Sem informação"
                       %small
                         %p
-                          %b= requeriment.finalized ? "Fechado" : "Aberto"  
-                        
+                          %b= requeriment.finalized ? "Fechado" : "Aberto"
+
         - else
           %tr
             %td

@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{new_ticket_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -11,7 +11,7 @@
   .column.content-form
     - if @ticket.closed?(@action)
       .text-center
-        %p 
+        %p
           %h2 Dados #{@action.situation.name.pluralize}
         %p
           %i.icon.checkmark.huge.green
@@ -34,7 +34,7 @@
                       |
                       = mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
                   .sub.header
-                    - if !@ticket.input_disabled?(@action) 
+                    - if !@ticket.input_disabled?(@action)
                       = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
                       - if @ticket.disable_remove_spouse(mirror)
                         = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'ui button red mini', method: :delete
@@ -53,4 +53,3 @@
       = link_to "Adicionar dependente", new_ticket_dependent_path(@ticket), class: 'ui button blue fluid'
       .divider
       = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid'
-      

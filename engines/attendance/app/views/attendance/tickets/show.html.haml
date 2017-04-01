@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{attendance.tickets_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -9,7 +9,7 @@
   %table.ui.celled.table
     %thead
       %tr
-        %th 
+        %th
           %h3 Protocolo: #{@ticket.protocol}
     %tbody
       %tr
@@ -43,5 +43,3 @@
             %p.black= link_to "Visualizar arquivo #{index + 1}", upload.document_url, target: '_blank'
         - else
           %i Nenhum documento enviado.
-
-

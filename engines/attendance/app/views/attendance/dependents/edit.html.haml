@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{ticket_dependents_path(@ticket)}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -11,9 +11,8 @@
   .column.content-form
     - if @ticket.closed?(@action)
       .text-center
-        %p 
+        %p
           %h2 Dados #{@action.situation.name.pluralize}
         %p
           %i.icon.checkmark.huge.green
     = render 'edit_form'
-    

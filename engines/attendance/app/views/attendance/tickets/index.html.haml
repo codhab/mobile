@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{candidate.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -20,4 +20,4 @@
                     = ticket.situation.external_name
                     %p
                       %small
-                        Criado em #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}             
+                        Criado em #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}
