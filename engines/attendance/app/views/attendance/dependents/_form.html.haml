@@ -4,8 +4,8 @@
   = f.input :rg, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :rg_org, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil,  disabled: @ticket.input_disabled?(@action) }
-  = f.association :kinship, include_blank: false, selected: f.object.kinship_id.present? ? f.object.kinship_id : 3, input_html: { disabled: @ticket.input_disabled?(@action) }
-  = f.association :special_condition, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) ||  f.object.kinship_id == 6 }
+  = f.association :kinship, include_blank: false, selected: f.object.kinship_id.present? ? f.object.kinship_id : 3, input_html: { disabled: (@ticket.input_disabled?(@action) ||  f.object.kinship_id == 6) }
+  = f.association :special_condition, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :cid, input_html: { disabled: @ticket.input_disabled?(@action) }
   .big-divider
   = f.submit "Salvar dados", class: 'ui button green fluid', data: { disable_with: "Salvando aguarde..."}

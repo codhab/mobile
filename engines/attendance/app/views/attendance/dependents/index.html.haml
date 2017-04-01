@@ -19,7 +19,7 @@
     %table.ui.celled.table
       %tbody
         - if @cadastre_mirror.dependent_mirrors.present?
-          - @cadastre_mirror.dependent_mirrors.each do |mirror|
+          - @cadastre_mirror.dependent_mirrors.order(:name).each do |mirror|
             %tr
               %td
               %td
