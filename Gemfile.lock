@@ -1,5 +1,6 @@
-PATH
-  remote: components/core
+GIT
+  remote: git://github.com/codhab/core.git
+  revision: 0a4c4ced999e62a0356d9d26404a690bcab3a935
   specs:
     core (0.1.0)
       carrierwave
@@ -207,7 +208,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.1.12)
       execjs (>= 0.3.0, < 3)
-    unicorn (5.2.0)
+    unicorn (5.3.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     validates_cpf_cnpj (0.2.0)
