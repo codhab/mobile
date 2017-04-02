@@ -15,7 +15,7 @@
               %h4.ui.image.header
                 %i.small.refresh.icon.gray
                 .content
-                  = link_to ticket.context.name.humanize, ticket_path(ticket)
+                  = link_to "#{ticket.context.name.humanize} - #{ticket.presenter.protocol}", ticket_path(ticket)
                   .sub.header
                     = ticket.situation.external_name
                     %p

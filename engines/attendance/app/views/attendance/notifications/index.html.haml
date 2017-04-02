@@ -9,13 +9,19 @@
   .column
     %table.ui.celled.table
       %tbody.black
-        - @notifications.order('created_at DESC').each do |notification|
-          %tr{class: notification.read ? 'read' : 'not-read'}
+        - if @notifications.present?
+          - @notifications.order('created_at DESC').each do |notification|
+            %tr{class: notification.read ? 'read' : 'not-read'}
+              %td
+                %h4.ui.image.header
+                  %i.small.user.icon.gray
+                  .content
+                    %a{href: "#{notification_path(notification)}"}
+                      #{notification.title.humanize}
+                    .sub.header
+                      #{notification.created_at.strftime("%d/%m/%Y - %H:%M")}
+        - else
+          %tr
             %td
-              %h4.ui.image.header
-                %i.small.user.icon.gray
-                .content
-                  %a{href: "#{notification_path(notification)}"}
-                    #{notification.title.humanize}
-                  .sub.header
-                    #{notification.created_at.strftime("%d/%m/%Y - %H:%M")}
+            %td.text-center
+              %i Nenhum notificação registrada.

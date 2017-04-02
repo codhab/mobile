@@ -13,30 +13,34 @@
   .sixteen.wide.column
     %table.ui.celled.table
       %tbody.black
-        %tr
-          %td
-            %h4.ui.image.header
-              %i.icon.big{class: @ticket.icon_by_action_context(1)}
-              .content
-                = link_to "Atualização de dados básicos", ticket_update_cadastre_path(@ticket)
-                .sub.header
-                  #{@ticket.situation_by_action_context(1)}
-        %tr
-          %td
-            %h4.ui.image.header
-              %i.icon.big{class: @ticket.icon_by_action_context(2)}
-              .content
-                = link_to "Atualização de dependentes", ticket_update_dependent_path(@ticket)
-                .sub.header
-                  #{@ticket.situation_by_action_context(2)}
-        %tr
-          %td
-            %h4.ui.image.header
-              %i.icon.big{class: @ticket.icon_by_action_context(3)}
-              .content
-                = link_to "Atualização de renda", ticket_update_income_path(@ticket)
-                .sub.header
-                  #{@ticket.situation_by_action_context(3)}
+        - if @ticket.action_allow?
+          %tr
+            %td
+              %h4.ui.image.header
+                %i.icon.big{class: @ticket.icon_by_action_context(1)}
+                .content
+                  = link_to "Atualização de dados básicos", ticket_update_cadastre_path(@ticket)
+                  .sub.header
+                    #{@ticket.situation_by_action_context(1)}
+
+        - if @ticket.action_allow?
+          %tr
+            %td
+              %h4.ui.image.header
+                %i.icon.big{class: @ticket.icon_by_action_context(2)}
+                .content
+                  = link_to "Atualização de dependentes", ticket_update_dependent_path(@ticket)
+                  .sub.header
+                    #{@ticket.situation_by_action_context(2)}
+        - if @ticket.action_allow?
+          %tr
+            %td
+              %h4.ui.image.header
+                %i.icon.big{class: @ticket.icon_by_action_context(3)}
+                .content
+                  = link_to "Atualização de renda", ticket_update_income_path(@ticket)
+                  .sub.header
+                    #{@ticket.situation_by_action_context(3)}
         %tr
           %td
             %h4.ui.image.header
@@ -57,7 +61,7 @@
             = @ticket.confirmation_text
         .divider
         - if @ticket.allow_close?
-          = link_to @ticket.close_text, ticket_close_path(@ticket), class: "ui button green fluid"
+          = link_to @ticket.close_text, ticket_close_path(@ticket), class: "ui button green fluid", data: { disable_with: t(:disable_with)}
         - else
           = link_to @ticket.close_text, "#", class: "ui button green fluid disabled"
   - else
