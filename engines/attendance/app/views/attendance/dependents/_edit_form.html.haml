@@ -6,7 +6,9 @@
   = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil,  disabled: @ticket.input_disabled?(@action) }
 
   
-  = f.association :kinship, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) || f.object.kinship_id == 6}
+  = f.association :kinship, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.association :special_condition, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) }
+  = f.association :special_condition_type, include_blank: "Selecione..."
+  = f.input :cid
   .big-divider
-  = f.submit "Salvar dados", class: 'ui button green fluid', data: { disable_with: "Salvando aguarde..."}
+  = f.submit "Salvar dados", class: 'ui button green fluid', data: { disable_with: t(:disable_with)}

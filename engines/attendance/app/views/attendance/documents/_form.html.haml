@@ -1,23 +1,23 @@
 = simple_form_for @action, url: ticket_action_documents_path(@ticket, @action), multipart: true, method: :post,  html: {id: 'file-validation'} do |f|
   
-  - @service.documents.each do |document|
-    - if f.object.send(document.target_method).any?
-      .column 
-        %label 
-          %h4= document.name.humanize
-      .divider
-      .column 
-        - if [2, 3].include? @action.context_id
-          = f.fields_for document.target_method, @action.send(document.target_method).reject(&:persisted?) do |builder|
-            = render 'document_fields', f: builder, d: document
-          = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, session[:dependent_id], 'Core::Candidate::DependentMirror'
-        - else
-          = f.fields_for document.target_method do |builder|
-            = render 'document_fields', f: builder, d: document
-          = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method
-      %hr/
+  - if @action.document_required?
+    - @service.documents.each do |document|
+      - if f.object.send(document.target_method).any?
+        .column 
+          %label 
+            %h4= document.name.humanize
+        .divider
+        .column 
+          - if [2, 3].include? @action.context_id
+            = f.fields_for document.target_method, @action.send(document.target_method).reject(&:persisted?) do |builder|
+              = render 'document_fields', f: builder, d: document
+            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, session[:dependent_id], 'Core::Candidate::DependentMirror'
+          - else
+            = f.fields_for document.target_method do |builder|
+              = render 'document_fields', f: builder, d: document
+            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method
+        %hr/
 
-  - if @ticket.document_required?(@action)
     - if @action.context_id == 2
       .text-justify
         %p 
@@ -48,4 +48,4 @@
     .text-center
       %h3 Nenhum documento necessário.
     .big-divider
-    = f.submit "Confirmar atualizações", class: 'ui button green fluid', data: { disable_with: 'Processando, aguarde...' } 
+    = f.submit "Confirmar atualizações", class: 'ui button green fluid submit', data: { disable_with: 'Processando, aguarde...' } 

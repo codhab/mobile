@@ -25,6 +25,9 @@
               %td
                 .content
                   - if mirror.name.present?
+                    %small
+                      %i Toque para visualizar os dados
+                    %br/
                     %b= link_to mirror.name, ticket_dependent_path(@ticket, mirror), remote: true
                   - else
                     %b= link_to "Sem nome", ticket_dependent_path(@ticket, mirror), remote: true
@@ -33,6 +36,8 @@
                       = mirror.kinship.name rescue "Sem parentesco"
                       |
                       = mirror.born.strftime("%d/%m/%Y") rescue "Sem informação"
+                      |
+                      = mirror.special_condition.name rescue ''
                   .sub.header
                     - if !@ticket.input_disabled?(@action)
                       = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
@@ -52,4 +57,4 @@
     - elsif @ticket.open?(@action)
       = link_to "Adicionar dependente", new_ticket_dependent_path(@ticket), class: 'ui button blue fluid'
       .divider
-      = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid'
+      = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid', data: { disable_with: t(:disable_with)}

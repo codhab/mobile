@@ -87,4 +87,15 @@ Rails.application.configure do
   config.time_zone = 'Brasilia'
   config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   config.i18n.default_locale = :'pt-BR'
+
+
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+   :address              => "10.230.80.51",
+   :port                 => 25,
+   :authentication       => false,
+   :enable_starttls_auto => false
+  }
+
 end

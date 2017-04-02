@@ -4,8 +4,10 @@ module Attendance
   class AvatarsController < ApplicationController
 
     def update
-      current_cadastre.update(set_params)
-      redirect_to :back
+      @cadastre = Core::Attendance::AvatarForm.find(current_cadastre.id) rescue nil
+      @cadastre.update(set_params)
+      
+      redirect_back(fallback_location: :back) 
     end
 
     private
