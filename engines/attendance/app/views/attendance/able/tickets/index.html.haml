@@ -1,9 +1,9 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{main_app.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
-    .title-header Atualização Cadastral 
+    .title-header Atualização Cadastral
     .sub-title Contextos para atualização
 .big-divider
 .ui.grid.container
@@ -17,7 +17,7 @@
               = link_to "Atualização de dados básicos", new_able_ticket_path(context_id: 1)
               .sub.header
                 = @context_cadastre.present? ? @context_cadastre.status.humanize : "Toque para atualizar"
-     
+
       %tr
         %td
           %h4.ui.image.header
@@ -26,8 +26,8 @@
               = link_to "Atualização de dependentes", new_able_ticket_path(context_id: 2)
               .sub.header
                 = @context_dependent.present? ? @context_dependent.status.humanize : "Toque para atualizar"
-             
-                
+
+
       %tr
         %td
           %h4.ui.image.header
@@ -36,7 +36,7 @@
               = link_to "Atualização de renda", new_able_ticket_path(context_id: 3)
               .sub.header
                 = @context_income.present? ? @context_income.status.humanize : "Toque para atualizar"
-               
+
       %tr
         %td
           %h4.ui.image.header
