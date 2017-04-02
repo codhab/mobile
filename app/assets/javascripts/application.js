@@ -1,6 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require semantic-ui/semantic.min
 //= require turbolinks_transaction
 //= require rails.validations
