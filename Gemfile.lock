@@ -1,5 +1,6 @@
-PATH
-  remote: components/core
+GIT
+  remote: git://github.com/codhab/core.git
+  revision: 408cac37bd91078e4a53c5235631c86c809bca16
   specs:
     core (0.1.0)
       carrierwave
