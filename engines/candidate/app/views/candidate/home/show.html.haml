@@ -8,7 +8,7 @@
     .title-header
       #{current_cadastre.hello}
       %p.mini-text
-        %i Toque para visualizar seu cadastro
+        = link_to "Toque para visualizar seu cadastro", cadastre_path(current_cadastre)
       %p
         %span.ui.label.yellow.mini.font-black
           #{current_cadastre.current_situation_name}

@@ -1,9 +1,8 @@
 
 module Attendance
   class NotificationsController < ApplicationController
-      
-    def index
 
+    def index
       @notifications = current_cadastre.notifications
     end
 
