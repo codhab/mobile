@@ -5,7 +5,7 @@ module Attendance
 
 
     def index
-      @requeriments = current_cadastre.assessments
+      @requeriments = current_cadastre.assessments.requeriments
     end
 
     def new
