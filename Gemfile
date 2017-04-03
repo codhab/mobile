@@ -22,7 +22,6 @@ gem 'has_scope'
 
 
 #gem 'core', path: 'components/core'
-
 gem 'core', github: 'codhab/core'
 
 group :development, :test do
