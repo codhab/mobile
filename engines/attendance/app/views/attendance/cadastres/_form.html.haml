@@ -13,7 +13,7 @@
   = f.association :special_condition_type, as: :select, include_blank: "Nenhuma", input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :nis, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :cid, input_html: { disabled: @ticket.input_disabled?(@action) }
-  = f.input :adapted_property, as: :select, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) }
+  = f.input :adapted_property, as: :select, include_blank: false, selected: false, input_html: { disabled: @ticket.input_disabled?(@action) }
   = f.input :arrival_df, as: :string, include_blank: false, input_html: { disabled: @ticket.input_disabled?(@action) , class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : nil}
   
   .big-divider
