@@ -25,20 +25,20 @@
         %b= link_to "Voltar Para o Início", candidate.root_path, class:'ui yellow button mini'
 
 .ui.three.column.grid.container-fluid
-  - current_cadastre.list.each do |list|
+  - current_cadastre.presenter.list.each do |list|
     .column{style: 'text-align: left; padding-bottom: none !important'}
       .ui.segment{style: 'padding-bottom: 10px !important; font-size: 11px !important;'}
         %b #{I18n.t(list[0])}
-      
+
     .column{style: 'text-align: center'}
       .ui.segment{style: 'padding-bottom: 10px !important; font-size: 11px !important'}
         %b Faixa #{list[1][0]}
-      
+
     .column
       .ui.segment{style: 'padding-bottom: 10px !important; font-size: 11px !important'}
         %b Posição: #{list[2]}
 
-            
+
 .divider
 .ui.three.column.grid.container.black
   .column
@@ -107,7 +107,7 @@
     .text-center
       Agendamentos
 
-:javascript 
+:javascript
   $(document).ready(function () {
     $(".fileupload").change(function () {
         $('form').submit();  /* async submit */
