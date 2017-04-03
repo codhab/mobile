@@ -21,13 +21,7 @@ gem 'onesignal'
 gem 'has_scope'
 
 
-<<<<<<< HEAD
-gem 'core', path: 'components/core'
-#gem 'core', github: 'codhab/core'
-=======
-#gem 'core', path: 'components/core'
 gem 'core', github: 'codhab/core'
->>>>>>> fd1c98d4e240910b33b78982c68512ba69afd088
 
 group :development, :test do
   gem 'byebug', platform: :mri
