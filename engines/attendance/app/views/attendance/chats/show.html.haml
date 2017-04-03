@@ -25,7 +25,7 @@
               %td
                 %p
                   %b Conversa Nº
-                  %br/ 
+                  %br/
                   #{@chat.id}/#{@chat.created_at.year}
                   %br
                   %br
@@ -58,8 +58,6 @@
                   %p
                     -if comment.chat_uploads.present?
                       %p
-                      - comment.chat_uploads.each do |arq|
-                        %i
-                          = link_to '<i class="attach icon large"></i>'.html_safe , arq.document_url, target: '_blank'
+                        = "Você anexou: #{comment.chat_uploads.count} arquivo(s)"
                   %p{style: 'text-align: justify'}
                     %i= comment.content.humanize

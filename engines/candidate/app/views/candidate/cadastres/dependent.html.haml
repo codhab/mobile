@@ -72,47 +72,47 @@
                         CID
                       .description
                         = @spouse.cid.present? ? @spouse.cid : "Sem informação"
-    - if @dependents.present?
-      - @dependents.each do |dependent|
-        .ui.styled.accordion.custom_accordion
-          .title
-            %i.dropdown.icon
-            = "#{dependent.name} - #{dependent.kinship.name rescue nil}"
-          .content
-            %table.ui.celled.table
-              %tbody
-                %tr
-                  %td
-                    .ui.list
-                      .item
-                        %a.header
-                          CPF
-                        .description
-                          = dependent.cpf.present? ? dependent.cpf : "Sem informação"
-                %tr
-                  %td
-                    .ui.list
-                      .item
-                        %a.header
-                          RG
-                        .description
-                          = dependent.rg.present? ? "#{dependent.rg} - #{dependent.rg_org}/#{dependent.rg_uf_id}" : "Sem informação"
-                %tr
-                  %td
-                    .ui.list
-                      .item
-                        %a.header
-                          Sexo
-                        .description
-                          = dependent.gender.present? ? dependent.gender : "Sem informação"
-                %tr
-                  %td
-                    .ui.list
-                      .item
-                        %a.header
-                          Data de Nascimento
-                        .description
-                          = dependent.born.present? ? dependent.born.strftime('%d/%m/%Y') : "Sem informação"
+- if @dependents.present?
+  - @dependents.each do |dependent|
+    .ui.styled.accordion.custom_accordion
+      .title
+        %i.dropdown.icon
+        = "#{dependent.name} - #{dependent.kinship.name rescue nil}"
+      .content
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      CPF
+                    .description
+                      = dependent.cpf.present? ? dependent.cpf : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      RG
+                    .description
+                      = dependent.rg.present? ? "#{dependent.rg} - #{dependent.rg_org}/#{dependent.rg_uf_id}" : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Sexo
+                    .description
+                      = dependent.gender.present? ? dependent.gender : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Data de Nascimento
+                    .description
+                      = dependent.born.present? ? dependent.born.strftime('%d/%m/%Y') : "Sem informação"
 :javascript
   $('.accordion')
     .accordion({

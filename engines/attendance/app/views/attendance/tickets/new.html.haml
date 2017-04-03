@@ -50,6 +50,24 @@
                 .sub.header
                   #{@ticket.situation_by_action_context(4)}
 
+  .sixteen.wide.column
+    .ui.raised.segment
+      %a.ui.blue.ribbon.label.bold Interações (#{@ticket.comments.count})
+      %span
+        .text-justify
+        - if @ticket.comments.present?
+          - @ticket.comments.each do |comment|
+            .divider
+            %span
+              %a.ui.orange.right.ribbon.label= comment.created_at.strftime("%d/%m/%Y %H:%M")
+            %span
+              .divider
+              %p= comment.message
+        - else
+          .divider
+            .text-center
+              %p
+                %i Nenhuma mensagem registrada.
   - if !@ticket.on_attendance?
     .sixteen.wide.column
       .ui.raised.segment
@@ -64,22 +82,3 @@
           = link_to @ticket.close_text, ticket_close_path(@ticket), class: "ui button green fluid", data: { disable_with: t(:disable_with)}
         - else
           = link_to @ticket.close_text, "#", class: "ui button green fluid disabled"
-  - else
-    .sixteen.wide.column
-      .ui.raised.segment
-        %a.ui.blue.ribbon.label.bold Interações (#{@ticket.comments.count})
-        %span
-          .text-justify
-          - if @ticket.comments.present?
-            - @ticket.comments.each do |comment|
-              .divider
-              %span
-                %a.ui.orange.right.ribbon.label= comment.created_at.strftime("%d/%m/%Y %H:%M")
-              %span
-                .divider
-                %p= comment.message
-          - else
-            .divider
-              .text-center
-                %p
-                  %i Nenhuma mensagem registrada.

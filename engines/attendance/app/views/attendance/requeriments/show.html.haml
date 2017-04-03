@@ -19,10 +19,7 @@
       %p= @requeriment.description_subject
       .divider
       - if @requeriment.digital_documents.present?
-        - @requeriment.digital_document_forms.each do |req|
-          %i
-            = link_to '<i class="attach icon large"></i>'.html_safe , req.doc_path_url, target: '_blank'
-
+        = "Você anexou: #{@requeriment.digital_documents.count} arquivo(s)"  
       - else
         %i Nenhum arquivo enviado
       - if @requeriment.finalized == true
