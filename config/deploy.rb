@@ -23,7 +23,7 @@ set  :repository, 'https://github.com/codhab/mobile.git'
 set  :branch, ENV["BRANCH"] ||= 'master'
 
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'tmp/pids', 'tmp/sockets', 'public')
-set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml', 'config/unicorn.rb', 'config/env.yml')
+set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/newrelic.yml','config/secrets.yml', 'config/unicorn.rb', 'config/env.yml')
 
 set :user, 'root'
 

@@ -1,5 +1,6 @@
-PATH
-  remote: components/core
+GIT
+  remote: git://github.com/codhab/core.git
+  revision: 2dd3ea99e6ec59a540de7ef2bc70902416e473ae
   specs:
     core (0.1.0)
       carrierwave
@@ -140,6 +141,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    newrelic_rpm (4.0.0.332)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -246,6 +248,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mina
   mina-unicorn
+  newrelic_rpm
   onesignal
   pg
   portal!

@@ -20,8 +20,8 @@ gem 'validates_cpf_cnpj'
 gem 'onesignal'
 gem 'has_scope'
 
-gem 'core', path: 'components/core'
-#gem 'core', github: 'codhab/core'
+#gem 'core', path: 'components/core'
+gem 'core', github: 'codhab/core'
 
 
 
@@ -40,6 +40,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'newrelic_rpm'
 end
 
 path 'engines' do
