@@ -114,7 +114,7 @@ module Attendance
     private
 
     def allow_action?
-      redirect_to new_ticket_path if @ticket.situation_id != 1 
+      redirect_to new_ticket_path if ![1,2].include?(@ticket.situation_id) 
     end
 
     def set_ticket
