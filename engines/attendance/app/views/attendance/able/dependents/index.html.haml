@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{able_tickets_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -30,8 +30,8 @@
                   %p
                     = link_to "editar",edit_able_ticket_context_dependent_path(@ticket, @context, mirror), class: 'ui button mini blue icon'
                     = link_to "remover",edit_able_ticket_context_dependent_path(@ticket, @context, mirror),  class: 'ui button mini red icon' if mirror.kinship_id != 6
-         
-  
+
+
 .big-divider
 .ui.grid.container
   .column.text-center

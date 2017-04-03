@@ -1,6 +1,4 @@
 = simple_form_for @chat, url: chats_path, method: :post do |f|
-  = f.label "Assunto"
-  = f.association :chat_category, label: false, prompt: 'Selecione'
-  .big-divider
-  .column.text-center
-    = f.submit "Prosseguir", class: 'ui button yellow fluid'
+  = f.association :chat_category, label: "Assunto", prompt: 'Selecione'
+  .mini-margin
+  = f.submit "Prosseguir", class: 'btn btn-success', data: { disable_with: t(:disable_with) }

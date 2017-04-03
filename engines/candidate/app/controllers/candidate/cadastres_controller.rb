@@ -17,7 +17,7 @@ module Candidate
     end
 
     def show
-
+      
     end
 
     def detail

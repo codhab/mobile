@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{candidate.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -9,15 +9,21 @@
   .column
     %table.ui.celled.table
       %tbody.black
-        - @tickets.order('created_at DESC').each do |ticket|
-          %tr
+        - if @tickets.present?
+          - @tickets.order('created_at DESC').each do |ticket|
+            %tr
+              %td
+                %h4.ui.image.header
+                  %i.small.refresh.icon.gray
+                  .content
+                    = link_to "#{ticket.context.name.humanize} - #{ticket.presenter.protocol}", ticket_path(ticket)
+                    .sub.header
+                      = ticket.situation.external_name
+                      %p
+                        %small
+                          Criado em #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}
+        - else
+          %tr 
             %td
-              %h4.ui.image.header
-                %i.small.refresh.icon.gray
-                .content
-                  = link_to ticket.context.name.humanize, ticket_path(ticket)
-                  .sub.header
-                    = ticket.situation.external_name
-                    %p
-                      %small
-                        Criado em #{ticket.created_at.strftime("%d/%m/%Y - %H:%M")}             
+            %td.text-center
+              %i Nenhuma atualização realizada.

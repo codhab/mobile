@@ -27,7 +27,7 @@ module Attendance
         @cadastre_mirror = Core::Attendance::IncomeDependentForm.find(params[:id]) rescue nil
 
         if @cadastre_mirror.update(set_dependent_params)
-          session[:dependent_id] = @cadastre_mirror.id if !@mirror.nil?
+          session[:dependent_id] = @cadastre_mirror.id if !@cadastre_mirror.nil?
           redirect_to ticket_continue_income_path(@ticket, @action)
         else
           render action: :edit

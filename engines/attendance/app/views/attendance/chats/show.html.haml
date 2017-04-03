@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{chats_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -22,10 +22,15 @@
           %tbody
             %tr
               %td
+              %td
                 %p
-                  = "Conversa Nº:  #{@chat.id}/#{@chat.created_at.year}"
+                  %b Conversa Nº
+                  %br/ 
+                  #{@chat.id}/#{@chat.created_at.year}
                   %br
-                  = @chat.chat_category.name rescue nil
+                  %br
+                  %b= @chat.chat_category.name rescue nil
+                  %br/
                   = @chat.created_at.strftime("%d/%m/%Y - %H:%M")
             - if @chat.closed
               %tr
@@ -42,21 +47,19 @@
             - @chat.chat_comments.order('created_at DESC').each do |comment|
               %tr
                 %td
+                %td
                   %small
                     - if comment.staff_id.present?
                       %a.ui.yellow.ribbon.label
-                        CODHAB
+                        CODHAB - #{comment.created_at.strftime("%d/%m/%Y - %H:%M")}
                     - else
                       %a.ui.green.ribbon.label
-                        Eu
+                        Você - #{comment.created_at.strftime("%d/%m/%Y - %H:%M")}
                   %p
-                    %small
-                      .ui.label
-                        = comment.created_at.strftime("%d/%m/%Y - %H:%M")
                     -if comment.chat_uploads.present?
                       %p
                       - comment.chat_uploads.each do |arq|
                         %i
                           = link_to '<i class="attach icon large"></i>'.html_safe , arq.document_url, target: '_blank'
                   %p{style: 'text-align: justify'}
-                    = comment.content
+                    %i= comment.content.humanize

@@ -1,26 +1,51 @@
 = simple_form_for @action, url: ticket_action_documents_path(@ticket, @action), multipart: true, method: :post,  html: {id: 'file-validation'} do |f|
   
-  - @service.documents.each do |document|
-    - if f.object.send(document.target_method).any?
-      .column 
-        %label 
-          %h4= document.name.humanize
-      .divider
-      .column 
-        - if [2, 3].include? @action.context_id
-          = f.fields_for document.target_method, @action.send(document.target_method).reject(&:persisted?) do |builder|
-            = render 'document_fields', f: builder, d: document
-          = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, session[:dependent_id], 'Core::Candidate::DependentMirror'
-        - else
-          = f.fields_for document.target_method do |builder|
-            = render 'document_fields', f: builder, d: document
-          = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method
-      %hr/
+  - if @action.document_required?
+    - @service.documents.each do |document|
+      - if f.object.send(document.target_method).any?
+        .column 
+          %label 
+            %h4= document.name.humanize
+        .divider
+        .column 
+          - if [2, 3].include? @action.context_id
+            = f.fields_for document.target_method, @action.send(document.target_method).reject(&:persisted?) do |builder|
+              = render 'document_fields', f: builder, d: document
+            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, session[:dependent_id], 'Core::Candidate::DependentMirror'
+          - else
+            = f.fields_for document.target_method do |builder|
+              = render 'document_fields', f: builder, d: document
+            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method
+        %hr/
 
-  - if @ticket.document_required?(@action)
+    - if @action.context_id == 2
+      .text-justify
+        %p 
+          %b São considerados dependentes:
+        %p Cônjuge ou companheira(o) do(a) candidato(a) inscrito(a) – Certidão de casamento, RG e CPF;
+        %p Filhos menores de 18 (dezoito) anos ou inválidos de qualquer idade – apresentação da certidão de nascimento e CPF se a idade for maior ou igual a 14 anos;
+        %p Enteados menores de 18 (dezoito) anos ou inválidos de qualquer idade – apresentação da certidão de nascimento;
+        %p Outros que, por determinação judicial, se encontrem sob a guarda, curatela ou tutela – apresentação da certidão de nascimento, CPF/RG e da decisão judicial;
+        %p Pais e avós, desde que devidamente comprovados como dependentes em declaração de Imposto de Renda – apresentação do CPF/RG e da Declaração do Imposto de Renda.
+      .divider
+    - if @action.context_id == 3
+      .text-justify
+        %p
+          %b Para comprovação da Renda Familiar Bruta do candidato, serão admitidas:
+        %p Servidor Público: Declaração funcional e o último contracheque;
+        %p 
+          Autônomo informal: Declaração em formulário próprio, fornecido pela CODHAB 
+          %a{href: 'http://www.codhab.df.gov.br/pagina/201', target: '_blank'} 
+            (http://www.codhab.df.gov.br/pagina/201)
+          , declaração de comprovação de renda emitida pelo sindicato de classe, cooperativa ou associação, DECORE – Declaração de Comprovação de Percepção de Rendimentos emitida por profissional competente, obedecida à legislação pertinente ou Declaração do IRPF (com recibo de entrega);
+        %p Condutor autônomo de veículo: Declaração sindicato com vínculo há pelo menos 1 (um) ano e registro do veículo;
+        %p Comerciante: Contrato individual ou social da firma registrado e pró-labore declarado pelo contador;
+        %p Autônomo/profissional liberal: Comprovante de recolhimento do INSS, declaração de IR, contrato de prestação de serviço com guia RPA;
+        %p Outros assalariados: Cópia de identificação e das folhas próprias da carteira de trabalho; Último contracheque de pagamento, contendo o carimbo e CNPJ do empregador ou Contrato de Trabalho regido pela legislação pertinente.
+      .divider
     = f.submit "Enviar documentação", class: 'ui button green fluid disabled', data: { disable_with: 'Processando, aguarde...' } 
   - else
     .text-center
       %h3 Nenhum documento necessário.
     .big-divider
-    = f.submit "Confirmar atualizações", class: 'ui button green fluid', data: { disable_with: 'Processando, aguarde...' } 
+    = f.submit "Confirmar atualizações", class: 'ui button green fluid submit', data: { disable_with: 'Processando, aguarde...' } 

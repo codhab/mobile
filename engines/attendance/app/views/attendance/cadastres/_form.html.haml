@@ -24,4 +24,4 @@
       = link_to "Atualizar meus dados", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
     - elsif @ticket.open?(@action)
       .divider
-      = f.submit "Salvar dados", class: "ui button green fluid"
+      = f.submit "Salvar dados", class: "ui button green fluid", data: { disable_with: t(:disable_with)}

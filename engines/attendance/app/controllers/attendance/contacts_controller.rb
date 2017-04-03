@@ -5,13 +5,14 @@ module Attendance
     before_action :set_cadastre 
     before_action :set_ticket
     before_action :set_action
+    before_action :set_cadastre_mirror 
 
     def edit
-      @cadastre_mirror = Core::Attendance::ContactForm.find(@cadastre.id)
+      @cadastre_mirror = Core::Attendance::ContactForm.find(@cadastre_mirror.id)
     end
 
     def update
-      @cadastre_mirror = Core::Attendance::ContactForm.find(@cadastre.id)
+      @cadastre_mirror = Core::Attendance::ContactForm.find(@cadastre_mirror .id)
 
       if @cadastre_mirror.update(set_params)
         redirect_to ticket_continue_contact_path(@ticket, @action)

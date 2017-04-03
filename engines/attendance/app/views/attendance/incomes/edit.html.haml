@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{new_ticket_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -10,7 +10,7 @@
 .ui.grid.container
   .column.content-form
     = simple_form_for @mirror, url: ticket_income_path(@ticket, @mirror, dependent: @dependent) do |f|
-      - if f.object.respond_to?(:main_income) 
+      - if f.object.respond_to?(:main_income)
         = f.input :main_income, input_html: { class: 'coin'}
       - else
         = f.input :income, input_html: { class: 'coin'}

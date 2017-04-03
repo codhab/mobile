@@ -1,34 +1,39 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{new_ticket_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Atualização de renda
-    .sub-title frase
+    .sub-title Listagem de rendas
 
-.big-divider
 .ui.grid.container
   .column.content-form
     - if @ticket.closed?(@action)
       .text-center
-        %p 
+        %p
           %h2 Dados #{@action.situation.name.pluralize}
         %p
           %i.icon.checkmark.huge.green
-  
+
 .ui.grid
   .row
     .column
-      %b= @ticket.cadastre_mirror.name
-      %p= number_to_currency @ticket.cadastre_mirror.main_income
-      %p= link_to "Editar renda", "#", class: 'ui button blue mini' if !@ticket.input_disabled?(@action)       
+      %table.ui.celled.table
+        %tbody
+          %tr
+            %td
+            %td
+              %b= @ticket.cadastre_mirror.name
+              %p= number_to_currency @ticket.cadastre_mirror.main_income
+              %p= link_to "Editar renda", edit_ticket_income_path(@ticket,  @ticket.cadastre_mirror), class: 'ui button blue mini' if !@ticket.input_disabled?(@action)
 
-  - @ticket.cadastre_mirror.dependent_mirrors.each do |mirror|
-    .row
-      .column
-        %b= mirror.name
-        %p= number_to_currency mirror.income
-        %p= link_to "Editar renda", edit_ticket_income_path(@ticket, mirror, dependent: true), class: 'ui button blue mini'  if !@ticket.input_disabled?(@action)   
+          - @ticket.cadastre_mirror.dependent_mirrors.each do |mirror|
+            %tr
+              %td
+              %td
+                %b= mirror.name
+                %p= number_to_currency mirror.income
+                %p= link_to "Editar renda", edit_ticket_income_path(@ticket, mirror, dependent: true), class: 'ui button blue mini'  if !@ticket.input_disabled?(@action)
 
 .ui.grid
   .row

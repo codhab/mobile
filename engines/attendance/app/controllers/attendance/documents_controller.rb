@@ -10,6 +10,8 @@ module Attendance
 
     def new      
       @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
+      @action   = Core::Attendance::ActionPolicy.new(@action)
+      
       @service  = Core::Attendance::DocumentService.new({cadastre: @cadastre,
                                                          action: @action,
                                                          ticket: @ticket,

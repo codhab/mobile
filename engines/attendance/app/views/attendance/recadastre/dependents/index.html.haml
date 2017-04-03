@@ -1,5 +1,5 @@
 .ui.grid
-  .one.wide.mobile.column
+  .two.wide.mobile.column
     %a{href: "#{recadastre_ticket_contexts_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
@@ -32,8 +32,8 @@
                     - if @context.em_atualização? || @context.iniciado?
                       = link_to "Editar", edit_recadastre_ticket_context_dependent_path(@ticket, @context, mirror), class: 'ui button blue mini'
                       = link_to "Remover", recadastre_ticket_context_dependent_path(@ticket, @context, mirror), class: 'ui button red mini' if mirror.kinship_id != 6
-         
-  
+
+
 .big-divider
 .ui.grid.container
   .column.text-center

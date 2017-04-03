@@ -4,6 +4,7 @@ Attendance::Engine.routes.draw do
     resources :chat_comments
   end
 
+  resources :avatars, only: :update
   resources :requeriments
   resources :notifications
   resources :tickets

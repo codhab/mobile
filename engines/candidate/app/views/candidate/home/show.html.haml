@@ -1,6 +1,9 @@
 .ui.grid.container
   .column{style: 'width: 25%'}
-    = link_to image_tag('/images/no-avatar.jpg', class: 'ui mini circular image big-yellow-border custom-avatar-tiny '), cadastre_path(current_cadastre)
+    - if current_cadastre.avatar?
+      = link_to image_tag("#{current_cadastre.avatar_url}", class: 'ui mini circular image big-yellow-border custom-avatar-tiny '), cadastre_path(current_cadastre)
+    - else
+      = link_to image_tag('http://www.codhab.df.gov.br/sample/avatar.jpg', class: 'ui mini circular image big-yellow-border custom-avatar-tiny '), cadastre_path(current_cadastre)
   .column{style: 'width: 75%'}
     .title-header
       #{current_cadastre.hello}
@@ -52,25 +55,26 @@
           %i.icon.retweet.huge.gray.yellow
       .text-center
         Atualização Cadastral
-  - if @ticket_policy.allow_convoked_update?
-    .column
-      .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path(context_id: 2)}"}
-          %i.icon.checkmark.huge
-      .text-center
-        Habilitação
+  /- if @ticket_policy.allow_convoked_update?
+  /  .column
+  /    .ui.segment.text-center
+  /      %a{href: "#{attendance.new_ticket_path(context_id: 2)}"}
+  /        %i.icon.checkmark.huge
+  /    .text-center
+  /      Habilitação
   .column
     .ui.segment.text-center
       %a{href: "#{attendance.tickets_path}"}
         %i.icon.refresh.huge.gray
     .text-center
       Minhas Atualizações
-  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
-    .ui.segment.text-center
-      %a{href: "#{attendance.chats_path}"}
-        %i.icon.comment.outline.huge.gray.text-center
-    .text-center
-      Minhas Conversas
+  - if @ticket_policy.allow_chats?
+    .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
+      .ui.segment.text-center
+        %a{href: "#{attendance.chats_path}"}
+          %i.icon.comment.outline.huge.gray.text-center
+      .text-center
+        Minhas Conversas
   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
     .ui.segment.text-center
       %a{href: "#{attendance.requeriments_path}"}
