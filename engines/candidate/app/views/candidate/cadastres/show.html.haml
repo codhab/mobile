@@ -25,7 +25,7 @@
         %b= link_to "Voltar Para o Início", candidate.root_path, class:'ui yellow button mini'
 
 .ui.three.column.grid.container-fluid
-  - current_cadastre.presenter.list.each do |list|
+  - current_cadastre.list.each do |list|
     .column{style: 'text-align: left; padding-bottom: none !important'}
       .ui.segment{style: 'padding-bottom: 10px !important; font-size: 11px !important;'}
         %b #{I18n.t(list[0])}
