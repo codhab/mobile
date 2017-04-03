@@ -1,12 +1,12 @@
-GIT
-  remote: git://github.com/codhab/core.git
-  revision: 7473408fccb87f4b9875e67b701a157fa1933542
+PATH
+  remote: components/core
   specs:
     core (0.1.0)
       carrierwave
       email_validator
       file_validators
       friendly_id
+      haml-rails
       one_signal
       pg
       rails (~> 5.0.2)
@@ -260,4 +260,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.13.7
+   1.14.4
