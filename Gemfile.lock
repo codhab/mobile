@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: d1730fa21189a970ca1ec2b2cd19967701193949
+  revision: 8d4d8c61cb65db9cd74ed3ce0328062b27b66f78
   specs:
     core (0.1.0)
       carrierwave
