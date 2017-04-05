@@ -44,3 +44,5 @@
         = link_to "Atualizar rendas", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
       - elsif @ticket.open?(@action)
         = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid'
+      - else
+        = link_to "Corrigir minha atualização", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'

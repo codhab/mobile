@@ -44,6 +44,8 @@ module Attendance
       @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket)
       @service.close_ticket
 
+      flash[:green] = "Operação realizada com sucesso!"
+      
       redirect_to main_app.root_path
     end
 

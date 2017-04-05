@@ -13,7 +13,7 @@
               = render 'document_fields', f: builder, d: document
             = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, session[:dependent_id], 'Core::Candidate::DependentMirror'
           - else
-            = f.fields_for document.target_method do |builder|
+            = f.fields_for document.target_method, @action.send(document.target_method).reject(&:persisted?) do |builder|
               = render 'document_fields', f: builder, d: document
             = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method
         %hr/
