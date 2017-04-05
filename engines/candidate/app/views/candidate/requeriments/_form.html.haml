@@ -1,0 +1,13 @@
+.ui.grid
+  .sixtteen.wide.mobile.column.text-center
+    .title-header
+      Envio de Requerimento
+    .big.divider
+.ui.grid
+  .column
+    = simple_form_for @requeriment, url: requeriments_path, method: :post do |f|
+      = f.input :cpf, label: "CPF", input_html: { class: 'cpf'}
+      = f.input :email, input_html: { class: 'email'}
+      = f.input :observation
+      .divider
+      = f.submit "Enviar requerimento", class: 'ui button green fluid', data: { disable_with: t(:disable_with)}
