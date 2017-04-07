@@ -14,22 +14,28 @@ module Candidate
     def create
 
       @requeriment = Core::Protocol::ExternalRequerimentForm.new(set_params)
-      
-      if @requeriment.valid?
-        redirect_to action: :show
+      @service = Core::Protocol::AssessmentService.new(@requeriment)
+      if simple_captcha_valid?
+        if @service.requeriment_citzen_app!
+          redirect_to requeriment_path(@requeriment)
+        else
+          render action: :new
+        end
       else
+        flash[:notice] = "Preencha o código secreto."
         render action: :new
       end
     end
 
     def show
+      @requeriment = Core::Protocol::Assessment.find(params[:id])
     end
 
 
     private
 
     def set_params
-      params.require(:protocol_external_requeriment_form).permit(:cpf, :observation, :email)
+      params.require(:protocol_external_requeriment_form).permit(:recipient, :cpf, :observation, :email,:address,:description_subject, digital_document_forms_attributes: [:doc_path, :_destroy, :id])
     end
 
 

@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/codhab/core.git
-  revision: d2797390701ecb10a0698a7c6210d470d15e06f3
+PATH
+  remote: components/core
   specs:
     core (0.1.0)
       carrierwave
@@ -184,6 +183,8 @@ GEM
     ruby_parser (3.8.4)
       sexp_processor (~> 4.1)
     sexp_processor (4.8.0)
+    simple_captcha2 (0.4.3)
+      rails (>= 4.1)
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -253,6 +254,7 @@ DEPENDENCIES
   pg
   portal!
   rails (~> 5.0.2)
+  simple_captcha2
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
