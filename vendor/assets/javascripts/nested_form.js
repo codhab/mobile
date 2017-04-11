@@ -34,14 +34,6 @@ $(document).on('turbolinks:load', function() {
   });
 
   
-  $("fieldset input[type='file']").on('change', function() { 
-    if($("fieldset input[type='file']").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
-      $('form').find('input:submit').removeClass('disabled')
-    } else {
-      $('form').find('input:submit').addClass('disabled')
-    } 
-  });
-
 
 });
 

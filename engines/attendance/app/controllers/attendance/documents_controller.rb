@@ -9,13 +9,16 @@ module Attendance
 
 
     def new      
+
+      @dependent_id = params[:dependent_id]
+     
       @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
       @action   = Core::Attendance::ActionPolicy.new(@action)
       
       @service  = Core::Attendance::DocumentService.new({cadastre: @cadastre,
                                                          action: @action,
                                                          ticket: @ticket,
-                                                         dependent_id: session[:dependent_id]})  
+                                                         dependent_id: @dependent_id})  
       
       @service.documents_required!
 
