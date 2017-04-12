@@ -25,7 +25,10 @@
             %td
               %b= @ticket.cadastre_mirror.name
               %p= number_to_currency @ticket.cadastre_mirror.main_income
-              %p= link_to "Editar renda", edit_ticket_income_path(@ticket,  @ticket.cadastre_mirror), class: 'ui button blue mini' if !@ticket.input_disabled?(@action)
+              %p
+                - if !@ticket.input_disabled?(@action)
+                  = link_to "Editar renda", edit_ticket_income_path(@ticket,  @ticket.cadastre_mirror), class: 'ui button blue mini' 
+                  = link_to "Enviar documentação", new_ticket_action_document_path(@ticket, @action), class: 'ui button green mini'
 
           - @ticket.cadastre_mirror.dependent_mirrors.each do |mirror|
             %tr
@@ -33,7 +36,10 @@
               %td
                 %b= mirror.name
                 %p= number_to_currency mirror.income
-                %p= link_to "Editar renda", edit_ticket_income_path(@ticket, mirror, dependent: true), class: 'ui button blue mini'  if !@ticket.input_disabled?(@action)
+                %p
+                  - if !@ticket.input_disabled?(@action)
+                    = link_to "Editar renda", edit_ticket_income_path(@ticket, mirror, dependent: true), class: 'ui button blue mini'  
+                    = link_to "Enviar documentação", new_ticket_action_document_path(@ticket, @action, dependent_id: mirror.id), class: 'ui button green mini'
 
 .ui.grid
   .row
@@ -44,3 +50,5 @@
         = link_to "Atualizar rendas", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'
       - elsif @ticket.open?(@action)
         = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid'
+      - else
+        = link_to "Corrigir minha atualização", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'

@@ -14,3 +14,5 @@
     - elsif @ticket.open?(@action)
       .divider
       = f.submit "Salvar dados", class: "ui button green fluid"
+    - else
+      = link_to "Corrigir minha atualização", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'

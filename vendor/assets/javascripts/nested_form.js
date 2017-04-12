@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function() {
     $('.add_fields').removeClass('disabled')
 
 
-    if($("input[type='file']").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
+    if($(".inputfile").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
       $('form').find('input:submit').removeClass('disabled')
     } else {
       $('form').find('input:submit').addClass('disabled')
@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function() {
     $(this).before($(this).data('fields').replace(regexp, time));
     $(this).addClass('disabled')
 
-    if($("input[type='file']").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
+    if($(".inputfile").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
       $('form').find('input:submit').removeClass('disabled')
     } else {
       $('form').find('input:submit').addClass('disabled')
@@ -34,14 +34,6 @@ $(document).on('turbolinks:load', function() {
   });
 
   
-  $("fieldset input[type='file']").on('change', function() { 
-    if($("fieldset input[type='file']").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
-      $('form').find('input:submit').removeClass('disabled')
-    } else {
-      $('form').find('input:submit').addClass('disabled')
-    } 
-  });
-
 
 });
 

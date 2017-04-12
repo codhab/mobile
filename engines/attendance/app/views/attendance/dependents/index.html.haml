@@ -43,6 +43,7 @@
                       = link_to "editar", edit_ticket_dependent_path(@ticket, mirror), class: 'ui button blue mini'
                       - if @ticket.disable_remove_spouse(mirror)
                         = link_to "remover", ticket_dependent_path(@ticket, mirror), class: 'ui button red mini', method: :delete
+                      = link_to "Enviar documentação", new_ticket_action_document_path(@ticket, @action, dependent_id: mirror.id), class: 'ui button green mini'
         - else
           %tr
             %td
@@ -58,3 +59,5 @@
       = link_to "Adicionar dependente", new_ticket_dependent_path(@ticket), class: 'ui button blue fluid'
       .divider
       = link_to "Finalizar minha atualização", ticket_close_action_path(@ticket, @action), class: 'ui button yellow fluid', data: { disable_with: t(:disable_with)}
+    - else
+      = link_to "Corrigir minha atualização", ticket_open_path(@ticket, @action), class: 'ui button yellow fluid'

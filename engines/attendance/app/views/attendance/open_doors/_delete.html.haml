@@ -1,0 +1,13 @@
+.ui.modal
+  .header.text-center
+    Cancelar participação
+  .image.content
+    .description
+      .ui.header= @project.name
+      %p #{@project.presenter.detail_name}
+  .actions.text-center
+    %a.ui.gray.button.icon{href: '#'}
+      Não, cancelar
+    %a.ui.red.icon.button{href: "#{open_door_path(id: @project.id)}", data: { method: :delete }}
+      Sim, quero desistir
+      %i.checkmark.icon

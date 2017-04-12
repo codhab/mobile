@@ -1,0 +1,17 @@
+= simple_form_for @requeriment, url: requeriments_path do |f|
+  = f.input :recipient, label: "Nome"
+  = f.input :cpf, label: "CPF", input_html: { class: 'cpf'}
+  = f.input :email, input_html: { class: 'email'}
+  = f.input :address, label: "Endereço"
+  = f.input :description_subject, label: "Assunto", input_html: {rows: 3}
+  = f.simple_fields_for :digital_document_forms do |builder|
+    = render 'digital_document_form_fields', f: builder
+  = link_to_add_fields "Adicionar arquivo", f, :digital_document_forms
+  .divider
+  - if flash[:notice].present?
+    .ui.label.red
+      = flash[:notice]
+    %br
+  = show_simple_captcha
+  .divider
+  = f.submit "Enviar requerimento", class: 'ui button green fluid', data: { disable_with: t(:disable_with)}

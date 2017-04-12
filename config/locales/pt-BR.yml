@@ -60,6 +60,12 @@ pt-BR:
     - :day
     - :month
     - :year
+  simple_captcha:
+    placeholder: "Digite o texto da imagem"
+    label: "Digite o código no campo"
+    refresh_button_text: "Atualizar"
+    message:
+      default: "Código digitado não é o mesmo da imagem"
   datetime:
     distance_in_words:
       about_x_hours:

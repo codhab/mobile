@@ -65,7 +65,7 @@ function validate_file(input) {
 
   }
 
-  if($("fieldset input[type='file']").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
+  if($(".inputfile").filter(function () { return $.trim($(this).val()).length == 0 }).length == 0) {
     $('form').find('input:submit').removeClass('disabled')
   } else {
     $('form').find('input:submit').addClass('disabled')

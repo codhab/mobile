@@ -1,0 +1,8 @@
+.ui.grid
+  .mobile.column.text-center
+    .title-header Requerimento
+.big-divider
+.ui.grid.container
+  .column
+    .ui.raised.segment
+      = "<b>#{@requeriment.recipient}</b>, seu requerimento nº: <b>#{@requeriment.document_number}</b>, foi enviado para CODHAB.".html_safe

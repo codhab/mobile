@@ -1,21 +1,22 @@
 %fieldset
-  - if f.object.document_url.to_s.present?
-    %small
-      %p
-        %b= link_to "Toque para visualizar o documento", f.object.document_url.to_s, target: '_blank'
-  - else
   .ui.buttons
     %label.button-file-upload.ui.button.fluid.mini{class: f.object.document? ? 'green' : 'gray'}
       - if f.object.document_url.to_s.present?
         %span
-          Toque para modificar o documento
+          Documento enviado
       - else
         %span
           Toque para inserir um documento
 
-      = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline", data: { destroy: f.object.disable_destroy }}
+      - if f.object.persisted?
+        = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline", disabled: true}
+      - else
+        = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline inputfile", data: { destroy: f.object.disable_destroy }}
     = f.input :target_id, as: :hidden
     = f.input :target_model, as: :hidden
     = f.hidden_field :_destroy
-    = link_to "<i class='remove icon'></i>".html_safe, '#', class: "remove_fields ui button black icon inline #{f.object.disable_destroy ? 'disabled' : ''}"
+    - if f.object.persisted?
+      = link_to "<i class='remove icon'></i>".html_safe, '#', class: "remove_fields ui button black icon inline disabled"
+    - else
+      = link_to "<i class='remove icon'></i>".html_safe, '#', class: "remove_fields ui button black icon inline #{f.object.disable_destroy ? 'disabled' : ''}"
 .divider

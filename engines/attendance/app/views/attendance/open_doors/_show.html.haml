@@ -1,0 +1,15 @@
+.ui.modal
+  .header.text-center
+    Participação em empreendimento
+  .image.content
+    .description
+      .ui.header= @project.name
+      %p #{@project.presenter.detail_name}
+      %p
+        %b= link_to "Mais informações (clique aqui)", @project.reference_link, target: '_blank'
+  .actions.text-center
+    %a.ui.gray.button.icon{href: '#'}
+      Não, cancelar
+    %a.ui.positive.icon.button{href: "#{new_open_door_path(id: @project.id)}"}
+      Sim, quero participar
+      %i.checkmark.icon

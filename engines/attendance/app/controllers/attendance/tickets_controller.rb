@@ -44,6 +44,8 @@ module Attendance
       @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket)
       @service.close_ticket
 
+      flash[:green] = "Operação realizada com sucesso!"
+      
       redirect_to main_app.root_path
     end
 
@@ -97,11 +99,11 @@ module Attendance
     end
 
     def continue_dependent
-      redirect_to new_ticket_action_document_path(ticket_id: @ticket, action_id: @action, dependent_mirror_id: params[:dependent_mirror_id])
+      redirect_to new_ticket_action_document_path(ticket_id: @ticket, action_id: @action, dependent_id: params[:dependent_id])
     end
 
     def continue_income
-      redirect_to new_ticket_action_document_path(@ticket, @action)
+      redirect_to new_ticket_action_document_path(@ticket, @action, dependent_id: params[:dependent_id])
     end
 
     def continue_contact

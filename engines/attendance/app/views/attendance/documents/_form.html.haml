@@ -9,13 +9,18 @@
         .divider
         .column 
           - if [2, 3].include? @action.context_id
-            = f.fields_for document.target_method, @action.send(document.target_method).reject(&:persisted?) do |builder|
-              = render 'document_fields', f: builder, d: document
-            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, session[:dependent_id], 'Core::Candidate::DependentMirror'
+
+            - if @action.send(document.target_method).where(target_id: @service.dependent_id).any?
+              = f.fields_for document.target_method, @action.send(document.target_method).where(target_id: params[:dependent_id]) do |builder|
+                = render 'document_fields', f: builder, d: document
+            - else
+              = f.fields_for document.target_method, @action.send(document.target_method).select { |s| s.target_id == params[:dependent_id].to_i } do |builder|
+                = render 'document_fields', f: builder, d: document
+            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, params[:dependent_id], 'Core::Candidate::DependentMirror', @action.send(document.target_method).any? {|key| key.persisted? }
           - else
-            = f.fields_for document.target_method do |builder|
+            = f.fields_for document.target_method, @action.send(document.target_method) do |builder|
               = render 'document_fields', f: builder, d: document
-            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method
+            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, nil, nil, @action.send(document.target_method).any? {|key| key.persisted? }
         %hr/
 
     - if @action.context_id == 2
@@ -43,7 +48,7 @@
         %p Autônomo/profissional liberal: Comprovante de recolhimento do INSS, declaração de IR, contrato de prestação de serviço com guia RPA;
         %p Outros assalariados: Cópia de identificação e das folhas próprias da carteira de trabalho; Último contracheque de pagamento, contendo o carimbo e CNPJ do empregador ou Contrato de Trabalho regido pela legislação pertinente.
       .divider
-    = f.submit "Enviar documentação", class: 'ui button green fluid disabled', data: { disable_with: 'Processando, aguarde...' } 
+    = f.submit "Enviar documentação", class: "ui button green fluid #{@action.objects_persisted? ? '' : 'disabled'}", data: { disable_with: 'Processando, aguarde...' } 
   - else
     .text-center
       %h3 Nenhum documento necessário.
