@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :add_cors_headers
 
   helper_method :current_cadastre
+  helper_method :current_entity
 
   def page_not_found
     redirect_to main_app.root_path if controller_name != "candidates"
@@ -18,6 +19,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_entity
+  end
 
   def current_cadastre
 

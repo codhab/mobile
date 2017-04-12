@@ -103,7 +103,7 @@ module Attendance
     end
 
     def continue_income
-      redirect_to new_ticket_action_document_path(@ticket, @action)
+      redirect_to new_ticket_action_document_path(@ticket, @action, dependent_id: params[:dependent_id])
     end
 
     def continue_contact

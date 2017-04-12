@@ -10,15 +10,15 @@ module Attendance
 
     def new      
 
-      @dependent_id = params[:dependent_id]
-     
+      params[:dependent_id] ||= nil
+
       @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
       @action   = Core::Attendance::ActionPolicy.new(@action)
       
       @service  = Core::Attendance::DocumentService.new({cadastre: @cadastre,
                                                          action: @action,
                                                          ticket: @ticket,
-                                                         dependent_id: @dependent_id})  
+                                                         dependent_id: params[:dependent_id]})  
       
       @service.documents_required!
 
@@ -37,7 +37,18 @@ module Attendance
           @service = Core::Attendance::TicketService.new(cadastre: @cadastre, ticket: @ticket, action: @action)
           @service.close_action
 
-          redirect_to new_ticket_path
+          case @action.context_id
+          when 1
+            redirect_to edit_ticket_cadastre_path(@ticket, @ticket.cadastre_mirror)
+          when 2
+            redirect_to ticket_dependents_path(@ticket)
+          when 3
+            redirect_to ticket_incomes_path(@ticket)
+          when 4
+            redirect_to edit_ticket_contact_path(@ticket, @ticket.cadastre_mirror)
+          else              
+            redirect_to new_ticket_path
+          end
         end
       else
         render action: :new

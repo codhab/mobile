@@ -1,5 +1,6 @@
-PATH
-  remote: components/core
+GIT
+  remote: git://github.com/codhab/core.git
+  revision: 1c5fa8d0e8187d44e07d4b0355bb310b01018aa4
   specs:
     core (0.1.0)
       carrierwave
@@ -89,7 +90,7 @@ GEM
     file_validators (2.1.0)
       activemodel (>= 3.0)
       mime-types (>= 1.0)
-    friendly_id (5.2.0)
+    friendly_id (5.2.1)
       activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
