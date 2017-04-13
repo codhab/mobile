@@ -10,8 +10,8 @@
         .column 
           - if [2, 3].include? @action.context_id
 
-            - if @action.send(document.target_method).where(target_id: @service.dependent_id).any?
-              = f.fields_for document.target_method, @action.send(document.target_method).where(target_id: params[:dependent_id]) do |builder|
+            - if @service.dependent_id.nil?
+              = f.fields_for document.target_method, @action.send(document.target_method).select {|s| s.target_id.nil? } do |builder|
                 = render 'document_fields', f: builder, d: document
             - else
               = f.fields_for document.target_method, @action.send(document.target_method).select { |s| s.target_id == params[:dependent_id].to_i } do |builder|
