@@ -2,7 +2,7 @@
   
   - if @action.document_required?
     - @service.documents.each do |document|
-      - if f.object.send(document.target_method).any?
+      - if @service.each_allow?(target: document.target_method, target_id: params[:dependent_id])
         .column 
           %label 
             %h4= document.name.humanize
@@ -10,13 +10,14 @@
         .column 
           - if [2, 3].include? @action.context_id
 
-            - if @action.send(document.target_method).where(target_id: @service.dependent_id).any?
-              = f.fields_for document.target_method, @action.send(document.target_method).where(target_id: params[:dependent_id]) do |builder|
+            - if @service.dependent_id.nil?
+              = f.fields_for document.target_method, @action.send(document.target_method).select {|s| s.target_id.nil? } do |builder|
                 = render 'document_fields', f: builder, d: document
+              = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, params[:dependent_id], 'Core::Candidate::DependentMirror', @action.send(document.target_method).any? {|key| key.persisted? }
             - else
               = f.fields_for document.target_method, @action.send(document.target_method).select { |s| s.target_id == params[:dependent_id].to_i } do |builder|
                 = render 'document_fields', f: builder, d: document
-            = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, params[:dependent_id], 'Core::Candidate::DependentMirror', @action.send(document.target_method).any? {|key| key.persisted? }
+              = link_to_add_upload_fields "Adicionar arquivo", f, document.target_method, params[:dependent_id], 'Core::Candidate::DependentMirror', @action.send(document.target_method).where(target_id: params[:dependent_id].to_i).any? {|key| key.persisted? }
           - else
             = f.fields_for document.target_method, @action.send(document.target_method) do |builder|
               = render 'document_fields', f: builder, d: document
