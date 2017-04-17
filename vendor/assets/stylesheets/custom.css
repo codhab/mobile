@@ -242,6 +242,10 @@ span.ui.label.yellow {
   border-radius: 0px!important;
 }
 
+.image_modal{
+  width: 100%;
+}
+
 /*Media Queries*/
 
 @media only screen

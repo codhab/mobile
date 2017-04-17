@@ -2,24 +2,24 @@ require_dependency 'attendance/application_controller'
 
 module Attendance
   class DocumentsController < ApplicationController
-      
+
     before_action :set_cadastre
     before_action :set_ticket
-    before_action :set_action 
+    before_action :set_action
 
 
-    def new      
+    def new
 
       params[:dependent_id] ||= nil
 
       @action   = Core::Attendance::ActionDocumentForm.find(@action.id)
       @action   = Core::Attendance::ActionPolicy.new(@action)
-      
+
       @service  = Core::Attendance::DocumentService.new({cadastre: @cadastre,
                                                          action: @action,
                                                          ticket: @ticket,
-                                                         dependent_id: params[:dependent_id]})  
-      
+                                                         dependent_id: params[:dependent_id]})
+
       @service.documents_required!
 
       @action = @service.action
@@ -28,7 +28,7 @@ module Attendance
     def create
 
       if @action.update(set_params)
-        
+
         if @action.context_id == 2
           redirect_to ticket_dependents_path(@ticket)
         elsif @action.context_id == 3
@@ -46,7 +46,7 @@ module Attendance
             redirect_to ticket_incomes_path(@ticket)
           when 4
             redirect_to edit_ticket_contact_path(@ticket, @ticket.cadastre_mirror)
-          else              
+          else
             redirect_to new_ticket_path
           end
         end
@@ -70,7 +70,6 @@ module Attendance
               arrival_df_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
               registry_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
               payment_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
-              income_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model],
               special_condition_documents_attributes: [:id, :_destroy, :document, :target_id, :target_model]
               )
     end

@@ -1,7 +1,7 @@
 function validate_file(input) {
   var maxExceededMessage = "Este arquivo é excede o tamanho máximo permitido de (5 MB)";
   var extErrorMessage = "Arquivo com formato inválido. Envie somente arquivos do tipo: (.jpg .jpeg .gif .bmp .png ou .pdf)";
-  var allowedExtension = ["jpg", "jpeg", "gif", "png", "bmp", "pdf"];
+  var allowedExtension = ["jpg", "jpeg", "gif", "png", "bmp", "pdf", "JPG", "JPEG", "PNG"];
 
   var extName;
   var maxFileSize = 5000000;
@@ -23,7 +23,7 @@ function validate_file(input) {
     if (sizeExceeded) {
       message += "<p>" + maxExceededMessage + "</p>"
     }
- 
+
     if (extError) {
       message += "<p>" + extErrorMessage + "</p>"
     }
@@ -42,7 +42,7 @@ function validate_file(input) {
               "</div>"+
             "</div>"+
             "<div class='divider'></div>"
-            
+
     $('.ui.modal').html(html);
     $('.ui.modal').modal('show');
 
@@ -57,7 +57,7 @@ function validate_file(input) {
       $(input).closest('fieldset').remove();
     }
 
-    
+
   } else {
     $("#"+ input.id).parents('label').contents('span').text('Arquivo carregado')
     $("#"+ input.id).parents('label').addClass("yellow").addClass("fluid")
@@ -69,7 +69,6 @@ function validate_file(input) {
     $('form').find('input:submit').removeClass('disabled')
   } else {
     $('form').find('input:submit').addClass('disabled')
-  } 
+  }
 
 }
-

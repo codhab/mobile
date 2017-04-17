@@ -1,18 +1,15 @@
-
 module Attendance
   class IncomesController < ApplicationController
-
-    before_action :set_cadastre 
+    before_action :set_cadastre
     before_action :set_ticket
     before_action :set_cadastre_mirror
     before_action :set_action
 
-    def index
-    end
+    def index; end
 
     def edit
       @dependent = params[:dependent]
-      
+
       if @dependent.present?
         @mirror = Core::Attendance::IncomeDependentForm.find(params[:id]) rescue nil
       else
@@ -34,23 +31,22 @@ module Attendance
         end
       else
         @cadastre_mirror = Core::Attendance::IncomeForm.find(params[:id]) rescue nil
-        
+
         if @cadastre_mirror.update(set_params)
           redirect_to ticket_continue_income_path(@ticket, @action)
         else
           render action: :edit
         end
       end
-      
-    end
 
+    end
 
     private
 
     def set_params
       params.require(:attendance_income_form).permit(:main_income, :income)
     end
-    
+
     def set_dependent_params
       params.require(:attendance_income_dependent_form).permit(:income)
     end

@@ -1,7 +1,5 @@
-
 module Attendance
-  class NotificationsController < ApplicationController
-
+  class NotificationsController < ApplicationController # :nodoc:
     def index
       @notifications = current_cadastre.notifications
     end
