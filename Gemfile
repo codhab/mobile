@@ -19,7 +19,7 @@ gem 'email_validator'
 gem 'validates_cpf_cnpj'
 gem 'onesignal'
 gem 'has_scope'
-gem 'simple_captcha2'
+gem 'simple_captcha', github: 'igormarjes/simple-captcha'
 
 #gem 'core', path: 'components/core'
 gem 'core', github: 'codhab/core'
