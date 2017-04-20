@@ -11,13 +11,16 @@ module Attendance
         redirect_to form_path(id: @current_form.id, form_id: @form)
       else
         @form_value = @form.form_values.new
+        @form_value.write_attributes
       end
     end
 
     def create
-      @form_value = @form.form_values.new(set_params)
+      @form_value = @form.form_values.new
+      @form_value.write_attributes
       @form_value.cadastre_id = current_cadastre.id
-
+      @form_value.attributes= set_params
+      
       if @form_value.save
         redirect_to form_path(id: @form_value, form_id: @form)
       else
