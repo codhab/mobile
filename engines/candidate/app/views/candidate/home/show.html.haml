@@ -88,3 +88,11 @@
           %i.icon.building.huge.gray.text-center.text-center
       .text-center
         Portas abertas
+
+  - if current_cadastre.cpf == '01801850127'
+    .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_form_path(form_id: 2)}"}
+          %i.icon.help.circle.outline.huge.gray.text-center.text-center
+      .text-center
+        Perguntas

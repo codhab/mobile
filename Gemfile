@@ -21,8 +21,8 @@ gem 'onesignal'
 gem 'has_scope'
 gem 'simple_captcha2'
 
-gem 'core', path: '../extranet/components/core'
-#gem 'core', github: 'codhab/core'
+#gem 'core', path: '../extranet/components/core'
+gem 'core', github: 'codhab/core'
 
 
 
