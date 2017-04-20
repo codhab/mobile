@@ -89,7 +89,7 @@
       .text-center
         Portas abertas
 
-  - if @ticket_policy.allow_to_question? && 1 < 2 
+  - if @ticket_policy.allow_to_question? && 1 > 2 
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
       .ui.segment.text-center
         %a{href: "#{attendance.new_form_path(form_id: 2)}"}
