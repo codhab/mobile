@@ -83,21 +83,22 @@
               .sub.header
                 Condicão Especial
               = @cadastre.special_condition.name rescue nil
-      - if @cadastre.special_condition_id > 1
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  CID
-                = @cadastre.cid rescue nil
-        %tr
-          %td
-            %h4.ui.image.header
-              .content
-                .sub.header
-                  Tipo de Condição Especial
-                = @cadastre.special_condition_type.name rescue nil
+      - if @cadastre.special_condition_id.present?
+        - if @cadastre.special_condition_id > 1
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    CID
+                  = @cadastre.cid rescue nil
+          %tr
+            %td
+              %h4.ui.image.header
+                .content
+                  .sub.header
+                    Tipo de Condição Especial
+                  = @cadastre.special_condition_type.name rescue nil
       %tr
         %td
           %h4.ui.image.header

@@ -14,6 +14,12 @@ GIT
       validates_cpf_cnpj
       validates_timeliness
 
+GIT
+  remote: git://github.com/igormarjes/simple-captcha.git
+  revision: 28f9145b525da952c8145b143023d8b281bb1171
+  specs:
+    simple_captcha (0.1.6)
+
 PATH
   remote: engines
   specs:
@@ -184,8 +190,6 @@ GEM
     ruby_parser (3.9.0)
       sexp_processor (~> 4.1)
     sexp_processor (4.9.0)
-    simple_captcha2 (0.4.3)
-      rails (>= 4.1)
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -255,7 +259,7 @@ DEPENDENCIES
   pg
   portal!
   rails (~> 5.0.2)
-  simple_captcha2
+  simple_captcha!
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170407112503) do
     t.string   "value",      limit: 6
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["key"], name: "idx_key", using: :btree
   end
 
 end
