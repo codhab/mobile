@@ -22,7 +22,7 @@ module Entity
     private
 
     def set_params
-      params
+      params.require(:entity_cadastre).permit(:telephone_optional, :telephone, :celphone, :email)
     end
 
   end

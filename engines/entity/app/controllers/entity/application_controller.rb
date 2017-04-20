@@ -7,26 +7,37 @@ module Entity
     helper_method :current_entity
     
     before_filter :add_cors_headers
+    before_action :allow_iframe
     before_filter :cors_preflight_check
     after_filter  :cors_set_access_control_headers
+
+    skip_before_action :verify_authenticity_token
+  
+
 
     private
 
     def current_entity
       
       if params[:cnpj].present?
-        @entity = ::Core::Entity::Cadastre.find_by(cnpj: params[:cnpj]) rescue nil
-        @entity = ::Core::Entity::CadastrePresenter.new(@entity) rescue nil
-        session[:entity_id] = params[:cnpj] if !@entity.nil?
-      elsif !session[:entity_id].nil?
-        @entity = ::Core::Entity::Cadastre.find_by(cnpj: session[:entity_id]) rescue nil
-        @entity = ::Core::Entity::CadastrePresenter.new(@entity) rescue nil
+        entity = ::Core::Entity::Cadastre.find_by(cnpj: params[:cnpj]) rescue nil
+        entity = ::Core::Entity::CadastrePresenter.new(entity) rescue nil
+        entity = ::Core::Entity::CadastrePolicy.new(entity) rescue nil
+        
+        session[:entity_id] = entity.id 
       else
-        @entity = nil
+        entity = ::Core::Entity::Cadastre.find(session[:entity_id]) rescue nil
+        entity = ::Core::Entity::CadastrePresenter.new(entity) rescue nil
+        entity = ::Core::Entity::CadastrePolicy.new(entity) rescue nil
       end
-      
-      return @entity
+
+      return entity
+
     end  
+
+    def allow_iframe
+      response.headers.delete('X-Frame-Options')
+    end
 
     def cors_set_access_control_headers
       headers['Access-Control-Allow-Origin'] = '*'

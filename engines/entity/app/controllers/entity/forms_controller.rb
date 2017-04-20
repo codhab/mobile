@@ -1,4 +1,4 @@
-require_dependency 'attendance/application_controller'
+require_dependency 'entity/application_controller'
 
 module Entity
   class FormsController < ApplicationController
@@ -18,7 +18,7 @@ module Entity
     def create
       @form_value = @form.form_values.new
       @form_value.write_attributes
-      @form_value.cadastre_id = current_cadastre.id
+      @form_value.cadastre_id = current_entity.id
       @form_value.attributes= set_params
       
       if @form_value.save
@@ -38,7 +38,7 @@ module Entity
       @fields = @form.form_fields.map(&:name).split(',')
 
       params.require(:attendance_form_value)
-            .permit(@fields.map { |k| k.to_sym })
+            .permit(@fields)
     end
     def set_form
       @form = Core::Attendance::Form.find(params[:form_id])

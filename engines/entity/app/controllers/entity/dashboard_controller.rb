@@ -4,5 +4,9 @@ module Entity
     def index
     end
 
+    def show
+      @entity = current_entity
+    end
+    
   end
 end

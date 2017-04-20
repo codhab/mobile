@@ -1,0 +1,10 @@
+- flash.each do |key, value|
+  .ui.message.green
+    = value
+= simple_form_for @entity, url: contact_path(@entity), method: :put do |f|
+  = f.input :email
+  = f.input :telephone
+  = f.input :telephone_optional
+  = f.input :celphone
+  .big-divider
+  = f.submit "Atualizar dados", class: 'ui button green fluid'

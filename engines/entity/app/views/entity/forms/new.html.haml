@@ -10,7 +10,7 @@
   .column.content-form
     = simple_form_for @form_value, url: forms_path(form_id: params[:form_id]) do |f|
       - f.object.fields.allows.each do |field|
-        = f.input field.name, label: field.label.humanize, as: field.field_type.to_s.gsub('_',''), collection: field.field_collection.to_s.split(';').map { |k| [k.humanize, k]}, include_blank: false
+        = f.input field.name, label: field.label.humanize, as: field.field_type.to_s.gsub('_',''), collection: field.field_collection.to_s.split(';').map { |k| [k.titleize, k]}, include_blank: false
       = f.submit "Enviar dados", class: 'ui button yellow fluid'
       .divider
       = link_to "Voltar", candidate.root_path, class: 'ui button gray fluid'

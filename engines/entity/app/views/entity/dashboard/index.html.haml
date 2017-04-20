@@ -10,7 +10,7 @@
 .ui.three.column.grid.container.black
   .column
     .ui.segment.text-center
-      %a{href: "#{attendance.notifications_path}"}
+      %a{href: "#{entity.dashboard_path(current_entity)}"}
         %i.icon.file.outline.huge.gray
     .text-center
       Meu cadastro
@@ -20,9 +20,10 @@
         %i.icon.refresh.huge.gray
     .text-center
       Atualização de dados de contato
-  .column
-    .ui.segment.text-center
-      %a{href: "#{entity.new_form_path(form_id: 3)}"}
-        %i.icon.question.huge.gray
-    .text-center
-      Questionários
+  - if current_entity.allow_questions?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.new_form_path(form_id: 3)}"}
+          %i.icon.question.huge.gray
+      .text-center
+        Questionários

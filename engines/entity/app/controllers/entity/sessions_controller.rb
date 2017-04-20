@@ -2,7 +2,10 @@ require_dependency 'entity/application_controller'
 
 module Entity
   class SessionsController < ApplicationController
-    
+
+    skip_before_action :verify_authenticity_token
+  
+
     def new
       @entity = Core::Entity::Cadastre.where(cnpj: params[:cnpj], password: params[:password]).first
 
