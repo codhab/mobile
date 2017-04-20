@@ -13,5 +13,15 @@
   .column.content-form
     %table.ui.celled.table
       %tbody.black
-        = @form_value.inspect
+        - @form.form_fields.where(allow: true).each do |field|
+          %tr
+            %td
+            %td
+              %b= field.label
+              %br/
+              - if field._file?
+                Foto enviada
+              - else
+                = @form_value.store[field.name].humanize
+    
         
