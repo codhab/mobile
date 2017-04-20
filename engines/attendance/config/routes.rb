@@ -1,8 +1,11 @@
 Attendance::Engine.routes.draw do
 
   resources :chats do
-    resources :chat_comments
+
   end
+  resources :chat_comments
+  get 'new_comment',          to: 'chat_comments#new_comment',          as: :new_comment
+  post 'create_comment',       to: 'chat_comments#create_comment',       as: :create_comment
 
   resources :avatars, only: :update
   resources :requeriments
@@ -10,8 +13,8 @@ Attendance::Engine.routes.draw do
   resources :tickets
 
   resources :tickets do
-    
-    get '/confirm/:action_id',          to: 'tickets#confirm',          as: :confirm 
+
+    get '/confirm/:action_id',          to: 'tickets#confirm',          as: :confirm
     get '/open/:action_id',             to: 'tickets#open',             as: :open
     get '/close',                       to: 'tickets#close',            as: :close
     get '/close_action/:action_id',     to: 'tickets#close_action',     as: :close_action
@@ -35,11 +38,11 @@ Attendance::Engine.routes.draw do
     resources :action, only: nil do
       resources :documents
     end
-    
+
   end
 
 
-  resources :open_doors do 
+  resources :open_doors do
     get 'delete'
   end
 
