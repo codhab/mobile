@@ -13,12 +13,13 @@ module Entity
     private
 
     def current_entity
+      
       if params[:cnpj].present?
         @entity = ::Core::Entity::Cadastre.find_by(cnpj: params[:cnpj]) rescue nil
         @entity = ::Core::Entity::CadastrePresenter.new(@entity) rescue nil
         session[:entity_id] = params[:cnpj] if !@entity.nil?
-      elsif session[:entity_id].present?
-        @entity = ::Core::Entity::Cadastre.find(session[:entity_id]) rescue nil
+      elsif !session[:entity_id].nil?
+        @entity = ::Core::Entity::Cadastre.find_by(cnpj: session[:entity_id]) rescue nil
         @entity = ::Core::Entity::CadastrePresenter.new(@entity) rescue nil
       else
         @entity = nil

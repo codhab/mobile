@@ -16,10 +16,10 @@
       Meu cadastro
   .column
     .ui.segment.text-center
-      %a{href: "#{attendance.notifications_path}"}
+      %a{href: "#{entity.edit_contact_path(current_entity)}"}
         %i.icon.refresh.huge.gray
     .text-center
-      Atualização de dados
+      Atualização de dados de contato
   .column
     .ui.segment.text-center
       %a{href: "#{entity.new_form_path(form_id: 3)}"}
