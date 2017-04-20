@@ -1,40 +1,29 @@
 .ui.grid
   .sixteen.wide.mobile.column.text-center
     .title-header
-      Silga da entidade
-    .sub-title nome completo da entidade
+      #{current_entity.fantasy_name}
+    .sub-title #{current_entity.name}
     .divider  
     .sub-title
-      .ui.label.blue situação da entidade
+      .ui.label.blue #{current_entity.current_situation_name}
 .divider
 .ui.three.column.grid.container.black
   .column
     .ui.segment.text-center
-      %a{href: "#{attendance.notifications_path}"}
-        %i.icon.alarm.huge.gray
-    .text-center
-      Notificações
-  .column
-    .ui.segment.text-center
-      %a{href: "#{attendance.notifications_path}"}
+      %a{href: "#{entity.dashboard_path(current_entity)}"}
         %i.icon.file.outline.huge.gray
     .text-center
       Meu cadastro
   .column
     .ui.segment.text-center
-      %a{href: "#{attendance.notifications_path}"}
+      %a{href: "#{entity.edit_contact_path(current_entity)}"}
         %i.icon.refresh.huge.gray
     .text-center
-      Atualização de dados
-  .column
-    .ui.segment.text-center
-      %a{href: "#{attendance.notifications_path}"}
-        %i.icon.question.huge.gray
-    .text-center
-      Questionários
-  .column
-    .ui.segment.text-center
-      %a{href: "#{attendance.notifications_path}"}
-        %i.icon.users.huge.gray
-    .text-center
-      Associados
+      Atualização de dados de contato
+  - if current_entity.allow_questions?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.new_form_path(form_id: 3)}"}
+          %i.icon.question.huge.gray
+      .text-center
+        Questionários

@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
     $(this).addClass('disabled');
     $(this).append("<p class='text-center'><i> Aguarde o envio dos arquivos. Isso pode demorar alguns minutos dependendo da velocidade de sua internet. </i></p>");
   });
-
+/*
   $('input').focus(function() {
     if($(this).attr('type') != 'submit') {   
       label_selector = "label[for=" + $(this).attr('id') +"]"
@@ -21,7 +21,7 @@ $(document).on('turbolinks:load', function() {
       $(this).removeClass('xbig-input')
     }
   })
-
+*/
   /* Jquery Mask */
   $('.date').mask("00/00/0000", {placeholder: "__/__/____"});
   $('.hour').mask("00:00", {placeholder: "00:00"});

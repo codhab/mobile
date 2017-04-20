@@ -7,6 +7,8 @@ Attendance::Engine.routes.draw do
   get 'new_comment',          to: 'chat_comments#new_comment',          as: :new_comment
   post 'create_comment',       to: 'chat_comments#create_comment',       as: :create_comment
 
+  resources :forms, only: [:new, :create, :show]
+  
   resources :avatars, only: :update
   resources :requeriments
   resources :notifications

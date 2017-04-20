@@ -1,0 +1,27 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{main_app.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header #{@form.name}
+    .sub-title #{@form.description}
+
+.ui.grid.container
+  .column.content-form
+    = simple_form_for @form_value, url: forms_path(form_id: params[:form_id]) do |f|
+      - f.object.fields.allows.each do |field|
+        - if field._file?
+          %label.required.field
+            %h5 
+              %abbr{title: "obrigatório"}*
+              #{field.label}
+          %label.button-file-upload.ui.button.fluid.mini.gray
+            %span
+              Toque para inserir um documento
+            = f.input field.name, label: false, as: field.field_type.to_s.gsub('_',''), input_html: { onchange: 'validate_file(this);', class: "inline inputfile"}
+          .divider
+        - else
+          = f.input field.name, label: field.label, as: field.field_type.to_s.gsub('_',''), collection: field.field_collection.to_s.split(';').map { |k| [k.titleize, k]}, include_blank: false
+      = f.submit "Enviar dados", class: 'ui button yellow fluid'
+      .divider
+      = link_to "Voltar", candidate.root_path, class: 'ui button gray fluid'

@@ -1,8 +1,13 @@
 Entity::Engine.routes.draw do
-  root 'cadastres#index'
   
-  resources :cadastres, only: [:index, :show] 
+  #session login
+  #/entity/auth?cnpj=xxxxxxx&password=xxxxxxxx
+  post 'auth', to: 'sessions#new'
 
-  resources :dashboard, only: [:index]
+  root 'dashboard#index'
 
+  resources :dashboard
+  resources :cadastres
+  resources :forms
+  resources :contacts
 end
