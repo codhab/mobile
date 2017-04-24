@@ -31,9 +31,9 @@
         Minha dúvida não se encontra acima.
       .divider
   - unless @chats.present?
-    = link_to "Inciar uma nova Conversa", new_chat_path, class: 'ui button yellow fluid'
+    = link_to "Inciar uma nova Conversa", new_chat_comment_path, class: 'ui button yellow fluid'
   - else
-    = link_to "Inciar uma nova Conversa", new_chat_path, class: 'ui button yellow fluid' if @chats.chat_closed?
+    = link_to "Inciar uma nova Conversa", new_chat_comment_path, class: 'ui button yellow fluid' if @chats.chat_closed?
 .ui.grid.container
   .column
     - if @chats.present?

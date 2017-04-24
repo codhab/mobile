@@ -6,7 +6,6 @@ module Attendance
     def index
       @chats = current_cadastre.attendance_chats
       @chats = Core::Attendance::ChatPolicy.new(@chats)
-
     end
 
     def new

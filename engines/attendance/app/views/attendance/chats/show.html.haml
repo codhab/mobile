@@ -8,12 +8,12 @@
       - unless @chat.chat_comments.present?
         %br
         %br
-        = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid'
+        = link_to "Novo comentário", new_comment_path(chat_id: @chat), class: 'ui button yellow fluid'
       - else
         - if @chat.allow_comment?
           %br
           %br
-          = link_to "Novo comentário", new_chat_chat_comment_path(@chat), class: 'ui button yellow fluid'
+          = link_to "Novo comentário", new_comment_path(chat_id: @chat), class: 'ui button yellow fluid'
 .ui.container-fluid
   .ui.grid
     .row

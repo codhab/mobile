@@ -1,6 +1,10 @@
 GIT
   remote: git://github.com/codhab/core.git
+<<<<<<< HEAD
   revision: c5e9f62ba2903e76091f3c062594291716262d03
+=======
+  revision: f6be5f98af2cf76dae1c5ad6359155eca5c36803
+>>>>>>> 13773856160b607e08ce4473930dfa66d05403ac
   specs:
     core (0.1.0)
       carrierwave
@@ -125,7 +129,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery-validation-rails (1.16.0)
-    js_regex (1.2.2)
+    js_regex (1.2.3)
       regexp_parser (>= 0.3.6, <= 0.5.0)
     kgio (2.11.0)
     listen (3.0.8)
@@ -147,7 +151,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
-    newrelic_rpm (4.0.0.332)
+    newrelic_rpm (4.1.0.333)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -214,7 +218,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.12)
+    uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unicorn (5.3.0)
       kgio (~> 2.6)
