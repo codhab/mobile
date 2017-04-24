@@ -36,11 +36,9 @@ module Attendance
 
     def set_params
       params.require(:attendance_form_value)
-            .permit(:children_count, :children_resident, :special_children,
-                    :resident_room, :income, :work_company,
-                    :children_major, :resident_photo, :roof_photo,
-                    :resident_type, :resident_status, :kitchen_photo)
+            .permit(@form.form_fields.map(&:name).split(','))
     end
+    
     def set_form
       @form = Core::Attendance::Form.find(params[:form_id])
     end
