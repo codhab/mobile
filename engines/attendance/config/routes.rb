@@ -43,6 +43,11 @@ Attendance::Engine.routes.draw do
 
   end
 
+  resources :indications, only: [:index] do 
+    get 'accept'
+    get 'new_decline'
+    get 'create_decline'
+  end
 
   resources :open_doors do
     get 'delete'

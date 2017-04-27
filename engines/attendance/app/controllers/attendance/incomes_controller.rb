@@ -7,7 +7,7 @@ module Attendance
 
     def index; end
 
-    def edit
+    def accept
       @dependent = params[:dependent]
 
       if @dependent.present?
@@ -16,6 +16,7 @@ module Attendance
         @mirror = Core::Attendance::IncomeForm.find(params[:id]) rescue nil
       end
     end
+
 
     def update
       @dependent_params = params[:dependent]
