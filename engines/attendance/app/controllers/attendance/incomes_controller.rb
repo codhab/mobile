@@ -7,7 +7,7 @@ module Attendance
 
     def index; end
 
-    def accept
+    def edit
       @dependent = params[:dependent]
 
       if @dependent.present?
