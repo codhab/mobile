@@ -22,7 +22,7 @@
                   - if @ticket.on_attendance?
                     = link_to "Atualização de dados básicos", '#'
                     .sub.header
-                      Sem ação
+                      Em análise (CODHAB)
                   - else
                     = link_to "Atualização de dados básicos", ticket_update_cadastre_path(@ticket)
                     .sub.header
@@ -37,7 +37,7 @@
                   - if @ticket.on_attendance?
                     = link_to "Atualização de dependentes", '#'
                     .sub.header
-                      Sem ação
+                      Em análise (CODHAB)
                   - else
                     = link_to "Atualização de dependentes", ticket_update_dependent_path(@ticket)
                     .sub.header
@@ -51,7 +51,7 @@
                   - if @ticket.on_attendance?
                     = link_to "Atualização de renda", "#"
                     .sub.header
-                      Sem ação
+                      Em análise (CODHAB)
                   - else
                     = link_to "Atualização de renda", ticket_update_income_path(@ticket)
                     .sub.header
@@ -64,7 +64,7 @@
                 - if @ticket.on_attendance?
                   = link_to "Atualização de dados de contato", "#"
                   .sub.header
-                    Sem ação
+                    Em análise (CODHAB)
                 - else
                   = link_to "Atualização de dados de contato", ticket_update_contact_path(@ticket)
                   .sub.header
