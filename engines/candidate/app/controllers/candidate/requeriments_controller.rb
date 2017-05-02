@@ -12,14 +12,13 @@ module Candidate
     end
 
     def create
-
       @requeriment = Core::Protocol::ExternalRequerimentForm.new(set_params)
       @service = Core::Protocol::AssessmentService.new(@requeriment)
       if simple_captcha_valid?
-        if @service.requeriment_citzen_app!
+        if @service.requeriment_citzen_app!  
           redirect_to requeriment_path(@requeriment)
         else
-          render action: :new
+          render :new
         end
       else
         flash[:notice] = "Preencha o código secreto."
