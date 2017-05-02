@@ -1,11 +1,6 @@
 GIT
-  remote: git://github.com/igormarjes/simple-captcha.git
-  revision: 28f9145b525da952c8145b143023d8b281bb1171
-  specs:
-    simple_captcha (0.1.6)
-
-PATH
-  remote: components/core
+  remote: git://github.com/codhab/core.git
+  revision: fa536864bada237be547c45516587ba389a863a2
   specs:
     core (0.1.0)
       carrierwave
@@ -18,6 +13,12 @@ PATH
       rails (~> 5.0.2)
       validates_cpf_cnpj
       validates_timeliness
+
+GIT
+  remote: git://github.com/igormarjes/simple-captcha.git
+  revision: 28f9145b525da952c8145b143023d8b281bb1171
+  specs:
+    simple_captcha (0.1.6)
 
 PATH
   remote: engines
@@ -75,7 +76,7 @@ GEM
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
-    carrierwave (1.0.0)
+    carrierwave (1.1.0)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
@@ -99,7 +100,8 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    haml (4.0.7)
+    haml (5.0.0)
+      temple (>= 0.8.0)
       tilt
     haml-rails (1.0.0)
       actionpack (>= 4.0.1)
@@ -110,9 +112,9 @@ GEM
     has_scope (0.7.0)
       actionpack (>= 4.1, < 5.1)
       activesupport (>= 4.1, < 5.1)
-    html2haml (2.1.0)
+    html2haml (2.2.0)
       erubis (~> 2.7.0)
-      haml (~> 4.0)
+      haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
     i18n (0.8.1)
@@ -204,6 +206,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.0)
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
