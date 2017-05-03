@@ -1,3 +1,5 @@
+require_dependency 'entity/application_controller'
+
 module Entity
   class IndicationsController < ApplicationController
     before_action :set_units

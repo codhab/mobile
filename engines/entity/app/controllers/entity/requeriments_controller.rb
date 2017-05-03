@@ -1,4 +1,4 @@
-require_dependency 'attendance/application_controller'
+require_dependency 'entity/application_controller'
 
 module Entity
   class RequerimentsController < ApplicationController
