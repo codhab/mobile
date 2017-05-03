@@ -9,5 +9,10 @@ Entity::Engine.routes.draw do
   resources :dashboard
   resources :cadastres
   resources :forms
+  resources :indications
   resources :contacts
+  resources :requeriments
+  resources :chats
+  
+
 end

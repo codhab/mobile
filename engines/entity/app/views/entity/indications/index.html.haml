@@ -1,0 +1,21 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Unidades para distribuição (#{@units.where(situation: 0).count})
+    .sub-title Listagem de unidades
+.ui.container
+  %table.ui.celled.table
+    %tbody
+      - if @units.present?
+        - @units.each do |entity|
+          %tr
+            %td
+              %p= link_to entity.unit.complete_address, "#"
+              = entity.unit.city.name
+      - else
+        %tr
+          %td
+          %td.text-center
+            %i Nenhuma unidade a ser distribuída.

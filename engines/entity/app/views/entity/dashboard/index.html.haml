@@ -20,6 +20,27 @@
         %i.icon.refresh.huge.gray
     .text-center
       Atualização de dados de contato
+  - if params[:demo].to_i == 1
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.indications_path}"}
+          %i.icon.building.huge.gray
+      .text-center
+        Distribuição de unidades 
+  - if params[:demo].to_i == 1
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.requeriments_path}"}
+          %i.icon.file.huge.gray
+      .text-center
+        Requerimentos
+  - if params[:demo].to_i == 1
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.chats_path}"}
+          %i.icon.chat.huge.gray
+      .text-center
+        Conversas
   //- if current_entity.allow_questions?
   //.column
   //    .ui.segment.text-center
