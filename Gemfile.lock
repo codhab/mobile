@@ -1,11 +1,6 @@
 GIT
-  remote: git://github.com/igormarjes/simple-captcha.git
-  revision: 28f9145b525da952c8145b143023d8b281bb1171
-  specs:
-    simple_captcha (0.1.6)
-
-PATH
-  remote: ../extranet/components/core
+  remote: git://github.com/codhab/core.git
+  revision: 7a32c2012d98ed0e51cb2124e91b0a52bc7017b8
   specs:
     core (0.1.0)
       carrierwave
@@ -18,6 +13,12 @@ PATH
       rails (~> 5.0.2)
       validates_cpf_cnpj
       validates_timeliness
+
+GIT
+  remote: git://github.com/igormarjes/simple-captcha.git
+  revision: 28f9145b525da952c8145b143023d8b281bb1171
+  specs:
+    simple_captcha (0.1.6)
 
 PATH
   remote: engines
@@ -99,7 +100,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    haml (5.0.0)
+    haml (5.0.1)
       temple (>= 0.8.0)
       tilt
     haml-rails (1.0.0)

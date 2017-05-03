@@ -7,10 +7,13 @@ Rails.application.routes.draw do
   get   '/notifications', to: 'notifications#index'
   post  '/auth',          to: 'sessions#new'
 
+  get  '/authenticate',          to: 'sessions#authenticate'
+
+
 
   mount Attendance::Engine => '/attendance', as: :attendance
   mount Candidate::Engine  => '/candidate',  as: :candidate
-  mount Entity::Engine     => '/entity',   as: :entity
+  mount Entity::Engine     => '/entity',     as: :entity
   mount Portal::Engine     => '/portal',     as: :portal
 
 end
