@@ -1,0 +1,21 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{chat_path(@chat)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Comentário
+.big-divider
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            %tr{class: @chat_comment.candidate_read ? 'read' : 'not-read'}
+              %td
+                = @chat_comment.content
+            %tr
+              %td
+                %p
+                  %small= @chat_comment.created_at.strftime("%d/%m/%Y - %H:%M")

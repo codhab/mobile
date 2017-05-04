@@ -17,6 +17,6 @@ Entity::Engine.routes.draw do
   resources :contacts
   resources :requeriments
   resources :chats
-  
+  resources :chat_comments
 
 end
