@@ -31,6 +31,8 @@ PATH
       rails (~> 5.0.2)
     portal (0.1.0)
       rails (~> 5.0.2)
+    protocol (0.1.0)
+      rails (~> 5.0.2)
 
 GEM
   remote: http://rubygems.org/
@@ -260,6 +262,7 @@ DEPENDENCIES
   onesignal
   pg
   portal!
+  protocol!
   rails (~> 5.0.2)
   simple_captcha!
   simple_form

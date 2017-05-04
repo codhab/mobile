@@ -49,4 +49,5 @@ path 'engines' do
   gem 'candidate'
   gem 'entity'
   gem 'portal'
+  gem 'protocol'
 end
