@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '~> 5.0.2'
 gem 'pg'
@@ -49,4 +49,5 @@ path 'engines' do
   gem 'candidate'
   gem 'entity'
   gem 'portal'
+  gem 'protocol'
 end

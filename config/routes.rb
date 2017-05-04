@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   mount Candidate::Engine  => '/candidate',  as: :candidate
   mount Entity::Engine     => '/entity',     as: :entity
   mount Portal::Engine     => '/portal',     as: :portal
+  mount Protocol::Engine   => '/protocol',   as: :protocol
 
 end
