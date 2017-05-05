@@ -22,8 +22,8 @@ gem 'has_scope'
 gem 'simple_captcha', github: 'igormarjes/simple-captcha'
 
 
-# gem 'core', path: 'components/core'
-gem 'core', github: 'codhab/core'
+gem 'core', path: 'components/core'
+# gem 'core', github: 'codhab/core'
 
 
 

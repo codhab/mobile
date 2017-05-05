@@ -4,6 +4,9 @@
       Documentos Pendentes
 .big.divider
 .ui.container
+  = link_to "Atualizar", conducts_path, class: 'ui button yellow fluid'
+  %br
+  %br
   - if @due_documents.present?
     - @due_documents.each do |doc|
       .ui.styled.accordion.custom_accordion
@@ -54,6 +57,6 @@
   $('.accordion')
     .accordion({
       selector: {
-        trigger: '.title .icon'
+        trigger: '.title'
       }
     });
