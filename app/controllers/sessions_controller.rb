@@ -28,6 +28,9 @@ class SessionsController < ActionController::Base
     @staff = Core::Person::Staff.where(code: params[:code]).last rescue nil
     if @staff.present?
       session[:staff_id] = @staff.id
+      if params[:deviceid].present? && params[:pushtoken].present?
+        @staff.update(mobile_user_token: params[:deviceid], mobile_push_token: params[:pushtoken])
+      end
       render json: { data: { message: 'success', name: @staff.name } }
     else
       render json: { data: { message: 'error', code: params[:code]} }

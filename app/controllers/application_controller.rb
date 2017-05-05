@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_cadastre
   helper_method :current_entity
-  helper_method :current_staff
 
   def page_not_found
     redirect_to main_app.root_path if controller_name != "candidates"
@@ -21,18 +20,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_entity
-  end
-
-  def current_staff
-    if params[:code].present?
-      staff = ::Core::Person::Staff.find_by(code: params[:code])
-      session[:staff_id] = staff.id
-
-      if params[:deviceid].present? && params[:pushtoken].present?
-        staff.update(mobile_user_token: params[:deviceid], mobile_push_token: params[:pushtoken])
-      end
-      return staff
-    end
   end
 
   def current_cadastre

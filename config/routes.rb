@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get   '/notifications', to: 'notifications#index'
   post  '/auth',          to: 'sessions#new'
 
-  get  '/authenticate',          to: 'sessions#authenticate'
+  get  '/authenticate',   to: 'sessions#authenticate'
 
 
 
