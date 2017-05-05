@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
       if params[:deviceid].present? && params[:pushtoken].present?
         staff.update(mobile_user_token: params[:deviceid], mobile_push_token: params[:pushtoken])
       end
+      return staff
     end
   end
 
