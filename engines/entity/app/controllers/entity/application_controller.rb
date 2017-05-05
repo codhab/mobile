@@ -15,7 +15,7 @@ module Entity
 
     def current_entity
       
-      if params[:cnpj].present?
+      if !params[:cnpj].nil?
         entity = ::Core::Entity::Cadastre.find_by(cnpj: params[:cnpj]) rescue nil
         entity = ::Core::Entity::CadastrePresenter.new(entity) rescue nil
         entity = ::Core::Entity::CadastrePolicy.new(entity) rescue nil

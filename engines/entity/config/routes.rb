@@ -9,10 +9,14 @@ Entity::Engine.routes.draw do
   resources :dashboard
   resources :cadastres
   resources :forms
-  resources :indications
+  resources :indications do 
+    get 'confirm'
+    get 'cancel'
+  end
+
   resources :contacts
   resources :requeriments
   resources :chats
-  
+  resources :chat_comments
 
 end

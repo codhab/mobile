@@ -1,0 +1,62 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Meus Requerimentos
+    .sub-title Listagens de Requerimentos
+.big-divider
+.ui.grid.container-fluid
+  .column
+    %table.ui.celled.table
+      %tbody
+        - if @requeriments.present?
+          - @requeriments.order(created_at: :desc).each_with_index do  |requeriment,i|
+            %tr
+              %td
+                %h4.ui.file.text.outline.header
+                  %i.icon.file
+                  -if requeriment.digital_documents.present?
+                    %i.attach.icon{data_img:i}
+                      .ui.modal{id:i}
+                        %i.close.icon
+                        .header
+                          Anexos
+                        .image.content
+                          - requeriment.digital_documents.each_with_index do |images, i|
+                            - if File.extname(images.doc_path.to_s) == '.pdf'
+                              = "Arquivo nº #{i+1}"
+                              %p
+                                = image_tag 'http://www.codhab.df.gov.br/sample/pdf.png', class:'image_modal'
+                            - else
+                              = "Arquivo nº #{i+1}"
+                              %p
+                                = image_tag images.doc_path, class:'image_modal'
+
+                  .content
+                    %a{href:"#{requeriment_path(requeriment)}"}= requeriment.document_number ||= "Nenhum número gerado"
+                    .sub.header
+                      = requeriment.document_type.name rescue "Sem informação"
+                      %br
+                      %small
+                        = "Criado em: #{requeriment.created_at.strftime('%d/%m/%Y - %H:%M')}" rescue "Sem informação"
+                      %small
+                        %p
+                          %b= requeriment.finalized ? "Fechado" : "Aberto"
+
+        - else
+          %tr
+            %td
+            %td.text-center
+              %i Nenhum requerimento vínculado ao seu CPF
+
+
+.ui.grid.container-fluid
+  .column
+    = link_to "Enviar novo requerimento", new_requeriment_path, class: 'ui button yellow fluid' if @requeriments.where(finalized: false).count < 4
+
+:javascript
+  $('i.attach.icon').click(function(){
+    var t = $(this).attr('data_img')
+    $('#'+t).modal('show');
+  });

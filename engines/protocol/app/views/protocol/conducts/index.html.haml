@@ -1,4 +1,59 @@
-.huge-divider
-.ui.grid.container
-  .column.center.aligned
-    Alertas
+.ui.grid
+  .sixteen.wide.mobile.column.text-center
+    .title-header
+      Documentos Pendentes
+.big.divider
+.ui.container
+  - if @due_documents.present?
+    - @due_documents.each do |doc|
+      .ui.styled.accordion.custom_accordion
+        .title
+          %i.dropdown.icon
+          = doc.document_number
+        .content
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Tipo de Documento
+                      .description
+                        = doc.document_type
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Setor de Origem
+                      .description
+                        = doc.sector_origin
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Setor destino
+                      .description
+                        = doc.sector_destiny
+              %tr
+                %td
+                  .ui.list
+                    .item
+                      %a.header
+                        Prazo
+                      .description
+                        - returned = doc.presenter.due_date(doc.replay_date)
+                        %div{class: "ui #{returned[0]} ribbon label"}
+                          = returned[1]
+  - else
+    .ui.segment
+      %i Nenhum documento pendente.
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });

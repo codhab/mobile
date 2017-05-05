@@ -1,0 +1,66 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Minhas Conversas (#{@chats.count})
+    .sub-title Listagem de conversas
+    .divider
+.ui.grid.container
+  .ui.styled.accordion
+    .title
+      %i.dropdown.icon
+      Problema de "Aguardando Conexão"
+    .content
+      %p.transition.hidden Este problema ocorre quando sua conexão está lenta, indisponível ou o fluxo de usuários no sistema está muito grande. Recomendamos que você tente novamente mais tarde. Caso o erro persista entre em contato com suporte.app@codhab.df.gov.br
+    .title
+      %i.dropdown.icon
+      Quais são as extensões de arquivos permitidas?
+    .content
+      %p.transition.hidden Os arquivos permitidos para upload são: PDF, JPG, PNG, BMP
+    .title
+      %i.dropdown.icon
+      Qual o tamanho maximo dos arquivos enviados?
+    .content
+      %p.transition.hidden Os arquivos enviados deveram ser menores que 5MB.
+  .divider
+.ui.grid.container
+  .sixteen.wide.mobile.column.text-center
+    .sub-title.text-center
+      %b
+        Minha dúvida não se encontra acima.
+      .divider
+  - unless @chats.present?
+    = link_to "Inciar uma nova Conversa", new_chat_comment_path, class: 'ui button yellow fluid'
+  - else
+    = link_to "Inciar uma nova Conversa", new_chat_comment_path, class: 'ui button yellow fluid' if @chats.chat_closed?
+.ui.grid.container
+  .column
+    - if @chats.present?
+      %table.ui.celled.table
+        %tbody.black
+          - @chats.order('created_at DESC').each do |chat|
+            %tr
+              %td
+                %h4.ui.image.header
+                  - if chat.chat_comments.where(candidate_read: false, candidate: false).present?
+                    %i.small.talk.icon.gray
+                  - else
+                    %i.small.talk.outline.icon.gray
+                  .content
+                    %a{href: "#{chat_path(chat)}"}
+                      = "Conversa Nº:  #{chat.id}/#{chat.created_at.year}"
+                      %br
+                      #{chat.chat_category.name rescue nil}
+                      %br
+                      %small
+                        Quantidade de interações: #{chat.chat_comments.count}
+                      .sub.header
+                        %small #{chat.created_at.strftime("%d/%m/%Y - %H:%M")}
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title'
+      }
+    });

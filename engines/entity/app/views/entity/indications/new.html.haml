@@ -1,0 +1,49 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.indications_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Distribuição 
+    .sub-title 
+      Formulário de distribuição
+.ui.container
+  %table.ui.celled.table
+    %tbody
+      %tr
+        %td
+        %td.text-center
+          %h3 #{@unit.unit.complete_address}
+          %p #{@unit.unit.city.name}
+          %hr/
+
+          - if @unit.cadastre_id.present?
+            %td.text-center
+              %h4 Candidato selecionado 
+              %p= @unit.cadastre.name
+              %p= @unit.cadastre.cpf
+              %p.ui.label.blue= @unit.cadastre.presenter.current_situation_name
+              %td
+                %hr/
+            %td.text-center
+              = link_to "Efetivar indicação", indication_confirm_path(@unit), class: 'ui button green '
+              = link_to "Remover candidato", indication_cancel_path(@unit), class: 'ui button red '
+              %hr/
+          - else
+            %td
+              = simple_form_for @indication, url: indications_path(indication_id: @unit.id) do |f|
+                = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
+                - if @indication.cpf_create
+                  = link_to "Cadastrar candidato", "#", class: 'ui button blue fluid'
+                - else
+                  = f.submit "Distribuir", class: 'ui button green fluid'
+              %hr/
+          - if @unit.indication_logs.present?
+            %td
+              %h4.text-center Histórico
+              .ui.message.info
+                - @unit.indication_logs.order('created_at DESC').each do |log|
+                  %p 
+                    %b 
+                      #{log.created_at.strftime('%d/%m/%Y - %H:%M')} - 
+                    #{log.description}
+              

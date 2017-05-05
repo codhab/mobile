@@ -1,4 +1,4 @@
-require_dependency 'application_controller'
+require_dependency 'entity/application_controller'
 
 module Entity
   class CadastresController < ApplicationController
