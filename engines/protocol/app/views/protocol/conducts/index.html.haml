@@ -8,11 +8,15 @@
   %br
   %br
   - if @due_documents.present?
-    - @due_documents.each do |doc|
+    - @due_documents.order(:days).each do |doc|
       .ui.styled.accordion.custom_accordion
         .title
           %i.dropdown.icon
           = doc.document_number
+          = " &nbsp; &nbsp; &nbsp;".html_safe
+          - returned = doc.presenter.due_date(doc.replay_date)
+          %div{class: "ui #{returned[0]} tag label"}
+            = returned[1]
         .content
           %table.ui.celled.table
             %tbody
