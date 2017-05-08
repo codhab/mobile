@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: abffcbf50ca546d8ef35040074ceade32336264b
+  revision: c9eca17ee19ceeffd61c74fdddb8beb1de88e282
   specs:
     core (0.1.0)
       carrierwave
@@ -82,7 +82,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    client_side_validations (9.3.0)
+    client_side_validations (9.3.1)
       jquery-rails (~> 4.3)
       js_regex (~> 1.2)
       rails (>= 5.0.0.1, < 5.2)
@@ -215,7 +215,7 @@ GEM
     timeliness (0.3.8)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
-    turbolinks-source (5.0.2)
+    turbolinks-source (5.0.3)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
