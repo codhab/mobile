@@ -1,0 +1,46 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{person.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Meus abonos
+.big.divider
+.ui.container
+- if @allowances.present?
+  - @allowances.each do |allowance|
+    .ui.styled.accordion.custom_accordion
+      .title
+        %i.dropdown.icon
+        = "Data do abono #{allowance.allowance_date.strftime('%d/%m/%Y')}" rescue nil
+      .content
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Observação
+                    .description
+                      = allowance.observation.present? ? allowance.observation : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Autorizado?
+                    .description
+                      = allowance.status == true ? "Sim" : "Não"
+- else
+  .column
+    .ui.segment
+      %i Nenhum abono cadastrado.
+
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });

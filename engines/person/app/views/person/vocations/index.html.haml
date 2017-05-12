@@ -1,0 +1,54 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{person.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Minhas férias
+.big.divider
+.ui.container
+- if @vocations.present?
+  - @vocations.each do |vocation|
+    .ui.styled.accordion.custom_accordion
+      .title
+        %i.dropdown.icon
+        = "#{vocation.period}º periodo - #{vocation.assignment}"
+      .content
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Data de Início
+                    .description
+                      = vocation.start_date.present? ? vocation.start_date.strftime('%d/%m/%Y') : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Data Final
+                    .description
+                      = vocation.end_date.present? ? vocation.end_date.strftime('%d/%m/%Y') : "Sem informação"
+            %tr
+              %td
+                .ui.list
+                  .item
+                    %a.header
+                      Autorizada?
+                    .description
+                      = vocation.authorized == true ? "Sim" : "Não"
+- else
+  .column
+    .ui.segment
+      %i Nenhum periodo de férias cadastrado.
+
+:javascript
+  $('.accordion')
+    .accordion({
+      selector: {
+        trigger: '.title .icon'
+      }
+    });

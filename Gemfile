@@ -23,7 +23,7 @@ gem 'simple_captcha', github: 'igormarjes/simple-captcha'
 
 
 #gem 'core', path: 'components/core'
-gem 'core', github: 'codhab/core'
+gem 'core', github: 'codhab/core', branch: :master
 
 
 
@@ -50,6 +50,7 @@ path 'engines' do
   gem 'attendance'
   gem 'candidate'
   gem 'entity'
+  gem 'person'
   gem 'portal'
   gem 'protocol'
 end
