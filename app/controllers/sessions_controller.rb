@@ -25,10 +25,14 @@ class SessionsController < ActionController::Base
   end
 
   def authenticate
-    @staff = Core::Person::Staff.where(code: params[:code]).last rescue nil
+     if params[:password].present?
+       @staff = Core::Person::Staff.where(code: params[:code], password: params[:password]).last rescue nil
+     else
+       @staff = Core::Person::Staff.where(code: params[:code]).last rescue nil
+     end
+
     if @staff.present?
       session[:staff_id] = @staff.id
-    
       render json: { data: { message: 'success', name: @staff.name } }
     else
       render json: { data: { message: 'error', code: params[:code]} }
