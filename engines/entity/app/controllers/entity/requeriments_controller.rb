@@ -5,18 +5,18 @@ module Entity
 
 
     def index
-      @requeriments = current_entity.assessments.requeriments
+      @requeriments = Core::Protocol::Assessment.where(cnpj: current_entity.cnpj)
     end
 
     def new
-      @requeriment  = current_entity.assessment_forms.new
+      @requeriment  = Core::Entity::AssessmentForm.where(cnpj: current_entity.cnpj).new
     end
 
     def create
-      @requeriment = current_entity.assessment_forms.new(set_params)
+      @requeriment = Core::Entity::AssessmentForm.where(cnpj: current_entity.cnpj).new(set_params)
       @service = Core::Protocol::AssessmentService.new(@requeriment)
       
-      if @service.app_requeriment!(current_entity)
+      if @service.app_requeriment!(nil, current_entity)
          redirect_to requeriments_path
       else
         render action: :new
@@ -24,7 +24,7 @@ module Entity
     end
 
     def show
-      @requeriment = current_entity.assessments.find(params[:id])
+      @requeriment = Core::Entity::AssessmentForm.where(cnpj: current_entity.cnpj).find(params[:id])
     end
 
     private
