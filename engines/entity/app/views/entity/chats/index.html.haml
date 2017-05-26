@@ -6,30 +6,9 @@
     .title-header Minhas Conversas (#{@chats.count})
     .sub-title Listagem de conversas
     .divider
-.ui.grid.container
-  .ui.styled.accordion
-    .title
-      %i.dropdown.icon
-      Problema de "Aguardando Conexão"
-    .content
-      %p.transition.hidden Este problema ocorre quando sua conexão está lenta, indisponível ou o fluxo de usuários no sistema está muito grande. Recomendamos que você tente novamente mais tarde. Caso o erro persista entre em contato com suporte.app@codhab.df.gov.br
-    .title
-      %i.dropdown.icon
-      Quais são as extensões de arquivos permitidas?
-    .content
-      %p.transition.hidden Os arquivos permitidos para upload são: PDF, JPG, PNG, BMP
-    .title
-      %i.dropdown.icon
-      Qual o tamanho maximo dos arquivos enviados?
-    .content
-      %p.transition.hidden Os arquivos enviados deveram ser menores que 5MB.
-  .divider
+.divider
 .ui.grid.container
   .sixteen.wide.mobile.column.text-center
-    .sub-title.text-center
-      %b
-        Minha dúvida não se encontra acima.
-      .divider
   - unless @chats.present?
     = link_to "Inciar uma nova Conversa", new_chat_comment_path, class: 'ui button yellow fluid'
   - else
@@ -43,7 +22,7 @@
             %tr
               %td
                 %h4.ui.image.header
-                  - if chat.chat_comments.where(candidate_read: false, candidate: false).present?
+                  - if chat.chat_comments.where(entity_read: false, entity: false).present?
                     %i.small.talk.icon.gray
                   - else
                     %i.small.talk.outline.icon.gray

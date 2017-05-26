@@ -15,19 +15,19 @@ module Entity
 
     def current_entity
       
-      if !params[:cnpj].nil?
-        entity = ::Core::Entity::Cadastre.find_by(cnpj: params[:cnpj]) rescue nil
-        entity = ::Core::Entity::CadastrePresenter.new(entity) rescue nil
-        entity = ::Core::Entity::CadastrePolicy.new(entity) rescue nil
+      if !params[:cnpj].blank?
+        @entity = ::Core::Entity::Cadastre.find_by(cnpj: params[:cnpj]) rescue nil
+        @entity = ::Core::Entity::CadastrePresenter.new(@entity) rescue nil
+        @entity = ::Core::Entity::CadastrePolicy.new(@entity) rescue nil
         
-        session[:entity_id] = entity.id 
+        session[:entity_id] = @entity.id 
       else
-        entity = ::Core::Entity::Cadastre.find(session[:entity_id]) rescue nil
-        entity = ::Core::Entity::CadastrePresenter.new(entity) rescue nil
-        entity = ::Core::Entity::CadastrePolicy.new(entity) rescue nil
+        @entity = ::Core::Entity::Cadastre.find(session[:entity_id]) rescue nil
+        @entity = ::Core::Entity::CadastrePresenter.new(@entity) rescue nil
+        @entity = ::Core::Entity::CadastrePolicy.new(@entity) rescue nil
       end
 
-      return entity
+      return @entity
 
     end  
 

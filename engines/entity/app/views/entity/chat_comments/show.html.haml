@@ -12,7 +12,7 @@
       .column.segment
         %table.ui.celled.table
           %tbody
-            %tr{class: @chat_comment.candidate_read ? 'read' : 'not-read'}
+            %tr{class: @chat_comment.entity_read ? 'read' : 'not-read'}
               %td
                 = @chat_comment.content
             %tr

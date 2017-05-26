@@ -5,12 +5,12 @@ module Entity
 
     def index
       @chats = current_entity.chats
-     # @chats = Core::Attendance::ChatPolicy.new(@chats)
+      @chats = Core::Entity::ChatPolicy.new(@chats)
     end
 
     def new
-      @chat = current_entity.attendance_chats.new
-      #@chat.chat_comments.build
+      @chat = current_cadastre.attendance_chats.new
+      @chat.chat_comments.build
     end
 
     def create
@@ -23,17 +23,17 @@ module Entity
     end
 
     def show
-      @chat = current_cadastre.attendance_chats.find(params[:id])
-      @chat = Core::Attendance::ChatPolicy.new(@chat)
-      @service = Core::Attendance::ChatCommentService.new(nil, nil, @chat.chat_comments)
+      @chat = current_entity.chats.find(params[:id])
+      @chat = Core::Entity::ChatPolicy.new(@chat)
+      @service = Core::Entity::ChatCommentService.new(nil, nil, @chat.chat_comments)
       @service.reading_comment!
     end
 
     private
 
-      def set_params
-        params.require(:attendance_chat).permit(:chat_category_id)
-      end
+    def set_params
+      params.require(:attendance_chat).permit(:chat_category_id)
+    end
 
   end
 end
