@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: d000752ff750b17c454788b02efd7277ce958f6d
+  revision: ed827c7e550c76e651c9ddf7f2364b7997589982
   branch: master
   specs:
     core (0.1.0)
@@ -154,7 +154,7 @@ GEM
     minitest (5.10.2)
     multi_json (1.12.1)
     newrelic_rpm (4.1.0.333)
-    nio4r (2.0.0)
+    nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     one_signal (1.2.0)
