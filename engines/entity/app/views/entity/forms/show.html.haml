@@ -6,8 +6,11 @@
     .title-header #{@form.name}
     .sub-title #{@form.description}
 .ui.grid.container
-  .sixteen.wide.column
-    .ui.message.info.text-center
+  .column.content-form{style: 'text-align: center'}
+    %p
+      %h1 
+        %i.icon.checkmark.huge.green
+    .ui.message.success.text-center
       %b O questionário foi respondido com sucesso!
 .ui.grid.container
   .column.content-form
