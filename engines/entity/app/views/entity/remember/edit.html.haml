@@ -1,0 +1,16 @@
+.ui.grid
+  .two.wide.mobile.column.text-center
+  .thirteen.wide.mobile.column.text-center
+    .title-header Recuperação de senha
+    .sub-title Atualização de senha
+
+.ui.grid.container
+  .column.content-form
+    = simple_form_for @password, url: update_password_path, method: :put do |f|
+      = f.input :token, label: "Código"
+      = f.input :password, label: "Nova senha"
+      = f.input :password_confirmation, label: "Confirme a nova senha"
+
+      = f.submit "Atualizar minha senha", class: 'ui button green fluid'
+      %br/
+      = link_to "Voltar", remember_path, class: 'ui button blue fluid'

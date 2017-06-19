@@ -1,0 +1,18 @@
+.ui.grid
+  .two.wide.mobile.column.text-center
+  .thirteen.wide.mobile.column.text-center
+    .title-header Recuperação de senha
+    .sub-title Gerar código de recuperação
+
+.ui.grid.container
+  .column.content-form
+    %p 
+      %h3 Código gerado com sucesso!
+    %p 
+      %h4 Verifique seu e-mail em alguns instantes.
+    %p #{@remember.entity.email} 
+    %br/
+    %p 
+      = link_to "Já possuo código de recuperação", update_password_path, class: 'button ui green fluid'
+      %br/
+      = link_to "Voltar", remember_path, class: 'button ui blue fluid'

@@ -14,6 +14,12 @@ Entity::Engine.routes.draw do
     get 'cancel'
   end
 
+  get  '/remember', to: 'remember#new'
+  post '/remember', to: 'remember#create'
+
+  get  '/update_password', to: 'remember#edit'
+  put  '/update_password', to: 'remember#update'
+  
   resources :contacts
   resources :requeriments
 

@@ -1,6 +1,6 @@
 module Entity
   class ApplicationMailer < ActionMailer::Base
-    default from: 'from@example.com'
-    layout 'mailer'
+    default from: 'nao-responda@codhab.df.gov.br'
+    
   end
 end
