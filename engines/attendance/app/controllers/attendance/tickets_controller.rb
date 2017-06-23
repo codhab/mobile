@@ -19,8 +19,11 @@ module Attendance
     end
 
     def new
-      session[:context_id] ||= params[:context_id].to_i
-      
+
+      if !params[:context_id].blank? || params[:context_id].present?
+        session[:context_id] = params[:context_id].to_i
+      end
+
       @ticket_service = Core::Attendance::TicketService.new(cadastre: current_cadastre)
       @ticket_service.create_or_find(session[:context_id])
 
