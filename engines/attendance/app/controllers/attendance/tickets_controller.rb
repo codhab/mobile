@@ -19,8 +19,11 @@ module Attendance
     end
 
     def new
+      session[:context_id] ||= params[:context_id].to_i
+      
       @ticket_service = Core::Attendance::TicketService.new(cadastre: current_cadastre)
-      @ticket_service.create_or_find(params[:context_id].to_i)
+      @ticket_service.create_or_find(session[:context_id])
+
 
       @ticket = Core::Attendance::TicketPresenter.new(@ticket_service.ticket)
       @ticket = Core::Attendance::TicketPolicy.new(@ticket)
