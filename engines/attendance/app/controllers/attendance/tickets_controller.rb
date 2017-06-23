@@ -21,11 +21,11 @@ module Attendance
     def new
 
       if params[:context_id].present?
-        session[:context_id] = params[:context_id].to_i
+        cookies[:context_id] = params[:context_id].to_i
       end
 
       @ticket_service = Core::Attendance::TicketService.new(cadastre: current_cadastre)
-      @ticket_service.create_or_find(session[:context_id])
+      @ticket_service.create_or_find(cookies[:context_id])
 
 
       @ticket = Core::Attendance::TicketPresenter.new(@ticket_service.ticket)
