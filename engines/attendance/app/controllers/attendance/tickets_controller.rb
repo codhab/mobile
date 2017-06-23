@@ -20,7 +20,7 @@ module Attendance
 
     def new
 
-      if !params[:context_id].blank? || params[:context_id].present?
+      if params[:context_id].present?
         session[:context_id] = params[:context_id].to_i
       end
 
