@@ -31,7 +31,7 @@
         %tbody
           - @address.data_reference_uploads.each_with_index do |upload, index|
             %tr 
-              %td= link_to "Arquivo #{index + 1}", upload.document_url, target: '_blank', style: 'color: black'
+              %td= link_to "Arquivo #{index + 1}", document_wallets_path(upload), remote: true, target: '_blank', style: 'color: black'
     - else
       
       %i Nenhum documento anexado.

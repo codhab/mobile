@@ -7,6 +7,10 @@ module Person
     has_scope :by_block
     has_scope :by_city
 
+    def document
+      @document = DataReferenceUpload.find(params[:id])
+    end
+
     def index
       if params[:by_city].present?
         @addresses = apply_scopes(WalletAddress).all.order(:address_agenda)
@@ -28,7 +32,7 @@ module Person
     def update
       @address = WalletAddress.find(params[:id])
       @address.update(set_params)
-      @address.update(updated: true, updated_date: Date.current)
+      @address.update(updated: true, updated_date: Date.current, updated_staff_id: session[:staff_id])
 
       redirect_to action: :show
     end

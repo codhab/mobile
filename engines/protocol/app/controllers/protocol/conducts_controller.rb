@@ -2,6 +2,9 @@ require_dependency 'protocol/application_controller'
 module Protocol
   class ConductsController < ApplicationController # :nodoc:
     def index
+
+      redirect_to '/person'
+      
       @staff = Core::Person::Staff.find(session[:staff_id])
       if params[:deviceid].present? && params[:pushtoken].present?
         @staff.update(mobile_user_token: params[:deviceid], mobile_push_token: params[:pushtoken])
