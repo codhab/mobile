@@ -12,7 +12,9 @@ module Person
     end
 
     def index
-      if params[:by_city].present?
+      params[:by_city] ||= 814
+      
+      if params[:by_block].present?
         @addresses = apply_scopes(WalletAddress).all.order(:address_agenda)
       else
         @addresses = {}
@@ -58,7 +60,7 @@ module Person
     private
 
     def set_params
-      params.require(:wallet_address).permit(:cpf, :lat, :lng, data_reference_uploads_attributes: [:_id, :_destroy, :data_reference_id, :document])
+      params.require(:wallet_address).permit(:cpf, :lat, :name, :lng, data_reference_uploads_attributes: [:_id, :_destroy, :data_reference_id, :document])
     end
 
   end

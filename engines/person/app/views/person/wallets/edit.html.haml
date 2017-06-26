@@ -14,7 +14,10 @@
           %td= @address.address_agenda
       %tbody
         %tr
-          %td readss
+          %td
+          %td #{@address.cep ||= "Nenhum CEP identificado"}
+          %td
+          %td= @address.assessment ||= "Sem número de processo"
   .ui.raised.segment
     %h4 Atualização de dados
     = render 'form'

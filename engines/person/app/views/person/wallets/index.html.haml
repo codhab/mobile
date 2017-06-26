@@ -9,7 +9,7 @@
 .ui.container
   .ui.raised.segment
     = simple_form_for url_for, method: :get do |f|
-      = f.input :city_id, label: "Cidade",   collection: Core::Address::City.federal_district,as: :select, include_blank: false, input_html: { name: :by_city, id: :by_city}, selected: params[:by_city]
+      = f.input :city_id, label: "Cidade",   collection: Core::Address::City.where(id: 814),as: :select, include_blank: false, input_html: { name: :by_city, id: :by_city}, selected: params[:by_city]
       = f.input :block_id,    label: "Quadra",   as: :select, include_blank: "selecione...", input_html: { name: :by_block, id: :by_block}, selected: params[:by_block], collection: params[:by_city].present? ? Person::WalletAddress.where(city_agenda_id: params[:by_city]).where.not(block: ' - ').distinct.pluck(:block).sort : {}
       = f.input :address_id,  label: "Endereço", as: :select, collection: params[:by_block].present? ? Person::WalletAddress.select(:id, :address_agenda).where(city_agenda_id: params[:by_city], block: params[:by_block]).order(:address_agenda) : {}, include_blank: "selecione...", input_html: { name: :by_address, id: :by_address}, selected: params[:by_address], label_method: :address_agenda, value_method: :address_agenda
       = f.submit "Pesquisar", name: nil, class: 'ui button green fluid'
@@ -23,6 +23,8 @@
         - @addresses.each do |address|
           %tr
             %td= link_to address.address_agenda, wallet_path(address.id), style: 'color: black !important'
+            %td= address.name.to_s.titleize rescue nil
+            %td= address.assessment.to_s.titleize rescue nil
             %td
               - if address.updated
                 .ui.label.tiny.green Atualizado

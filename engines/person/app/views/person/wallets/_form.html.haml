@@ -1,4 +1,5 @@
 = simple_form_for @address, url: wallet_path(@address), method: :put do |f|
+  = f.input :name
   = f.input :cpf
   = f.input :lat, label: "Latitude / Longitude", as: :string, input_html: { id: 'lat'}
   = f.simple_fields_for :data_reference_uploads do |builder|
