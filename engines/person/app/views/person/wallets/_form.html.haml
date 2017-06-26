@@ -10,9 +10,9 @@
 
 
 :javascript
-  $(document).ready(function({
+  $(document).ready(function(){
     navigator.geolocation.getCurrentPosition(function(data) {
       $("#lat").val(data.coords.latitude)
       $("#lng").val(data.coords.longitude)
-    )} 
+    }); 
   });
