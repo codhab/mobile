@@ -2,7 +2,7 @@ require_dependency 'entity/application_controller'
 
 module Entity
   class FormsController < ApplicationController
-    before_action :set_form
+    before_action :set_form, except: [:edit, :update]
 
     def new
       @current_form = @form.form_values.where("store->> 'cadastre_id' = '?'", current_entity.id).first rescue nil
@@ -27,6 +27,16 @@ module Entity
         render action: :new
       end
     end
+
+    def edit
+      @form_value = Core::Attendance::FormValue.find(params[:id])
+      @form       = @form_value.form
+    end
+
+    def update
+      
+    end
+
 
     def show
       @form_value = @form.form_values.where("store->> 'cadastre_id' = '?'", current_entity.id).first
