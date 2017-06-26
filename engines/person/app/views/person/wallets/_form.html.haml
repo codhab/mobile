@@ -1,7 +1,7 @@
 = simple_form_for @address, url: wallet_path(@address), method: :put do |f|
   = f.input :cpf
-  = f.input :lat, as: :hidden, input_html: { id: 'lat'}
-  = f.input :lng, as: :hidden, input_html: { id: 'lng'}
+  = f.input :lat, label: "Latitude", as: :string, input_html: { id: 'lat'}
+  = f.input :lng, label: "Longitude", as: :sting, input_html: { id: 'lng'}
   = f.simple_fields_for :data_reference_uploads do |builder|
     = render 'data_reference_upload_fields', f: builder
   = link_to_add_fields "Adicionar arquivo", f, :data_reference_uploads

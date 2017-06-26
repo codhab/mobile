@@ -9,9 +9,9 @@
           Toque para inserir um documento
 
       - if f.object.persisted?
-        = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline", disabled: true, accept: 'image/*', capture: 'camera'}
+        = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline"}
       - else
-        = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline inputfile", accept: 'image/*', capture: 'camera'}
+        = f.input :document, as: :file, label: false, input_html: { onchange: 'validate_file(this);', class: "inline inputfile"}
     - if f.object.persisted?
       = link_to "<i class='remove icon'></i>".html_safe, '#', class: "remove_fields ui button black icon inline disabled"
     - else
