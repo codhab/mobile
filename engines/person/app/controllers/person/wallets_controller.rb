@@ -58,7 +58,7 @@ module Person
     private
 
     def set_params
-      params.require(:wallet_address).permit(:cpf, data_reference_uploads_attributes: [:_id, :_destroy, :data_reference_id, :document])
+      params.require(:wallet_address).permit(:cpf, :lat, :lng, data_reference_uploads_attributes: [:_id, :_destroy, :data_reference_id, :document])
     end
 
   end
