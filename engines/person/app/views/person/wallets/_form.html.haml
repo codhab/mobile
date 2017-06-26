@@ -1,0 +1,7 @@
+= simple_form_for @address, url: wallet_path(@address), method: :put do |f|
+  = f.input :cpf
+  = f.simple_fields_for :data_reference_uploads do |builder|
+    = render 'data_reference_upload_fields', f: builder
+  = link_to_add_fields "Adicionar arquivo", f, :data_reference_uploads
+  .divider
+  = f.submit "Salvar dados", class: 'ui button green', data: { disable_with: "Aguarde o processamento das imagens"}

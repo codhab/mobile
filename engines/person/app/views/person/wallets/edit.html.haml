@@ -1,0 +1,20 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{person.wallets_path(by_city: @address.city_agenda_id, by_block: @address.block)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Carteira Imobiliária
+.big.divider
+.ui.container
+  .ui.styled.accordion.custom_accordion
+    %table.ui.table.striped.celled 
+      %thead
+        %tr 
+          %td= @address.address_agenda
+      %tbody
+        %tr
+          %td readss
+  .ui.raised.segment
+    %h4 Atualização de dados
+    = render 'form'

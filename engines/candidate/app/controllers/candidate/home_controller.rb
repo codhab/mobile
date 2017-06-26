@@ -8,8 +8,6 @@ module Candidate
       @ticket_presenter = Core::Attendance::CadastrePresenter.new(current_cadastre)
       @ticket_policy    = Core::Attendance::CadastrePolicy.new(@ticket_presenter)
       @ticket_policy    = Core::Project::CadastrePolicy.new(@ticket_policy)
-
-      session[:context_id] = nil
     end
     
   end
