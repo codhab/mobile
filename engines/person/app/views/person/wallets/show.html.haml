@@ -1,0 +1,37 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{person.wallets_path(by_city: @address.city_agenda_id, by_block: @address.block)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Carteira Imobiliária
+.big.divider
+.ui.container
+  .ui.styled.accordion.custom_accordion
+    %table.ui.table.striped.celled 
+      %thead
+        %tr 
+          %td= @address.address_agenda
+      %tbody
+        %tr
+          %td Endereço atualizado?
+          %td= @address.updated ? "Sim" : "Não"
+          %td
+          %th CPF vínculado
+          %td= @address.cpf.present? ? @address.cpf : "Nenhum CPF vínculado"
+  .ui.raised.segment
+    = link_to "Atualizar registro", edit_wallet_path(@address), class: 'ui button blue fluid'
+  .ui.raised.segment
+    %h4 Documentos enviados
+    - if @address.data_reference_uploads.present?
+      %table.ui.table.striped.celled 
+        %thead
+          %tr 
+            %td Listando #{@address.data_reference_uploads.count} arquivo(s)
+        %tbody
+          - @address.data_reference_uploads.each_with_index do |upload, index|
+            %tr 
+              %td= link_to "Arquivo #{index + 1}", document_wallets_path(upload), remote: true, target: '_blank', style: 'color: black'
+    - else
+      
+      %i Nenhum documento anexado.

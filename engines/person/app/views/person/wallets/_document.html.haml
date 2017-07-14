@@ -1,0 +1,20 @@
+%i.close.icon
+.content
+  .ui.header 
+    Visualização de arquivo 
+.description
+  .container
+    - if %w(jpg jpeg png bmp).include? @document.document_url.split('.')[-1]
+      .ui.medium.image.center{style: 'margin-left: 25px !important; margin-top: 25px !important'}
+        = image_tag(@document.document_url)
+      %br/
+      %br/
+      %br/
+      %br/
+    - else    
+      %br/
+      %h4{style: 'text-align: center'}
+        %i Visualização permitida somente para imagens.
+      %br/
+      %br/
+      
