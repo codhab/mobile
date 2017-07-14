@@ -20,13 +20,12 @@
         %i.icon.refresh.huge.gray
     .text-center
       Atualização de dados de contato
-  - if 1 == 1
-    .column
-      .ui.segment.text-center
-        %a{href: "#{entity.indications_path}"}
-          %i.icon.building.huge.gray
-      .text-center
-        Distribuição de unidades
+  .column
+    .ui.segment.text-center
+      %a{href: "#{entity.indications_path}"}
+        %i.icon.building.huge.gray
+    .text-center
+      Distribuição de unidades
   - if current_entity.allow_accredited?
     .column
       .ui.segment.text-center
