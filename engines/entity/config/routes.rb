@@ -1,5 +1,5 @@
 Entity::Engine.routes.draw do
-  
+
   #session login
   #/entity/auth?cnpj=xxxxxxx&password=xxxxxxxx
   post 'auth', to: 'sessions#new'
@@ -8,8 +8,11 @@ Entity::Engine.routes.draw do
 
   resources :dashboard
   resources :cadastres
+  resources :interests do
+    get 'update'
+  end
   resources :forms
-  resources :indications do 
+  resources :indications do
     get 'confirm'
     get 'cancel'
   end
@@ -19,7 +22,7 @@ Entity::Engine.routes.draw do
 
   get  '/update_password', to: 'remember#edit'
   put  '/update_password', to: 'remember#update'
-  
+
   resources :contacts
   resources :requeriments
 

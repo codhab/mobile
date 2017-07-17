@@ -1,0 +1,4 @@
+- if @interest.errors.any?
+  alert("Alguma coisa deu errada. Entre em contato com a CODHAB.")
+- else
+  $('.index-interest').html("#{escape_javascript(render 'index')}")
