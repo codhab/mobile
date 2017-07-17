@@ -27,12 +27,13 @@
           %i.icon.building.huge.gray
       .text-center
         Distribuição de unidades
-  .column
-    .ui.segment.text-center
-      %a{href: "#{entity.interests_path}"}
-        %i.icon.checkmark.box.huge.gray
-    .text-center
-      Manifestsação de Interesse
+  - if current_entity.allow_interested?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.interests_path}"}
+          %i.icon.checkmark.box.huge.gray
+      .text-center
+        Manifestsação de Interesse
   - if current_entity.allow_accredited?
     .column
       .ui.segment.text-center
