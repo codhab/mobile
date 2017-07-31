@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 110372c144d390902ab612bca92b91e6bc78e5b4
+  revision: 8a8899ed70549cca2afb7e0b47b8e27bdf24080c
   branch: master
   specs:
     core (0.1.0)
@@ -151,7 +151,7 @@ GEM
     mina-unicorn (1.1.0)
       mina (~> 1.0)
     mini_portile2 (2.2.0)
-    minitest (5.10.2)
+    minitest (5.10.3)
     multi_json (1.12.1)
     newrelic_rpm (4.2.0.334)
     nio4r (2.1.0)
@@ -193,9 +193,9 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     regexp_parser (0.4.4)
-    ruby_parser (3.9.0)
-      sexp_processor (~> 4.1)
-    sexp_processor (4.9.0)
+    ruby_parser (3.10.1)
+      sexp_processor (~> 4.9)
+    sexp_processor (4.10.0)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -214,7 +214,7 @@ GEM
     temple (0.8.0)
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (2.0.7)
+    tilt (2.0.8)
     timeliness (0.3.8)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
