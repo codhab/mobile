@@ -20,7 +20,7 @@
         %i.icon.refresh.huge.gray
     .text-center
       Atualização de dados de contato
-  - if Date.current > Date.parse('2017-08-01')
+  - if 1 > 2
     .column
       .ui.segment.text-center
         %a{href: "#{entity.indications_path}"}
@@ -48,3 +48,10 @@
           %i.icon.question.huge.gray
       .text-center
         Questionários
+  - if current_entity.allow_accredited?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.entity_interests_path}"}
+          %i.icon.checkmark.box.huge.gray
+      .text-center
+        Manifestação

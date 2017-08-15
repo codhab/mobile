@@ -1,11 +1,24 @@
+
 .ui.grid
   .two.wide.mobile.column
     %a{href: "#{entity.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
-    .title-header Endereços Disponíveis
-    .divider
-.divider
-.ui.grid.container
-  .sixteen.wide.mobile.column.text-center.index-interest
-    = render 'index'
+    .title-header Manifestação de interesse
+    .sub-title Listagem de manifestãções (#{current_entity.interests.count})
+.ui.container
+  %table.ui.celled.table
+    %tbody
+      - if current_entity.interests.present?
+        - current_entity.interests.order(created_at: :desc).each do |interest|
+          %tr 
+            %td
+              = link_to "#{interest.protocol} - Sorteio #{interest.allotment_id}", entity_interest_path(interest)
+              %br
+              %i Realizada em #{interest.created_at.strftime("%d/%m/%Y %H:%M")}
+      - else 
+        %tr 
+          %td
+          %td.text-center
+            %i Sua entidade não possui nenhuma manifestação
+  = link_to "Realizar nova manifestação", new_entity_interest_path, class: 'ui button green fluid', data: { disable_with: t(:disable_with)} if Rails.env.development?

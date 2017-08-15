@@ -8,9 +8,8 @@ Entity::Engine.routes.draw do
 
   resources :dashboard
   resources :cadastres
-  resources :interests do
-    get 'update'
-  end
+  resources :interests, as: :entity_interests
+
   resources :forms
   resources :indications do
     get 'confirm'

@@ -1,0 +1,19 @@
+
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.entity_interests_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Manifestação de interesse
+    .sub-title Nova manifestação
+.ui.container
+  - if Core::Entity::UnitSale.where(status: true).present?
+    = render 'form'
+  - else 
+    .text-center
+      %br/
+      %br/
+      %h4 Não existe endereços para manifestação no momento.
+      %br/
+      %br/
+      = link_to "Retornar", entity_interests_path, class: 'ui button yellow fluid'

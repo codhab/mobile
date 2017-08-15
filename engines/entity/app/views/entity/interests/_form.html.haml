@@ -1,0 +1,18 @@
+.row
+  .column
+    = simple_form_for @interest, url: entity_interests_path, method: :post do |f|
+      %table.ui.table
+        %tbody
+          - if @interest.errors.present?
+            %tr{style: "background-color: #d64e4e; color: white; font-weight: bold"}
+              %td
+              - @interest.errors.full_messages.each do |error| 
+                %td= "*#{error}"
+          - @addresses.each do |address|
+            %tr
+              %td
+                = check_box_tag "entity_interest_form[unit_sale_ids][]", address.id, @interest.unit_sale_ids.to_a.include?(address.id.to_s)
+                = "#{address.city.name} - #{address.address}"
+          %tr
+            %td
+              = f.submit "Realizar manifestação", class: 'ui button green fluid'
