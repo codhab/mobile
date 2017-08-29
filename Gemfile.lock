@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: c9e867b582a138fec6b550f79ec86320449efe86
+  revision: 482b037f1792a651c5fc817afd379a964b4ef249
   branch: master
   specs:
     core (0.1.0)
@@ -212,7 +212,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.0)
-    thor (0.19.4)
+    thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
     timeliness (0.3.8)
