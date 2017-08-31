@@ -1,0 +1,26 @@
+.ui.grid.container
+  .column.center.aligned
+    .title-header
+      Pesquisa Entidade
+    .big-divider
+    .content
+      = simple_form_for url_for, method: :get do |f|
+        = f.input :by_name, label: false, input_html: { name: 'by_name', placeholder: 'Nome da Entidade'}
+        = f.input :by_fantasy_name, label: false, input_html: { name: 'by_fantasy_name', placeholder: 'Sigla da entidade' }
+        = f.input :by_cnpj, label: false, input_html: { name: 'by_cnpj', class: 'cnpj'}
+        .big-divider
+        .column.text-center
+          = f.submit "Pesquisar", class: 'ui button yellow'
+          = link_to  "Limpar pesquisa", cadastres_path,  class: 'ui button'
+    - if @cadastres.present?
+      .big-divider
+      %table.ui.celled.table
+        %tbody
+          - @cadastres.order(:fantasy_name).each do |entity|
+            %tr
+              %td
+                = "#{entity.name} - #{entity.fantasy_name}"
+                %br
+                %br
+                CNPJ:
+                = link_to entity.cnpj, cadastre_path(id: entity.id)

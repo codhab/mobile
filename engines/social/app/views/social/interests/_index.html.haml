@@ -1,0 +1,10 @@
+%b Quero participar do sorteio das seguintes áreas/lotes:
+%br
+%br
+.ui.list
+  - @address.each do |item|
+    .item
+      = link_to "".html_safe, interest_update_path(interest_id: item.id), class: "ui button icon mini #{ @interests.present? && @interests.where(unit_sale_id: item.id).present? ? 'green' : ''}", style: 'vertical-align: middle', remote: true, data: { disable_with: "<i class='notched circle loading icon'></i>".html_safe}
+      = "#{item.city.name} - #{item.address}"
+  .ui.divider
+  = link_to "Confirmar", entity.root_path, class: 'ui green button fluid'

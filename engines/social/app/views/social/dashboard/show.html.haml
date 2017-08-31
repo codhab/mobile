@@ -1,0 +1,81 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Dados da Entidade
+    .big.divider
+    %small
+      = @entity.name.mb_chars.upcase
+.big.divider
+.ui.container
+  %table.ui.celled.table
+    %thead
+      %tr
+        %th
+          = @entity.fantasy_name.mb_chars.upcase
+    %tbody
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Nome
+              = @entity.cnpj
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Cidade
+              = @entity.city.name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Endereço
+              = @entity.address rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                CEP
+              = @entity.cep rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Presidente
+              = @entity.president_name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Situação
+              = @entity.current_situation.humanize rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Telefone
+              = @entity.telephone rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Telefone secundário
+              = @entity.telephone_optional.present? ? @entity.telephone_optional : "Sem informação"
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Email
+              = @entity.email rescue nil

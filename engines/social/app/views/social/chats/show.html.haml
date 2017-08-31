@@ -1,0 +1,63 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{chats_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Minhas Conversas
+      - unless @chat.chat_comments.present?
+        %br
+        %br
+        = link_to "Novo comentário", new_comment_path(chat_id: @chat), class: 'ui button yellow fluid'
+      - else
+        - if @chat.allow_comment?
+          %br
+          %br
+          = link_to "Novo comentário", new_comment_path(chat_id: @chat), class: 'ui button yellow fluid'
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+              %td
+                %p
+                  %b Conversa Nº
+                  %br/
+                  #{@chat.id}/#{@chat.created_at.year}
+                  %br
+                  %br
+                  %b= @chat.chat_category.name rescue nil
+                  %br/
+                  = @chat.created_at.strftime("%d/%m/%Y - %H:%M")
+            - if @chat.closed
+              %tr
+                %td
+                  %a.ui.red.ribbon.label
+                    Conversa encerrada
+                  %p
+                    = @chat.close_comment
+    .divider
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            - @chat.chat_comments.order('created_at DESC').each do |comment|
+              %tr
+                %td
+                %td
+                  %small
+                    - if comment.staff_id.present?
+                      %a.ui.yellow.ribbon.label
+                        CODHAB - #{comment.created_at.strftime("%d/%m/%Y - %H:%M")}
+                    - else
+                      %a.ui.green.ribbon.label
+                        Você - #{comment.created_at.strftime("%d/%m/%Y - %H:%M")}
+                  %p
+                    -if comment.chat_uploads.present?
+                      %p
+                        = "Você anexou: #{comment.chat_uploads.count} arquivo(s)"
+                  %p{style: 'text-align: justify'}
+                    %i= comment.content.humanize

@@ -1,0 +1,81 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.search_cadastres_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header
+      Dados da Entidade
+    .big.divider
+    %small
+      = @cadastre.name.mb_chars.upcase
+.big.divider
+.ui.container
+  %table.ui.celled.table
+    %thead
+      %tr
+        %th
+          = @cadastre.fantasy_name.mb_chars.upcase
+    %tbody
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Nome
+              = @cadastre.cnpj
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Cidade
+              = @cadastre.city.name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Endereço
+              = @cadastre.address rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                CEP
+              = @cadastre.cep rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Presidente
+              = @cadastre.president_name rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Situação
+              = @cadastre.current_situation.humanize rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Telefone
+              = @cadastre.telephone rescue nil
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Telefone secundário
+              = @cadastre.telephone_optional.present? ? @cadastre.telephone_optional : "Sem informação"
+      %tr
+        %td
+          %h4.ui.image.header
+            .content
+              .sub.header
+                Email
+              = @cadastre.email rescue nil

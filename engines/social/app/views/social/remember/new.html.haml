@@ -1,0 +1,13 @@
+.ui.grid
+  .two.wide.mobile.column.text-center
+  .thirteen.wide.mobile.column.text-center
+    .title-header Recuperação de senha
+    .sub-title Gerar código de recuperação
+
+.ui.grid.container
+  .column.content-form
+    = simple_form_for @remember, url: entity.remember_path, method: :post do |f|
+      = f.input :cnpj, input_html: { class: 'cnpj'}
+      = f.submit "Gerar código", class: 'ui button yellow fluid'
+      %br/
+      = link_to "Já possuo código de recuperação", update_password_path, class: 'button ui green fluid'

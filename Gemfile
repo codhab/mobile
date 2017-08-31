@@ -50,4 +50,5 @@ path 'engines' do
   gem 'person'
   gem 'portal'
   gem 'protocol'
+  gem 'social'
 end

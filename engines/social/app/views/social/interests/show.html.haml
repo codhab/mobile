@@ -1,0 +1,55 @@
+
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.entity_interests_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Manifestação de interesse
+    .sub-title Comprovante de manifestação
+.ui.container
+  %table.ui.table
+    %tbody
+      %tr 
+        %td
+        %td
+          %p 
+            %b  Dados da Manifestação
+          %p
+            %b Situação:
+            %br/
+            %span.bold{style: 'color: green'} Manifestação realizada com sucesso!
+          %p
+            %b Situação do sorteio:
+            %br/
+            - if @interest.allotment_id == 1
+              %span.bold{style: 'color: green'} Sorteio já realizado!
+            - else
+              %span.bold{style: 'color: blue'} Sorteio ainda não realizado!
+          %p
+            %b Realizada em:
+            %br/
+            = @interest.created_at.strftime("%d/%m/%Y - %H:%M")
+          %p
+            %b Código de autenticidade:
+            %br/
+            = @interest.protocol
+      %tr 
+        %td
+        %td
+          %p 
+            %b Dados da entidade:
+          %p= @interest.entity.fantasy_name
+          %p= @interest.entity.cnpj
+          %p= @interest.entity.name
+      %tr 
+        %td
+          %p
+            %b Unidades (#{@interest.unit_sales.count})
+        %td
+        %td
+          - @interest.unit_sales.order(:address).each do |unit|
+            = "#{unit.city.name} - #{unit.address}"
+            %br/
+      %tr 
+        %td 
+          = link_to "Enviar por e-mail", "#", class: 'ui button blue fluid'

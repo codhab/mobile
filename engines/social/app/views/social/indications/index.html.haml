@@ -1,0 +1,31 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Unidades para distribuição (#{@units.where(situation: 0).count})
+    .sub-title Listagem de unidades
+.ui.container
+  %table.ui.celled.table
+    %tbody
+      - if @units.present?
+        - @units.each do |entity|
+          %tr
+            %td
+              %h4.ui.image.header
+                %i.icon.big.check{class: entity.candidato_indicado? ? 'green' : 'gray'}
+                .content
+                  = link_to entity.unit.complete_address, new_indication_path(indication_id: entity.id)
+                  .sub.header
+                    = entity.unit.city.name
+                  .sub.header
+                    .mini-divider
+                    = entity.cadastre.name rescue nil
+                    %b= entity.cadastre.presenter.current_situation_name rescue nil
+                    
+      - else
+        %tr
+          %td
+          %td.text-center
+            %i Nenhuma unidade a ser distribuída.
+
