@@ -1,0 +1,57 @@
+.ui.grid
+  .sixteen.wide.mobile.column.text-center
+    .title-header
+      #{current_social.fantasy_name}
+    .sub-title #{current_social.name}
+    .divider
+    .sub-title
+      .ui.label.blue #{current_social.current_situation_name}
+.divider
+.ui.three.column.grid.container.black
+  .column
+    .ui.segment.text-center
+      %a{href: "#{social.dashboard_path(current_social)}"}
+        %i.icon.file.outline.huge.gray
+    .text-center
+      Meu cadastro
+  .column
+    .ui.segment.text-center
+      %a{href: "#{social.edit_contact_path(current_social)}"}
+        %i.icon.refresh.huge.gray
+    .text-center
+      Atualização de dados de contato
+
+  / .column
+  /    .ui.segment.text-center
+  /      %a{href: "#{social.indications_path}"}
+  /        %i.icon.building.huge.gray
+  /    .text-center
+  /      Indicação
+  - if current_social.allow_accredited?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{social.requeriments_path}"}
+          %i.icon.file.huge.gray
+      .text-center
+        Requerimentos
+  - if current_social.allow_accredited?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{social.chats_path}"}
+          %i.icon.chat.huge.gray
+      .text-center
+        Conversas
+  - if current_social.allow_accredited?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{social.new_form_path(form_id: 3)}"}
+          %i.icon.question.huge.gray
+      .text-center
+        Questionários
+  - if current_social.allow_accredited?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{social.social_interests_path}"}
+          %i.icon.checkmark.box.huge.gray
+      .text-center
+        Manifestação

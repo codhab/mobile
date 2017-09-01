@@ -15,9 +15,9 @@
       = f.submit "Pesquisar", name: nil, class: 'ui button green fluid'
   .ui.divider.hidden
   - if @addresses.present?
-    %table.ui.table.striped.celled 
+    %table.ui.table.striped.celled
       %thead
-        %tr 
+        %tr
           %td Listando #{@addresses.count} endereços
       %tbody
         - @addresses.each do |address|
@@ -36,22 +36,22 @@
       $.getJSON("#{by_city_wallets_path}?city_id="+ $(this).val(), function(data) {
         html = "<option value>Selecione...</option>"
         for(var x = 0; data.length > x; x++) {
-          html += "<option value='" + data[x] + "'>" + data[x] + "</option>" 
-        } 
+          html += "<option value='" + data[x] + "'>" + data[x] + "</option>"
+        }
 
-        $("#by_block").html(html)        
+        $("#by_block").html(html)
       });
     })
 
     $("#by_block").on('change', function() {
       $.getJSON("#{by_block_wallets_path}?city_id="+ $('#by_city').val() + "&block="+ $(this).val(), function(data) {
         html = "<option value>Selecione...</option>"
-        
-        for(var x = 0; data.length > x; x++) {
-          html += "<option value='" + data[x].address_agenda + "'>" + data[x].address_agenda + "</option>" 
-        } 
 
-        $("#by_address").html(html)        
+        for(var x = 0; data.length > x; x++) {
+          html += "<option value='" + data[x].address_agenda + "'>" + data[x].address_agenda + "</option>"
+        }
+
+        $("#by_address").html(html)
 
       });
     })
