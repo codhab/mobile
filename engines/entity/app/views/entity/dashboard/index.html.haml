@@ -48,10 +48,10 @@
           %i.icon.question.huge.gray
       .text-center
         Questionários
-  - if current_entity.allow_accredited?
-    .column
-      .ui.segment.text-center
-        %a{href: "#{entity.entity_interests_path}"}
-          %i.icon.checkmark.box.huge.gray
-      .text-center
-        Manifestação
+  /- if current_entity.allow_accredited?
+  /  .column
+  /    .ui.segment.text-center
+  /      %a{href: "#{entity.entity_interests_path}"}
+  /        %i.icon.checkmark.box.huge.gray
+  /    .text-center
+  /      Manifestação
