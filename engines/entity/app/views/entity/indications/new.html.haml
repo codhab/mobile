@@ -1,22 +1,21 @@
 .ui.grid
   .two.wide.mobile.column
-    %a{href: "#{entity.indications_path}"}
+    %a{href: "#{entity.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
-    .title-header Distribuição 
+    .title-header Indicação 
     .sub-title 
-      Formulário de distribuição
+      Formulário de indicação
 .ui.container
   %table.ui.celled.table
     %tbody
       %tr
         %td
         %td.text-center
-          %h3 #{@unit.unit.complete_address}
-          %p #{@unit.unit.city.name}
+          %h3 #{@enterprise.name}
           %hr/
 
-          - if @unit.cadastre_id.present?
+          - if @indication.cadastre_id.present?
             %td.text-center
               %h4 Candidato selecionado 
               %p= @unit.cadastre.name
@@ -30,20 +29,27 @@
               %hr/
           - else
             %td
-              = simple_form_for @indication, url: indications_path(indication_id: @unit.id) do |f|
+              = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
                 = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
                 - if @indication.cpf_create
-                  = link_to "Cadastrar candidato", "#", class: 'ui button blue fluid'
+                  /= link_to "Cadastrar candidato", "#", class: 'ui button blue fluid'
+                  = f.submit "Indicar candidato", class: 'ui button green fluid'
                 - else
-                  = f.submit "Distribuir", class: 'ui button green fluid'
+                  = f.submit "Indicar candidato", class: 'ui button green fluid'
               %hr/
-          - if @unit.indication_logs.present?
+          - if @enterprise.candidates.present?
+            %td.text-center
+              %br/
+              %br/
+              %br/
+              %b Indicações realizadas (@enterprise.candidates.count)
             %td
-              %h4.text-center Histórico
-              .ui.message.info
-                - @unit.indication_logs.order('created_at DESC').each do |log|
-                  %p 
-                    %b 
-                      #{log.created_at.strftime('%d/%m/%Y - %H:%M')} - 
-                    #{log.description}
-              
+              - @enterprise.candidates.order('created_at DESC').each do |log|
+                %tr
+                  %td
+                  %td
+                    %p
+                      %b= log.cadastre.name rescue nil
+                    %p= log.cadastre.cpf  rescue nil
+                    %p= log.inactive ? "Indicação inativa" : "Indicação ativa" rescue nil
+                    %p= log.created_at.strftime("%d/%m/%Y %H:%M")  rescue nil

@@ -21,12 +21,13 @@
     .text-center
       Atualização de dados de contato
 
-  / .column
-  /    .ui.segment.text-center
-  /      %a{href: "#{entity.indications_path}"}
-  /        %i.icon.building.huge.gray
-  /    .text-center
-  /      Indicação
+  - if current_entity.enterprises.present?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.indications_path}"}
+          %i.icon.building.huge.gray
+      .text-center
+        Indicação
   - if current_entity.allow_accredited?
     .column
       .ui.segment.text-center

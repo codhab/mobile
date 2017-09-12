@@ -8,7 +8,11 @@ Entity::Engine.routes.draw do
 
   resources :dashboard
   resources :cadastres
-  resources :interests, as: :entity_interests
+  
+  resources :interests, as: :entity_interests do 
+    get 'send_mail'
+  end
+
 
   resources :forms
   resources :indications do

@@ -2,7 +2,7 @@ require_dependency 'entity/application_controller'
 
 module Entity
   class InterestsController < ApplicationController
-    before_action :set_address, only: [:new, :create]
+    before_action :set_address, only: [:new, :create, :send_mail]
 
     def index
     end
@@ -15,6 +15,9 @@ module Entity
       @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id).new(set_params)
 
       if @interest.save 
+
+        Entity::RecoveryMailer.simple(@interest.entity.email).deliver_now rescue nil
+
         redirect_to entity_interest_path(@interest)
       else 
         flash[:error] = t :error
@@ -27,6 +30,21 @@ module Entity
       @interest = current_entity.interests.find(params[:id])
     end
 
+    def send_mail
+      @interest = current_entity.interests.find(params[:entity_interest_id])
+
+      begin 
+
+        Entity::RecoveryMailer.simple(@interest, @interest.entity.email).deliver_now 
+        
+        flash[:success] = t :success
+      
+      rescue Exception => e
+        puts e
+      end
+
+      redirect_to entity_interest_path(@interest)
+    end
 
     private
 

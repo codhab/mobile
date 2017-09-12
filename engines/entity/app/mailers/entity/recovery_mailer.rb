@@ -10,5 +10,11 @@ module Entity
       mail(to: @email, subject: "Entidades - Recuperação de senha de acesso")
     end
 
+    def simple(interest, email)
+      @interest = interest
+      
+      mail(to: email, subject: "Manifestação de interesse realizada com sucesso!")
+    end
+
   end
 end

@@ -5,23 +5,24 @@ module Entity
     before_action :set_units
 
     def index
+      redirect_to action: :new
     end
 
     def new
-      @unit       = @units.find(params[:indication_id])
-      @indication = Core::Entity::Indication.new(indication_id: @unit.id)
+      @enterprise = current_entity.enterprises.last 
+      @indication = Core::Entity::Indication.new(enterprise_id: @enterprise.id)
     end
 
     def create
-      @unit       = @units.find(params[:indication_id])
+      @enterprise = current_entity.enterprises.last 
       @indication = Core::Entity::Indication.new(set_params)
 
-      @indication.indication_id = @unit.id
+      @indication.enterprise_id = @enterprise.id
       
       if @indication.valid?
         @indication.persist_indication
 
-        redirect_to new_indication_path(indication_id: @unit.id)
+        redirect_to new_indication_path
       else
         render action: :new
       end
