@@ -40,9 +40,16 @@
           - if @enterprise.candidates.present?
             %td.text-center
               %br/
+              %h4 Qtd. de unidades disponíveis (#{@enterprise.units})
               %br/
               %br/
-              %b Indicações realizadas (@enterprise.candidates.count)
+              %b Indicações realizadas (#{@enterprise.candidates.count})
+              %br/
+            %td.text-center
+              Ativas (#{@enterprise.candidates.where('inactive_date is null').count})
+              |
+              Inativas (#{@enterprise.candidates.where('inactive_date is not null').count})
+
             %td
               - @enterprise.candidates.order('created_at DESC').each do |log|
                 %tr
@@ -51,5 +58,11 @@
                     %p
                       %b= log.cadastre.name rescue nil
                     %p= log.cadastre.cpf  rescue nil
-                    %p= log.inactive ? "Indicação inativa" : "Indicação ativa" rescue nil
+                    %p
+                      - if log.inactive   
+                        .ui.label.red
+                          Indicação inativa
+                      - else
+                        .ui.label.green
+                          Indicação ativa
                     %p= log.created_at.strftime("%d/%m/%Y %H:%M")  rescue nil
