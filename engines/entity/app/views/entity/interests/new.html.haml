@@ -8,7 +8,16 @@
     .sub-title Nova manifestação
 .ui.container
   - if Core::Entity::UnitSale.where(status: true).present?
-    = render 'form'
+    - if Core::Entity::Interest.where(entity_id: current_entity.id, allotment_id: 2).present?
+      .text-center
+        %br/
+        %br/
+        %h4 Você já realizou sua manifestação.
+        %br/
+        %br/
+        = link_to "Retornar", entity_interests_path, class: 'ui button yellow fluid'        
+    - else
+      = render 'form'
   - else 
     .text-center
       %br/

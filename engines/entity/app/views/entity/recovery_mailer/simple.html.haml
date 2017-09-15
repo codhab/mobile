@@ -35,9 +35,6 @@
         %b
           Sua manifestação de interesse foi realizada com sucesso!
     %p{:align => "justify", :style => "margin-top: 0.21cm; margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0"}
-      %h3
-        %b Detalhamento
-    %p{:align => "justify", :style => "margin-top: 0.21cm; margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0"}
       %font{:face => "Roboto, serif"}
     %br/
     %p{:align => "justify", :style => "margin-top: 0.21cm; margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0"}
@@ -50,18 +47,18 @@
         %p
           %b CNPJ:
           = @interest.entity.cnpj
-        %p 2. Acesse a área acesso restrito da entidade
-        %p 3. Toque em a recuperação de senha
-        %p 4. Toque em 'Já possuo o código de recuperação'
-        %p 5. Informe o código e informe uma nova senha
-        %p 6. Pronto, senha atualizada.
-
+        %p
+          %b Protocolo de autenticação:
+          = @interest.protocol
+        
     %br/
     %p{:align => "justify", :style => "margin-top: 0.21cm; margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0"}
       %font{:face => "Roboto, serif"}
         %p 
           %b Endereços manifestados
-        %br/
         - @interest.unit_sales.order(:address).each do |unit|
           %p= "#{unit.city.name} - #{unit.address}"
-            
+    
+    %br/
+    %br/
+    %br/

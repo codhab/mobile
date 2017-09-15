@@ -13,16 +13,6 @@
         %span.ui.label.yellow.mini.font-black
           #{current_cadastre.current_situation_name}
 .ui.grid.container
-  .column
-    .big-divider
-    - if @ticket_policy.allow_recadastre_update?
-      - if current_cadastre.tickets.where(context_id: 1).where.not(situation_id: 1).present?
-        .ui.message.green{style: 'text-align: center'}
-          %b Sua atualização cadastral foi realizada com sucesso!
-      - else
-        .ui.message.red{style: 'text-align: center'}
-          %b Você ainda não realizou sua atualização cadastral, verifique!
-    
 .divider
 .ui.three.column.grid.container.black
   .column

@@ -7,6 +7,7 @@
     .title-header Manifestação de interesse
     .sub-title Comprovante de manifestação
 .ui.container
+
   %table.ui.table
     %tbody
       %tr 
@@ -44,7 +45,7 @@
       %tr 
         %td
           %p
-            %b Unidades (#{@interest.unit_sales.count})
+            %b Manifestações realizadas (#{@interest.unit_sales.count})
         %td
         %td
           - @interest.unit_sales.order(:address).each do |unit|
@@ -52,4 +53,4 @@
             %br/
       %tr 
         %td 
-          = link_to "Enviar por e-mail", entity_interest_send_mail_path(@interest), class: 'ui button blue fluid'
+          = link_to "Enviar por e-mail", entity_interest_send_mail_path(@interest), class: 'ui button blue fluid', data: { disable_with: "Email sendo enviado..."}

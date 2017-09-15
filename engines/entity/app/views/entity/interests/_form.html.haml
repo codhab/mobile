@@ -8,7 +8,7 @@
               %td
               - @interest.errors.full_messages.each do |error| 
                 %td= "*#{error}"
-          - @addresses.each do |address|
+          - @addresses.order(:address).each do |address|
             %tr
               %td
                 = check_box_tag "entity_interest_form[unit_sale_ids][]", address.id, @interest.unit_sale_ids.to_a.include?(address.id.to_s)

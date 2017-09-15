@@ -5,12 +5,12 @@
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Manifestação de interesse
-    .sub-title Listagem de manifestãções (#{current_entity.interests.count})
+    .sub-title Listagem de manifestãções
 .ui.container
   %table.ui.celled.table
     %tbody
       - if current_entity.interests.present?
-        - current_entity.interests.order(created_at: :desc).each do |interest|
+        - current_entity.interests.where(allotment_id: 2).order(created_at: :desc).each do |interest|
           %tr 
             %td
               = link_to "#{interest.protocol} - Sorteio #{interest.allotment_id}", entity_interest_path(interest)
