@@ -32,24 +32,40 @@
               = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
                 = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
                 - if @indication.cpf_create
-                  /= link_to "Cadastrar candidato", "#", class: 'ui button blue fluid'
-                  = f.submit "Indicar candidato", class: 'ui button green fluid'
+                  = link_to "Deseja cadastrar o candidato?", new_provisional_cadastre_path, class: 'ui button blue fluid'
+                  /= f.submit "Indicar candidato", class: 'ui button green fluid'
                 - else
                   = f.submit "Indicar candidato", class: 'ui button green fluid'
               %hr/
-          - if @enterprise.candidates.present?
             %td.text-center
               %br/
               %h4 Qtd. de unidades disponíveis (#{@enterprise.units})
               %br/
               %br/
-              %b Indicações realizadas (#{@enterprise.candidates.count})
+              %b Novos cadastros realizados (#{Entity::ProvisionalCandidate.where(entity_id: current_entity.id).count})
               %br/
+              %b Indicações realizadas (#{@enterprise.candidates.count})
             %td.text-center
               Ativas (#{@enterprise.candidates.where('inactive_date is null').count})
               |
               Inativas (#{@enterprise.candidates.where('inactive_date is not null').count})
-
+               
+            %td
+              - if Entity::ProvisionalCandidate.where(entity_id: current_entity.id).present?
+                - Entity::ProvisionalCandidate.where(entity_id: current_entity.id).each do |pr|
+                  - cadastre = Core::Candidate::Cadastre.find(pr.candidate_id) rescue nil
+                  %td
+                  %td
+                    %p
+                      %b= cadastre.name rescue nil
+                    %p
+                      %b= cadastre.cpf
+                    %p
+                      .ui.label.blue
+                        Novo cadastro
+                      .ui.label.black
+                        = cadastre.cadastre_situations.last.situation_status.name rescue nil
+          - if @enterprise.candidates.present?
             %td
               - @enterprise.candidates.order('created_at DESC').each do |log|
                 %tr

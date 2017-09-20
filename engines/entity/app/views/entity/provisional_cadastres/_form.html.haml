@@ -1,0 +1,7 @@
+= simple_form_for @provisional do |f|
+  = f.input :name,  label:'Nome completo'
+  = f.input :cpf, label:'CPF', input_html: { class: 'cpf' }
+  = f.input :born, label: "Data de nascimento", as: :string, input_html: { class: 'date'}
+  = f.submit "Cadastrar", class: 'ui button green fluid'
+  %br
+  = link_to "Cancelar", indications_path, class: 'ui button secondary fluid'

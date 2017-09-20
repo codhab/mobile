@@ -1,0 +1,10 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.indications_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Indicação (cadastro)
+    .sub-title 
+      Formulário de cadastro para indicação
+.ui.container
+  = render 'form'

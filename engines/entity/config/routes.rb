@@ -20,6 +20,8 @@ Entity::Engine.routes.draw do
     get 'cancel'
   end
 
+  resources :provisional_cadastres, only: [:new, :show, :create]
+
   get  '/remember', to: 'remember#new'
   post '/remember', to: 'remember#create'
 
