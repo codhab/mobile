@@ -14,7 +14,8 @@ module Entity
         cadastre = Core::Candidate::Cadastre.new({
           cpf: self.cpf,
           name: self.name,
-          born: self.born
+          born: self.born,
+          program_id: 1
         })
 
         cadastre.save
