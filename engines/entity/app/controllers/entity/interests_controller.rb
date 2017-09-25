@@ -5,13 +5,13 @@ module Entity
     before_action :set_address, only: [:new, :create, :send_mail]
 
     def index
+      @enterprise = Core::Entity::Enterprise.where(entity_id: current_entity.id)
+      @enterprise = (!current_entity.enterprises.present? && !@enterprise.present?)
     end
 
     def new
       @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 2).new
       
-      @enterprise = Core::Entity::Enterprise.where(entity_id: current_entity.id)
-      @enterprise = (current_entity.enterprises.present? || @enterprise.present?)
     end
 
     def create

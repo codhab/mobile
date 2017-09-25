@@ -7,7 +7,7 @@
     .title-header Manifestação de interesse
     .sub-title Nova manifestação
 .ui.container
-  - if Core::Entity::UnitSale.where(status: true).present?
+  - if Core::Entity::UnitSale.where(status: true).present? && Date.current <= Date.parse('2017-09-25')
     - if Core::Entity::Interest.where(entity_id: current_entity.id, allotment_id: 2).present?
       .text-center
         %br/
