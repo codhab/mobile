@@ -9,6 +9,9 @@ module Entity
 
     def new
       @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 2).new
+      
+      @enterprise = Core::Entity::Enterprise.where(entity_id: current_entity.id)
+      @enterprise = (current_entity.enterprises.present? || @enterprise.present?)
     end
 
     def create
