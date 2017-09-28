@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: cc99877b119f33ad2db22c2d21d63419e048d9d8
+  revision: 1c8397ff0bcfc5c65b468d5ef5e5e06f02293c66
   branch: master
   specs:
     core (0.1.0)
@@ -145,7 +145,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
-    method_source (0.8.2)
+    method_source (0.9.0)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)

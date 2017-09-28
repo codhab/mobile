@@ -93,3 +93,33 @@
           %i.icon.help.circle.outline.huge.gray.text-center.text-center
       .text-center
         Questinário
+
+  - if @ticket_policy.allow_to_question_two?
+    .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+      .ui.segment.text-center
+        %a{href: "#{attendance.new_form_path(form_id: 7)}"}
+          %i.icon.help.circle.outline.huge.gray.text-center.text-center
+      .text-center
+        Pesquisa
+
+
+
+
+- if @ticket_policy.allow_to_question_two_modal?
+  .ui.modal{style: 'display: none'}
+    .header.text-center
+      Aviso
+    .image.content
+      .description
+        .ui.header
+        %h3.text-center
+          %p Notamos que você ainda não respondeu o questionário.
+        .text-center
+          = link_to "Clique aqui para ir para o questionário", attendance.new_form_path(form_id: 7) , class: 'ui button yellow fluid'
+
+
+  :javascript
+    $(document).ready(function() {
+      $(".ui.modal").show();
+      $(".ui.modal").modal('show')
+    })
