@@ -7,18 +7,23 @@
     .title-header Manifestação de interesse
     .sub-title Nova manifestação
 .ui.container
-  - if Core::Entity::UnitSale.where(status: true).present? && Date.current <= Date.parse('2017-09-25')
-    - if Core::Entity::Interest.where(entity_id: current_entity.id, allotment_id: 2).present?
+  - if Core::Entity::UnitSale.where(status: true).present? && Date.current <= Date.parse('2017-10-25')
+    - if Core::Entity::Interest.where(entity_id: current_entity.id, allotment_id: 3).present?
       .text-center
         %br/
         %br/
         %h4 Você já realizou sua manifestação.
         %br/
         %br/
-        = link_to "Retornar", entity_interests_path, class: 'ui button yellow fluid'        
+        = link_to "Retornar", entity_interests_path, class: 'ui button yellow fluid'
     - else
+      .ui.message.warning.text-center
+        %p
+          %b
+            Para verificar os endereços referentes ao grupos, acesse o
+            %a{href: 'http://www.codhab.df.gov.br/postagem/882', target: '_blank'} Portal da Codhab.
       = render 'form'
-  - else 
+  - else
     .text-center
       %br/
       %br/

@@ -7,22 +7,23 @@ module Entity
     def index
       @enterprise = Core::Entity::Enterprise.where(entity_id: current_entity.id)
       @enterprise = (!current_entity.enterprises.present? && !@enterprise.present?)
+      @enterprise = ![120,309,92,460,115,368,326,206,48,383,430,17].include?(current_entity.id) if @enterprise
     end
 
     def new
-      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 2).new
-      
+      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 3).new
+
     end
 
     def create
-      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 2).new(set_params)
+      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 3).new(set_params)
 
-      if @interest.save 
+      if @interest.save
 
         Entity::RecoveryMailer.simple(@interest.entity.email).deliver_now rescue nil
 
         redirect_to entity_interest_path(@interest)
-      else 
+      else
         flash[:error] = t :error
         render action: :new
       end
@@ -36,12 +37,12 @@ module Entity
     def send_mail
       @interest = current_entity.interests.find(params[:entity_interest_id])
 
-      begin 
+      begin
 
-        Entity::RecoveryMailer.simple(@interest, @interest.entity.email).deliver_now 
-        
+        Entity::RecoveryMailer.simple(@interest, @interest.entity.email).deliver_now
+
         flash[:success] = t :success
-      
+
       rescue Exception => e
         puts e
       end

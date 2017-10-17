@@ -10,10 +10,10 @@
 
   %table.ui.table
     %tbody
-      %tr 
+      %tr
         %td
         %td
-          %p 
+          %p
             %b  Dados da Manifestação
           %p
             %b Situação:
@@ -22,7 +22,7 @@
           %p
             %b Situação do sorteio:
             %br/
-            - if @interest.allotment_id == 1
+            - if [1,2].include? @interest.allotment_id
               %span.bold{style: 'color: green'} Sorteio já realizado!
             - else
               %span.bold{style: 'color: blue'} Sorteio ainda não realizado!
@@ -34,15 +34,15 @@
             %b Código de autenticidade:
             %br/
             = @interest.protocol
-      %tr 
+      %tr
         %td
         %td
-          %p 
+          %p
             %b Dados da entidade:
           %p= @interest.entity.fantasy_name
           %p= @interest.entity.cnpj
           %p= @interest.entity.name
-      %tr 
+      %tr
         %td
           %p
             %b Manifestações realizadas (#{@interest.unit_sales.count})
@@ -51,6 +51,6 @@
           - @interest.unit_sales.order(:address).each do |unit|
             = "#{unit.city.name} - #{unit.address}"
             %br/
-      %tr 
-        %td 
+      %tr
+        %td
           = link_to "Enviar por e-mail", entity_interest_send_mail_path(@interest), class: 'ui button blue fluid', data: { disable_with: "Email sendo enviado..."}

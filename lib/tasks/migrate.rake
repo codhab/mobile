@@ -1,6 +1,18 @@
-namespace :migrate do 
+namespace :migrate do
 
-  task entity: :environment do 
+  task group: :environment do
+    (66..89).each do |index|
+      interest = Core::Entity::UnitSale.new({
+          address: "GRUPO #{index}",
+          city_id: 985,
+          status: true
+      })
+
+      interest.save
+    end
+  end
+
+  task entity: :environment do
 
     Core::Entity::Cadastre.all.each do |entity|
       @entity = entity

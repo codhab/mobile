@@ -50,15 +50,15 @@
         %p
           %b Protocolo de autenticação:
           = @interest.protocol
-        
+
     %br/
     %p{:align => "justify", :style => "margin-top: 0.21cm; margin-bottom: 0cm; line-height: 115%; orphans: 0; widows: 0"}
       %font{:face => "Roboto, serif"}
-        %p 
+        %p
           %b Endereços manifestados
-        - @interest.unit_sales.order(:address).each do |unit|
+        - @interest.unit_sales.order(:id).each do |unit|
           %p= "#{unit.city.name} - #{unit.address}"
-    
+
     %br/
     %br/
     %br/
