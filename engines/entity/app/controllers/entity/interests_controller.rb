@@ -7,9 +7,9 @@ module Entity
     def index
       @enterprise = Core::Entity::Enterprise.where(entity_id: current_entity.id)
       #@enterprise = (!current_entity.enterprises.present? && !@enterprise.present?)
-      @enterprise = ![120, 326, 460, 303, 92, 17, 48, 430, 368, 202, 115, 206, 130, 383, 309, 31, 192].include?(current_entity.id) if @enterprise
+      @enterprise = ![120, 326, 460, 303, 92, 17, 48, 430, 202, 115, 206, 130, 383, 309, 31, 192].include?(current_entity.id) if @enterprise
     end
-    
+
     def new
       @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 3).new
 
