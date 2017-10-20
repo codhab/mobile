@@ -3,8 +3,8 @@
     %a{href: "#{entity.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
-    .title-header Indicação 
-    .sub-title 
+    .title-header Indicação
+    .sub-title
       Formulário de indicação
 .ui.container
   %table.ui.celled.table
@@ -17,7 +17,7 @@
 
           - if @indication.cadastre_id.present?
             %td.text-center
-              %h4 Candidato selecionado 
+              %h4 Candidato selecionado
               %p= @unit.cadastre.name
               %p= @unit.cadastre.cpf
               %p.ui.label.blue= @unit.cadastre.presenter.current_situation_name
@@ -46,10 +46,10 @@
               %br/
               %b Indicações realizadas (#{@enterprise.candidates.count})
             %td.text-center
-              Ativas (#{@enterprise.candidates.where('inactive_date is null').count})
+              Ativas (#{@enterprise.candidates.where('inactive is true').count})
               |
-              Inativas (#{@enterprise.candidates.where('inactive_date is not null').count})
-               
+              Inativas (#{@enterprise.candidates.where('inactive is false').count})
+
             %td
               - if Entity::ProvisionalCandidate.where(entity_id: current_entity.id).present?
                 - Entity::ProvisionalCandidate.where(entity_id: current_entity.id).each do |pr|
@@ -75,7 +75,7 @@
                       %b= log.cadastre.name rescue nil
                     %p= log.cadastre.cpf  rescue nil
                     %p
-                      - if log.inactive   
+                      - if log.inactive
                         .ui.label.red
                           Indicação inativa
                       - else
