@@ -7,23 +7,23 @@
     .sub-title Listagem de empreendimentos
 .ui.grid.container
   - if current_cadastre.policy.active_indication_present?
-    .column 
+    .column
       .ui.message.info
         %p
           %b Atenção
         %p
           Você possui uma manifestação ativa, não é possível realizar interesse por outro empreendimento neste momento.
 .ui.grid.container
-  .column 
+  .column
     %table.ui.celled.table
       %tbody
         - if @projects.present?
           - @projects.each do |project|
-            %tr 
-              %td 
+            %tr
+              %td
                 %h4.ui.image.header
                   = project.name
-              %td 
+              %td
                 .content
                   .sub.header
                     %p #{project.presenter.detail_name}
@@ -32,15 +32,17 @@
                     - if !current_cadastre.policy.active_indication_present?
                       - if !project.policy.enterprise_active_indication?(current_cadastre)
                         - if project.policy.enterprise_allow_new_indications?
-                          = link_to "Participar", open_door_path(project), class: 'ui button green mini', remote: true
+                          /= link_to "Participar", open_door_path(project), class: 'ui button green mini', remote: true
+                          = link_to "Participar", "#", class: 'ui button green mini', remote: true
                         - else
                           = link_to "Limite de indicações excedido", "#", class: 'ui button gray disabled mini'
                     - if project.policy.enterprise_active_indication?(current_cadastre)
                       %label.ui.label.green Manifestação ativa
-                      = link_to "Cancelar", open_door_delete_path(project), class: 'ui button red mini',remote: true
+                      = link_to "Cancelar", "#", class: 'ui button red mini',remote: true
+                      /= link_to "Cancelar", open_door_delete_path(project), class: 'ui button red mini',remote: true
 
-        - else 
-          %tr 
-            %td 
-            %td.text-center 
+        - else
+          %tr
+            %td
+            %td.text-center
               %i Nenhum empreendimento disponível.
