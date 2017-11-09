@@ -27,8 +27,8 @@
                     = link_to "Atualização de dados básicos", ticket_update_cadastre_path(@ticket)
                     .sub.header
                       #{@ticket.situation_by_action_context(1)}
-                      - if @ticket.situation_id == 1 && @ticket.actions.find_by(context_id: 1).situation_id == 2 && @ticket.comments.present?
-                        - @action = @ticket.actions.find_by(context_id: 1)
+                      - @action = @ticket.actions.find_by(context_id: 1) rescue nil
+                      - if @action.present? && (@ticket.situation_id == 1 && @action.situation_id == 2 && @ticket.comments.present?)
                         %br
                         %br
                         = link_to "Revisar documentação", ticket_continue_cadastre_path(@ticket, @action), class: 'ui button blue tiny', style: 'color: white !important'
@@ -47,8 +47,8 @@
                     = link_to "Atualização de dependentes", ticket_update_dependent_path(@ticket)
                     .sub.header
                       #{@ticket.situation_by_action_context(2)}
-                      - if @ticket.situation_id == 1 && @ticket.actions.find_by(context_id: 2).situation_id == 2 && @ticket.comments.present?
-                        - @action = @ticket.actions.find_by(context_id: 1)
+                      - @action = @ticket.actions.find_by(context_id: 1) rescue nil
+                      - if @action.present? && (@ticket.situation_id == 1 && @action.situation_id == 2 && @ticket.comments.present?)
                         %br
                         %br
                         = link_to "Revisar documentação", ticket_update_dependent_path(@ticket), class: 'ui button blue tiny', style: 'color: white !important'
@@ -67,8 +67,8 @@
                     = link_to "Atualização de renda", ticket_update_income_path(@ticket)
                     .sub.header
                       #{@ticket.situation_by_action_context(3)}
-                      - if @ticket.situation_id == 1 && @ticket.actions.find_by(context_id: 3).situation_id == 2 && @ticket.comments.present?
-                        - @action = @ticket.actions.find_by(context_id: 1)
+                      - @action = @ticket.actions.find_by(context_id: 2) rescue nil
+                      - if @action.present? && (@ticket.situation_id == 1 && @action.situation_id == 2 && @ticket.comments.present?)
                         %br
                         %br
                         = link_to "Revisar documentação", ticket_update_income_path(@ticket), class: 'ui button blue tiny', style: 'color: white !important'
