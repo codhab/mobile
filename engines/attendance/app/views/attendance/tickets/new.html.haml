@@ -115,11 +115,7 @@
           .text-justify
             = @ticket.confirmation_text
         .divider
-        - if @ticket.comments.present?
-          - if @ticket.allow_close?
-            = link_to @ticket.close_text, ticket_close_path(@ticket), class: "ui button green fluid", data: { disable_with: t(:disable_with)}
-          - else
-            = link_to @ticket.close_text, "#", class: "ui button green fluid disabled"
-        - elsif @ticket.context_id == 1 && @ticket.situation_id == 1
-          %p
-            %i O prazo para finalizar Atualização Cadastral acabou em 31/08/2017
+        - if @ticket.allow_close?
+          = link_to @ticket.close_text, ticket_close_path(@ticket), class: "ui button green fluid", data: { disable_with: t(:disable_with)}
+        - else
+          = link_to @ticket.close_text, "#", class: "ui button green fluid disabled"
