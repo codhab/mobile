@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 3fd123011dcd3f1622a7d73bc8703f770dd1be28
+  revision: 1adae13a70dd1ee5bd03a4ab0bb00c26930ac401
   branch: master
   specs:
     core (0.1.0)
@@ -95,7 +95,7 @@ GEM
       client_side_validations (~> 9.3, >= 9.3.2)
       simple_form (~> 3.5)
     concurrent-ruby (1.0.5)
-    crass (1.0.2)
+    crass (1.0.3)
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
@@ -243,7 +243,7 @@ GEM
       railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.2)
+    websocket-extensions (0.1.3)
 
 PLATFORMS
   ruby
