@@ -45,7 +45,7 @@
           %i.icon.edit.huge
       .text-center
         Atualizar Meus Dados
-  - if @ticket_policy.allow_recadastre_update?
+  - if @ticket_policy.allow_recadastre_update? || @ticket_policy.allow_mobile_recadastre_special?
     .column
       .ui.segment.text-center.semantic-black
         %a{href: "#{attendance.new_ticket_path(context_id: 1)}"}
@@ -78,7 +78,7 @@
         %i.icon.file.text.outline.huge.gray.text-center.text-center
     .text-center
       Meus Requerimentos
-  - if @ticket_policy.allow_to_manifestation? 
+  - if @ticket_policy.allow_to_manifestation?
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
       .ui.segment.text-center
         %a{href: "#{attendance.open_doors_path}"}

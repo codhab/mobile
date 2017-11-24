@@ -27,6 +27,11 @@
                     = link_to "Atualização de dados básicos", ticket_update_cadastre_path(@ticket)
                     .sub.header
                       #{@ticket.situation_by_action_context(1)}
+                      - @action = @ticket.actions.find_by(context_id: 1) rescue nil
+                      - if @action.present? && (@ticket.situation_id == 1 && @action.situation_id == 2 && @ticket.comments.present?)
+                        %br
+                        %br
+                        = link_to "Revisar documentação", ticket_continue_cadastre_path(@ticket, @action), class: 'ui button blue tiny', style: 'color: white !important'
 
         - if @ticket.action_allow?
           %tr
@@ -42,6 +47,12 @@
                     = link_to "Atualização de dependentes", ticket_update_dependent_path(@ticket)
                     .sub.header
                       #{@ticket.situation_by_action_context(2)}
+                      - @action = @ticket.actions.find_by(context_id: 1) rescue nil
+                      - if @action.present? && (@ticket.situation_id == 1 && @action.situation_id == 2 && @ticket.comments.present?)
+                        %br
+                        %br
+                        = link_to "Revisar documentação", ticket_update_dependent_path(@ticket), class: 'ui button blue tiny', style: 'color: white !important'
+
         - if @ticket.action_allow?
           %tr
             %td
@@ -56,6 +67,12 @@
                     = link_to "Atualização de renda", ticket_update_income_path(@ticket)
                     .sub.header
                       #{@ticket.situation_by_action_context(3)}
+                      - @action = @ticket.actions.find_by(context_id: 2) rescue nil
+                      - if @action.present? && (@ticket.situation_id == 1 && @action.situation_id == 2 && @ticket.comments.present?)
+                        %br
+                        %br
+                        = link_to "Revisar documentação", ticket_update_income_path(@ticket), class: 'ui button blue tiny', style: 'color: white !important'
+
         %tr
           %td
             %h4.ui.image.header
@@ -98,12 +115,7 @@
           .text-justify
             = @ticket.confirmation_text
         .divider
-        - if @ticket.comments.present? 
-          - if @ticket.allow_close?
-            = link_to @ticket.close_text, ticket_close_path(@ticket), class: "ui button green fluid", data: { disable_with: t(:disable_with)}
-          - else
-            = link_to @ticket.close_text, "#", class: "ui button green fluid disabled"
-        - elsif @ticket.context_id == 1 && @ticket.situation_id == 1
-          %p
-            %i O prazo para finalizar Atualização Cadastral acabou em 31/08/2017
-    
+        - if @ticket.allow_close?
+          = link_to @ticket.close_text, ticket_close_path(@ticket), class: "ui button green fluid", data: { disable_with: t(:disable_with)}
+        - else
+          = link_to @ticket.close_text, "#", class: "ui button green fluid disabled"
