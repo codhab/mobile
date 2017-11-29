@@ -1,0 +1,13 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.raffles_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Sorteio #{params[:raffle_id]}
+    .sub-title Listagem de sorteados
+.ui.container
+  %table.ui.celled.table
+    %tbody.black
+      - Core::Entity::Interest.where(id: params[:raffle_id]).each do |e|
+        %tr
+          %td= e.inspect

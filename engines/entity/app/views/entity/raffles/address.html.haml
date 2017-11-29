@@ -1,0 +1,15 @@
+
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.raffles_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Sorteio #{params[:raffle_id]}
+    .sub-title Listagem de endereços
+.ui.container
+  %table.ui.celled.table
+    %tbody.black
+      - Core::Entity::UnitSale.where(raffle_id: params[:raffle_id]).order(id: :asc).each do |e|
+        %tr
+          %td= e.city.name
+          %td= e.address

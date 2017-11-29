@@ -30,7 +30,11 @@ Entity::Engine.routes.draw do
 
   resources :contacts
   resources :requeriments
-  resources :raffles
+  resources :raffles do
+    get 'address'
+    get 'entity'
+    get 'winner'
+  end
 
   resources :chats
   resources :chat_comments

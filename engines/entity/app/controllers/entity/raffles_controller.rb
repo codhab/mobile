@@ -8,6 +8,15 @@ module Entity
 
     def show
     end
-    
+
+    def address
+    end
+
+    def entity
+    end
+
+    def winner
+    end
+
   end
 end

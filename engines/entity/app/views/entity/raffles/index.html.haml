@@ -2,26 +2,35 @@
 .ui.grid
   .two.wide.mobile.column
   .thirteen.wide.mobile.column.text-center
-    .title-header Sorteios
+    .title-header Sorteios de áreas/lotes
     .sub-title Listagem de sorteios
 .ui.container
   %table.ui.celled.table
     %tbody.black
       %tr
-        %td Sorteio 1
         %td
-          = link_to "Endereços", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
-          = link_to "Participantes", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
-          = link_to "Sorteados", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          Sorteio 1
+          %p
+            %small Realizado em 02/08/2017
+        %td
+          = link_to "Endereços", raffle_address_path(1), class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          = link_to "Participantes", raffle_entity_path(1), class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          = link_to "Resultado", "http://www.codhab.df.gov.br/postagem/810", target: '_blank', class: 'ui button tiny', data: { disable_with: "Carregando..."}
       %tr
-        %td Sorteio 2
         %td
-          = link_to "Endereços", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
-          = link_to "Participantes", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
-          = link_to "Sorteados", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          Sorteio 2
+          %p
+            %small Realizado em 27/09/2017
+        %td
+          = link_to "Endereços", raffle_address_path(2), class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          = link_to "Participantes", raffle_entity_path(2), class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          = link_to "Resultado", "http://www.codhab.df.gov.br/postagem/873", target: '_blank', class: 'ui button tiny', data: { disable_with: "Carregando..."}
       %tr
-        %td Sorteio 3
         %td
-          = link_to "Endereços", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
-          = link_to "Participantes", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
-          = link_to "Sorteados", "#", class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          Sorteio 3
+          %p
+            %small Realizado em 30/10/2017
+        %td
+          = link_to "Endereços", raffle_address_path(3), class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          = link_to "Participantes", raffle_entity_path(3), class: 'ui button tiny', data: { disable_with: "Carregando..."}
+          = link_to "Resultado", "http://www.codhab.df.gov.br/postagem/898", target: '_blank', class: 'ui button tiny', data: { disable_with: "Carregando..."}

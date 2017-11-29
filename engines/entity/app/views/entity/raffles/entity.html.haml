@@ -1,0 +1,15 @@
+
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.raffles_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Sorteio #{params[:raffle_id]}
+    .sub-title Listagem de participantes
+.ui.container
+  %table.ui.celled.table
+    %tbody.black
+      - Core::Entity::Interest.where(allotment_id: params[:raffle_id]).each do |e|
+        %tr
+          %td= link_to e.entity.fantasy_name, "http://www.codhab.df.gov.br/entidades/cadastros/#{e.entity_id}", data: { disable_with: 'Carregando...'}, target: '_blank'
+          %td= e.entity.cnpj
