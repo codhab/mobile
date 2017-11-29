@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   mount Person::Engine     => '/person',     as: :person
   mount Portal::Engine     => '/portal',     as: :portal
   mount Protocol::Engine   => '/protocol',   as: :protocol
-  mount Social::Engine   => '/social',   as: :social
+  mount Social::Engine     => '/social',   as: :social
 end

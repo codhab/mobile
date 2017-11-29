@@ -8,8 +8,8 @@ Entity::Engine.routes.draw do
 
   resources :dashboard
   resources :cadastres
-  
-  resources :interests, as: :entity_interests do 
+
+  resources :interests, as: :entity_interests do
     get 'send_mail'
   end
 
@@ -30,6 +30,7 @@ Entity::Engine.routes.draw do
 
   resources :contacts
   resources :requeriments
+  resources :raffles
 
   resources :chats
   resources :chat_comments
