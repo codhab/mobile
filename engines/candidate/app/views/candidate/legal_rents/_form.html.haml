@@ -1,0 +1,10 @@
+
+- if current_cadastre.age >= 80
+  %p TEXTO 1
+- elsif current_cadastre.age >= 60
+  %p TEXTO 2
+
+- if !Candidate::LegalRent.where(cadastre_id: current_cadastre.id).present?
+  = link_to "Sim, Eu aceito", new_legal_rent_path(status: true), class: 'ui button green fluid'
+  %br
+  = link_to "Não, Eu quero recusar", new_legal_rent_path(status: false), class: 'ui button red fluid'
