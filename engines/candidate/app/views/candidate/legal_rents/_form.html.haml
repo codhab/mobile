@@ -1,10 +1,28 @@
 
 - if current_cadastre.age >= 80
-  %p TEXTO 1
-- elsif current_cadastre.age >= 60
-  %p TEXTO 2
+  %p{style: 'text-align: justify'}
+    Destina-se às famílias de renda mais baixa, em especial as que moram de aluguel e gastam mais de 30% de rendimento, aos idosos e à população vulnerável. Para eles, o governo oferecerá moradia, próximo dos empregos e de serviços públicos, com valores mais baixos que os praticados no mercado de locação. Quem participa dessa linha do programa continua na lista de atendimento habitacional, aguardando ser contemplado em outra modalidade.
 
 - if !Candidate::LegalRent.where(cadastre_id: current_cadastre.id).present?
-  = link_to "Sim, Eu aceito", new_legal_rent_path(status: true), class: 'ui button green fluid'
+  = link_to "Sim, Eu quero participar", new_legal_rent_path(status: true), class: 'ui button green fluid', data: {disable_with: "Aguarde..."}
   %br
-  = link_to "Não, Eu quero recusar", new_legal_rent_path(status: false), class: 'ui button red fluid'
+  = link_to "Não, Eu desejo recusar", new_legal_rent_path, remote: true, class: 'ui button red fluid', data: {disable_with: "Aguarde..."}
+- else
+  %br/
+  - rent = Candidate::LegalRent.where(cadastre_id: current_cadastre.id).first
+  - if rent.status
+    .ui.label.green{style: 'text-align:center'}
+      %h4
+        Você aceitou participar do programa Aluguel Legal na data #{rent.created_at.strftime('%d/%m/%Y - %H:%M')},
+        %br
+        aguarde o contato da CODHAB.
+        %br
+        %br
+        Solicitamos que você mantenha seus contatos atualizados.
+  - else
+    .ui.label.red{style: 'text-align:center'}
+      %h4
+        Você recusou participar do programa Aluguel Legal na data #{rent.created_at.strftime('%d/%m/%Y - %H:%M')}
+        %br
+        %br
+        Dúvidas? entre em contato com a CODHAB.

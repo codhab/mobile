@@ -1,0 +1,12 @@
+.ui.modal
+  .header.text-center
+    Atenção
+  .image.content
+    .description{style: 'text-align: center'}
+      Você realmente deseja recusar sua participação no programa Aluguel Legal?
+      %br
+      %br
+      %br
+      = link_to "Sim, eu desejo recursar", new_legal_rent_path(status: false), class: 'ui button red fluid', data: {disable_with: "Aguarde..."}
+      %br/
+      = link_to "Não, cancelar minha recusa", new_legal_rent_path, class: 'ui button green fluid', data: {disable_with: "Aguarde..."}
