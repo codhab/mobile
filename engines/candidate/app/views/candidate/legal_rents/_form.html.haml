@@ -1,10 +1,10 @@
 
-- if current_cadastre.age >= 80
+- if current_cadastre.general.is_older
   %p{style: 'text-align: justify'}
     Destina-se às famílias de renda mais baixa, em especial as que moram de aluguel e gastam mais de 30% de rendimento, aos idosos e à população vulnerável. Para eles, o governo oferecerá moradia, próximo dos empregos e de serviços públicos, com valores mais baixos que os praticados no mercado de locação. Quem participa dessa linha do programa continua na lista de atendimento habitacional, aguardando ser contemplado em outra modalidade.
 
 - if !Candidate::LegalRent.where(cadastre_id: current_cadastre.id).present?
-  = link_to "Eu quero participar", new_legal_rent_path(status: true), class: 'ui button green fluid', data: {disable_with: "Aguarde..."}
+  = link_to "Eu quero participar", new_legal_rent_path(status: true),  remote: true, class: 'ui button green fluid', data: {disable_with: "Aguarde..."}
   %br
   = link_to "Eu desejo recusar", new_legal_rent_path, remote: true, class: 'ui button red fluid', data: {disable_with: "Aguarde..."}
 - else
