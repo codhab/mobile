@@ -129,7 +129,8 @@
 
 
   :javascript
-    $(document).ready(function() {
-      $(".ui.modal").show();
-      $(".ui.modal").modal('show')
-    })
+    - if current_cadastre.id != 362614
+      $(document).ready(function() {
+        $(".ui.modal").show();
+        $(".ui.modal").modal('show')
+      })
