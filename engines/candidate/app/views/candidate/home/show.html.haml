@@ -26,7 +26,7 @@
       Notificações
 
 
-  - if current_cadastre.general.present? && current_cadastre.general.is_older && [4,54,67].include?(current_cadastre.general.situation_status_id)
+  - if current_cadastre.general.present? && current_cadastre.general.is_older && [4,54,67].include?(current_cadastre.general.situation_status_id) && current_cadastre.income >= 1800.0
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
       .ui.segment.text-center{style: 'background-color: rgb(129, 195, 65) !important'}
         %a{href: "#{candidate.new_legal_rent_path}"}
