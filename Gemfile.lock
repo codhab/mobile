@@ -166,7 +166,7 @@ GEM
     one_signal (1.2.0)
     onesignal (0.3.0)
     open4 (1.3.4)
-    pg (1.0.0)
+    pg (0.21.0)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -265,7 +265,7 @@ DEPENDENCIES
   newrelic_rpm
   onesignal
   person!
-  pg
+  pg (~> 0.20)
   portal!
   protocol!
   rails (~> 5.0.2)
