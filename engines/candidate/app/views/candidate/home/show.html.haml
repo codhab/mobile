@@ -55,7 +55,7 @@
           %i.icon.edit.huge
       .text-center
         Atualizar Meus Dados
-  - if @ticket_policy.allow_recadastre_update? || @ticket_policy.allow_mobile_recadastre_special?
+  - if @ticket_policy.allow_recadastre_update?
     .column
       .ui.segment.text-center.semantic-black
         %a{href: "#{attendance.new_ticket_path(context_id: 1)}"}
