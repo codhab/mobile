@@ -11,7 +11,7 @@
     %tbody
       - if @enterprise
         - if current_entity.interests.present?
-          - current_entity.interests.where(allotment_id: [2,3]).order(created_at: :desc).each do |interest|
+          - current_entity.interests.where(allotment_id: [2,3,4]).order(created_at: :desc).each do |interest|
             %tr
               %td
                 %b= link_to "#{interest.protocol} - Sorteio #{interest.allotment_id}", entity_interest_path(interest)
