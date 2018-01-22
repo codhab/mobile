@@ -26,13 +26,13 @@
       Notificações
 
 
-  - if current_cadastre.general.present? && current_cadastre.general.is_older && [4,54,67].include?(current_cadastre.general.situation_status_id) && current_cadastre.income.to_f <= 1800.0
-    .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-      .ui.segment.text-center{style: 'background-color: rgb(129, 195, 65) !important'}
-        %a{href: "#{candidate.new_legal_rent_path}"}
-          %i.icon.home.huge.gray.text-center.text-center{style: 'color: white !important;'}
-      .text-center
-        Aluguel Legal
+  -# - if current_cadastre.general.present? && current_cadastre.general.is_older && [4,54,67].include?(current_cadastre.general.situation_status_id) && current_cadastre.income.to_f <= 1800.0
+  -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+  -#     .ui.segment.text-center{style: 'background-color: rgb(129, 195, 65) !important'}
+  -#       %a{href: "#{candidate.new_legal_rent_path}"}
+  -#         %i.icon.home.huge.gray.text-center.text-center{style: 'color: white !important;'}
+  -#     .text-center
+  -#       Aluguel Legal
 
   - if @ticket_policy.allow_other_update?
     .column
@@ -88,13 +88,13 @@
         %i.icon.file.text.outline.huge.gray.text-center.text-center
     .text-center
       Meus Requerimentos
-  - if @ticket_policy.allow_to_manifestation?
-    .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-      .ui.segment.text-center
-        %a{href: "#{attendance.open_doors_path}"}
-          %i.icon.building.huge.gray.text-center.text-center
-      .text-center
-        Portas abertas
+  -# - if @ticket_policy.allow_to_manifestation?
+  -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+  -#     .ui.segment.text-center
+  -#       %a{href: "#{attendance.open_doors_path}"}
+  -#         %i.icon.building.huge.gray.text-center.text-center
+  -#     .text-center
+  -#       Portas abertas
 
   - if @ticket_policy.allow_to_question?
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
