@@ -9,9 +9,18 @@
   %table.ui.table
     %tbody
       %tr
-        %td= link_to @cadastre_mirror.name
+        %td
+          - if @ticket.documents.where(document_type_id: 7).present?
+            %i.icon.check{style: 'color: green'}
+          = link_to @cadastre_mirror.name, edit_custom_custom_ticket_custom_income_path(@ticket, @cadastre_mirror.id)
         %td= number_to_currency @cadastre_mirror.main_income
-      - @incomes.each do |dependent|
+      - @cadastre_mirror.dependent_mirrors.each do |dependent|
         %tr
-          %td= link_to dependent.name
+          %td
+            - if @ticket.documents.where(document_type_id: 7, dependent_mirror_id: dependent.id).present?
+              %i.icon.check{style: 'color: green'}
+            = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
           %td= number_to_currency dependent.income rescue nil
+  %br
+  - if @ticket.documents.where(document_type_id: 7).count >= @cadastre_mirror.dependent_mirrors.count && !@ticket.action_three
+    = link_to "Finalizar etapa", custom_custom_ticket_income_path(@ticket), class: 'ui button yellow fluid', disabled: true

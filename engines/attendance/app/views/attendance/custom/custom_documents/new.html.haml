@@ -1,6 +1,17 @@
 .two.wide.mobile.column
-  %a{href: "#{attendance.custom_custom_tickets_path}"}
-    %i.big.arrow.left.icon
+  - case params[:type].to_s
+  - when 'cadastre'
+    %a{href: "#{custom_custom_tickets_path}"}
+      %i.big.arrow.left.icon
+  - when 'dependent'
+    %a{href: "#{custom_custom_ticket_custom_dependents_path(@ticket)}"}
+      %i.big.arrow.left.icon
+  - when 'income'
+    %a{href: "#{custom_custom_ticket_custom_incomes_path(@ticket)}"}
+      %i.big.arrow.left.icon
+  - when 'document'
+    %a{href: "#{url_for(:back)}"}
+      %i.big.arrow.left.icon
 .thirteen.wide.mobile.column.text-center
   .title-header Atendimento
   .sub-title Envio de documentação
@@ -19,3 +30,12 @@
 
 #message.text-center{style: 'display: none'}
   %h4 Documento sendo enviado. Aguarde instantes.
+
+:javascript
+  $(document).ready(function() {
+    $(".upload").change(function() {
+      $('.ui.grid.container').hide();
+      $('#message').show();
+      this.form.submit();
+    });
+  });

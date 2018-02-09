@@ -1,4 +1,11 @@
-= simple_form_for @cadastre_mirror, url: custom_custom_ticket_custom_cadastre_path(@ticket,@cadastre_mirror), method: :put, remote: true do |f|
+= simple_form_for @cadastre_mirror, url: custom_custom_ticket_custom_cadastre_path(@ticket,@cadastre_mirror), method: :put do |f|
+
+  - if @cadastre_mirror.errors.any?
+    .ui.label.red
+      Verifique os dados informados, existe informação faltando ou incorreta.
+    %br
+    %br
+    %br
   #step_one
     %label
       %b Nome:
@@ -12,7 +19,7 @@
     = f.input :gender, label: 'Sexo', as: :select, collection: Core::Candidate::Cadastre.genders, include_blank: false
     = f.input :civil_state_id, label: "Estado Civil", as: :select, collection: Core::Candidate::CivilState.all
     %br
-    = link_to "Próxima etapa", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button yellow fluid'
+    = link_to "Próxima etapa", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button yellow fluid step_one_next'
   #step_two{style: 'display: none'}
     = f.input :rg, label: "Nº RG"
     = f.input :rg_org, label: "RG ORG"
@@ -22,17 +29,20 @@
 
     = link_to "Próxima etapa", "javascript:void(0)", onclick: "show_step('step_three')", class: 'ui button yellow', style: 'float: right'
   #step_three{style: 'display: none'}
-    = f.input :special_condition_id, label: 'Possui condição especial?', as: :select, include_blank: false
-    = f.input :special_condition_type_id, as: :select, collection: Core::Candidate::SpecialConditionType.all, include_blank: false
+    = f.input :special_condition_id, collection: {"Sim": 1, "Não": 2}, label: 'Possui condição especial?', as: :select, include_blank: false
+    = f.input :special_condition_type_id, label: "Tipo de condição especial", as: :select, collection: Core::Candidate::SpecialConditionType.all, include_blank: false
     = f.input :nis
     = f.input :cid
-    = f.input :adapted_property, label: "Propriedade adaptada?", as: :select, include_blank: false
-    = f.input :mother_name
+    = f.input :adapted_property, collection: {"Sim": 1, "Não": 2}, selected: 2, label: "Propriedade adaptada?", as: :select, include_blank: false
+    = f.input :mother_name, label: "Nome (Mãe)"
     = link_to "Etapa anterior", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button'
 
-    = f.submit "Próxima etapa", class: 'ui button yellow', style: 'float: right'
+    = f.submit "Próxima etapa", class: 'ui button yellow next', style: 'float: right'
 /    = link_to "Próxima etapa", new_custom_custom_ticket_custom_document_path(type: 'cadastre')
 :javascript
+  $(document).ready(function() {
+    $(".step_one_next").show();
+  })
   function show_step(step) {
     $("#step_one").hide()
     $("#step_two").hide()

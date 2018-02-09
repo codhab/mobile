@@ -61,9 +61,10 @@ Attendance::Engine.routes.draw do
       get 'income'
       get 'contact'
       get 'document'
-      
+
       resources :custom_cadastres
       resources :custom_dependents
+      resources :custom_dependent_incomes
       resources :custom_incomes
       resources :custom_contacts
       resources :custom_documents

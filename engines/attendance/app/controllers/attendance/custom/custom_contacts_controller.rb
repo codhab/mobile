@@ -9,17 +9,12 @@ module Attendance
       def edit; end
 
       def update
-        @cadastre_mirror.update(set_params)
-
-        redirect_to new_custom_custom_ticket_custom_document_path(type: 'cadastre')
-      end
-
-      def document_edit
-        @document = nil
-      end
-
-      def document_update
-        @document = nil
+        if @cadastre_mirror.update(set_params)
+          @ticket.update(action_four: true)
+          redirect_to custom_custom_tickets_path(type: 'cadastre')
+        else
+          render action: :edit
+        end
       end
 
       private

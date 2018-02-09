@@ -19,17 +19,18 @@ module Attendance
         @dependent = @cadastre_mirror.dependent_mirrors.new(set_params)
 
         if @dependent.save
-          redirect_to "#"
+          redirect_to new_custom_custom_ticket_custom_document_path(type: 'dependent', dependent_mirror_id: @dependent.id)
         else
           render action: :new
         end
       end
 
-      def edit; end
+      def edit
+      end
 
       def update
         if @dependent.update(set_params)
-          redirect_to "#"
+          redirect_to new_custom_custom_ticket_custom_document_path(type: 'dependent', dependent_mirror_id: @dependent.id)
         else
           render action: :new
         end
@@ -44,7 +45,7 @@ module Attendance
       private
 
       def set_params
-        params.require(:path).permit(:name)
+        params.require(:custom_dependent_mirror).permit(:name, :cpf, :rg, :rg_org, :born, :special_condition_id, :special_condition_type_id, :cid, :kinship_id)
       end
 
       def set_ticket

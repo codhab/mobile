@@ -15,20 +15,27 @@ module Attendance
 
       def cadastre
         @ticket.update(action_one: true)
-
         redirect_to attendance.custom_custom_tickets_path
       end
 
       def dependent
+        @ticket.update(action_two: true)
+        redirect_to attendance.custom_custom_tickets_path
       end
 
       def income
+        @ticket.update(action_three: true)
+        redirect_to attendance.custom_custom_tickets_path
       end
 
       def contact
+        @ticket.update(action_four: true)
+        redirect_to attendance.custom_custom_tickets_path
       end
 
       def document
+        @ticket.update(action_five: true)
+        redirect_to attendance.custom_custom_tickets_path
       end
 
       private

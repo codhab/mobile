@@ -6,9 +6,25 @@
   .sub-title Atualização de dependentes
   .divider
 .ui.grid.container
+  - if !(@ticket.documents.where(document_type_id: 6).count >= @dependents.count)
+    .ui.label.red.fluid{style: 'text-align: center'} Etapa pendente
+    %br
+    %p{style: 'text-align: justify'} Para realizar a finalização desta etapa, é necessário que você envie a documentação de todos os dependentes listados abaixo.
+
   %table.ui.table
     %tbody
       - @dependents.each do |dependent|
         %tr
-          %td= link_to dependent.name
-          %td= dependent.kinship.name rescue nil
+          %td= link_to dependent.name, edit_custom_custom_ticket_custom_dependent_path(@ticket, dependent.id)
+          %td
+            = dependent.kinship.name rescue nil
+            - if dependent.kinship_id != 6
+              %br
+              %br
+              = link_to "Remover", custom_custom_ticket_custom_dependent_path(@ticket, dependent.id), method: :delete, class: 'ui button red tiny'
+  %br
+  - if !@ticket.action_two
+    = link_to "Adicionar dependente", new_custom_custom_ticket_custom_dependent_path(@ticket), class: 'ui button blue fluid'
+  %br
+  - if @ticket.allow_dependents 
+    = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid', disabled: true

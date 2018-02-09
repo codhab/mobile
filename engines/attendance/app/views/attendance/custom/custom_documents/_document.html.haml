@@ -1,0 +1,24 @@
+
+%p
+  %h4#rg Cartorária
+= simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'document', document_type_id: 5, anchor: 'rg') do |f|
+  - @ticket.documents.where(document_type_id: 5).each_with_index do |document, index|
+    .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
+      - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
+        Arquivo #{index + 1}
+        %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
+          = link_to custom_custom_image_path(document), remote: true do
+            = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
+      - else
+        Arquivo #{index + 1}
+        %br
+        %br
+        %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
+        %br
+      %br
+  = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+
+  %br
+  %br
+  - if @ticket.documents.where(document_type_id: 5).count >= 8 
+    = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid', disabled: true

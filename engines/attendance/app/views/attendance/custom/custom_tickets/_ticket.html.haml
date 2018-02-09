@@ -6,7 +6,8 @@
   .sub-title Processo de habilitação
   .divider
 .ui.grid.container
-  %p{style: 'text-align: justify'}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere ultrices metus, sed lobortis nunc aliquet quis.
+  %p{style: 'text-align: justify'}
+    Realize a verificação, atualização e envio da documentação dos 5 passos abaixo.
 
   %table.ui.table.celled
     %tbody{style: "#{@ticket.action_one ? 'background-color: #51a551' : ''}"}
@@ -14,7 +15,12 @@
         %td
           - if @ticket.action_one
             %i.icon.check{style: 'color: white'}
-          = link_to "Atualização de dados básicos", edit_custom_custom_ticket_custom_cadastre_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_one ? 'color: white' : ''}"
+          - else
+            %i.icon.warning{style: 'color: gray'}
+          - if @ticket.disable_link
+            = link_to "Atualização de dados básicos", "#", style: "#{@ticket.action_one ? 'color: white' : ''}"
+          - else
+            = link_to "Atualização de dados básicos", edit_custom_custom_ticket_custom_cadastre_path(@ticket,   @ticket.cadastre_mirror_id), style: "#{@ticket.action_one ? 'color: white' : ''}"
           %br
 
     %tbody{style: "#{@ticket.action_two ? 'background-color: #51a551' : ''}"}
@@ -24,7 +30,10 @@
             %i.icon.check{style: 'color: white'}
           - else
             %i.icon.warning{style: 'color: gray'}
-          = link_to "Atualização de dependentes", custom_custom_ticket_custom_dependents_path(@ticket), style: "#{@ticket.action_two ? 'color: white' : ''}"
+          - if @ticket.disable_link
+            = link_to "Atualização de dependentes", "#", style: "#{@ticket.action_two ? 'color: white' : ''}"
+          - else
+            = link_to "Atualização de dependentes", custom_custom_ticket_custom_dependents_path(@ticket), style: "#{@ticket.action_two ? 'color: white' : ''}"
     %tbody{style: "#{@ticket.action_three ? 'background-color: #51a551' : ''}"}
       %tr
         %td
@@ -32,7 +41,10 @@
             %i.icon.check{style: 'color: white'}
           - else
             %i.icon.warning{style: 'color: gray'}
-          = link_to "Atualização de rendas", custom_custom_ticket_custom_incomes_path(@ticket), style: "#{@ticket.action_three ? 'color: white' : ''}"
+          - if @ticket.disable_link
+            = link_to "Atualização de rendas", "#", style: "#{@ticket.action_three ? 'color: white' : ''}"
+          - else
+            = link_to "Atualização de rendas", custom_custom_ticket_custom_incomes_path(@ticket), style: "#{@ticket.action_three ? 'color: white' : ''}"
     %tbody{style: "#{@ticket.action_four ? 'background-color: #51a551' : ''}"}
       %tr
         %td
@@ -40,7 +52,10 @@
             %i.icon.check{style: 'color: white'}
           - else
             %i.icon.warning{style: 'color: gray'}
-          = link_to "Atualização de contatos", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
+          - if @ticket.disable_link
+            = link_to "Atualização de contatos", "#", style: "#{@ticket.action_four ? 'color: white' : ''}"
+          - else
+            = link_to "Atualização de contatos", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
     %tbody{style: "#{@ticket.action_five ? 'background-color: #51a551' : ''}"}
       %tr
         %td
@@ -48,4 +63,16 @@
             %i.icon.check{style: 'color: white'}
           - else
             %i.icon.warning{style: 'color: gray'}
-          = link_to "Envio da cartorária", new_custom_custom_ticket_custom_document_path(@ticket, type: 'documenet'), style: "#{@ticket.action_five ? 'color: white' : ''}"
+          - if @ticket.disable_link
+            = link_to "Envio da cartorária", "#", style: "#{@ticket.action_five ? 'color: white' : ''}"
+          - else
+            = link_to "Envio da cartorária", new_custom_custom_ticket_custom_document_path(@ticket, type: 'document'), style: "#{@ticket.action_five ? 'color: white' : ''}"
+
+
+  %br
+  %br
+
+  - if @ticket.action_one && @ticket.action_two && @ticket.action_three && @ticket.action_four && @ticket.action_five
+    .ui.label.blue.fluid{style: 'text-align: center'}
+      %p Parabéns! Você completou os 5 passos.
+      %p A CODHAB recebeu todos os seus dados e documentações, favor aguardar a análise e processamento do seu atendimento. Você receberá notificações sobre a situação do seu atendimento.

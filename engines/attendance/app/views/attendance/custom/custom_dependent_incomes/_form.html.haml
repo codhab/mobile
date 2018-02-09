@@ -1,0 +1,4 @@
+= simple_form_for @dependent, url: custom_custom_ticket_custom_dependent_income_path(@ticket,@dependent), method: :put do |f|
+  #step_one
+    = f.input :income, as: :string, label: 'Renda'
+    = f.submit "Salvar e enviar documentação", class: 'ui button yellow fluid'
