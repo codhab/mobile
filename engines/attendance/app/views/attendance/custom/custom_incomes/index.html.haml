@@ -1,0 +1,17 @@
+.two.wide.mobile.column
+  %a{href: "#{attendance.custom_custom_tickets_path}"}
+    %i.big.arrow.left.icon
+.thirteen.wide.mobile.column.text-center
+  .title-header Atendimento
+  .sub-title Atualização de rendas
+  .divider
+.ui.grid.container
+  %table.ui.table
+    %tbody
+      %tr
+        %td= link_to @cadastre_mirror.name
+        %td= number_to_currency @cadastre_mirror.main_income
+      - @incomes.each do |dependent|
+        %tr
+          %td= link_to dependent.name
+          %td= number_to_currency dependent.income rescue nil

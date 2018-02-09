@@ -1,0 +1,51 @@
+.two.wide.mobile.column
+  %a{href: "#{candidate.root_path}"}
+    %i.big.arrow.left.icon
+.thirteen.wide.mobile.column.text-center
+  .title-header Atendimento
+  .sub-title Processo de habilitação
+  .divider
+.ui.grid.container
+  %p{style: 'text-align: justify'}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere ultrices metus, sed lobortis nunc aliquet quis.
+
+  %table.ui.table.celled
+    %tbody{style: "#{@ticket.action_one ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_one
+            %i.icon.check{style: 'color: white'}
+          = link_to "Atualização de dados básicos", edit_custom_custom_ticket_custom_cadastre_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_one ? 'color: white' : ''}"
+          %br
+
+    %tbody{style: "#{@ticket.action_two ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_two
+            %i.icon.check{style: 'color: white'}
+          - else
+            %i.icon.warning{style: 'color: gray'}
+          = link_to "Atualização de dependentes", custom_custom_ticket_custom_dependents_path(@ticket), style: "#{@ticket.action_two ? 'color: white' : ''}"
+    %tbody{style: "#{@ticket.action_three ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_three
+            %i.icon.check{style: 'color: white'}
+          - else
+            %i.icon.warning{style: 'color: gray'}
+          = link_to "Atualização de rendas", custom_custom_ticket_custom_incomes_path(@ticket), style: "#{@ticket.action_three ? 'color: white' : ''}"
+    %tbody{style: "#{@ticket.action_four ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_four
+            %i.icon.check{style: 'color: white'}
+          - else
+            %i.icon.warning{style: 'color: gray'}
+          = link_to "Atualização de contatos", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
+    %tbody{style: "#{@ticket.action_five ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_five
+            %i.icon.check{style: 'color: white'}
+          - else
+            %i.icon.warning{style: 'color: gray'}
+          = link_to "Envio da cartorária", new_custom_custom_ticket_custom_document_path(@ticket, type: 'documenet'), style: "#{@ticket.action_five ? 'color: white' : ''}"

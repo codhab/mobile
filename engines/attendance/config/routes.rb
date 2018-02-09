@@ -6,7 +6,7 @@ Attendance::Engine.routes.draw do
   post 'create_comment',       to: 'chat_comments#create_comment',       as: :create_comment
 
   resources :forms, only: [:new, :create, :show]
-  
+
   resources :avatars, only: :update
   resources :requeriments
   resources :notifications
@@ -41,7 +41,7 @@ Attendance::Engine.routes.draw do
 
   end
 
-  resources :indications, only: [:index] do 
+  resources :indications, only: [:index] do
     get 'accept'
     get 'new_decline'
     get 'create_decline'
@@ -49,6 +49,26 @@ Attendance::Engine.routes.draw do
 
   resources :open_doors do
     get 'delete'
+  end
+
+
+  # = CONTIGENCIA
+
+  namespace :custom do
+    resources :custom_tickets do
+      get 'cadastre'
+      get 'dependent'
+      get 'income'
+      get 'contact'
+      get 'document'
+      
+      resources :custom_cadastres
+      resources :custom_dependents
+      resources :custom_incomes
+      resources :custom_contacts
+      resources :custom_documents
+    end
+    resources :custom_images
   end
 
 end

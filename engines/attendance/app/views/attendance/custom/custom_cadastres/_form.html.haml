@@ -1,0 +1,42 @@
+= simple_form_for @cadastre_mirror, url: custom_custom_ticket_custom_cadastre_path(@ticket,@cadastre_mirror), method: :put, remote: true do |f|
+  #step_one
+    %label
+      %b Nome:
+    %p= @ticket.cadastre_mirror.name
+    %label
+      %b CPF:
+    %p= @ticket.cadastre_mirror.cpf
+    = f.input :born, as: :string, label: 'Data de nascimento', input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil }
+    = f.input :born_uf, label: "UF de nascimento", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: false
+    = f.input :place_birth, label: "Cidade de nascimento"
+    = f.input :gender, label: 'Sexo', as: :select, collection: Core::Candidate::Cadastre.genders, include_blank: false
+    = f.input :civil_state_id, label: "Estado Civil", as: :select, collection: Core::Candidate::CivilState.all
+    %br
+    = link_to "Próxima etapa", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button yellow fluid'
+  #step_two{style: 'display: none'}
+    = f.input :rg, label: "Nº RG"
+    = f.input :rg_org, label: "RG ORG"
+    = f.input :rg_uf, label: "UF RG", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: false
+    = f.input :arrival_df, as: :string, label: 'Data de chegada ao DF', input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : nil }
+    = link_to "Etapa anterior", "javascript:void(0)", onclick: "show_step('step_one')", class: 'ui button'
+
+    = link_to "Próxima etapa", "javascript:void(0)", onclick: "show_step('step_three')", class: 'ui button yellow', style: 'float: right'
+  #step_three{style: 'display: none'}
+    = f.input :special_condition_id, label: 'Possui condição especial?', as: :select, include_blank: false
+    = f.input :special_condition_type_id, as: :select, collection: Core::Candidate::SpecialConditionType.all, include_blank: false
+    = f.input :nis
+    = f.input :cid
+    = f.input :adapted_property, label: "Propriedade adaptada?", as: :select, include_blank: false
+    = f.input :mother_name
+    = link_to "Etapa anterior", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button'
+
+    = f.submit "Próxima etapa", class: 'ui button yellow', style: 'float: right'
+/    = link_to "Próxima etapa", new_custom_custom_ticket_custom_document_path(type: 'cadastre')
+:javascript
+  function show_step(step) {
+    $("#step_one").hide()
+    $("#step_two").hide()
+    $("#step_three").hide()
+    $("#step_four").hide()
+    $("#"+step).fadeIn();
+  }

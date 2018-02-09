@@ -1,0 +1,21 @@
+.two.wide.mobile.column
+  %a{href: "#{attendance.custom_custom_tickets_path}"}
+    %i.big.arrow.left.icon
+.thirteen.wide.mobile.column.text-center
+  .title-header Atendimento
+  .sub-title Envio de documentação
+  .divider
+.ui.grid.container
+  .column
+    - case params[:type].to_s
+    - when 'cadastre'
+      = render 'cadastre'
+    - when 'dependent'
+      = render 'dependent'
+    - when 'income'
+      = render 'income'
+    - when 'document'
+      = render 'document'
+
+#message.text-center{style: 'display: none'}
+  %h4 Documento sendo enviado. Aguarde instantes.
