@@ -15,12 +15,12 @@
 .ui.grid.container
 .divider
 .ui.three.column.grid.container.black
-  .column
-    .ui.segment.text-center{style: 'background-color: #0892ff !important'}
-      %a{href: "#{attendance.custom_custom_tickets_path}"}
-        %i.icon.check.huge.gray{style: 'color: white !important'}
-    .text-center
-      Habilitação
+  -# .column
+  -#   .ui.segment.text-center{style: 'background-color: #0892ff !important'}
+  -#     %a{href: "#{attendance.custom_custom_tickets_path}"}
+  -#       %i.icon.check.huge.gray{style: 'color: white !important'}
+  -#   .text-center 
+  -#     Habilitação
   .column
     .ui.segment.text-center
       - if current_cadastre.notifications.unread.present?

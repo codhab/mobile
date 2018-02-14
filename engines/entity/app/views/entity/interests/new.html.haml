@@ -7,8 +7,8 @@
     .title-header Manifestação de interesse
     .sub-title Nova manifestação
 .ui.container
-  - if Core::Entity::UnitSale.where(status: true).present? && Date.current <= Date.parse('2017-03-06')
-    - if Core::Entity::Interest.where(entity_id: current_entity.id, allotment_id: 3).present?
+  - if Core::Entity::UnitSale.where(status: true).present? && Date.current <= Date.parse('2018-03-05')
+    - if Core::Entity::Interest.where(entity_id: current_entity.id, allotment_id: 4).present?
       .text-center
         %br/
         %br/
@@ -21,7 +21,7 @@
         %p
           %b
             Para verificar os endereços referentes ao grupos, acesse o
-            %a{href: 'http://www.codhab.df.gov.br/postagem/882', target: '_blank'} Portal da Codhab.
+            %a{href: 'http://www.codhab.df.gov.br/uploads/archive/files/5361ff68f4d1cd8001b1a9c7f12fd9c9.pdf', target: '_blank'} Edital.
       = render 'form'
   - else
     .text-center
