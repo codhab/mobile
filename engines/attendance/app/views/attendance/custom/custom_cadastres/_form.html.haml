@@ -14,7 +14,7 @@
       %b CPF:
     %p= @ticket.cadastre_mirror.cpf
     = f.input :born, as: :string, label: 'Data de nascimento', input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil }
-    = f.input :born_uf, label: "UF de nascimento", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: false
+    = f.input :born_uf, label: "UF de nascimento", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: 'Selecione...'
     = f.input :place_birth, label: "Cidade de nascimento"
     = f.input :gender, label: 'Sexo', as: :select, collection: Core::Candidate::Cadastre.genders, include_blank: false
     = f.input :civil_state_id, label: "Estado Civil", as: :select, collection: Core::Candidate::CivilState.all

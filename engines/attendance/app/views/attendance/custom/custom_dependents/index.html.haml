@@ -9,7 +9,14 @@
   - if !(@ticket.documents.where(document_type_id: 6).count >= @dependents.count)
     .ui.label.red.fluid{style: 'text-align: center'} Etapa pendente
     %br
-    %p{style: 'text-align: justify'} Para realizar a finalização desta etapa, é necessário que você envie a documentação de todos os dependentes listados abaixo.
+    %p{style: 'text-align: justify'}
+      Inclua ou remova os dependentes de acordo com a sua realidade atual.
+      %br
+      %br
+      Para retirada de cônjuges, faz-se necessário a solicitação via requerimento eletrônico no próprio aplicativo.
+      Saiba quem pode ser seu dependente
+      %a{href: 'http://www.codhab.df.gov.br/pagina/2', target: '_blank'}
+        clique aqui.
 
   %table.ui.table
     %tbody
@@ -26,5 +33,5 @@
   - if !@ticket.action_two
     = link_to "Adicionar dependente", new_custom_custom_ticket_custom_dependent_path(@ticket), class: 'ui button blue fluid'
   %br
-  - if @ticket.allow_dependents 
+  - if @ticket.allow_dependents
     = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid', disabled: true
