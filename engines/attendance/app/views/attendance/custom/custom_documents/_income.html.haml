@@ -30,5 +30,7 @@
     .ui.label.red{style: 'text-align: justify'}
       %p Para realizar a finalização desta etapa, favor enviar ao menos um arquivo de cada categoria de documentaçãoe exigida.
 - else
-  - if @ticket.documents.where(document_type_id: 6).where('dependent_mirror_id is null').count >= 1
+  - if @ticket.documents.where(document_type_id: 7).where('dependent_mirror_id is null').count >= 1
+    = link_to "Continuar atualização", custom_custom_ticket_custom_incomes_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}
+  - elsif @ticket.documents.where(document_type_id: 6).where('dependent_mirror_id is not null').count >= 1
     = link_to "Continuar atualização", custom_custom_ticket_custom_incomes_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}

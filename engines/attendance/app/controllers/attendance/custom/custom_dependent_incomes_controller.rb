@@ -13,7 +13,7 @@ module Attendance
         if @dependent.update(set_params)
           redirect_to new_custom_custom_ticket_custom_document_path(type: 'income', dependent_mirror_id: @dependent.id)
         else
-          render action: :new
+          render action: :edit
         end
       end
 
@@ -33,6 +33,7 @@ module Attendance
 
       def set_dependent_mirror
         @dependent = @cadastre_mirror.dependent_mirrors.find(params[:id])
+        @dependent = Attendance::CustomDependentIncome.find(@dependent)
       end
     end
   end
