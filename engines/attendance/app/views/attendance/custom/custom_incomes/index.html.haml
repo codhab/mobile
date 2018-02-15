@@ -1,33 +1,35 @@
-.two.wide.mobile.column
-  %a{href: "#{attendance.custom_custom_tickets_path}"}
-    %i.big.arrow.left.icon
-.thirteen.wide.mobile.column.text-center
-  .title-header Atendimento
-  .sub-title Atualização de rendas
-  .divider
-.ui.grid.container
-  %p{style: 'text-align: justify'}
-    Vamos atualizar sua renda e de seus dependentes caso tenha. Ao ser solicitado sobre o envio da documentação fique atento ao documento que deve enviar.
-    %br
-    %br
-    Saiba quais documentos deve enviar
-    %a{href: 'http://www.codhab.df.gov.br/pagina/2', target: '_blank'}
-      clique aqui.
-  %table.ui.table
-    %tbody
-      %tr
-        %td
-          - if @ticket.documents.where(document_type_id: 7).present?
-            %i.icon.check{style: 'color: green'}
-          = link_to @cadastre_mirror.name, edit_custom_custom_ticket_custom_income_path(@ticket, @cadastre_mirror.id)
-        %td= number_to_currency @cadastre_mirror.main_income
-      - @cadastre_mirror.dependent_mirrors.each do |dependent|
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{attendance.custom_custom_tickets_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atendimento
+    .sub-title Atualização de rendas
+    .divider
+  .ui.grid.container
+    .ui.label.blue{style: 'margin-bottom: 30px'}
+      %p{style: 'text-align: justify; font-size: 14px !important'}
+        Vamos atualizar sua renda e de seus dependentes caso tenha. Ao ser solicitado sobre o envio da documentação fique atento ao documento que deve enviar.
+        %br
+        %br
+        Saiba quais documentos deve enviar
+        %a{href: 'http://www.codhab.df.gov.br/pagina/2', target: '_blank'}
+          clique aqui.
+    %table.ui.table
+      %tbody
         %tr
           %td
-            - if @ticket.documents.where(document_type_id: 7, dependent_mirror_id: dependent.id).present?
+            - if @ticket.documents.where(document_type_id: 7).present?
               %i.icon.check{style: 'color: green'}
-            = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
-          %td= number_to_currency dependent.income rescue nil
-  %br
-  - if @ticket.documents.where(document_type_id: 7).count >= @cadastre_mirror.dependent_mirrors.count && !@ticket.action_three
-    = link_to "Finalizar etapa", custom_custom_ticket_income_path(@ticket), class: 'ui button yellow fluid', disabled: true
+            = link_to @cadastre_mirror.name, edit_custom_custom_ticket_custom_income_path(@ticket, @cadastre_mirror.id)
+          %td= number_to_currency @cadastre_mirror.main_income
+        - @cadastre_mirror.dependent_mirrors.each do |dependent|
+          %tr
+            %td
+              - if @ticket.documents.where(document_type_id: 7, dependent_mirror_id: dependent.id).present?
+                %i.icon.check{style: 'color: green'}
+              = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
+            %td= number_to_currency dependent.income rescue nil
+    %br
+    - if @ticket.documents.where(document_type_id: 7).count >= @cadastre_mirror.dependent_mirrors.count && !@ticket.action_three
+      = link_to "Finalizar etapa", custom_custom_ticket_income_path(@ticket), class: 'ui button yellow fluid', disabled: true

@@ -6,8 +6,9 @@
   .sub-title Processo de habilitação
   .divider
 .ui.grid.container
-  %p{style: 'text-align: justify'}
-    O processo convocatório somente será considerado finalizado após a conclusão das 5 etapas abaixo no prazo estabelecido no edital de convocação.
+  .ui.label.blue{style: 'margin-bottom: 30px'}
+    %p{style: 'text-align: justify; font-size: 14px !important'}
+      O processo convocatório somente será considerado finalizado após a conclusão das 5 etapas abaixo no prazo estabelecido no edital de convocação.
 
   %table.ui.table.celled
     %tbody{style: "#{@ticket.action_one ? 'background-color: #51a551' : ''}"}

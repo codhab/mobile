@@ -1,16 +1,19 @@
-.two.wide.mobile.column
-  %a{href: "#{attendance.custom_custom_tickets_path}"}
-    %i.big.arrow.left.icon
-.thirteen.wide.mobile.column.text-center
-  .title-header Atendimento
-  .sub-title Atualização de dados básicos
-  .divider
-.ui.grid.container
-  .column
-    %p{style: 'text-align: justify'}
-      Nesta etapa será necessário a verificação, atualização das informações e envio das fotos dos documentos solicitados.
-      %br
-      %br
-      Caso o nome ou o CPF estejam divergentes, solicitamos que entrem em contato por meio de requerimento pelo próprio aplicativo
-      %br
-    = render 'form'
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{attendance.custom_custom_tickets_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atendimento
+    .sub-title Atualização de dados básicos
+    .divider
+  .ui.grid.container
+    .column
+      - if !@cadastre_mirror.errors.any?
+        #label.ui.label.blue{style: 'margin-bottom: 30px'}
+          %p{style: 'text-align: justify; font-size: 14px !important'}
+            Nesta etapa será necessário a verificação, atualização das informações e envio das fotos dos documentos solicitados.
+            %br
+            %br
+            Caso o nome ou o CPF estejam divergentes, solicitamos que entrem em contato por meio de requerimento pelo próprio aplicativo.
+
+      = render 'form'

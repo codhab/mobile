@@ -22,7 +22,7 @@ module Attendance
       private
 
       def set_params
-        params.require(:custom_cadastre_mirror).permit(:main_income)
+        params.require(:custom_cadastre_income).permit(:main_income)
       end
 
       def set_ticket

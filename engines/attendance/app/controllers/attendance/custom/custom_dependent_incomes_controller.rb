@@ -20,7 +20,7 @@ module Attendance
       private
 
       def set_params
-        params.require(:custom_dependent_mirror).permit(:income)
+        params.require(:custom_dependent_income).permit(:income)
       end
 
       def set_ticket

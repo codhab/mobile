@@ -1,10 +1,11 @@
-.two.wide.mobile.column
-  %a{href: "#{attendance.custom_custom_tickets_path}"}
-    %i.big.arrow.left.icon
-.thirteen.wide.mobile.column.text-center
-  .title-header Atendimento
-  .sub-title Atualização de renda
-  .divider
-.ui.grid.container
-  .column
-    = render 'form'
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{attendance.custom_custom_tickets_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atendimento
+    .sub-title Atualização de renda
+    .divider
+  .ui.grid
+    .wide.sixteen.column
+      = render 'form'

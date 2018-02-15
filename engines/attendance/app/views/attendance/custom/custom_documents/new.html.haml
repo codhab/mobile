@@ -18,13 +18,14 @@
   .divider
 .ui.grid.container
   .column
-    %p
-      Neste momento você deverá anexar todas fotos das páginas das cartorárias.
-      %br
-      %br
-      Escolha qualquer um dos Cartórios relacionados e faça seu requerimento para as nove certidões em um só local. Para saber mais
-      %a{href: 'http://www.codhab.df.gov.br/pagina/2', target: '_blank'}
-        clique aqui.
+    .ui.label.blue{style: 'margin-bottom: 30px'}
+      %p{style: 'text-align: justify; font-size: 14px !important'}
+        Neste momento você deverá anexar todas fotos das páginas das cartorárias.
+        %br
+        %br
+        Escolha qualquer um dos Cartórios relacionados e faça seu requerimento para as nove certidões em um só local. Para saber mais
+        %a{href: 'http://www.codhab.df.gov.br/pagina/2', target: '_blank'}
+          clique aqui.
 
     - case params[:type].to_s
     - when 'cadastre'
