@@ -1,4 +1,13 @@
 
+.ui.label.blue.fluid
+  %p
+    Saiba como comprovar dependentes,
+    %a{href: "javascript:void(0)", onclick: 'modal_dependents()'}
+      Clique aqui.
+
+%br
+%br
+%br
 %p
   %h4#rg Certidão de Nascimento dos filhos e demais dependentes declarados e CPF se a idade for maior ou igual a 14 anos
 = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'dependent', dependent_mirror_id: params[:dependent_mirror_id], document_type_id: 6, anchor: 'rg') do |f|
@@ -67,3 +76,33 @@
 %br
 - if @ticket.allow_dependent(params[:dependent_mirror_id])
   = link_to "Continuar atualização", custom_custom_ticket_custom_dependents_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}
+
+
+// 5 ANOS DE DF
+#modal_dependents.ui.modal{style: 'display: none;'}
+  .ui.content
+    %p É necessário a apresentação do Cadastro de Pessoa Física - CPF para dependentes com idade igual ou superior a 14 anos, acrescido dos seguintes documentos, dentro do prazo de validade, conforme o caso:
+    %br/
+
+    %p a) Documento de Identidade, CNH ou passaporte brasileiro;
+    %p b) Certificado de reservista; ou
+    %p c) Carteira de Trabalho e Previdência Social - CTPS; ou
+    %p d) Certidão de casamento ou união estável com firma reconhecida;
+    %p e) Certidão de tutela ou curatela por deteminação judicial, para os que se encontrem sob esses institutos;
+    %p f) Comprovante de dependência dos pais, avós ou bisavós no Imposto de Renda de Pessoa Física - IRPF do titular;
+
+
+    %br
+
+    %p{style: 'text-align: center'}
+      %a.ui.button.fluid{href: 'javascript:void(0)', onclick:'close_modal();'}
+        Fechar
+
+:javascript
+  function modal_dependents(){
+    $("#modal_dependents").modal('show')
+  }
+
+  function close_modal() {
+    $('.ui.modal').modal('hide')
+  }

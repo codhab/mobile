@@ -1,6 +1,6 @@
 
 %p
-  %h4#rg Comprovante de Renda e Carteira de Trabalho (de ambos, quando for o caso);
+  %h4#rg Comprovante de Renda
 = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'income', document_type_id: 7, anchor: 'rg', dependent_mirror_id: params[:dependent_mirror_id]) do |f|
   - equal = "= #{params[:dependent_mirror_id]}"
   - sql = "#{params[:dependent_mirror_id].present? ? equal : 'is null'}"

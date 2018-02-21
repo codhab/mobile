@@ -1,4 +1,12 @@
 
+.ui.label.blue
+  %p{style: 'text-align: justify; font-size: 14px !important'}
+    Neste momento você deverá anexar TODAS as fotos das certidões dos 9 cartórios de Registros de Imóveis do DF,
+    %a{href: 'javascript:void(0)', onclick: 'document_modal()'}
+      Clique aqui
+%br
+%br
+%br
 %p
   %h4#rg Cartorária
 = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'document', document_type_id: 5, anchor: 'rg') do |f|
@@ -20,5 +28,60 @@
 
   %br
   %br
-  - if @ticket.documents.where(document_type_id: 5).count >= 8 
+  - if @ticket.documents.where(document_type_id: 5).count >= 8
     = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid', disabled: true
+
+
+// 5 ANOS DE DF
+#document_modal.ui.modal{style: 'display: none;'}
+  .ui.content
+    %p Você poderá escolher um dos cartórios abaixo e requrer as 9 certidões em um só local.
+    %br/
+
+    %table.ui.table.celled.striped
+      %thead
+        %tr
+          %th Cartório
+          %th
+      %tbody
+        %tr
+          %td Certidão do Cartório do 1º Ofício de Registro de Imóveis
+          %td Ed. Venâncio 2000 - 1º Andar - Sl 140-B
+        %tr
+          %td Certidão do Cartório do 2º Ofício de Registro de Imóveis
+          %td Ed. Venâncio 2000 - 1º Andar - Sl 140-C
+        %tr
+          %td Certidão do Cartório do 3º Ofício de Registro de Imóveis
+          %td QS 1 Rua 210 Lt 40 Sl 915/928 Torre B - Taguating Shopping
+        %tr
+          %td Certidão do Cartório do 4º Ofício de Registro de Imóveis
+          %td QE 07 Bloco H Lj 19 - Guará I
+        %tr
+          %td Certidão do Cartório do 5º Ofício de Registro de Imóveis
+          %td Ed. Centro Empresarial Correia, Sl 704/706, Setor Central/Gama
+        %tr
+          %td Certidão do Cartório do 6º Ofício de Registro de Imóveis
+          %td CNM 01 Bloco H, 1º Andar - Ceilândia Centro
+        %tr
+          %td Certidão do Cartório do 7º Ofício de Registro de Imóveis
+          %td Qd Central Bl 11 Lt 03 01 - Sobradinho
+        %tr
+          %td Certidão do Cartório do 8º Ofício de Registro de Imóveis
+          %td Av. Independência, Plaza Shopping, Sala M 05 - Planaltina
+        %tr
+          %td Certidão do Cartório do 9º Ofício de Registro de Imóveis
+          %td AE 04 Bloco B Lt 1 Lj 1A - Setor Tradicional - Brazlândia
+    %br
+
+    %p{style: 'text-align: center'}
+      %a.ui.button.fluid{href: 'javascript:void(0)', onclick:'close_modal();'}
+        Fechar
+
+:javascript
+  function document_modal(){
+    $("#document_modal").modal('show')
+  }
+
+  function close_modal() {
+    $('.ui.modal').modal('hide')
+  }

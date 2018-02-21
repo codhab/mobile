@@ -4,16 +4,18 @@
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Atendimento
-    .sub-title Atualização de dados básicos
+    .sub-title Dados básicos
     .divider
-  .ui.grid.container
-    .column
+  .ui.grid
+    .sixteen.wide.column
       - if !@cadastre_mirror.errors.any?
         #label.ui.label.blue{style: 'margin-bottom: 30px'}
           %p{style: 'text-align: justify; font-size: 14px !important'}
-            Nesta etapa será necessário a verificação, atualização das informações e envio das fotos dos documentos solicitados.
+            Verifique seus dados básicos e atualize todos os campos.
             %br
             %br
-            Caso o nome ou o CPF estejam divergentes, solicitamos que entrem em contato por meio de requerimento pelo próprio aplicativo.
+            Se seu nome e/ou CPF estive divergente, procure um dos postos de atendimento da CODHAB mais próximo de sua residência no prazo de 5 dias.
+            %a{href: '#'}
+              Clique aqui.
 
       = render 'form'

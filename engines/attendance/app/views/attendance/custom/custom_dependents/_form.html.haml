@@ -1,12 +1,23 @@
 = simple_form_for @dependent, url: @dependent.new_record? ? custom_custom_ticket_custom_dependents_path(@ticket) : custom_custom_ticket_custom_dependent_path(@ticket, @dependent), method: @dependent.new_record? ? 'post' : 'put'  do |f|
   = f.input :name, label: 'Nome', input_html: { disabled: true, disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6)}
-  = f.input :cpf, label: 'CPF', input_html: { class: 'cpf', disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6)}
-  = f.input :rg, label: "RG"
-  = f.input :rg_org, label: "RG ORG"
+  = f.input :cpf, label: 'CPF (obrigatório para maiores de 14 anos)', input_html: { class: 'cpf', disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6)}
+  = f.input :rg, label: "RG (obrigatório para maiores de 18 anos)"
+  = f.input :rg_org, label: "Órgão expedidor (obrigatório para maiores de 18 anos)"
   = f.input :born, label: "Data de nascimento", as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil }
-  = f.association :kinship, label: "Parentesco", include_blank: false, selected: f.object.kinship_id.present? ? f.object.kinship_id : 3, input_html: { disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6) }
-  = f.input :special_condition_id, label: "Condição especial?", as: :select, collection: {"Sim": 1, "Não": 2}, include_blank: false, include_blank: false
-  = f.input :special_condition_type_id, label: "Tipo de condição especial", as: :select,collection: Core::Candidate::SpecialConditionType.all, include_blank: "Selecione...", selected: 2
-  = f.input :cid
+  = f.input :kinship, as: :select, collection: Core::Candidate::Kinship.where(status: true), label: "Parentesco", include_blank: false, selected: f.object.kinship_id.present? ? f.object.kinship_id : 3, input_html: { disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6) }
+  = f.input :special_condition_id, label: "Condição especial?", as: :select, collection: {"Sim": 1, "Não": 2}, include_blank: false, include_blank: false, input_html: { id: 'special_condition_id'}
+  #special{style: f.object.special_condition_id != 2 ? 'display: block' : 'display: none'}
+    = f.input :special_condition_type_id, label: "Tipo de condição especial", as: :select,collection: Core::Candidate::SpecialConditionType.all, include_blank: "Selecione...", selected: f.object.special_condition_id.present? ? f.object.special_condition_id : '2'
+    = f.input :cid, label: 'CID'
   .big-divider
   = f.submit "Salvar dados e ir para documentações", class: 'ui button yellow fluid', data: { disable_with: 'Carregando, aguarde...'}
+
+:javascript
+  $("#special_condition_id").on('change', function(){
+
+    if($(this).val() == 1) {
+      $('#special').show();
+    } else {
+      $('#special').hide();
+    }
+  })

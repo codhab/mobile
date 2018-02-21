@@ -1,4 +1,4 @@
-= simple_form_for @cadastre_mirror, url: custom_custom_ticket_custom_contact_path(@ticket,@cadastre_mirror), method: :put, remote: true do |f|
+= simple_form_for @contact, url: custom_custom_ticket_custom_contact_path(@ticket,@cadastre_mirror), method: :put do |f|
   #step_one
     = f.input :telephone, as: :string, label: 'Telefone'
     = f.input :telephone_optional, as: :string, label: 'Telefone secundário'
@@ -11,11 +11,3 @@
     %br
     %br
     = f.submit "Salvar dados", class: 'ui button yellow fluid', data: { disable_with: 'Carregando, aguarde...'}
-:javascript
-  function show_step(step) {
-    $("#step_one").hide()
-    $("#step_two").hide()
-    $("#step_three").hide()
-    $("#step_four").hide()
-    $("#"+step).fadeIn();
-  }

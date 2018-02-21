@@ -3,20 +3,17 @@
     %i.big.arrow.left.icon
 .thirteen.wide.mobile.column.text-center
   .title-header Atendimento
-  .sub-title Atualização de dependentes
+  .sub-title Dependentes
   .divider
 .ui.grid.container
   - if !(@ticket.documents.where(document_type_id: 6).count >= @dependents.count)
     .ui.label.red.fluid{style: 'text-align: center'} Etapa pendente
     %br
     %p{style: 'text-align: justify'}
-      Inclua ou remova os dependentes de acordo com a sua realidade atual.
+      Inclua ou remova os dependentes. Saiba quem pode ser:
+      %a{href: 'javascript:void(0)', onclick:'modal_dependents()'}
+        Clique aqui
       %br
-      %br
-      Para retirada de cônjuges, faz-se necessário a solicitação via requerimento eletrônico no próprio aplicativo.
-      Saiba quem pode ser seu dependente
-      %a{href: 'http://www.codhab.df.gov.br/pagina/2', target: '_blank'}
-        clique aqui.
 
   %table.ui.table
     %tbody
@@ -35,3 +32,33 @@
   %br
   - if @ticket.allow_dependents
     = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid', disabled: true
+
+
+
+// 5 ANOS DE DF
+#modal-dependents.ui.modal{style: 'display: none;'}
+  .ui.content
+    %p O cônjuge;
+    %br/
+
+    %p Companheiro(a), inclusive em relação homoafetiva, desde que caracterizada união estável com firma reconhecida em cartório;
+    %br/
+
+    %p Filho(a) ou enteado(a) menor de 18 anos ou menor de 24 anos. Neste último caso, desde que esteja cursando o ensino superior, com a devida comprovação dessa situação e da dependência enconômica;
+    %p Irmão(ã), neto(a) ou bisneto(a) menor de 18 anos, desde que detenha a guarda judicial, ou menor de 24 anos, desde que detenha a guarda judicial e esteja cursando ensino superior, com a devida comprovação dessa situação e da dependência econômica;
+    %p Pai/mãe, avô/avó desde que sejam dependentes na declaração do Imposto de Renda de Pessoa Física - IRPF; Incapaz que esteja sob sua tutela ou curatela, comprovado por decisão judicialão o ano calendário do IR;
+
+    %br
+
+    %p{style: 'text-align: center'}
+      %a.ui.button.fluid{href: 'javascript:void(0)', onclick:'close_modal();'}
+        Fechar
+
+:javascript
+  function modal_dependents(){
+    $("#modal-dependents").modal('show')
+  }
+
+  function close_modal() {
+    $('.ui.modal').modal('hide')
+  }

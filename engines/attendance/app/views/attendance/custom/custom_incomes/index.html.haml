@@ -4,17 +4,20 @@
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
     .title-header Atendimento
-    .sub-title Atualização de rendas
+    .sub-title Renda
     .divider
   .ui.grid.container
     .ui.label.blue{style: 'margin-bottom: 30px'}
       %p{style: 'text-align: justify; font-size: 14px !important'}
-        Vamos atualizar sua renda e de seus dependentes caso tenha. Ao ser solicitado sobre o envio da documentação fique atento ao documento que deve enviar.
+        Vamos atualizar sua renda e de seus dependente, caso tenha. Lembramos que a renda considera é a bruta.
         %br
         %br
-        Saiba quais documentos deve enviar
-        %a{href: 'http://www.codhab.df.gov.br/pagina/2', target: '_blank'}
-          clique aqui.
+        Saiba quais documentos enviar,
+        %a{href: 'javascript:void(0)', onclick: 'open_income()'}
+          Clique aqui.
+    .ui.label.blue
+      %p{style: 'text-align: justify; font-size: 14px !important'}
+        ATENÇÃO: O titular do cadastro ou seu dependente que possuir renda zero deverá apresentar carteira de trabalho e declaração de não obter renda.
     %table.ui.table
       %tbody
         %tr
@@ -33,3 +36,32 @@
     %br
     - if @ticket.documents.where(document_type_id: 7).count >= @cadastre_mirror.dependent_mirrors.count && !@ticket.action_three
       = link_to "Finalizar etapa", custom_custom_ticket_income_path(@ticket), class: 'ui button yellow fluid', disabled: true
+
+// 5 ANOS DE DF
+#open_income.ui.modal{style: 'display: none;'}
+  .ui.content
+    %p Para comprovar a renda familiar burta de até 12 (doze) salários mínimos serão admitidos:
+    %br/
+
+    %p a) Empregado com Carteira de Trabalho assinada:
+    %p Cópia das folhas em que conste a qualificação civil, a foto, o contrato de trabalho e os três últimos contracheques contendo o carimbo e CNPJ do empregador.
+    %p b) Comerciante:
+    %p Contrato social registrado na Junta Comercial e DECORE emitida por profissional competente; ou declaração de Imposto de Renda de pessoa Física (IRPF) com recibo de entrega.
+    %p c) Servidor ou Empregado Público:
+    %p os três últimos contracheques emitidos pelo órgão empregador, com carimbo de CNPJ ou com código de validação.
+    %p d) Trabalhador Autônomo:
+    %p DECORE emitido por profissional competente, declaração de Imposto de Renda com recbido de entrega;
+    %br
+
+    %p{style: 'text-align: center'}
+      %a.ui.button.fluid{href: 'javascript:void(0)', onclick:'close_modal();'}
+        Fechar
+
+:javascript
+  function open_income(){
+    $("#open_income").modal('show')
+  }
+
+  function close_modal() {
+    $('.ui.modal').modal('hide')
+  }

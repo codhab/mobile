@@ -2,10 +2,10 @@
 module Attendance
   class ContactsController < ApplicationController
 
-    before_action :set_cadastre 
+    before_action :set_cadastre
     before_action :set_ticket
     before_action :set_action
-    before_action :set_cadastre_mirror 
+    before_action :set_cadastre_mirror
 
     def edit
       @cadastre_mirror = Core::Attendance::ContactForm.find(@cadastre_mirror.id)

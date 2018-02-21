@@ -9,7 +9,7 @@ module Attendance
       def edit; end
 
       def update
-        if @cadastre_mirror.update(set_params)
+        if @contact.update(set_params)
           @ticket.update(action_four: true)
           redirect_to custom_custom_tickets_path(type: 'cadastre')
         else
@@ -25,10 +25,11 @@ module Attendance
 
       def set_cadastre_mirror
         @cadastre_mirror = @ticket.cadastre_mirror
+        @contact = CustomContact.find(@cadastre_mirror.id)
       end
 
       def set_params
-        params.require(:custom_cadastre_mirror).permit(:email, :telephone, :telephone_optional, :celphone, :address, :city_id)
+        params.require(:custom_contact).permit(:email, :telephone, :telephone_optional, :celphone, :address, :city_id, :cep)
       end
 
     end
