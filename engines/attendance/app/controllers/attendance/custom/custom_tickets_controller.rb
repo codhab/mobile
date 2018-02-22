@@ -38,6 +38,26 @@ module Attendance
         redirect_to attendance.custom_custom_tickets_path
       end
 
+      # Termos
+
+      def term_one
+        @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
+        @ticket.update(term_one: true)
+        redirect_to custom_custom_tickets_path
+      end
+
+      def term_two
+        @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
+        @ticket.update(term_two: true)
+        redirect_to custom_custom_tickets_path
+      end
+
+      def term_three
+        @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
+        @ticket.update(term_three: true)
+        redirect_to custom_custom_tickets_path
+      end
+
       private
 
       def set_ticket

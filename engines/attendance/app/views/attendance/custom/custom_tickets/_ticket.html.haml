@@ -77,3 +77,22 @@
 
   %br
   %br
+
+- if !@ticket.term_one
+  :javascript
+    $(document).ready(function() {
+      $('.ui.modal').html("#{escape_javascript(render 'term_one')}")
+      $('.ui.modal').modal('show')
+    })
+- if !@ticket.term_two
+  :javascript
+    $(document).ready(function() {
+      $('.ui.modal').html("#{escape_javascript(render 'term_two')}")
+      $('.ui.modal').modal('show')
+    })
+- if !@ticket.term_three
+  :javascript
+    $(document).ready(function() {
+      $('.ui.modal').html("#{escape_javascript(render 'term_three')}")
+      $('.ui.modal').modal('show')
+    })
