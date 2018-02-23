@@ -35,8 +35,12 @@
     - when 'document'
       = render 'document'
 
-#message.text-center{style: 'display: none'}
-  %h4 Documento sendo enviado. Aguarde instantes.
+#message.text-center{style: 'display: none; padding-top: 90px'}
+  %br/
+  %br/
+  %h4 Documento sendo enviado. Aguarde...
+  %br/
+  %h3
 
 :javascript
   $(document).ready(function() {
@@ -44,5 +48,6 @@
       $('.ui.grid.container').hide();
       $('#message').show();
       this.form.submit();
+      console.log(document.readyState)
     });
   });

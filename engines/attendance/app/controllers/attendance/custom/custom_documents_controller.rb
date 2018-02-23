@@ -18,17 +18,12 @@ module Attendance
 
         @document.save
 
-        if params[:type].to_s == 'document'
-          @ticket.documents.where(document_type_id: 5).count >= 7
-          @ticket.update(action_five: true)
-        end
-
         redirect_to new_custom_custom_ticket_custom_document_path(dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: params[:anchor])
       end
 
       def destroy
         @ticket.documents.find(params[:id]).destroy
-        
+
         redirect_to new_custom_custom_ticket_custom_document_path(dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: params[:anchor])
       end
 
