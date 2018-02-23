@@ -20,41 +20,79 @@ module Attendance
     end
 
     def allow_cadastre
+      return false if !(self.documents.where(document_type_id: 1).present? && self.documents.where(document_type_id: 2).present? &&
+      self.documents.where(document_type_id: 3).present? && self.documents.where(document_type_id: 4).present?)
+
       if self.cadastre_mirror.special_condition_id == 1
-        self.documents.where(document_type_id: 1).present? &&
-        self.documents.where(document_type_id: 2).present? &&
-        self.documents.where(document_type_id: 3).present? &&
-        self.documents.where(document_type_id: 4).present?
-        self.documents.where(document_type_id: 8).present?
-      else
-        self.documents.where(document_type_id: 1).present? &&
-        self.documents.where(document_type_id: 2).present? &&
-        self.documents.where(document_type_id: 3).present? &&
-        self.documents.where(document_type_id: 4).present?
+        return false if !self.documents.where(document_type_id: 5).present?
       end
+
+      if self.cadastre_mirror.civil_state_id == 3
+        return false if !self.documents.where(document_type_id: 6).present?
+      end
+
+      if self.cadastre_mirror.civil_state_id == 1
+        return false if !self.documents.where(document_type_id: 7).present?
+      end
+
+      if self.cadastre_mirror.civil_state_id == 7
+        return false if !self.documents.where(document_type_id: 11).present?
+      end
+
+      if self.cadastre_mirror.civil_state_id == 2
+        return false if !self.documents.where(document_type_id: 12).present?
+      end
+
+      if self.cadastre_mirror.civil_state_id == 4
+        return false if !self.documents.where(document_type_id: 12).present?
+        return false if !self.documents.where(document_type_id: 13).present?
+      end
+
+      return true
     end
 
     def allow_dependent dependent_id
       dependent = self.cadastre_mirror.dependent_mirrors.find(dependent_id)
+
+      return false if !self.documents.where(document_type_id: 16, dependent_mirror_id: dependent.id).present?
+
       if dependent.special_condition_id == 1
-        self.documents.where(document_type_id: 6, dependent_mirror_id: dependent.id).present? &&
-        self.documents.where(document_type_id: 8, dependent_mirror_id: dependent.id).present?
-      else
-        self.documents.where(document_type_id: 6, dependent_mirror_id: dependent.id).present?
+        return false if !self.documents.where(document_type_id: 17, dependent_mirror_id: dependent.id).present?
       end
+
+      if dependent.age >= 14
+        return false if !self.documents.where(document_type_id: 18, dependent_mirror_id: dependent.id).present?
+      end
+
+      if dependent.age >= 18
+        return false if !self.documents.where(document_type_id: 20, dependent_mirror_id: dependent.id).present?
+      end
+
+      if dependent.age >= 60
+        return false if !self.documents.where(document_type_id: 19, dependent_mirror_id: dependent.id).present?
+      end
+
+      return true
     end
 
     def allow_dependents
-      self.documents.where('dependent_mirror_id is not null').count >= self.cadastre_mirror.dependent_mirrors.count
+      dependents = self.cadastre_mirror.dependent_mirrors
+
+      dependents.each do |dependent|
+        return false if !allow_dependent(dependent.id)
+      end
+
+      return true
     end
 
-    def allow_income
-    end
+    def allow_documents
+      return false if !(self.documents.where(document_type_id: [21,22,23,24,25,26,27,28,29]).count >= 9)
 
-    def allow_contact
-    end
+      if [2,7].include?(self.cadastre_mirror.civil_state_id)
+        return false if !(self.documents.where(document_type_id: 30).count > 0)
+      end
 
-    def allow_document
+      return true
     end
 
     private

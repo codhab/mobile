@@ -1,0 +1,6 @@
+.header.text-center
+  Etapa concluída
+.content{style: 'text-align: center'}
+  %p Esta etapa já foi concluída por você.
+  %br
+  = link_to "Alterar dados da etapa", custom_custom_ticket_message_path(@ticket, reboot: true, step: params[:step]), class: 'ui button blue fluid', data: { disable_with: 'Processando, aguarde...'}

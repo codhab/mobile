@@ -1,85 +1,135 @@
 
 .ui.label.blue.fluid
-  %p
+  %p{style: 'font-size: 14px !important'}
     Saiba como comprovar dependentes,
     %a{href: "javascript:void(0)", onclick: 'modal_dependents()'}
       Clique aqui.
 
 %br
 %br
-%br
-%p
-  %h4#rg Certidão de Nascimento dos filhos e demais dependentes declarados e CPF se a idade for maior ou igual a 14 anos
-= simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'dependent', dependent_mirror_id: params[:dependent_mirror_id], document_type_id: 6, anchor: 'rg') do |f|
-  - equal = "= #{params[:dependent_mirror_id]}"
-  - sql = "#{params[:dependent_mirror_id].present? ? equal : 'is null'}"
-  - @ticket.documents.where(document_type_id: 6).where("dependent_mirror_id #{sql}").each_with_index do |document, index|
-    .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-      - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-        Arquivo #{index + 1}
-        %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-          = link_to custom_custom_image_path(document), remote: true do
-            = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
+.ui.segment
+  %h4#nasc Certidão de Nascimento
+  - unless @ticket.documents.where(document_type_id: 16).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+    .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'dependent', dependent_mirror_id: params[:dependent_mirror_id], document_type_id: 16, anchor: 'nasc') do |f|
+    - if @ticket.documents.where(document_type_id: 16).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+      - @ticket.documents.where(document_type_id: 16).where(dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
+        = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'nasc'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+      %br/
+      %br/
+    - else
+      %i  Nenhum arquivo enviado.
+      %br/
+      %br/
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+
+- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).age >= 18
+  .ui.segment
+    %h4#rg Documento de identificação (frente e verso)
+    - unless @ticket.documents.where(document_type_id: 20).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'dependent', document_type_id: 20, anchor: 'rg', dependent_mirror_id: params[:dependent_mirror_id]) do |f|
+      - if @ticket.documents.where(document_type_id: 20).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+        - @ticket.documents.where(document_type_id: 20).where(dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'rg'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+        %br/
+        %br/
       - else
-        Arquivo #{index + 1}
-        %br
-        %br
-        %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-        %br
-      %br
-  = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %div
+        %label.ui.icon.button.fluid{:for => 'document_2'}
+          %i.photo.icon
+          Enviar novo arquivo
+        = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_2' }
+        /%input#hidden-new-file{:style => "display: none", :type => "file"}/
+
+
+- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).age >= 14
+  .ui.segment
+    %h4#cpf CPF
+    - unless @ticket.documents.where(document_type_id: 18).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'dependent', dependent_mirror_id: params[:dependent_mirror_id], document_type_id: 18, anchor: 'cpf') do |f|
+      - if @ticket.documents.where(document_type_id: 18).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+        - @ticket.documents.where(document_type_id: 18).where(dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'cpf'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %div
+        %label.ui.icon.button.fluid{:for => 'document_3'}
+          %i.photo.icon
+          Enviar novo arquivo
+        = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
 - if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).special_condition_id == 1
-  %p
-    %h4#def Comprovantes da deficiência declarada;
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'dependent', document_type_id: 8, anchor: 'def', dependent_mirror_id: params[:dependent_mirror_id]) do |f|
-    - @ticket.documents.where(document_type_id: 8, dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+  .ui.segment
+    %h4#def
+      Comprovantes da deficiência declarada
+    - unless @ticket.documents.where(document_type_id: 17).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'dependent', document_type_id: 17, anchor: 'def', dependent_mirror_id: params[:dependent_mirror_id]) do |f|
+      - if @ticket.documents.where(document_type_id: 17).present?
+        - @ticket.documents.where(document_type_id: 17).where(dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'def'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
-%br
-%br
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %div
+        %label.ui.icon.button.fluid{:for => 'document_4'}
+          %i.photo.icon
+          Enviar novo arquivo
+        = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_4' }
+
 
 - if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).age >= 60
-  %p
-    %h4#def Comprovantes de curatela;
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'dependent', document_type_id: 10, anchor: 'def', dependent_mirror_id: params[:dependent_mirror_id]) do |f|
-    - @ticket.documents.where(document_type_id: 10, dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+  .ui.segment
+    %h4#def
+      Comprovantes de curatela
+    - unless @ticket.documents.where(document_type_id: 19).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
 
-%br
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'dependent', document_type_id: 19, anchor: 'def', dependent_mirror_id: params[:dependent_mirror_id]) do |f|
+      - if @ticket.documents.where(document_type_id: 19,dependent_mirror_id: params[:dependent_mirror_id]).present?
+        - @ticket.documents.where(document_type_id: 19).where(dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'def'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %div
+        %label.ui.icon.button.fluid{:for => 'document_5'}
+          %i.photo.icon
+          Enviar novo arquivo
+        = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_5' }
+
 %br
 - if @ticket.allow_dependent(params[:dependent_mirror_id])
   = link_to "Continuar atualização", custom_custom_ticket_custom_dependents_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}
-
-
+- else
+  .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
+    %p Para prosseguir na atualização, favor enviar ao menos um 'arquivo' de cada categoria exigida acima.
 // 5 ANOS DE DF
-#modal_dependents.ui.modal{style: 'display: none;'}
+#modal_dependents.ui.modal{style: 'display: none; padding-top: 90px; padding-bottom: 90px'}
   .ui.content
     %p É necessário a apresentação do Cadastro de Pessoa Física - CPF para dependentes com idade igual ou superior a 14 anos, acrescido dos seguintes documentos, dentro do prazo de validade, conforme o caso:
     %br/

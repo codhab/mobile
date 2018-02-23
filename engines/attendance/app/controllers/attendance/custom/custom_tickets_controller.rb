@@ -58,6 +58,34 @@ module Attendance
         redirect_to custom_custom_tickets_path
       end
 
+
+      def message
+        @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
+
+        respond_to do |format|
+          format.html {
+            if params[:reboot].present?
+              case params[:step]
+              when 'cadastre'
+                @ticket.update(action_one: false)
+              when 'dependent'
+                @ticket.update(action_two: false)
+              when 'income'
+                @ticket.update(action_three: false)
+              when 'contact'
+                @ticket.update(action_four: false)
+              when 'document'
+                @ticket.update(action_five: false)
+              end
+
+              redirect_to custom_custom_tickets_path
+            end
+          }
+
+          format.js {}
+        end
+      end
+
       private
 
       def set_ticket

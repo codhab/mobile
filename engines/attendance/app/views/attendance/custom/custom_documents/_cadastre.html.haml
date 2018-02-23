@@ -1,214 +1,269 @@
+.ui.segment
+  %h4#rg Documento de identificação (frente e verso)
+  - unless @ticket.documents.where(document_type_id: 1).present?
+    .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 1, anchor: 'rg') do |f|
+    - if @ticket.documents.where(document_type_id: 1).present?
+      - @ticket.documents.where(document_type_id: 1).each_with_index do |document, index|
+        = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'rg'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
-%p
-  %h4#rg Documento de identificação
-= simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 1, anchor: 'rg') do |f|
-  - @ticket.documents.where(document_type_id: 1).each_with_index do |document, index|
-    .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-      - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-        Arquivo #{index + 1}
-        %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-          = link_to custom_custom_image_path(document), remote: true do
-            = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-      - else
-        Arquivo #{index + 1}
-        %br
-        %br
-        %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-        %br
-      %br
-  = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+      %br/
+      %br/
+    - else
+      %i  Nenhum arquivo enviado.
+      %br/
+      %br/
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+      /%input#hidden-new-file{:style => "display: none", :type => "file"}/
 
-%p
+
+.ui.segment
   %h4#cpf CPF
-= simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 2, anchor: 'cpf') do |f|
-  - @ticket.documents.where(document_type_id: 2).each_with_index do |document, index|
-    .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-      - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-        Arquivo #{index + 1}
-        %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-          = link_to custom_custom_image_path(document), remote: true do
-            = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-      - else
-        Arquivo #{index + 1}
-        %br
-        %br
-        %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-        %br
-      %br
-  = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+  - unless @ticket.documents.where(document_type_id: 2).present?
+    .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 2, anchor: 'cpf') do |f|
+    - if @ticket.documents.where(document_type_id: 2).present?
+      - @ticket.documents.where(document_type_id: 2).each_with_index do |document, index|
+        = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'cpf'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
-%p
+      %br/
+      %br/
+    - else
+      %i  Nenhum arquivo enviado.
+      %br/
+      %br/
+    %label.ui.icon.button.fluid{:for => 'document_2'}
+      %i.photo.icon
+      Enviar novo arquivo
+    = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_2' }
+
+.ui.segment
   %h4#resid
-    Comprovante de residência no DF nos últimos 5 anos. Atenção anexar documentos nos anos de 2014 a 2018 - ano a ano. Para saber mais
+    Comprovante de residência no DF nos últimos 5 anos. Atenção anexar documentos nos anos de 2014 a 2018 - ano a ano.
     %a{href: "javascript:void(0)", onclick: 'open_arrival_df_modal();'}
-      clique aqui
+      Clique aqui.
+  - unless @ticket.documents.where(document_type_id: 3).present?
+    .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 3, anchor: 'resid') do |f|
+    - if @ticket.documents.where(document_type_id: 3).present?
 
-= simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 3, anchor: 'resid') do |f|
-  - @ticket.documents.where(document_type_id: 3).each_with_index do |document, index|
-    .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-      - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-        Arquivo #{index + 1}
-        %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-          = link_to custom_custom_image_path(document), remote: true do
-            = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-      - else
-        Arquivo #{index + 1}
-        %br
-        %br
-        %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-        %br
-      %br
-  = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+      - count = @ticket.documents.where(document_type_id: 3).count
 
-%p
-  %h4#arrival Comprovante de tempo de domicílio no DF (chegada no DF);
-= simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 4, anchor: 'arrival') do |f|
-  - @ticket.documents.where(document_type_id: 4).each_with_index do |document, index|
-    .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-      - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-        Arquivo #{index + 1}
-        %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-          = link_to custom_custom_image_path(document), remote: true do
-            = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-      - else
-        Arquivo #{index + 1}
-        %br
-        %br
-        %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-        %br
-      %br
-  = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+      - @ticket.documents.where(document_type_id: 3).each_with_index do |document, index|
+        = link_to "#{index + 2014} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+      - if count == 0
+        .ui.label.large 2014
+        .ui.label.large 2015
+        .ui.label.large 2016
+        .ui.label.large 2017
+        .ui.label.large 2018
+      - if count == 1
+        .ui.label.large 2015
+        .ui.label.large 2016
+        .ui.label.large 2017
+        .ui.label.large 2018
+      - if count == 2
+        .ui.label.large 2016
+        .ui.label.large 2017
+        .ui.label.large 2018
+      - if count == 3
+        .ui.label.large 2017
+        .ui.label.large 2018
+      - if count == 4
+        .ui.label.large 2018
+
+      %br/
+      %br/
+    - else
+      %i  Nenhum arquivo enviado.
+      %br/
+      %br/
+    %label.ui.icon.button.fluid{:for => 'document_3'}
+      %i.photo.icon
+      Enviar novo arquivo
+    = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
+
+.ui.segment
+  %h4#arrival
+    Comprovante de tempo de domicílio.
+    %a{href: "javascript:void(0)", onclick: 'open_arrival_df_modal();'}
+      Clique aqui.
+  - unless @ticket.documents.where(document_type_id: 4).present?
+    .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 4, anchor: 'arrival') do |f|
+    - if @ticket.documents.where(document_type_id: 4).present?
+      - @ticket.documents.where(document_type_id: 4).each_with_index do |document, index|
+        = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'arrival'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+      %br/
+      %br/
+    - else
+      %i  Nenhum arquivo enviado.
+      %br/
+      %br/
+    %label.ui.icon.button.fluid{:for => 'document_4'}
+      %i.photo.icon
+      Enviar novo arquivo
+    = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_4' }
 
 
 - if @ticket.cadastre_mirror.special_condition_id == 1
-  %p
-    %h4#def Comprovantes da deficiência declarada;
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 8, anchor: 'def') do |f|
-    - @ticket.documents.where(document_type_id: 8).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+  .ui.segment
+    %h4#def Comprovantes da deficiência declarada (Anexe laudo médico validado pelo perito da SEJUS);
+    - unless @ticket.documents.where(document_type_id: 5).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 5, anchor: 'def') do |f|
+      - if @ticket.documents.where(document_type_id: 5).present?
+        - @ticket.documents.where(document_type_id: 5).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'def'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %label.ui.icon.button.fluid{:for => 'document_5'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_5' }
+
+- if @ticket.cadastre_mirror.civil_state_id == 3
+  .ui.segment
+    %h4#divor Anexe a documentação de divórcio
+    - unless @ticket.documents.where(document_type_id: 6).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 6, anchor: 'divor') do |f|
+      - if @ticket.documents.where(document_type_id: 6).present?
+        - @ticket.documents.where(document_type_id: 6).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'divor'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %label.ui.icon.button.fluid{:for => 'document_6'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_6' }
 
 
 - if @ticket.cadastre_mirror.civil_state_id == 1
-  %p
+  .ui.segment
     %h4#cert Anexe sua certidão de nascimento
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 15, anchor: 'cert') do |f|
-    - @ticket.documents.where(document_type_id: 8).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+    - unless @ticket.documents.where(document_type_id: 7).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 7, anchor: 'cert') do |f|
+      - if @ticket.documents.where(document_type_id: 7).present?
+        - @ticket.documents.where(document_type_id: 7).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'cert'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %label.ui.icon.button.fluid{:for => 'document_7'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_7' }
 
 
 
 - if @ticket.cadastre_mirror.civil_state_id == 7
-  %p
+  .ui.segment
     %h4#uni Anexe a declaração de união estável com firma reconhecida
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 16, anchor: 'uni') do |f|
-    - @ticket.documents.where(document_type_id: 8).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+    - unless @ticket.documents.where(document_type_id: 11).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 11, anchor: 'uni') do |f|
+      - if @ticket.documents.where(document_type_id: 11).present?
+        - @ticket.documents.where(document_type_id: 11).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'uni'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %label.ui.icon.button.fluid{:for => 'document_11'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_11' }
 
 
 - if @ticket.cadastre_mirror.civil_state_id == 2
-  %p
+  .ui.segment
     %h4#cas Anexe a certidão de casamento.
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 16, anchor: 'cas') do |f|
-    - @ticket.documents.where(document_type_id: 8).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+    - unless @ticket.documents.where(document_type_id: 12).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 12, anchor: 'cas') do |f|
+      - if @ticket.documents.where(document_type_id: 12).present?
+        - @ticket.documents.where(document_type_id: 12).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'cas'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %label.ui.icon.button.fluid{:for => 'document_12'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_12' }
 
 
 
 - if @ticket.cadastre_mirror.civil_state_id == 4
-  %p
+  .ui.segment
     %h4#viu Anexe a certidão de casamento.
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 16, anchor: 'viu') do |f|
-    - @ticket.documents.where(document_type_id: 8).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+    - unless @ticket.documents.where(document_type_id: 12).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 12, anchor: 'viu') do |f|
+      - if @ticket.documents.where(document_type_id: 12).present?
+        - @ticket.documents.where(document_type_id: 12).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'viu'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
-  %p
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %label.ui.icon.button.fluid{:for => 'document_12_2'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_12_2' }
+
+
+  .ui.segment
     %h4#viu2 Anexe a certidão de óbito de cônjuge.
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 17, anchor: 'viu2') do |f|
-    - @ticket.documents.where(document_type_id: 17).each_with_index do |document, index|
-      .ui.segment{style: 'padding-top: 2px !important;padding-bottom: 1px !important'}
-        - if %w(jpg jpeg gif png).include?(document.attachment.to_s.split('.')[-1])
-          Arquivo #{index + 1}
-          %div{style: 'width: 100%; height: 40px; overflow: hidden; position: relative;'}
-            = link_to custom_custom_image_path(document), remote: true do
-              = image_tag document.attachment, style: 'width: auto; position: absolute; top: 10%; left: 0; transform: translateX(-25%) translateY(-50%);'
-        - else
-          Arquivo #{index + 1}
-          %br
-          %br
-          %b.text-center= link_to "Baixar arquivo", document.attachment_url, target: '_blank'
-          %br
-        %br
-    = f.input :attachment, label: false, as: :file, input_html: { class: 'upload' }
+    - unless @ticket.documents.where(document_type_id: 13).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 13, anchor: 'viu2') do |f|
+      - if @ticket.documents.where(document_type_id: 13).present?
+        - @ticket.documents.where(document_type_id: 13).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'viu2'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
-
-
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %label.ui.icon.button.fluid{:for => 'document_13'}
+        %i.photo.icon
+        Enviar novo arquivo
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_13' }
 
 - if @ticket.allow_cadastre
   %br
@@ -217,19 +272,19 @@
 - else
   %br
   %br
-  .ui.label.red{style: 'text-align: justify'}
-    %p Para finalizar esta etapa, favor enviar ao menos um 'arquivo' de cada categoria exigida.
+  .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
+    %p Para finalizar esta etapa, favor enviar ao menos um 'arquivo' de cada categoria exigida acima.
 
 
 
 // 5 ANOS DE DF
-#arrival_df_modal.ui.modal{style: 'display: none;'}
+#arrival_df_modal.ui.modal{style: 'display: none; padding-top: 80px; padding-bottom: 80px'}
   .ui.content
     %p Para comprovar os 5 anos no DF e o tempo de chegada no DF, serão aceitos os seguintes documentos que contenham nome e endereço residencial do candidato.
     %br/
 
     %p a) Comprovante de água, luz ou telefone;
-    %p b) Carteira de Trablaho acompanhada de declaração emitida pelo órgão empregado;
+    %p b) Carteira de Trabalho acompanhada de declaração emitida pelo órgão empregado;
     %p c) Declaração funcional, quando se tratar de servidor público;
     %p d) Declaração de instituição bancária com movimentação de conta corrente;
     %p e) Declaração escolar do candidato ou dos filhos;

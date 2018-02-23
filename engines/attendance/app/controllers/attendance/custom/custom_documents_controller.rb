@@ -26,6 +26,12 @@ module Attendance
         redirect_to new_custom_custom_ticket_custom_document_path(dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: params[:anchor])
       end
 
+      def destroy
+        @ticket.documents.find(params[:id]).destroy
+        
+        redirect_to new_custom_custom_ticket_custom_document_path(dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: params[:anchor])
+      end
+
       private
 
       def set_ticket

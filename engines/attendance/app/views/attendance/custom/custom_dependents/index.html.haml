@@ -6,10 +6,8 @@
   .sub-title Dependentes
   .divider
 .ui.grid.container
-  - if !(@ticket.documents.where(document_type_id: 6).count >= @dependents.count)
-    .ui.label.red.fluid{style: 'text-align: center'} Etapa pendente
-    %br
-    %p{style: 'text-align: justify'}
+  #label.ui.label.blue{style: 'margin-bottom: 30px'}
+    %p{style: 'text-align: justify; font-size: 14px'}
       Inclua ou remova os dependentes. Saiba quem pode ser:
       %a{href: 'javascript:void(0)', onclick:'modal_dependents()'}
         Clique aqui
@@ -19,24 +17,30 @@
     %tbody
       - @dependents.each do |dependent|
         %tr
-          %td= link_to dependent.name, edit_custom_custom_ticket_custom_dependent_path(@ticket, dependent.id)
+          %td
+            - if !@ticket.allow_dependent(dependent.id)
+              %i.icon.warning{style: 'color: red'}
+            - else
+              %i.icon.check{style: 'color: green'}
+            = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_path(@ticket, dependent.id)
           %td
             = dependent.kinship.name rescue nil
             - if dependent.kinship_id != 6
               %br
               %br
-              = link_to "Remover", custom_custom_ticket_custom_dependent_path(@ticket, dependent.id), method: :delete, class: 'ui button red tiny'
+              = link_to "Remover", custom_custom_ticket_custom_dependent_path(@ticket, dependent.id), method: :delete, class: 'ui button red tiny', data: { disable_with: "Removendo, aguarde..."}
   %br
   - if !@ticket.action_two
     = link_to "Adicionar dependente", new_custom_custom_ticket_custom_dependent_path(@ticket), class: 'ui button blue fluid'
   %br
   - if @ticket.allow_dependents
     = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid', disabled: true
-
-
+  - else
+    .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
+      %p Para finalizar esta etapa é necessário que atualize e envie a documentação de todos os dependentes listados acima.
 
 // 5 ANOS DE DF
-#modal-dependents.ui.modal{style: 'display: none;'}
+#modal-dependents.ui.modal{style: 'display: none; padding-bottom: 90px; padding-top: 90px'}
   .ui.content
     %p O cônjuge;
     %br/

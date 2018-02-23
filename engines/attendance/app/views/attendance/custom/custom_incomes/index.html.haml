@@ -14,7 +14,7 @@
         %br
         Saiba quais documentos enviar,
         %a{href: 'javascript:void(0)', onclick: 'open_income()'}
-          Clique aqui.
+          clique aqui.
     .ui.label.blue
       %p{style: 'text-align: justify; font-size: 14px !important'}
         ATENÇÃO: O titular do cadastro ou seu dependente que possuir renda zero deverá apresentar carteira de trabalho e declaração de não obter renda.
@@ -22,23 +22,23 @@
       %tbody
         %tr
           %td
-            - if @ticket.documents.where(document_type_id: 7).present?
+            - if @ticket.documents.where(document_type_id: 14).present?
               %i.icon.check{style: 'color: green'}
             = link_to @cadastre_mirror.name, edit_custom_custom_ticket_custom_income_path(@ticket, @cadastre_mirror.id)
           %td= number_to_currency @cadastre_mirror.main_income
         - @cadastre_mirror.dependent_mirrors.each do |dependent|
           %tr
             %td
-              - if @ticket.documents.where(document_type_id: 7, dependent_mirror_id: dependent.id).present?
+              - if @ticket.documents.where(document_type_id: 15, dependent_mirror_id: dependent.id).present?
                 %i.icon.check{style: 'color: green'}
               = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
             %td= number_to_currency dependent.income rescue nil
     %br
-    - if @ticket.documents.where(document_type_id: 7).count >= @cadastre_mirror.dependent_mirrors.count && !@ticket.action_three
+    - if @ticket.documents.where(document_type_id: [14,15]).count >= @cadastre_mirror.dependent_mirrors.count && !@ticket.action_three
       = link_to "Finalizar etapa", custom_custom_ticket_income_path(@ticket), class: 'ui button yellow fluid', disabled: true
 
 // 5 ANOS DE DF
-#open_income.ui.modal{style: 'display: none;'}
+#open_income.ui.modal{style: 'display: none; padding-bottom: 80px; padding-top: 80px;'}
   .ui.content
     %p Para comprovar a renda familiar burta de até 12 (doze) salários mínimos serão admitidos:
     %br/
