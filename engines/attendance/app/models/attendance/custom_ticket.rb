@@ -68,8 +68,12 @@ module Attendance
         return false if !self.documents.where(document_type_id: 20, dependent_mirror_id: dependent.id).present?
       end
 
-      if dependent.age >= 60
+      if dependent.kinship_id == 5
         return false if !self.documents.where(document_type_id: 19, dependent_mirror_id: dependent.id).present?
+      end
+
+      if dependent.kinship_id == 1
+        return false if !self.documents.where(document_type_id: 40, dependent_mirror_id: dependent.id).present?
       end
 
       return true
@@ -88,11 +92,36 @@ module Attendance
     def allow_documents
       return false if !(self.documents.where(document_type_id: [21,22,23,24,25,26,27,28,29]).count >= 9)
 
-      if [2,7].include?(self.cadastre_mirror.civil_state_id)
-        return false if !(self.documents.where(document_type_id: 30).count > 0)
+      return true
+    end
+
+    def allow_income_dependent dependent_id
+      dependent = self.cadastre_mirror.dependent_mirrors.find(dependent_id)
+
+      if dependent.age >= 18
+        return false if !self.documents.where(document_type_id: 15, dependent_mirror_id: dependent_id).present?
       end
 
       return true
+    end
+
+
+    def allow_income
+      dependents = self.cadastre_mirror.dependent_mirrors
+
+      return false if !self.documents.where(document_type_id: 14).present?
+
+      dependents.each do |dependent|
+        if dependent.age >= 18
+          return false if !self.documents.where(document_type_id: [15], dependent_mirror_id: dependent.id).present?
+        end
+      end
+
+      return true
+    end
+
+    def closed
+      self.action_one && self.action_two && self.action_three && self.action_four && self.action_five
     end
 
     private

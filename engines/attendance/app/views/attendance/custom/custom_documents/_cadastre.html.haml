@@ -48,34 +48,17 @@
       Clique aqui.
   - unless @ticket.documents.where(document_type_id: 3).present?
     .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  - count = @ticket.documents.where(document_type_id: 3).count
   = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 3, anchor: 'resid') do |f|
+
     - if @ticket.documents.where(document_type_id: 3).present?
-
-      - count = @ticket.documents.where(document_type_id: 3).count
-
       - @ticket.documents.where(document_type_id: 3).each_with_index do |document, index|
-        = link_to "#{index + 2014} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
-      - if count == 0
-        .ui.label.large 2014
-        .ui.label.large 2015
-        .ui.label.large 2016
-        .ui.label.large 2017
-        .ui.label.large 2018
-      - if count == 1
-        .ui.label.large 2015
-        .ui.label.large 2016
-        .ui.label.large 2017
-        .ui.label.large 2018
-      - if count == 2
-        .ui.label.large 2016
-        .ui.label.large 2017
-        .ui.label.large 2018
-      - if count == 3
-        .ui.label.large 2017
-        .ui.label.large 2018
-      - if count == 4
-        .ui.label.large 2018
+        - if ((index + 2014) > 2018)
+          = link_to "+  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+        - else
+          = link_to "#{index + 2014}  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
 
       %br/
       %br/
@@ -83,9 +66,42 @@
       %i  Nenhum arquivo enviado.
       %br/
       %br/
+    - if count < 1
+      %label.ui.icon.button.fluid{:for => 'document_3'}
+        %i.photo.icon
+        2014
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
+
+    - if count < 2
+      %label.ui.icon.button.fluid{:for => 'document_3'}
+        %i.photo.icon
+        2015
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
+
+    - if count < 3
+      %label.ui.icon.button.fluid{:for => 'document_3'}
+        %i.photo.icon
+        2016
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
+
+
+    - if count < 4
+      %label.ui.icon.button.fluid{:for => 'document_3'}
+        %i.photo.icon
+        2017
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
+
+
+    - if count < 5
+      %label.ui.icon.button.fluid{:for => 'document_3'}
+        %i.photo.icon
+        2018
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
+
+
     %label.ui.icon.button.fluid{:for => 'document_3'}
       %i.photo.icon
-      Enviar novo arquivo
+      Enviar mais arquivos
     = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
 .ui.segment

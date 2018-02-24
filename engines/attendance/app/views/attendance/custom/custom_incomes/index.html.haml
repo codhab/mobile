@@ -24,18 +24,25 @@
           %td
             - if @ticket.documents.where(document_type_id: 14).present?
               %i.icon.check{style: 'color: green'}
+            - else
+              %i.icon.warning{style: 'color: red'}
             = link_to @cadastre_mirror.name, edit_custom_custom_ticket_custom_income_path(@ticket, @cadastre_mirror.id)
           %td= number_to_currency @cadastre_mirror.main_income
         - @cadastre_mirror.dependent_mirrors.each do |dependent|
           %tr
             %td
-              - if @ticket.documents.where(document_type_id: 15, dependent_mirror_id: dependent.id).present?
+              - if @ticket.allow_income_dependent(dependent.id)
                 %i.icon.check{style: 'color: green'}
+              - else
+                %i.icon.warning{style: 'color: red'}
               = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
             %td= number_to_currency dependent.income rescue nil
     %br
-    - if @ticket.documents.where(document_type_id: [14,15]).count >= @cadastre_mirror.dependent_mirrors.count && !@ticket.action_three
+    - if @ticket.allow_income
       = link_to "Finalizar etapa", custom_custom_ticket_income_path(@ticket), class: 'ui button yellow fluid', disabled: true
+    - else
+      .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
+        %p Para finalizar esta etapa é necessário que atualize e envie a documentação de todos os dependentes e titular listados acima.
 
 // 5 ANOS DE DF
 #open_income.ui.modal{style: 'display: none; padding-bottom: 80px; padding-top: 80px;'}

@@ -1,4 +1,4 @@
 = simple_form_for @cadastre_mirror, url: custom_custom_ticket_custom_income_path(@ticket,@cadastre_mirror), method: :put do |f|
   #step_one
     = f.input :main_income, as: :string, label: 'Renda'
-    = f.submit "Salvar e enviar documentação", class: 'ui button yellow fluid'
+    = f.submit "Salvar e enviar documentação", class: 'ui button yellow fluid', data: { disable_with: 'Processando, aguarde...'}

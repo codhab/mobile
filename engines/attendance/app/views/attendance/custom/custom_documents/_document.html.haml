@@ -36,7 +36,7 @@
 
 - if [2,7].include?(@ticket.cadastre_mirror.civil_state_id)
   .ui.segment
-    %h4{id: "dep"} Certidões (Cônjuge)
+    %h4{id: "dep"} Certidões adicionais (opcional)
     - unless @ticket.documents.where(document_type_id: 30).present?
       .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
     = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'document', document_type_id: 30, anchor: "dep") do |f|
@@ -56,7 +56,7 @@
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: "document_dep" }
 
 - if @ticket.allow_documents
-  = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid'
+  = link_to "Finalizar etapa", custom_custom_ticket_document_path(@ticket), class: 'ui button yellow fluid'
 - else
   .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
     %p Para realizar a finalização desta etapa, favor enviar ao menos um arquivo de cada categoria de documentaçãoe exigida.

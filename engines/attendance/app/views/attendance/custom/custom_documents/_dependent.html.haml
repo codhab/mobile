@@ -98,10 +98,10 @@
         = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_4' }
 
 
-- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).age >= 60
+- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).kinship_id == 5
   .ui.segment
     %h4#def
-      Comprovantes de curatela
+      Comprovantes de Tutela / Curatela
     - unless @ticket.documents.where(document_type_id: 19).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
       .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
 
@@ -121,6 +121,32 @@
           %i.photo.icon
           Enviar novo arquivo
         = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_5' }
+
+
+- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).kinship_id == 1
+  .ui.segment
+    %h4#def
+      Declaração de imposto de renda do titular (Comprovação de dependente com parentesco Pai/Mãe/Avô/Avó)
+    - unless @ticket.documents.where(document_type_id: 40).where(dependent_mirror_id: params[:dependent_mirror_id]).present?
+      .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+
+    = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'dependent', document_type_id: 40, anchor: 'def', dependent_mirror_id: params[:dependent_mirror_id]) do |f|
+      - if @ticket.documents.where(document_type_id: 40,dependent_mirror_id: params[:dependent_mirror_id]).present?
+        - @ticket.documents.where(document_type_id: 40).where(dependent_mirror_id: params[:dependent_mirror_id]).each_with_index do |document, index|
+          = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'def'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+        %br/
+        %br/
+      - else
+        %i  Nenhum arquivo enviado.
+        %br/
+        %br/
+      %div
+        %label.ui.icon.button.fluid{:for => 'document_6'}
+          %i.photo.icon
+          Enviar novo arquivo
+        = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_6' }
+
 
 %br
 - if @ticket.allow_dependent(params[:dependent_mirror_id])

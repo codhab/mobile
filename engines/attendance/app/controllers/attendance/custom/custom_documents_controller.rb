@@ -9,7 +9,7 @@ module Attendance
         @document.custom_ticket_id = @ticket.id
       end
 
-      def create
+      def create 
         @document = Attendance::CustomTicketDocument.new(set_params)
         @document.custom_ticket_id    = @ticket.id
         @document.cadastre_mirror_id  = @ticket.cadastre_mirror_id
