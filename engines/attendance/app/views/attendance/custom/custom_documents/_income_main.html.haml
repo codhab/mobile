@@ -14,7 +14,7 @@
       %i  Nenhum arquivo enviado.
       %br/
       %br/
-    
+
     %div
       %label.ui.icon.button.fluid{:for => 'document_1'}
         %i.photo.icon
@@ -36,7 +36,19 @@
     %div
       %label.ui.icon.button.fluid{:for => 'document_1'}
         %i.photo.icon
-        Conta-Cheque ou Declaração informal
+        Contra-Cheque 1 ou Declaração informal
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Contra-Cheque 2
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Contra-Cheque 3
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
     %br
 %br
@@ -45,7 +57,7 @@
     = link_to "Continuar atualização", custom_custom_ticket_custom_incomes_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}
   - else
     .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
-      %p Para realizar a finalização desta etapa, favor enviar ao menos um arquivo de cada categoria de documentaçãoe exigida.
+      %p Para finalizar esta etapa, favor enviar ao menos um arquivo de cada categoria de documentação exigida.
 -# - else
 -#   - if @ticket.documents.where(document_type_id: 7).where('dependent_mirror_id is null').count >= 1
 -#     = link_to "Continuar atualização", custom_custom_ticket_custom_incomes_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}
