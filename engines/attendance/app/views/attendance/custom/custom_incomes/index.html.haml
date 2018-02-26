@@ -33,9 +33,10 @@
             %td
               - if @ticket.allow_income_dependent(dependent.id)
                 %i.icon.check{style: 'color: green'}
+                = link_to dependent.name, "#"
               - else
                 %i.icon.warning{style: 'color: red'}
-              = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
+                = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
             %td= number_to_currency dependent.income rescue nil
     %br
     - if @ticket.allow_income
@@ -47,7 +48,7 @@
 // 5 ANOS DE DF
 #open_income.ui.modal{style: 'display: none; padding-bottom: 80px; padding-top: 80px;'}
   .ui.content
-    %p Para comprovar a renda familiar burta de até 12 (doze) salários mínimos serão admitidos:
+    %p Para comprovar a renda familiar bruta de até 12 (doze) salários mínimos serão admitidos:
     %br/
 
     %p a) Empregado com Carteira de Trabalho assinada:
@@ -57,7 +58,7 @@
     %p c) Servidor ou Empregado Público:
     %p os três últimos contracheques emitidos pelo órgão empregador, com carimbo de CNPJ ou com código de validação.
     %p d) Trabalhador Autônomo:
-    %p DECORE emitido por profissional competente, declaração de Imposto de Renda com recbido de entrega;
+    %p DECORE emitido por profissional competente, declaração de Imposto de Renda com recebido de entrega;
     %br
 
     %p{style: 'text-align: center'}

@@ -14,12 +14,31 @@
       %i  Nenhum arquivo enviado.
       %br/
       %br/
+    
     %div
       %label.ui.icon.button.fluid{:for => 'document_1'}
         %i.photo.icon
-        Enviar novo arquivo
+        Carteira de trabalho (Pg. Foto)
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
-
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Carteira de trabalho (Qualificação civil)
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Carteira de trabalho (Pg. Contrato)
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Conta-Cheque ou Declaração informal
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
 %br
 %br
   - if @ticket.documents.where(document_type_id: 14).present?

@@ -14,6 +14,8 @@ module Attendance
 
     enum gender: ['N/D', 'masculino', 'feminino']
 
+    validate  :age_is_valid?
+
     def age
       ((Date.today - self.born).to_i / 365.25).to_i rescue I18n.t(:no_information)
     end
@@ -30,6 +32,12 @@ module Attendance
       (self.age >= 18)
     rescue
       false
+    end
+
+    def age_is_valid?
+      if (self.age.to_i >= 24) && [3,2].include?(self.kinship_id)
+        errors.add(:born, 'Não é possível adicionar dependente (Filho/Enteado ou Irmão/Neto/Bisneto) maior ou igual a 24 anos')
+      end
     end
   end
 end

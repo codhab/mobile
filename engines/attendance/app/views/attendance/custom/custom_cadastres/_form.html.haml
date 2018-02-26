@@ -21,16 +21,16 @@
     %br
     = link_to "Próxima página", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button yellow fluid step_one_next'
   #step_two{style: 'display: none'}
-    = f.input :rg, label: "Nº RG"
+    = f.input :rg, label: "Nº Documento de identificação"
     = f.input :rg_org, label: "Órgão expedidor"
-    = f.input :rg_uf, label: "UF RG", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: false
+    = f.input :rg_uf, label: "UF Documento de identificação", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: false
     = f.input :arrival_df, as: :string, label: 'Data de chegada ao DF', input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : nil }
     = link_to "Página anterior", "javascript:void(0)", onclick: "show_step('step_one')", class: 'ui button'
     = link_to "Próxima página", "javascript:void(0)", onclick: "show_step('step_three')", class: 'ui button yellow', style: 'float: right'
   #step_three{style: 'display: none'}
-    = f.input :special_condition_id, collection: {"Sim": 1, "Não": 2}, label: 'Possui condição especial?', as: :select, include_blank: false, input_html: { id: 'special_condition_id'}
+    = f.input :special_condition_id, collection: {"Sim": 1, "Não": 2}, label: 'Possui deficiência?', as: :select, include_blank: false, input_html: { id: 'special_condition_id'}
     #special_condition_type_id{ style: "#{f.object.special_condition_id == 1 ? 'display: block;' : 'display: none;'}"}
-      = f.input :special_condition_type_id, label: "Tipo de condição especial", as: :select, collection: Core::Candidate::SpecialConditionType.all, include_blank: false
+      = f.input :special_condition_type_id, label: "Tipo de deficiência", as: :select, collection: Core::Candidate::SpecialConditionType.all, include_blank: false
     = f.input :nis, label: "NIS"
     #cid{ style: "#{f.object.special_condition_id == 1 ? 'display: block;' : 'display: none;'}"}
       = f.input :cid, label: "CID"

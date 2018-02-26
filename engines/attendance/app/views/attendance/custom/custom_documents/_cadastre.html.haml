@@ -106,7 +106,7 @@
 
 .ui.segment
   %h4#arrival
-    Comprovante de tempo de domicílio.
+    Comprovante de tempo de domicílio (Chegada ao DF).
     %a{href: "javascript:void(0)", onclick: 'open_arrival_df_modal();'}
       Clique aqui.
   - unless @ticket.documents.where(document_type_id: 4).present?
@@ -296,7 +296,7 @@
 // 5 ANOS DE DF
 #arrival_df_modal.ui.modal{style: 'display: none; padding-top: 80px; padding-bottom: 80px'}
   .ui.content
-    %p Para comprovar os 5 anos no DF e o tempo de chegada no DF, serão aceitos os seguintes documentos que contenham nome e endereço residencial do candidato.
+    %p Para comprovar os 5 anos no DF e o tempo de domicílio no DF, serão aceitos os seguintes documentos que contenham nome e endereço residencial do candidato.
     %br/
 
     %p a) Comprovante de água, luz ou telefone;
@@ -304,11 +304,12 @@
     %p c) Declaração funcional, quando se tratar de servidor público;
     %p d) Declaração de instituição bancária com movimentação de conta corrente;
     %p e) Declaração escolar do candidato ou dos filhos;
-    %p f) Fatura/carnê de comprar a crédito;
-    %p g) Ocorrência policial;
-    %p h) Notificação de multas de trânsito;
-    %p i) Contrato de locação de imóvel, devidamente autenticado, válido somente para o ano de assinatura com autenticação no mesmo ano;
-    %p j) Declaração de IRPF com recibo de entrega, sendo considerado para comprovação o ano calendário do IR;
+    %p f) Fatura/carnê de comprar a crédito (Válido somente o ano de emissão);
+    %p g) Nota fiscal de compra (Válido somente para o ano de emissão);
+    %p h) Ocorrência policial;
+    %p i) Notificação de multas de trânsito;
+    %p j) Contrato de locação de imóvel, devidamente autenticado, válido somente para o ano de assinatura com autenticação no mesmo ano;
+    %p l) Declaração de IRPF com recibo de entrega, sendo considerado para comprovação o ano calendário do IR;
 
     %br
 
