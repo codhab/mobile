@@ -29,7 +29,7 @@
               = link_to "Remover candidato", indication_cancel_path(@unit), class: 'ui button red '
               %hr/
           - else
-            - if (@payment > 1)
+            - if  (@payment > 1)
               %td
                 = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
                   = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
