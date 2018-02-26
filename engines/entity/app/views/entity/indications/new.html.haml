@@ -13,6 +13,7 @@
         %td
         %td.text-center
           %h3 #{@enterprise.name}
+          - @payment = Core::Brb::Invoice.where("name like '%#{current_entity.cnpj.to_s.format_cnpj}%' and payment is not null").count
           %hr/
 
           - if @indication.cadastre_id.present?
@@ -28,15 +29,19 @@
               = link_to "Remover candidato", indication_cancel_path(@unit), class: 'ui button red '
               %hr/
           - else
-            %td
-              = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
-                = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
-                - if @indication.cpf_create
-                  = link_to "Deseja cadastrar o candidato?", new_provisional_cadastre_path, class: 'ui button blue fluid'
-                  /= f.submit "Indicar candidato", class: 'ui button green fluid'
-                - else
-                  = f.submit "Indicar candidato", class: 'ui button green fluid'
-              %hr/
+            - if (@payment > 1)
+              %td
+                = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
+                  = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
+                  - if @indication.cpf_create
+                    = link_to "Deseja cadastrar o candidato?", new_provisional_cadastre_path, class: 'ui button blue fluid'
+                    /= f.submit "Indicar candidato", class: 'ui button green fluid'
+                  - else
+                    = f.submit "Indicar candidato", class: 'ui button green fluid'
+                %hr/
+            - else
+              %p Não é possível realizar indicação de candidatos no momento.
+              %p Existem pendências financeiras no cadastro da entidade.Favor entrar em contato com a CODHAB.
             %td.text-center
               %br/
               %h4 Qtd. de unidades disponíveis (#{@enterprise.units})

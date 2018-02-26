@@ -8,6 +8,7 @@
 .ui.container
   %table.ui.celled.table
     %tbody
+      
       - if @units.present?
         - @units.each do |entity|
           %tr
@@ -22,10 +23,9 @@
                     .mini-divider
                     = entity.cadastre.name rescue nil
                     %b= entity.cadastre.presenter.current_situation_name rescue nil
-                    
+
       - else
         %tr
           %td
           %td.text-center
             %i Nenhuma unidade a ser distribuída.
-
