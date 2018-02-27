@@ -20,6 +20,13 @@
     = f.input :civil_state_id, label: "Estado Civil", as: :select, collection: Core::Candidate::CivilState.where(status:true), include_blank: 'Selecione...'
     %br
     = link_to "Próxima página", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button yellow fluid step_one_next'
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
   #step_two{style: 'display: none'}
     = f.input :rg, label: "Nº Documento de identificação"
     = f.input :rg_org, label: "Órgão expedidor"
@@ -40,6 +47,9 @@
     = link_to "Página anterior", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button'
     = f.submit "Próxima página", class: 'ui button yellow next', style: 'float: right'
 /    = link_to "Próxima etapa", new_custom_custom_ticket_custom_document_path(type: 'cadastre')
+
+
+
 :javascript
   $(document).ready(function() {
     $(".step_one_next").show();
