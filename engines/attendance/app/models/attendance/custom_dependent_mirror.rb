@@ -15,12 +15,19 @@ module Attendance
     enum gender: ['N/D', 'masculino', 'feminino']
 
     validate  :age_is_valid?
+    validate  :unique_spouse
 
     def age
       ((Date.today - self.born).to_i / 365.25).to_i rescue I18n.t(:no_information)
     end
 
     private
+
+    def unique_spouse
+      if self.kinship_id == 6 && self.cadastre_mirror.dependent_mirrors.where.not(id: self.id).where(kinship_id: 6).present?
+        errors.add(:kinship_id, 'Você já possui um Cônjuge/Companheiro cadastrado.')
+      end
+    end
 
     def is_major?
       (self.age >= 14)
