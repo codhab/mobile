@@ -10,6 +10,6 @@ module Attendance
 
     validates :born, :born_uf, :place_birth, :gender, :civil_state_id, presence: true
     validates :rg, :rg_org, :rg_uf, :arrival_df, :adapted_property, :mother_name, presence: true
-    validates :cid, presence: true, if: 'self.special_condition_id == 1'
+    validates :cid, presence: true, if: 'self.special_condition_id == 2'
   end
 end

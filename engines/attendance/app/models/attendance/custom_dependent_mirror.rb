@@ -8,7 +8,7 @@ module Attendance
     belongs_to :kinship, class_name: 'Core::Candidate::Kinship', foreign_key: :kinship_id
 
     validates :name, :born, :special_condition_id, presence: true
-    validates :special_condition_type_id, :cid, presence: true, if: 'self.special_condition_id == 1'
+    validates :special_condition_type_id, :cid, presence: true, if: 'self.special_condition_id == 2'
     validates :cpf, cpf: true, presence: true, if: :is_major?
     validates :rg, :rg_org, presence: true, if: :is_major_super?
 
