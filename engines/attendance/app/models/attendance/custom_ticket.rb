@@ -23,7 +23,7 @@ module Attendance
       return false if !(self.documents.where(document_type_id: 1).present? && self.documents.where(document_type_id: 2).present? &&
       self.documents.where(document_type_id: 3).present? && self.documents.where(document_type_id: 4).present?)
 
-      if self.cadastre_mirror.special_condition_id == 1
+      if self.cadastre_mirror.special_condition_id == 2
         return false if !self.documents.where(document_type_id: 5).present?
       end
 
