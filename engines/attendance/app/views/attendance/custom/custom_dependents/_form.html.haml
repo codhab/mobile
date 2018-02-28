@@ -5,9 +5,9 @@
   = f.input :rg_org, label: "Órgão expedidor (obrigatório para maiores de 18 anos)"
   = f.input :born, label: "Data de nascimento", as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil }
   = f.input :kinship_id, as: :select, collection: Core::Candidate::Kinship.where(status: true), label: "Parentesco", include_blank: false, selected: f.object.kinship_id.present? ? f.object.kinship_id : 3, input_html: { disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6) }
-  = f.input :special_condition_id, label: "Possui deficiência?", as: :select, collection: {"Sim": 2, "Não": 1}, include_blank: false, include_blank: false, input_html: { id: 'special_condition_id'}, selected: f.object.new_record? ? 2 : f.object.special_condition_id
-  #special{style: "#{f.object.new_record? ? 'display: none;' : (f.object.special_condition_id == 1 ? 'display: block;' : 'display: none;')}"}
-    = f.input :special_condition_type_id, label: "Tipo de deficiência", as: :select,collection: Core::Candidate::SpecialConditionType.all, include_blank: "Selecione...", selected: f.object.special_condition_id.present? ? f.object.special_condition_id : '2'
+  = f.input :special_condition_id, label: "Possui deficiência?", as: :select, collection: {"Sim": 2, "Não": 1}, include_blank: false, include_blank: false, input_html: { id: 'special_condition_id'}, selected: f.object.new_record? ? 1 : f.object.special_condition_id
+  #special{style: "#{f.object.new_record? ? 'display: none;' : (f.object.special_condition_id == 2 ? 'display: block;' : 'display: none;')}"}
+    = f.input :special_condition_type_id, label: "Tipo de deficiência", as: :select,collection: Core::Candidate::SpecialConditionType.all, include_blank: "Selecione..."
     = f.input :cid, label: 'CID'
   .big-divider
   = f.submit "Salvar dados e ir para documentações", class: 'ui button yellow fluid', data: { disable_with: 'Carregando, aguarde...'}
@@ -21,7 +21,7 @@
 :javascript
   $("#special_condition_id").on('change', function(){
 
-    if($(this).val() == 1) {
+    if($(this).val() == 2) {
       $('#special').show();
     } else {
       $('#special').hide();
