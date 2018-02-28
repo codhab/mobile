@@ -35,7 +35,7 @@
     = link_to "Página anterior", "javascript:void(0)", onclick: "show_step('step_one')", class: 'ui button'
     = link_to "Próxima página", "javascript:void(0)", onclick: "show_step('step_three')", class: 'ui button yellow', style: 'float: right'
   #step_three{style: 'display: none'}
-    = f.input :special_condition_id, collection: {"Sim": 1, "Não": 2}, label: 'Possui deficiência?', as: :select, include_blank: false, input_html: { id: 'special_condition_id'}
+    = f.input :special_condition_id, collection: {"Sim": 2, "Não": 1}, label: 'Possui deficiência?', as: :select, include_blank: false, input_html: { id: 'special_condition_id'}
     #special_condition_type_id{ style: "#{f.object.special_condition_id == 1 ? 'display: block;' : 'display: none;'}"}
       = f.input :special_condition_type_id, label: "Tipo de deficiência", as: :select, collection: Core::Candidate::SpecialConditionType.all, include_blank: false
     = f.input :nis, label: "NIS"
