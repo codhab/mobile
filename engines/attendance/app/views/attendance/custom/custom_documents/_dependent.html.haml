@@ -74,7 +74,7 @@
           Enviar novo arquivo
         = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
-- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).special_condition_id == 1
+- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).special_condition_id == 2
   .ui.segment
     %h4#def
       Comprovantes da deficiência declarada

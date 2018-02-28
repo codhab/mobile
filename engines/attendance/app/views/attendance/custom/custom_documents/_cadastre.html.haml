@@ -128,7 +128,7 @@
     = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_4' }
 
 
-- if @ticket.cadastre_mirror.special_condition_id == 1
+- if @ticket.cadastre_mirror.special_condition_id == 2
   .ui.segment
     %h4#def Comprovantes da deficiência declarada (Anexe laudo médico validado pelo perito da SEJUS);
     - unless @ticket.documents.where(document_type_id: 5).present?
