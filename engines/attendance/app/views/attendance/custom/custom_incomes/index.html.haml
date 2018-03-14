@@ -31,9 +31,10 @@
         - @cadastre_mirror.dependent_mirrors.each do |dependent|
           %tr
             %td
-              - if @ticket.allow_income_dependent(dependent.id)
+              - if !@ticket.allow_income_dependent(dependent.id)
                 %i.icon.check{style: 'color: green'}
                 = link_to dependent.name, "#"
+                %br/
                 %small
                   %i Não é necessário comprovar renda.
               - else
