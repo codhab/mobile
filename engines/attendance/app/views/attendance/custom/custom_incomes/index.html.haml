@@ -34,6 +34,8 @@
               - if @ticket.allow_income_dependent(dependent.id)
                 %i.icon.check{style: 'color: green'}
                 = link_to dependent.name, "#"
+                %small
+                  %i Não é necessário comprovar renda.
               - else
                 %i.icon.warning{style: 'color: red'}
                 = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
@@ -52,13 +54,14 @@
     %br/
 
     %p a) Empregado com Carteira de Trabalho assinada:
-    %p Cópia das folhas em que conste a qualificação civil, a foto, o contrato de trabalho e os três últimos contracheques contendo o carimbo e CNPJ do empregador.
+    %p Páginas que conste a qualificação civil, a foto, o contrato de trabalho e os três últimos contracheques contendo o carimbo e CNPJ do empregador.
+    %br/
     %p b) Comerciante:
-    %p Contrato social registrado na Junta Comercial e DECORE emitida por profissional competente; ou declaração de Imposto de Renda de pessoa Física (IRPF) com recibo de entrega.
+    %p Páginas que conste a qualificação civil, a foto, o último contrato de trabalho e contrato social registrado na Junta Comercial e DECORE emitida por profissional competente; ou declaração de Imposto de Renda de pessoa Física (IRPF) com recibo de entrega.
     %p c) Servidor ou Empregado Público:
     %p os três últimos contracheques emitidos pelo órgão empregador, com carimbo de CNPJ ou com código de validação.
     %p d) Trabalhador Autônomo:
-    %p DECORE emitido por profissional competente, declaração de Imposto de Renda com recebido de entrega;
+    %p Páginas que conste a qualificação civil, a foto, o último contrato de trabalho e DECORE emitido por profissional competente, declaração de Imposto de Renda com recebido de entrega ou declaração de atividade informal.
     %br
 
     %p{style: 'text-align: center'}

@@ -98,9 +98,7 @@ module Attendance
     def allow_income_dependent dependent_id
       dependent = self.cadastre_mirror.dependent_mirrors.find(dependent_id)
 
-      if dependent.age >= 18
-        return false if !self.documents.where(document_type_id: 15, dependent_mirror_id: dependent_id).present?
-      end
+      return false if !(dependent.age >= 18)
 
       return true
     end
