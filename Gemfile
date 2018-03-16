@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 5.0.2'
-gem 'pg'
+gem 'pg', '~> 0.20'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -20,6 +20,7 @@ gem 'validates_cpf_cnpj'
 gem 'onesignal'
 gem 'has_scope'
 gem 'simple_captcha', github: 'igormarjes/simple-captcha'
+gem 'bcrypt'
 
 
 gem 'core', github: 'codhab/core', branch: :master
@@ -34,13 +35,14 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
 end
 
 group :production do
   gem 'unicorn'
   gem 'newrelic_rpm'
+  gem 'unicorn-worker-killer'
 end
 
 path 'engines' do
@@ -51,4 +53,5 @@ path 'engines' do
   gem 'portal'
   gem 'protocol'
   gem 'social'
+  gem 'healty'
 end

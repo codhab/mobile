@@ -1,0 +1,72 @@
+.two.wide.mobile.column
+  - case params[:type].to_s
+  - when 'cadastre'
+    %a{href: "#{custom_custom_tickets_path}"}
+      %i.big.arrow.left.icon
+  - when 'dependent'
+    %a{href: "#{custom_custom_ticket_custom_dependents_path(@ticket)}"}
+      %i.big.arrow.left.icon
+  - when 'income'
+    %a{href: "#{custom_custom_ticket_custom_incomes_path(@ticket)}"}
+      %i.big.arrow.left.icon
+  - when 'document'
+    %a{href: "#{url_for(:back)}"}
+      %i.big.arrow.left.icon
+.thirteen.wide.mobile.column.text-center
+  .title-header Atendimento
+  .sub-title Envio de documentação
+  .divider
+.ui.grid.container
+  .column
+    .ui.label.blue{style: 'margin-bottom: 30px'}
+      %p{style: 'text-align: justify; font-size: 14px !important'}
+        Neste momento você deverá anexar TODAS as fotos dos documentos que comprovem seus dados.
+        %br
+        %br
+        IMPORTANTE: As fotos devem estar legíveis e compatíveis com a documentação solicitada.
+
+    - case params[:type].to_s
+    - when 'cadastre'
+      = render 'cadastre'
+    - when 'dependent'
+      = render 'dependent'
+    - when 'income'
+      = render 'income'
+    - when 'document'
+      = render 'document'
+
+#message.text-center{style: 'display: none; padding-top: 90px'}
+  %br/
+  %br/
+  %h4 Documento sendo enviado. Aguarde...
+  %br/
+  %br/
+  = image_tag 'loading.gif'
+:javascript
+  $(document).ready(function() {
+    $(".upload").change(function() {
+      $('.ui.grid.container').hide();
+      $('#message').show();
+      this.form.submit();
+      console.log(document.readyState)
+    });
+  });
+
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/

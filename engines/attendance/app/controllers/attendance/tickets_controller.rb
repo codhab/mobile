@@ -3,7 +3,7 @@ require_dependency 'core/attendance/ticket_service'
 module Attendance
   class TicketsController < ApplicationController
     before_action :set_ticket, except: [:index, :show, :new]
-    before_action :set_action, only:   [:confirm, :open, 
+    before_action :set_action, only:   [:confirm, :open,
                                         :continue_cadastre, :continue_dependent,
                                         :continue_income,  :continue_contact,
                                         :close_action, :close_dependent]
@@ -51,7 +51,7 @@ module Attendance
       @service.close_ticket
 
       flash[:green] = "Operação realizada com sucesso!"
-      
+
       redirect_to main_app.root_path
     end
 
@@ -59,7 +59,7 @@ module Attendance
       redirect_to new_ticket_action_document_path(ticket_id: @ticket, action_id: @action, dependent_all: true)
     end
 
-    def close_action 
+    def close_action
       @service = Core::Attendance::TicketService.new(cadastre: current_cadastre, ticket: @ticket, action: @action)
       @service.close_action
       redirect_to new_ticket_path
@@ -78,17 +78,17 @@ module Attendance
       @service = Core::Attendance::TicketService.new(ticket: @ticket)
       @service.create_or_find_action 2
       @action = @service.action
-     
+
       redirect_to ticket_dependents_path(@ticket)
     end
 
     def update_income
       @service = Core::Attendance::TicketService.new(ticket: @ticket)
-      
+
       @service.create_or_find_action 3
       @action = @service.action
-      
-      redirect_to ticket_incomes_path(@ticket, @ticket.cadastre_mirror) 
+
+      redirect_to ticket_incomes_path(@ticket, @ticket.cadastre_mirror)
     end
 
     def update_contact
@@ -96,8 +96,8 @@ module Attendance
 
       @service.create_or_find_action 4
       @action = @service.action
-      
-      redirect_to edit_ticket_contact_path(@ticket, @ticket.cadastre_mirror) 
+
+      redirect_to edit_ticket_contact_path(@ticket, @ticket.cadastre_mirror)
     end
 
     def continue_cadastre
@@ -119,10 +119,11 @@ module Attendance
       redirect_to new_ticket_path
     end
 
+
     private
 
     def allow_action?
-      redirect_to new_ticket_path if ![1,2].include?(@ticket.situation_id) 
+      redirect_to new_ticket_path if ![1,2].include?(@ticket.situation_id)
     end
 
     def set_ticket

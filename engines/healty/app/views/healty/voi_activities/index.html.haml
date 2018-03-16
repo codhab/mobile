@@ -1,0 +1,33 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{voi_path(@voi)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Sistema de Endereços
+    .sub-title Criação de VOI
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = render 'form'
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %h3 Todas as observações
+        - @voi_activities.each do |activity|
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Descrição
+                      = activity.description
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Data
+                      = activity.date.strftime('%d/%m/%Y') rescue nil

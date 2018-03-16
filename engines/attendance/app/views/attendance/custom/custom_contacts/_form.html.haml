@@ -1,0 +1,32 @@
+= simple_form_for @contact, url: custom_custom_ticket_custom_contact_path(@ticket,@cadastre_mirror), method: :put do |f|
+  #step_one
+    = f.input :telephone, as: :string, label: 'Telefone'
+    = f.input :telephone_optional, as: :string, label: 'Telefone secundário'
+    = f.input :celphone, as: :string, label: 'Celular'
+    = f.input :email, as: :string, label: 'E-mail'
+    = f.input :city_id, as: :select, collection: Core::Address::City.federal_district, label: 'Cidade'
+    = f.input :cep, as: :string, label: 'CEP'
+    = f.input :address, as: :string, label: 'Endereço'
+
+    %br
+    %br
+    = f.submit "Salvar dados", class: 'ui button yellow fluid', data: { disable_with: 'Carregando, aguarde...'}
+
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/
+%br/

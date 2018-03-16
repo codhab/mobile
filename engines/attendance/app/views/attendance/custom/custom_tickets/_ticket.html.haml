@@ -1,0 +1,88 @@
+.two.wide.mobile.column
+  %a{href: "#{candidate.root_path}"}
+    %i.big.arrow.left.icon
+.thirteen.wide.mobile.column.text-center
+  .title-header Atendimento
+  .sub-title Processo de habilitação
+  .divider
+.ui.grid.container
+  - if (@ticket.action_one && @ticket.action_two && @ticket.action_three && @ticket.action_four && @ticket.action_five)
+    .ui.label.green.fluid{style: 'text-align: justify; font-size: 14px'}
+      %p Parabéns, você concluiu as 5 etapas do atendimento.
+      %p Favor aguardar a análise dos documentos enviados.
+      %p Posteriormente, você receberá uma notificação pelo aplicativo sobre sua situação no programa habitacional do DF.
+  - else
+    .ui.label.blue{style: 'margin-bottom: 30px'}
+      %p{style: 'text-align: justify; font-size: 14px !important'}
+        Para finalizar o atendimento é necessário que você conclua as 5 etapas abaixo:
+  %table.ui.table.celled
+    %tbody{style: "#{@ticket.action_one ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_one
+            %i.icon.check{style: 'color: white'}
+            = link_to "Dados básicos", custom_custom_ticket_message_path(@ticket, step: 'cadastre'), remote: true, style: "#{@ticket.action_one ? 'color: white' : ''}"
+          - else
+            %i.icon.warning{style: 'color: gray'}
+            = link_to "Dados básicos", edit_custom_custom_ticket_custom_cadastre_path(@ticket,   @ticket.cadastre_mirror_id), style: "#{@ticket.action_one ? 'color: white' : ''}"
+          %br
+
+    %tbody{style: "#{@ticket.action_two ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_two
+            %i.icon.check{style: 'color: white'}
+            = link_to "Dependentes", custom_custom_ticket_message_path(@ticket, step: 'dependent'), remote: true, style: "#{@ticket.action_two ? 'color: white' : ''}"
+          - else
+            %i.icon.warning{style: 'color: gray'}
+            = link_to "Dependentes", custom_custom_ticket_custom_dependents_path(@ticket), style: "#{@ticket.action_two ? 'color: white' : ''}"
+    %tbody{style: "#{@ticket.action_three ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_three
+            %i.icon.check{style: 'color: white'}
+            = link_to "Renda", custom_custom_ticket_message_path(@ticket, step: 'income'), remote: true, style: "#{@ticket.action_three ? 'color: white' : ''}"
+          - else
+            %i.icon.warning{style: 'color: gray'}
+            = link_to "Renda", custom_custom_ticket_custom_incomes_path(@ticket), style: "#{@ticket.action_three ? 'color: white' : ''}"
+    %tbody{style: "#{@ticket.action_four ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_four
+            %i.icon.check{style: 'color: white'}
+            = link_to "Contatos pessoais", custom_custom_ticket_message_path(@ticket, step: 'contact'), remote: true, style: "#{@ticket.action_four ? 'color: white' : ''}"
+          - else
+            %i.icon.warning{style: 'color: gray'}
+            = link_to "Contatos pessoais", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
+
+    %tbody{style: "#{@ticket.action_five ? 'background-color: #51a551' : ''}"}
+      %tr
+        %td
+          - if @ticket.action_five
+            %i.icon.check{style: 'color: white'}
+            = link_to "Certidões dos cartórios", custom_custom_ticket_message_path(@ticket, step: 'document'), remote: true, style: "#{@ticket.action_five ? 'color: white' : ''}"
+          - else
+            %i.icon.warning{style: 'color: gray'}
+            = link_to "Certidões dos cartórios", new_custom_custom_ticket_custom_document_path(@ticket, type: 'document'), style: "#{@ticket.action_five ? 'color: white' : ''}"
+
+  %br
+  %br
+
+- if !@ticket.term_one
+  :javascript
+    $(document).ready(function() {
+      $('.ui.modal').html("#{escape_javascript(render 'term_one')}")
+      $('.ui.modal').modal('show')
+    })
+- if !@ticket.term_two
+  :javascript
+    $(document).ready(function() {
+      $('.ui.modal').html("#{escape_javascript(render 'term_two')}")
+      $('.ui.modal').modal('show')
+    })
+- if !@ticket.term_three
+  :javascript
+    $(document).ready(function() {
+      $('.ui.modal').html("#{escape_javascript(render 'term_three')}")
+      $('.ui.modal').modal('show')
+    })

@@ -1,0 +1,14 @@
+- if @ticket.closed
+  .header.text-center
+    Atendimento finalizado
+  .content{style: 'text-align: center'}
+    %p O atendimento se encontra finalizado, favor aguardar a análise dos documentos enviados.
+    %br
+    = link_to "Fechar", custom_custom_tickets_path, class: 'ui button fluid', data: { disable_with: 'Processando, aguarde...'}
+- else
+  .header.text-center
+    Etapa concluída
+  .content{style: 'text-align: center'}
+    %p Esta etapa já foi concluída por você.
+    %br
+    = link_to "Alterar dados da etapa", custom_custom_ticket_message_path(@ticket, reboot: true, step: params[:step]), class: 'ui button blue fluid', data: { disable_with: 'Processando, aguarde...'}

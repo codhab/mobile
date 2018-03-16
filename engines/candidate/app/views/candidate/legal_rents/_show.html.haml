@@ -1,0 +1,29 @@
+- if !(params[:status] == 'true')
+  .ui.modal
+    .header.text-center
+      Atenção
+    .image.content
+      .description{style: 'text-align: center'}
+        Você realmente deseja recusar sua participação no programa Aluguel Legal?
+        %br
+        %br
+        %br
+        = link_to "Eu desejo recusar", new_legal_rent_path(status: false), class: 'ui button red fluid', data: {disable_with: "Aguarde..."}
+        %br/
+        = link_to "Eu desejo participar", new_legal_rent_path, class: 'ui button green fluid', data: {disable_with: "Aguarde..."}
+- else
+  .ui.modal
+    .header.text-center
+      Confirmação de dados
+    .image.content
+      .description{style: 'text-align: center'}
+        %b
+          Eu, #{current_cadastre.name}, CPF nº #{current_cadastre.cpf}
+          RG nº #{current_cadastre.rg}, Residente e domiciliado no endereço:
+          #{current_cadastre.address},
+          cidade #{current_cadastre.city.name},
+          Telefone nº #{current_cadastre.telephone},
+          E-mail: #{current_cadastre.email}, CONFIRMO meus dados e o interesse no programa ALUGUEL LEGAL.
+        %br
+        %br
+        = link_to "Confirmar o interesse", new_legal_rent_path(status: true), class: 'ui button green fluid', data: {disable_with: "Aguarde..."}

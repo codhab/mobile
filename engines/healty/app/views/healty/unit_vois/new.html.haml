@@ -1,0 +1,16 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Criar nova VOI
+    .sub-title Formulário de criação de VOI
+
+.big-divider
+.ui.grid.container
+  .column.content-form
+    %h3
+      = "Cidade: #{@unit.city.name rescue nil}"
+      %br
+      = "Endeço: #{@unit.complete_address rescue nil}"
+    = render 'form'

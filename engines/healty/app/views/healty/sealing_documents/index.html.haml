@@ -1,0 +1,31 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{sealing_address_path(@address)}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Sistema de Endereços
+    .sub-title Criação de Selagem
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = render 'form'
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %h3 Todas os documentos
+        - @documents.each do |document|
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      .sub.header
+                        Nome
+                      = document.name
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      = link_to 'Arquivo', document.attachment_url, target: '_blank' rescue nil

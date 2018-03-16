@@ -1,0 +1,58 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Detalhamento de Selagem
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = link_to 'Arquivos', sealing_address_sealing_documents_path(@address), class: 'ui button yellow fluid'
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Nome
+                    = @address.name
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      CPF
+                    = @address.cpf.format_cpf rescue nil
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Cidade
+                    = @address.city.name rescue nil
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Endereço
+                    = @address.address rescue nil
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Observação
+                    = @address.observation
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Sub-Área
+                    = @address.sub_area.name rescue t(:no_information)

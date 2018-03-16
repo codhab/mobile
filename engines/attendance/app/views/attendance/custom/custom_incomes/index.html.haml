@@ -1,0 +1,79 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{attendance.custom_custom_tickets_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atendimento
+    .sub-title Renda
+    .divider
+  .ui.grid.container
+    .ui.label.blue{style: 'margin-bottom: 30px'}
+      %p{style: 'text-align: justify; font-size: 14px !important'}
+        Vamos atualizar sua renda e de seus dependente, caso tenha. Lembramos que a renda considera é a bruta.
+        %br
+        %br
+        Saiba quais documentos enviar,
+        %a{href: 'javascript:void(0)', onclick: 'open_income()'}
+          clique aqui.
+    .ui.label.blue
+      %p{style: 'text-align: justify; font-size: 14px !important'}
+        ATENÇÃO: O titular do cadastro ou seu dependente maior de 18 anos que possuir renda zero deverá apresentar carteira de trabalho e declaração de não obter renda.
+    %table.ui.table
+      %tbody
+        %tr
+          %td
+            - if @ticket.documents.where(document_type_id: 14).present?
+              %i.icon.check{style: 'color: green'}
+            - else
+              %i.icon.warning{style: 'color: red'}
+            = link_to @cadastre_mirror.name, edit_custom_custom_ticket_custom_income_path(@ticket, @cadastre_mirror.id)
+          %td= number_to_currency @cadastre_mirror.main_income
+        - @cadastre_mirror.dependent_mirrors.each do |dependent|
+          %tr
+            %td
+              - if !@ticket.allow_income_dependent(dependent.id)
+                %i.icon.check{style: 'color: green'}
+                = link_to dependent.name, "#"
+                %br/
+                %small
+                  %i Não é necessário comprovar renda.
+              - else
+                %i.icon.warning{style: 'color: red'}
+                = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_income_path(@ticket, dependent.id)
+            %td= number_to_currency dependent.income rescue nil
+    %br
+    - if @ticket.allow_income
+      = link_to "Finalizar etapa", custom_custom_ticket_income_path(@ticket), class: 'ui button yellow fluid', disabled: true
+    - else
+      .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
+        %p Para finalizar esta etapa é necessário que atualize e envie a documentação de todos os dependentes e titular listados acima.
+
+// 5 ANOS DE DF
+#open_income.ui.modal{style: 'display: none; padding-bottom: 80px; padding-top: 80px;'}
+  .ui.content
+    %p Para comprovar a renda familiar bruta de até 12 (doze) salários mínimos serão admitidos:
+    %br/
+
+    %p a) Empregado com Carteira de Trabalho assinada:
+    %p Páginas que conste a qualificação civil, a foto, o contrato de trabalho e os três últimos contracheques contendo o carimbo e CNPJ do empregador.
+    %br/
+    %p b) Comerciante:
+    %p Páginas que conste a qualificação civil, a foto, o último contrato de trabalho e contrato social registrado na Junta Comercial e DECORE emitida por profissional competente; ou declaração de Imposto de Renda de pessoa Física (IRPF) com recibo de entrega.
+    %p c) Servidor ou Empregado Público:
+    %p os três últimos contracheques emitidos pelo órgão empregador, com carimbo de CNPJ ou com código de validação.
+    %p d) Trabalhador Autônomo:
+    %p Páginas que conste a qualificação civil, a foto, o último contrato de trabalho e DECORE emitido por profissional competente, declaração de Imposto de Renda com recebido de entrega ou declaração de atividade informal.
+    %br
+
+    %p{style: 'text-align: center'}
+      %a.ui.button.fluid{href: 'javascript:void(0)', onclick:'close_modal();'}
+        Fechar
+
+:javascript
+  function open_income(){
+    $("#open_income").modal('show')
+  }
+
+  function close_modal() {
+    $('.ui.modal').modal('hide')
+  }

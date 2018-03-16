@@ -1,0 +1,65 @@
+
+.ui.segment
+  %h4#rg Comprovante de Renda
+  - unless @ticket.documents.where(document_type_id: 14).present?
+    .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  = simple_form_for @document, url: custom_custom_ticket_custom_documents_path(type: 'income', document_type_id: 14, anchor: 'income') do |f|
+    - if @ticket.documents.where(document_type_id: 14).present?
+      - @ticket.documents.where(document_type_id: 14).each_with_index do |document, index|
+        = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'rg'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+      %br/
+      %br/
+    - else
+      %i  Nenhum arquivo enviado.
+      %br/
+      %br/
+
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Carteira de trabalho (Pg. Foto)
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Carteira de trabalho (Qualificação civil)
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Carteira de trabalho (Pg. Contrato)
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Contra-Cheque 1 ou Declaração informal
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Contra-Cheque 2
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+    %div
+      %label.ui.icon.button.fluid{:for => 'document_1'}
+        %i.photo.icon
+        Contra-Cheque 3
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+    %br
+%br
+%br
+  - if @ticket.documents.where(document_type_id: 14).present?
+    = link_to "Continuar atualização", custom_custom_ticket_custom_incomes_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}
+  - else
+    .ui.label.red{style: 'text-align: justify; font-size: 15px;'}
+      %p Para finalizar esta etapa, favor enviar ao menos um arquivo de cada categoria de documentação exigida.
+-# - else
+-#   - if @ticket.documents.where(document_type_id: 7).where('dependent_mirror_id is null').count >= 1
+-#     = link_to "Continuar atualização", custom_custom_ticket_custom_incomes_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}
+-#   - elsif @ticket.documents.where(document_type_id: 6).where('dependent_mirror_id is not null').count >= 1
+-#     = link_to "Continuar atualização", custom_custom_ticket_custom_incomes_path(@ticket), class: 'ui button fluid green', style: 'font-size: 25px', data: { disable_with: 'Finalizando. Aguarde...'}

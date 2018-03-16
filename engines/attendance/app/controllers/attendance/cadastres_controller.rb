@@ -2,7 +2,7 @@
 module Attendance
   class CadastresController < ApplicationController
 
-    before_action :set_cadastre 
+    before_action :set_cadastre
     before_action :set_ticket
     before_action :set_cadastre_mirror
     before_action :set_action
@@ -13,7 +13,7 @@ module Attendance
 
     def update
       @cadastre_mirror = Core::Attendance::CadastreForm.find(@cadastre_mirror.id)
-      
+
       if @cadastre_mirror.update(set_params)
         redirect_to ticket_continue_cadastre_path(@ticket, @action)
       else
@@ -25,8 +25,8 @@ module Attendance
 
     def set_params
       params.require(:attendance_cadastre_form)
-            .permit(:rg, :rg_org, :gender, :born, :born_uf, 
-                    :rg_uf, :place_birth, :mother_name, :special_condition_id, 
+            .permit(:rg, :rg_org, :gender, :born, :born_uf,
+                    :rg_uf, :place_birth, :mother_name, :special_condition_id,
                     :special_condition_type_id, :nis, :cid, :adapted_property,
                     :arrival_df)
     end

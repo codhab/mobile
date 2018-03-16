@@ -15,6 +15,13 @@
 .ui.grid.container
 .divider
 .ui.three.column.grid.container.black
+  - if current_cadastre.id == 245419 || current_cadastre.cadastre_convocations.where(status: true, convocation_id: 1649).present?
+    .column
+      .ui.segment.text-center{style: 'background-color: #0892ff !important'}
+        %a{href: "#{attendance.custom_custom_tickets_path}"}
+          %i.icon.check.huge.gray{style: 'color: white !important'}
+      .text-center
+        Habilitação
   .column
     .ui.segment.text-center
       - if current_cadastre.notifications.unread.present?
@@ -24,6 +31,16 @@
         %i.icon.alarm.huge.gray
     .text-center
       Notificações
+
+
+  -# - if current_cadastre.general.present? && current_cadastre.general.is_older && [4,54,67].include?(current_cadastre.general.situation_status_id) && current_cadastre.income.to_f <= 1800.0
+  -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+  -#     .ui.segment.text-center{style: 'background-color: rgb(129, 195, 65) !important'}
+  -#       %a{href: "#{candidate.new_legal_rent_path}"}
+  -#         %i.icon.home.huge.gray.text-center.text-center{style: 'color: white !important;'}
+  -#     .text-center
+  -#       Aluguel Legal
+
   - if @ticket_policy.allow_other_update?
     .column
       .ui.segment.text-center
@@ -45,7 +62,7 @@
           %i.icon.edit.huge
       .text-center
         Atualizar Meus Dados
-  - if @ticket_policy.allow_recadastre_update? || @ticket_policy.allow_mobile_recadastre_special?
+  - if @ticket_policy.allow_recadastre_update?
     .column
       .ui.segment.text-center.semantic-black
         %a{href: "#{attendance.new_ticket_path(context_id: 1)}"}
@@ -72,19 +89,20 @@
           %i.icon.comment.outline.huge.gray.text-center
       .text-center
         Minhas Conversas
-  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-    .ui.segment.text-center
-      %a{href: "#{attendance.requeriments_path}"}
-        %i.icon.file.text.outline.huge.gray.text-center.text-center
-    .text-center
-      Meus Requerimentos
-  - if @ticket_policy.allow_to_manifestation?
+  - if current_cadastre.id == 245419 || current_cadastre.cadastre_convocations.where(status: true, convocation_id: 1649).present?
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
       .ui.segment.text-center
-        %a{href: "#{attendance.open_doors_path}"}
-          %i.icon.building.huge.gray.text-center.text-center
+        %a{href: "#{attendance.requeriments_path}"}
+          %i.icon.file.text.outline.huge.gray.text-center.text-center
       .text-center
-        Portas abertas
+        Meus Requerimentos
+  -# - if @ticket_policy.allow_to_manifestation?
+  -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+  -#     .ui.segment.text-center
+  -#       %a{href: "#{attendance.open_doors_path}"}
+  -#         %i.icon.building.huge.gray.text-center.text-center
+  -#     .text-center
+  -#       Portas abertas
 
   - if @ticket_policy.allow_to_question?
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
@@ -119,7 +137,8 @@
 
 
   :javascript
-    $(document).ready(function() {
-      $(".ui.modal").show();
-      $(".ui.modal").modal('show')
-    })
+    - if current_cadastre.id != 362614
+      $(document).ready(function() {
+        $(".ui.modal").show();
+        $(".ui.modal").modal('show')
+      })

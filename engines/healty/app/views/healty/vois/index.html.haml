@@ -1,0 +1,15 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: '#'}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Sistema de Endereços
+    .sub-title Criação de VOI
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = link_to 'CRIAR VOI', new_voi_path, class: 'ui button yellow fluid'
+    %br
+    = link_to 'CRIAR VOI DE ENDEREÇO CODHAB',  unit_vois_path, class: 'ui button yellow fluid'
+    %br
+    = link_to 'CRIAR SELAGEM', '#', class: 'ui button green fluid'

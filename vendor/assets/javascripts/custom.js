@@ -6,12 +6,12 @@ $(document).on('turbolinks:load', function() {
     $(this).append("<p class='text-center'><i> Aguarde o envio dos arquivos. Isso pode demorar alguns minutos dependendo da velocidade de sua internet. </i></p>");
   });
 
-  $('input').focus(function() {
-    if($(this).attr('type') != 'submit') {
-      label_selector = "label[for=" + $(this).attr('id') +"]"
-      $(label_selector).hide();
-    }
-  })
+  // $('input').focus(function() {
+  //   if($(this).attr('type') != 'submit') {
+  //     label_selector = "label[for=" + $(this).attr('id') +"]"
+  //     $(label_selector).hide();
+  //   }
+  // })
 
   $('input').focusout(function() {
     if($(this).attr('type') != 'submit') {

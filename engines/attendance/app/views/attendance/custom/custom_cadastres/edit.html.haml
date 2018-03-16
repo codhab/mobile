@@ -1,0 +1,20 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{attendance.custom_custom_tickets_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Atendimento
+    .sub-title Dados básicos
+    .divider
+  .ui.grid
+    .sixteen.wide.column
+      - if !@cadastre_mirror.errors.any?
+        #label.ui.label.blue{style: 'margin-bottom: 30px'}
+          %p{style: 'text-align: justify; font-size: 14px !important'}
+            Verifique seus dados básicos e atualize todos os campos.
+            %br
+            %br
+
+            Se seu CPF estiver divergente, procure um dos nossos postos de atendimento presencial. Caso o nome esteja divergente, corrigiremos de acordo com a documentação enviada.
+
+      = render 'form'
