@@ -1,13 +1,13 @@
 = simple_form_for @voi, url: vois_path do |f|
-  = f.input :name
+  = f.input :name, label:'Nome'
   = f.input :cpf, input_html: { class: 'cpf'}
-  = f.input :due, as: :string, input_html: { class: 'date', value: f.object.due.present? ? localize(f.object.due) : nil}
-  = f.input :origin_type_id, as: :select, collection: Core::Healty::VoiOriginType.all, prompt: 'Selecione'
-  = f.input :voi_type_id, as: :select, collection: Core::Healty::VoiType.all, prompt: 'Selecione'
-  = f.input :report_reason_id, as: :select, collection: Core::Healty::VoiReportReason.all, prompt: 'Selecione'
-  = f.input :city_id, as: :select, collection: Core::Address::City.federal_district, prompt: 'Selecione'
-  = f.input :address, input_html: { placeholder: 'Preencha' }
-  = f.input :report, input_html: { placeholder: 'Preencha' }
+  = f.input :due, as: :string, label:'Data' ,input_html: { class: 'date', value: f.object.due.present? ? localize(f.object.due) : nil}
+  = f.input :origin_type_id, as: :select, collection: Core::Healty::VoiOriginType.all,label:'Origem da Denuncia', prompt: 'Selecione'
+  = f.input :voi_type_id, as: :select, collection: Core::Healty::VoiType.all,label:'Tipo de Voi', prompt: 'Selecione'
+  = f.input :report_reason_id, as: :select, collection: Core::Healty::VoiReportReason.all,label:'Razão', prompt: 'Selecione'
+  = f.input :city_id, as: :select, collection: Core::Address::City.federal_district,label:'Cidade', prompt: 'Selecione'
+  = f.input :address,label:'Endereço', input_html: { placeholder: 'Preencha' }
+  = f.input :report,label:'Relatório' ,input_html: { placeholder: 'Preencha' }
   .big-divider
   .column.text-center
     = f.submit "Salvar dados", class: "ui button green fluid"
