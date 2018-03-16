@@ -1,0 +1,79 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Sistema de Endereços
+    .sub-title Criação de VOI
+- if @units.present?
+  .ui.container-fluid
+    .ui.grid
+      .row
+        .column.segment
+          %h3 Todas os documentos
+          - @units.each do |unit|
+            %table.ui.celled.table
+              %tbody
+                %tr
+                  %td
+                    %h4.ui.image.header
+                      .content
+                        .sub.header
+                          = unit.city.name rescue nil
+                        = unit.complete_address
+                        %br
+                        %br
+                        = link_to '+ Adicionar VOI', new_unit_voi_path(unit_id: unit), class: 'ui button green tiny'
+.ui.grid.container
+  .column.content-form
+    %h3 Escolha o endereço
+    = simple_form_for url_for, method: :get do |f|
+      = f.input :by_city, label: false, as: :select, collection: Core::Address::City.federal_district, input_html: { id: 'by_city', name: 'by_city'}, include_blank: 'Filtrar por cidade'
+      = f.input :by_block, label: false, as: :select, collection: [], input_html: { id: 'by_block', name: 'by_block'}, include_blank: 'Filtrar por Quadra'
+      = f.input :by_group, label: false, as: :select, collection: [], input_html: { id: 'by_group', name: 'by_group'}, selected: params[:by_group], include_blank: 'Filtrar por Conjunto'
+      = f.input :by_unit, label: false, as: :select, collection: [], input_html: {  id: 'by_unit',  name: 'by_unit'}, selected: params[:by_unit], include_blank: 'Filtrar por Unidade'
+      = f.submit t(:filter_button), name: nil, class:  'ui button yellow fluid'
+
+
+:javascript
+  $(document).ready(function(){
+    $("#by_city").on('change', function(){
+      id = $(this).val();
+      $.getJSON("#{block_path}?by_city=" +  id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.block + "'>" + val.block + "</option>";
+        });
+
+          $("#by_block").html(options);
+      });
+    });
+    $("#by_block").on('change', function() {
+      city_id   = $("#by_city").val();
+      block_id  = $(this).val();
+      $.getJSON("#{group_path}?by_city=" +  city_id + "&by_block=" + block_id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.group + "'>" + val.group + "</option>";
+        });
+
+          $("#by_group").html(options);
+      });
+    });
+    $("#by_group").on('change', function() {
+      city_id   = $("#by_city").val();
+      block_id  = $("#by_block").val();
+      group_id  = $(this).val();
+      $.getJSON("#{unit_path}?by_city=" +  city_id + "&by_block=" + block_id + "&by_group=" + group_id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.unit + "'>" + val.unit + "</option>";
+        });
+
+          $("#by_unit").html(options);
+      });
+    });
+  });

@@ -1,0 +1,6 @@
+= simple_form_for @voi_activity do |f|
+  = f.input :activity_type_id, as: :select, collection: Core::Healty::VoiActivityType.all, prompt: 'Selecione'
+  = f.input :description, input_html: { rows: 2 }
+  .big-divider
+  .column.text-center
+    = f.submit "Salvar dados", class: "ui button green fluid"

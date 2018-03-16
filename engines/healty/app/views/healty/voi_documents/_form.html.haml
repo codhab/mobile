@@ -1,0 +1,2 @@
+= simple_form_for @voi_document do |f|
+  = f.input :attachment, as: :file, input_html: { onchange: '$(this.form).submit();' }

@@ -20,6 +20,7 @@ gem 'validates_cpf_cnpj'
 gem 'onesignal'
 gem 'has_scope'
 gem 'simple_captcha', github: 'igormarjes/simple-captcha'
+gem 'bcrypt'
 
 
 gem 'core', github: 'codhab/core', branch: :master
@@ -52,4 +53,5 @@ path 'engines' do
   gem 'portal'
   gem 'protocol'
   gem 'social'
+  gem 'healty'
 end

@@ -1,0 +1,87 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Detalhamento de VOI
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = link_to 'Observações', voi_activities_path(@voi), class: 'ui button yellow fluid'
+    %br
+    = link_to 'Arquivos', voi_documents_path(@voi), class: 'ui button yellow fluid'
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Nome
+                    = @voi.name
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      CPF
+                    = @voi.cpf.format_cpf rescue nil
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Cidade
+                    - unless @voi.unit_id.present?
+                      = @voi.city.name rescue nil
+                    - else
+                      = @voi.unit.city.name rescue nil
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Endereço
+                    - unless @voi.unit_id.present?
+                      = @voi.address rescue nil
+                    - else
+                      = @voi.unit.complete_address rescue nil
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Tipo de Voi
+                    = @voi.voi_type.name rescue t(:no_information)
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Origem da Voi
+                    = @voi.origin_type.name rescue t(:no_information)
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Motivo da Denúncia
+                    = @voi.report_reason.name rescue t(:no_information)
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Identificação da Denúncia
+                    = @voi.report
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    .sub.header
+                      Data
+                    = @voi.due.present? ? @voi.due : @voi.created_at.strftime('%d/%m/%Y')
