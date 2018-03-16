@@ -19,26 +19,30 @@
 .divider
 .ui.three.column.grid.container.black
   .column
-    .ui.segment.text-center
+    .ui.text-center
       %a{href: "#"}
-        %i.icon.calendar.huge.gray
+        -# %i.icon.calendar.huge.gray
+        = image_tag ('/images/meeting.png')
     .text-center
       Monitoramento
   .column
-    .ui.segment.text-center
+    .ui.text-center
       %a{href: "#{person.vocations_path}"}
-        %i.icon.plane.huge
+        -# %i.icon.plane.huge
+        = image_tag ('/images/plane-ticket.png')
     .text-center
       Férias
   .column
-    .ui.segment.text-center
+    .ui.text-center
       %a{href: "#{person.allowances_path}"}
-        %i.icon.thumbs.outline.up.huge
+        -# %i.icon.thumbs.outline.up.huge
+        = image_tag ('/images/thumbs-up.png')
     .text-center
       Abono
   .column
-    .ui.segment.text-center
+    .ui.text-center
       %a{href: "#{person.wallets_path}"}
-        %i.icon.home.outline.up.huge
+        -# %i.icon.home.outline.up.huge
+        = image_tag ('/images/house.png')
     .text-center
       Carteira Imobiliária
