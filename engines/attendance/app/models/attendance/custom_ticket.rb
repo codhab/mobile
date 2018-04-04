@@ -11,6 +11,7 @@ module Attendance
 
     validates :cadastre_id, uniqueness: true
 
+
     def disable_link
       self.action_one &&
       self.action_two &&
