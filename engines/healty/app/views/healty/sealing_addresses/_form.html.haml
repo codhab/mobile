@@ -9,3 +9,19 @@
   = f.input :lat, label:'Latitude'
   = f.input :lng, label:'Longitude'
   = f.submit "Salvar dados", class: "ui button green fluid"
+:javascript
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+          alert('Acione o seu GPS')
+      }
+  }
+
+  function showPosition(position) {
+    document.getElementById("sealing_address_lat").value = position.coords.latitude;
+    document.getElementById("sealing_address_lng").value = position.coords.longitude;
+
+  }
+  getLocation();
+  showPosition();
