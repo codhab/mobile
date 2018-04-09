@@ -1,0 +1,28 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Notificações
+    .sub-title Listagem de Notificações
+.ui.grid.container
+  .column
+    %table.ui.celled.table
+      %tbody.black
+        - if @vois.present?
+          - @vois.order('created_at DESC').each do |voi|
+            %tr
+              %td
+                %h4.ui.image.header
+                  %i.small.edit.outline.icon.gray
+                  .content
+                    %a{href: "#{voi_path(voi)}"}
+                      #{voi.name.humanize}
+                    .sub.header
+                      #{voi.address} - 
+                      #{voi.city.name rescue nil}
+        - else
+          %tr
+            %td
+            %td.text-center
+              %i Nenhum notificação registrada.

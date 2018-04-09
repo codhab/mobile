@@ -1,5 +1,6 @@
 Healty::Engine.routes.draw do
   root 'dashboard#index'
+  get 'vois_all', to:'vois#all', as: 'vois_all'
 
   resources :vois do
     resources :voi_activities, as: :activities

@@ -23,6 +23,10 @@ module Healty
       end
     end
 
+    def all 
+      @vois = Core::Healty::Voi.all
+    end
+
     def edit; end
 
     def update
