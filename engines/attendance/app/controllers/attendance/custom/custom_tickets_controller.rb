@@ -7,7 +7,7 @@ module Attendance
       def index
         @ticket = Attendance::CustomTicket.find_by(cadastre_id: current_cadastre.id) rescue nil
 
-        if @ticket.request && @ticket.requests.where(closed: true, candidate_read: false).present?
+        if @ticket.present? && @ticket.request && @ticket.requests.where(closed: true, candidate_read: false).present?
           @ticket.requests.where(closed: true).update_all(candidate_read: true, candidate_read_at: Time.now)
         end
       end
