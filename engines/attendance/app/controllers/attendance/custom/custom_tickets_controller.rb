@@ -6,6 +6,10 @@ module Attendance
       before_action :set_ticket, only: [:cadastre, :dependent, :income, :contact, :document]
       def index
         @ticket = Attendance::CustomTicket.find_by(cadastre_id: current_cadastre.id) rescue nil
+
+        if @ticket.present? && @ticket.request && @ticket.requests.where(closed: true, candidate_read: false).present?
+          @ticket.requests.where(closed: true).update_all(candidate_read: true, candidate_read_at: Time.now)
+        end
       end
 
       def new
@@ -16,26 +20,37 @@ module Attendance
       def cadastre
         @ticket.update(action_one: true)
         redirect_to attendance.custom_custom_tickets_path
+
+        update_ticket
       end
 
       def dependent
         @ticket.update(action_two: true)
         redirect_to attendance.custom_custom_tickets_path
+
+        update_ticket
       end
 
       def income
         @ticket.update(action_three: true)
         redirect_to attendance.custom_custom_tickets_path
+
+        update_ticket
       end
 
       def contact
         @ticket.update(action_four: true)
         redirect_to attendance.custom_custom_tickets_path
+
+        update_ticket
+
       end
 
       def document
         @ticket.update(action_five: true)
         redirect_to attendance.custom_custom_tickets_path
+
+        update_ticket
       end
 
       # Termos
@@ -90,6 +105,13 @@ module Attendance
 
       def set_ticket
         @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
+      end
+
+      def update_ticket
+        if @ticket.finalized? && @ticket.request
+          @ticket.update(request: false)
+          @ticket.requests.update_all(closed: true, closed_at: Time.now)
+        end
       end
     end
   end

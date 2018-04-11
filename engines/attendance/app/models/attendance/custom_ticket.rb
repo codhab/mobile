@@ -6,11 +6,20 @@ module Attendance
     belongs_to :cadastre_mirror, class_name: 'Attendance::CustomCadastreMirror', foreign_key: :cadastre_mirror_id
 
     has_many :documents, class_name: 'Attendance::CustomTicketDocument', foreign_key: :custom_ticket_id
+    has_many :requests, class_name: 'Attendance::TicketRequest'
 
     after_create :set_cadastre_mirror
 
     validates :cadastre_id, uniqueness: true
 
+
+    def finalized?
+      self.action_one &&
+      self.action_two &&
+      self.action_three &&
+      self.action_four &&
+      self.action_five
+    end
 
     def disable_link
       self.action_one &&
