@@ -1,0 +1,20 @@
+.ui.grid
+  .fifthteen.wide.mobile.column.text-center
+    .title-header Requerimentos
+    .sub-title Escolha sua opção
+.divider
+.ui.two.column.grid.container.black
+  .column
+    .ui.text-center
+      %a{href: "#{new_solicitation_path}"}
+        -# %i.icon.calendar.huge.gray
+        = image_tag ('/images/icon-resume.png')
+    .text-center
+      Requerimento de Regularização
+  .column
+    .ui.text-center
+      %a{href: "#{new_solicitation_path}"}
+        -# %i.icon.plane.huge
+        = image_tag ('/images/contract.png')
+    .text-center
+      Retificação de Escritura

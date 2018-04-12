@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: c57afc7b46d6275fbc96b39589020315db76b0d0
+  revision: 07a2f8ba21277938a6cd082fd61378c6af50fb8f
   branch: master
   specs:
     core (0.1.0)
@@ -38,6 +38,8 @@ PATH
       rails (~> 5.0.2)
     protocol (0.1.0)
       rails (~> 5.0.2)
+    regularization (0.1.0)
+      rails (~> 5.0.7)
     social (0.1.0)
       rails (~> 5.0.5)
 
@@ -327,6 +329,7 @@ DEPENDENCIES
   portal!
   protocol!
   rails (~> 5.0.2)
+  regularization!
   simple_captcha!
   simple_form
   social!
@@ -339,4 +342,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.0

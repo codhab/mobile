@@ -1,0 +1,55 @@
+= simple_form_for @solicitation, url: solicitations_path do |f|
+  = f.input :name,label:'Nome'
+  = f.input :cpf, input_html: {class: 'cpf'}
+  = f.input :email, input_html: {class: 'email'}
+  = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.federal_district, input_html: { id: 'city_id', name: 'city_id'}, include_blank: 'Filtrar por Cidade'
+  = f.input :by_block, label: 'Quadra', as: :select, collection: [], input_html: { id: 'by_block', name: 'by_block'}, include_blank: 'Filtrar por Quadra'
+  = f.input :by_group, label: 'Conjunto', as: :select, collection: [], input_html: { id: 'by_group', name: 'by_group'}, selected: params[:by_group], include_blank: 'Filtrar por Conjunto'
+  = f.input :by_unit, label: 'Unidade', as: :select, collection: [], input_html: {  id: 'by_unit',  name: 'by_unit'}, selected: params[:by_unit], include_blank: 'Filtrar por Unidade'
+  = f.input :address, label:'Endereço'
+  -# = f.input :attachment, as: :file,label:'Upload', input_html: { onchange: '$(this.form).submit();' }
+  = f.input :content, as: :text,label:'Mensagem', input_html:{ rows: 2 }
+  = f.submit "Prosseguir", class: "ui button green fluid"
+
+:javascript
+  $(document).ready(function(){
+    $("#city_id").on('change', function(){
+      id = $(this).val();
+      $.getJSON("#{block_path}?city_id=" +  id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.block + "'>" + val.block + "</option>";
+        });
+
+          $("#by_block").html(options);
+      });
+    });
+    $("#by_block").on('change', function() {
+      city_id   = $("#city_id").val();
+      block_id  = $(this).val();
+      $.getJSON("#{group_path}?city_id=" +  city_id + "&by_block=" + block_id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.group + "'>" + val.group + "</option>";
+        });
+
+          $("#by_group").html(options);
+      });
+    });
+    $("#by_group").on('change', function() {
+      city_id   = $("#city_id").val();
+      block_id  = $("#by_block").val();
+      group_id  = $(this).val();
+      $.getJSON("#{unit_path}?city_id=" +  city_id + "&by_block=" + block_id + "&by_group=" + group_id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.unit + "'>" + val.unit + "</option>";
+        });
+
+          $("#by_unit").html(options);
+      });
+    });
+  });

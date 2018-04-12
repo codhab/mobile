@@ -56,4 +56,5 @@ path 'engines' do
   gem 'protocol'
   gem 'social'
   gem 'healty'
+  gem 'regularization'
 end
