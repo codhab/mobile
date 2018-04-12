@@ -2,22 +2,20 @@ require_dependency 'regularization/application_controller'
 
 module Regularization
   class SolicitationDocumentsController < ApplicationController # :nodoc:
-    before_action :set_solicitation, only: [:show, :edit, :update]
+    before_action :set_solicitation
     before_action :set_solicitation_document, only: [:edit, :update, :destroy]
-    
+
     def index
-     
+
     end
 
     def new
-      @solicitation_document = Core::Regularization::SolicitationDocument.new
+      @solicitation_document = @solicitation.solicitation_documents.new
     end
 
-    
+
     def create
-      @solicitation_document = Core::Regularization::SolicitationDocument.new(set_params)
-      @solicitation_document.attachment = @solicitation_document.attachment.file.filename
-      @solicitation_document.solicitation_id = params[:solicitation_id]
+      @solicitation_document = @solicitation.solicitation_documents.new(set_params)
       if @solicitation_document.save
       else
         render :new
@@ -42,6 +40,10 @@ module Regularization
     # end
 
     def set_solicitation
+      @solicitation = Core::Regularization::Solicitation.find(params[:solicitation_id])
+    end
+
+    def set_solicitation_document
       @solicitation_document = Core::Regularization::SolicitationDocument.find(params[:id])
     end
 

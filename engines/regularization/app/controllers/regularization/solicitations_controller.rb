@@ -8,23 +8,23 @@ module Regularization
     has_scope :by_block
     has_scope :by_group
     has_scope :by_unit
-    
-    
+
+
     def index
-     
+
     end
 
     def new
       @solicitation = Core::Regularization::Solicitation.new
     end
 
-    
+
     def create
       @solicitation = Core::Regularization::Solicitation.new(set_params)
       @solicitation.city_id = params[:city_id]
       @solicitation.unit_id = params[:by_unit]
       if @solicitation.save
-        # redirect_to action: 'index'
+        redirect_to new_solicitation_document_path(@solicitation)
       else
         render :new
       end
