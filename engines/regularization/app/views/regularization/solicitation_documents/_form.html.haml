@@ -1,2 +1,20 @@
 = simple_form_for @solicitation_document, url: solicitation_documents_path(@solicitation.id) do |f|
   = f.input :attachment, as: :file, label: 'Upload', input_html: { onchange: '$(this.form).submit();' }
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %h3 Todas os documentos enviados
+        - @solicitation_documents.each do |document|
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      = link_to 'Arquivo', document.attachment_url, target: '_blank' rescue nil
+.big-divider
+.ui.grid.container
+  .column.content-form
+    %br
+    = link_to 'Finalizar', root_path, class: 'ui button green fluid'

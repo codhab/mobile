@@ -21,8 +21,10 @@ module Regularization
 
     def create
       @solicitation = Core::Regularization::Solicitation.new(set_params)
-      @solicitation.city_id = params[:city_id]
-      @solicitation.unit_id = params[:by_unit]
+      @solicitation.cpf = @solicitation.cpf.gsub('-','').gsub('.','')
+      @solicitation.city_id    = params[:city_id]
+      @solicitation.unit_id    = params[:by_unit]
+      @solicitation.subject_id = params[:subject_id]
       if @solicitation.save
         redirect_to new_solicitation_document_path(@solicitation)
       else
@@ -60,12 +62,9 @@ module Regularization
     private
 
     def set_params
+
       params.require(:regularization_solicitation).permit(:name, :cpf, :subject_id, :content, :city_id , :address, :email, :unit_id)
     end
-
-    #  def set_unit
-    #   @unit = Core::Address::Unit.find(params[:unit_id])
-    # end
 
     def set_solicitation
       @solicitation = Core::Regularization::Solicitation.find(params[:id])

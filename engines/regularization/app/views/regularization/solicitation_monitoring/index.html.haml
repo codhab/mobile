@@ -1,0 +1,23 @@
+.ui.grid
+  .fifthteen.wide.mobile.column.text-center
+    .title-header Requerimentos
+    .sub-title Acompanhe seu Requerimento
+.big-divider
+.ui.grid.container
+  .column.content-form
+    = simple_form_for url_for, method: :get do |f|
+      = f.input :by_cpf, label: "CPF", input_html: {class: 'cpf', name: 'by_cpf'}
+      = f.submit "Pesquisar", name: nil, class: 'ui button green fluid'
+.ui.container-fluid
+.ui.grid
+  .row
+    .column.segment
+      %h3 Todas os documentos enviados
+      - @cpfs.each do |cpf|
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    = cpf.cpf
