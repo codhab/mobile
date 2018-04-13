@@ -8,8 +8,10 @@ module Candidate
     end
 
     def new
-      @requeriment = Core::Protocol::ExternalRequerimentForm.new
-      @requeriment.digital_document_forms.new
+      # @requeriment = Core::Protocol::ExternalRequerimentForm.new
+      # @requeriment.digital_document_forms.new
+      redirect_to '/regularization'
+
     end
 
     def create
