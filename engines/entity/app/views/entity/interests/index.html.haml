@@ -7,8 +7,8 @@
     .title-header Manifestação de interesse
     .sub-title Listagem de manifestãções
 .ui.container
-  - @gato = nil
-  - if !@gato.nil?
+  - @staff = Person::Staff.find(1464)
+  - if @staff.uf_born == "CAT"
     %table.ui.celled.table
       %tbody
         - if @enterprise
