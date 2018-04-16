@@ -7,25 +7,32 @@
     .title-header Manifestação de interesse
     .sub-title Listagem de manifestãções
 .ui.container
-  %table.ui.celled.table
-    %tbody
-      - if @enterprise
-        - if current_entity.interests.present?
-          - current_entity.interests.where(allotment_id: [2,3,4,5]).order(created_at: :desc).each do |interest|
+  - @gato = nil
+  - if !@gato.nil?
+    %table.ui.celled.table
+      %tbody
+        - if @enterprise
+          - if current_entity.interests.present?
+            - current_entity.interests.where(allotment_id: [2,3,4,5]).order(created_at: :desc).each do |interest|
+              %tr
+                %td
+                  %b= link_to "#{interest.protocol} - Sorteio #{interest.allotment_id}", entity_interest_path(interest)
+                  %br
+                  %i Realizada em #{interest.created_at.strftime("%d/%m/%Y %H:%M")}
+          - else
             %tr
               %td
-                %b= link_to "#{interest.protocol} - Sorteio #{interest.allotment_id}", entity_interest_path(interest)
-                %br
-                %i Realizada em #{interest.created_at.strftime("%d/%m/%Y %H:%M")}
+              %td.text-center
+                %i Sua entidade não possui nenhuma manifestação
         - else
           %tr
-            %td
             %td.text-center
-              %i Sua entidade não possui nenhuma manifestação
-      - else
+              %i
+                %p Sua entidade já possui empreendimento vínculado.
+                %p Todas as Associações e Cooperativas credenciadas poderão participar, desde que manifestem interesse, a exceção das Associações e Cooperativas que possuem empreendimento em andamento ou tenham sido contempladas em sorteios anteriores.
+    = link_to "Realizar nova manifestação", new_entity_interest_path, class: 'ui button green fluid', data: { disable_with: t(:disable_with)} if @enterprise
+  - else
+    %table.ui.celled.table
+      %tbody
         %tr
-          %td.text-center
-            %i
-              %p Sua entidade já possui empreendimento vínculado.
-              %p Todas as Associações e Cooperativas credenciadas poderão participar, desde que manifestem interesse, a exceção das Associações e Cooperativas que possuem empreendimento em andamento ou tenham sido contempladas em sorteios anteriores.
-  = link_to "Realizar nova manifestação", new_entity_interest_path, class: 'ui button green fluid', data: { disable_with: t(:disable_with)} if @enterprise
+          %td{style: 'text-align: center'} Em manutenção.
