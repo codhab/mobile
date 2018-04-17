@@ -3,7 +3,7 @@
     .title-header Requerimentos
     .sub-title Escolha sua opção
 .divider
-.ui.two.column.grid.container.black
+.ui.three.column.grid.container.black
   .column
     .ui.text-center
       %a{href: "#{new_solicitation_path(subject_id: 1)}"}
@@ -18,10 +18,10 @@
         = image_tag ('/images/contract.png')
     .text-center
       Retificação de Escritura
-  -# .column
-  -#   .ui.text-center
-  -#     %a{href: "#{monitoring_path}"}
-  -#       -# %i.icon.plane.huge
-  -#       = image_tag ('/images/search.png')
-  -#   .text-center
-  -#     Acompanhamento de Escritura
+  .column
+    .ui.text-center
+      %a{href: "#{monitoring_path}"}
+        -# %i.icon.plane.huge
+        = image_tag ('/images/search.png')
+    .text-center
+      Acompanhamento de Escritura

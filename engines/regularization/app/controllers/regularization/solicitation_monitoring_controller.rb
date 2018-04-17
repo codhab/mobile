@@ -6,6 +6,7 @@ module Regularization
     
     def index
       @cpfs = Core::Regularization::SolicitationMonitoring.where(cpf: params[:by_cpf].gsub('-','').gsub('.',''))
+      # @answer = Core::Regularization::SolicitationAnswer.where(solicitation_id: )
     end
 
   end

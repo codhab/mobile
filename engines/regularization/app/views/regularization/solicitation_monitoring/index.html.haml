@@ -12,7 +12,7 @@
 .ui.grid
   .row
     .column.segment
-      %h3 Todas os documentos enviados
+      %h3 Respostas de requerimentos
       - @cpfs.each do |cpf|
         %table.ui.celled.table
           %tbody
@@ -20,4 +20,11 @@
               %td
                 %h4.ui.image.header
                   .content
-                    = cpf.cpf
+                    Protocolo:
+                    = cpf.id
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    Solicitação:
+                    = cpf.content.html_safe

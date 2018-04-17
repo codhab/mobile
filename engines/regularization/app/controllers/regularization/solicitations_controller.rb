@@ -25,10 +25,16 @@ module Regularization
       @solicitation.city_id    = params[:city_id]
       @solicitation.unit_id    = params[:by_unit]
       @solicitation.subject_id = params[:subject_id]
-      if @solicitation.save
-        redirect_to new_solicitation_document_path(@solicitation)
+      
+      @verify = Core::Candidate::Cadastre.where(cpf: @solicitation.cpf.gsub('-','').gsub('.',''))
+      if @verify.present?
+        redirect_to error_path()
       else
-        render :new
+        if @solicitation.save
+          redirect_to new_solicitation_document_path(@solicitation)
+        else
+          render :new
+        end
       end
     end
 
