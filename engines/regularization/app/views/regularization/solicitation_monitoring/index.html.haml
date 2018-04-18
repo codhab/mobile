@@ -28,3 +28,9 @@
                   .content
                     Solicitação:
                     = cpf.content.html_safe
+            %tr
+              %td
+                %h4.ui.image.header
+                  .content
+                    Resposta:
+                    = cpf.solicitation_answers.first.answer rescue 'Sem resposta no momento'
