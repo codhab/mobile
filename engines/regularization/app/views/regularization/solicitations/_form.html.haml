@@ -1,7 +1,7 @@
 = simple_form_for @solicitation, url: solicitations_path do |f|
-  = f.input :name,label:'Nome'
+  = f.input :name,label:'Nome', input_html: {value: @verify_reg.present? ? @verify_reg.name : nil}
   = f.input :cpf, input_html: {class: 'cpf', value: params[:cpf]}
-  = f.input :email, input_html: {class: 'email'}
+  = f.input :email, input_html: {class: 'email', value: @verify_reg.present? ? @verify_reg.email : nil}
   = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.federal_district, input_html: { id: 'city_id', name: 'city_id'}, include_blank: 'Filtrar por Cidade'
   = f.input :by_block, label: 'Quadra', as: :select, collection: [], input_html: { id: 'by_block', name: 'by_block'}, include_blank: 'Filtrar por Quadra'
   = f.input :by_group, label: 'Conjunto', as: :select, collection: [], input_html: { id: 'by_group', name: 'by_group'}, selected: params[:by_group], include_blank: 'Filtrar por Conjunto'
