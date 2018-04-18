@@ -6,14 +6,14 @@
 .ui.three.column.grid.container.black
   .column
     .ui.text-center
-      %a{href: "#{new_solicitation_path(subject_id: 1)}"}
+      %a{href: "#{solicitations_path(subject_id: 1)}"}
         -# %i.icon.calendar.huge.gray
         = image_tag ('/images/icon-resume.png')
     .text-center
       Requerimento de Regularização
   .column
     .ui.text-center
-      %a{href: "#{new_solicitation_path(subject_id: 2)}"}
+      %a{href: "#{solicitations_path(subject_id: 2)}"}
         -# %i.icon.plane.huge
         = image_tag ('/images/contract.png')
     .text-center

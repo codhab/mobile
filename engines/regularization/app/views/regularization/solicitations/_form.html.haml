@@ -1,6 +1,6 @@
 = simple_form_for @solicitation, url: solicitations_path do |f|
   = f.input :name,label:'Nome'
-  = f.input :cpf, input_html: {class: 'cpf'}
+  = f.input :cpf, input_html: {class: 'cpf', value: params[:cpf]}
   = f.input :email, input_html: {class: 'email'}
   = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.federal_district, input_html: { id: 'city_id', name: 'city_id'}, include_blank: 'Filtrar por Cidade'
   = f.input :by_block, label: 'Quadra', as: :select, collection: [], input_html: { id: 'by_block', name: 'by_block'}, include_blank: 'Filtrar por Quadra'

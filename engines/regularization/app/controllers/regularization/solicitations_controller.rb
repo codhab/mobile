@@ -11,7 +11,16 @@ module Regularization
 
 
     def index
-
+      cpf = params[:by_cpf].gsub('-','').gsub('.','') if params[:by_cpf].present?
+      @verify = Core::Candidate::Cadastre.where(cpf: cpf)
+                                       .where.not(program_id: [3, 6])
+      if params[:by_cpf].present?
+        if @verify.present?
+          redirect_to error_path
+        else          
+          redirect_to new_solicitation_path(subject_id: params[:subject_id], cpf: cpf)
+        end
+      end
     end
 
     def new
@@ -25,8 +34,9 @@ module Regularization
       @solicitation.city_id    = params[:city_id]
       @solicitation.unit_id    = params[:by_unit]
       @solicitation.subject_id = params[:subject_id]
-      
+
       @verify = Core::Candidate::Cadastre.where(cpf: @solicitation.cpf.gsub('-','').gsub('.',''))
+                                         .where.not(program_id: [3, 6])
       if @verify.present?
         redirect_to error_path()
       else
