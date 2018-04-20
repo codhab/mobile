@@ -6,7 +6,7 @@
   = f.input :by_block, label: 'Quadra', as: :select, collection: [], input_html: { id: 'by_block', name: 'by_block'}, include_blank: 'Filtrar por Quadra'
   = f.input :by_group, label: 'Conjunto', as: :select, collection: [], input_html: { id: 'by_group', name: 'by_group'}, selected: params[:by_group], include_blank: 'Filtrar por Conjunto'
   = f.input :by_unit, label: 'Unidade', as: :select, collection: [], input_html: {  id: 'by_unit',  name: 'by_unit'}, selected: params[:by_unit], include_blank: 'Filtrar por Unidade'
-  = f.input :address, label:'Endereço'
+  = f.input :address, label:'Endereço (Se você não encontrou seu endereço, digite no campo abaixo)'
   = f.input :subject_id, :as => :hidden, :input_html => { :value => params[:subject_id] , name:'subject_id'}
   = f.input :content, as: :text,label:'Mensagem', input_html:{ rows: 2 }
   = f.submit "Prosseguir", class: "ui button green fluid"
