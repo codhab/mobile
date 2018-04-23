@@ -1,0 +1,17 @@
+.ui.grid
+  .fifthteen.wide.mobile.column.text-center
+    .title-header Sucesso
+    -# .sub-title CPF cadastrado na CODHAB
+.big-divider
+.ui.grid.container
+  .column.content-form
+    %p
+      Requerimento realizado com sucesso.
+    %p{style: 'text-align:justify;'}
+      A CODHAB tem até 
+      %b
+        60 dias 
+      para responder seu requerimento. Você pode acompanhar as respostas clicando em 
+      "Acompanhar Requerimento", na página principal de requerimentos.
+    %br
+    = link_to "Voltar a página principal", root_path, class: 'ui button green fluid'
