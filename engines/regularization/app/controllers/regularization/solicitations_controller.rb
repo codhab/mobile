@@ -83,7 +83,7 @@ module Regularization
 
     def set_params
 
-      params.require(:regularization_solicitation).permit(:name, :cpf, :subject_id, :content, :city_id , :address, :email, :unit_id)
+      params.require(:regularization_solicitation).permit(:name, :phone,:cpf, :subject_id, :content, :city_id , :address, :email, :unit_id)
     end
 
     def set_solicitation
