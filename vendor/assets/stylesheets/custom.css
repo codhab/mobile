@@ -121,7 +121,7 @@ input {
 }
 
 .font-black {
-  color: black !important;
+  color:#000 !important;
 }
 
 .big-text {
