@@ -93,12 +93,12 @@ module Entity
     end
 
     def new
-      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 5).new
+      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 6).new
 
     end
 
     def create
-      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 5).new(set_params)
+      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 6).new(set_params)
 
       if @interest.save
 
