@@ -17,7 +17,7 @@ module Regularization
       if params[:by_cpf].present?
         if @verify.present?
           redirect_to error_path
-        else          
+        else
           redirect_to new_solicitation_path(subject_id: params[:subject_id], cpf: cpf)
         end
       end
@@ -26,7 +26,6 @@ module Regularization
     def new
       @verify_reg = Core::Candidate::Cadastre.where(cpf: params[:cpf])
                                        .where(program_id: [3, 6]).first
-
         @solicitation = Core::Regularization::Solicitation.new
 
     end
@@ -75,7 +74,7 @@ module Regularization
       city = params[:city_id]
       block = params[:by_block]
       group = params[:by_group]
-      render json: @units = Core::Address::Unit.select(:unit).where(city_id: city, block: block, group: group).order(:unit)
+      render json: @units = Core::Address::Unit.where(city_id: city, block: block, group: group).order(:unit)
     end
 
 
