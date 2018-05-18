@@ -54,26 +54,25 @@
     .text-center
       Sistema de imóveis
   .column
-    -if Core::Attendance::Attendant.where(staff_id: current_user.id).present?
-      -if @panic.present?
-        -if @panic.panic == false
-          .ui.text-center
-            %a{href: "#{person.new_panic_path}", data: { remote: true}}
-              -# %i.icon.home.outline.up.huge
-              = image_tag ('/images/warning.png')
-          .text-center
-            CHAMAR A CODHAB
-        -else
-          .ui.text-center
-            %a{href: "#{person.panic_stop_path(id: @panic.id)}", data: { remote: true}}
-              -# %i.icon.home.outline.up.huge
-              = image_tag ('/images/warning-y.png')
-          .text-center
-            CANCELAR SOLICITAÇÃO
-      -else
+    -if @panic.present?
+      -if @panic.panic == false
         .ui.text-center
           %a{href: "#{person.new_panic_path}", data: { remote: true}}
             -# %i.icon.home.outline.up.huge
             = image_tag ('/images/warning.png')
         .text-center
           CHAMAR A CODHAB
+      -else
+        .ui.text-center
+          %a{href: "#{person.panic_stop_path(id: @panic.id)}", data: { remote: true}}
+            -# %i.icon.home.outline.up.huge
+            = image_tag ('/images/warning-y.png')
+        .text-center
+          CANCELAR SOLICITAÇÃO
+    -else
+      .ui.text-center
+        %a{href: "#{person.new_panic_path}", data: { remote: true}}
+          -# %i.icon.home.outline.up.huge
+          = image_tag ('/images/warning.png')
+      .text-center
+        CHAMAR A CODHAB
