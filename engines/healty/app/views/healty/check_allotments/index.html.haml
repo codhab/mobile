@@ -1,0 +1,21 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{allotments_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Selagens
+    .sub-title Blocos de Selagem
+.big-divider
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            - Healty::CheckAllotment.all.order(situation_id: :desc).each do |allotment|
+              %tr
+                %td
+                %td
+                  %p
+                    %b= link_to allotment.name, allotment_units_path(allotment)
+                  = allotment.situation_id
