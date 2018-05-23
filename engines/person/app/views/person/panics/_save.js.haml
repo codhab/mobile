@@ -1,0 +1,5 @@
+- if @panic.errors.any?
+  $('.ui.modal').html("#{escape_javascript(render 'new')}")
+- else
+  $('.ui.modal').modal('setting', 'transition', 'horizontal flip').modal('hide');
+  location.reload();

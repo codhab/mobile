@@ -14,4 +14,13 @@ Healty::Engine.routes.draw do
   resources :sealing_addresses do
     resources :sealing_documents
   end
+
+  resources :check_allotments, as: :allotments do
+    resources :check_units, as: :units do
+      resources :checks do
+        post 'upload_image'
+      end
+    end
+  end
+  
 end
