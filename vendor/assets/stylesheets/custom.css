@@ -248,6 +248,42 @@ span.ui.label.yellow {
 .image_modal{
   width: 100%;
 }
+.btn-nav-codhab{
+	height: 100px;
+	width: 100px;
+	margin: 0 auto;
+	display: block;
+	background-color: #fff;
+  border:none;
+  -webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.13);
+  -moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.13);
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.13);
+}
+.btn-nav-codhab img{
+  width: 80px;
+  margin-top: 10px;
+}
+
+/* Melhorias Habitacionais*/
+.melhorias_title{
+  color:#fff;
+  padding: 17px 0;
+}
+.red_title{
+  background-color:#c51f1b;
+}
+.orange_title{
+  background-color:#e74a34;
+}
+.yellow_title{
+  background-color:#fbbe4a;
+}
+.blue_title{
+  background-color:#4d89a0;
+}
+.green_title{
+  background-color:#469f5b;
+}
 
 /*Media Queries*/
 

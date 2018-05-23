@@ -26,7 +26,7 @@ module Regularization
     def new
       @verify_reg = Core::Candidate::Cadastre.where(cpf: params[:cpf])
                                        .where(program_id: [3, 6]).first
-        @solicitation = Core::Regularization::Solicitation.new
+      @solicitation = Core::Regularization::Solicitation.new
 
     end
 

@@ -10,7 +10,7 @@
   = f.input :address, label:'Endereço (Se você não encontrou seu endereço, digite no campo abaixo)'
   = f.input :subject_id, :as => :hidden, :input_html => { :value => params[:subject_id] , name:'subject_id'}
   = f.input :content, as: :text,label:'Mensagem', input_html:{ rows: 2 }
-  = f.submit "Prosseguir", class: "ui button green fluid"
+  = f.submit "Prosseguir", class: "ui button green fluid", data: { disable_with: t(:disable_with)}
 :javascript
   $(document).ready(function(){
     $("#city_id").on('change', function(){
