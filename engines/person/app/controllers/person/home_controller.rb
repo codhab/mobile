@@ -1,3 +1,4 @@
+require_dependency 'person/application_controller'
 module Person
   class HomeController < ApplicationController
 

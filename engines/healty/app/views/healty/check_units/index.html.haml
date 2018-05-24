@@ -17,6 +17,4 @@
                 %td
                 %td
                   %p
-                    %b= link_to unit.city.name, new_allotment_unit_checks_path(@allotment, unit) rescue nil
-                  %b= link_to unit.address, "#"
-                  %b= link_to unit.neighborhood, "#"
+                    %b= link_to unit.address, allotment_unit_checks_path(@allotment, unit), style: 'color: black'
