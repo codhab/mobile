@@ -1,7 +1,7 @@
-require_dependency 'application_controller'
+require_dependency 'person/application_controller'
 
 module Healty
-  class ApplicationController < ApplicationController # :nodoc:
+  class ApplicationController < Person::ApplicationController # :nodoc:
     protect_from_forgery with: :exception
   end
 end
