@@ -70,7 +70,6 @@ module Entity
       '15486497000177',
       '07263425000132',
       '04043530000178',
-      '07395187000119',
       '07711754000107',
       '03755707000104',
       '04899517000115',
@@ -93,12 +92,12 @@ module Entity
     end
 
     def new
-      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 5).new
+      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 6).new
 
     end
 
     def create
-      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 5).new(set_params)
+      @interest = Core::Entity::InterestForm.where(entity_id: current_entity.id, allotment_id: 6).new(set_params)
 
       if @interest.save
 

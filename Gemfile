@@ -57,4 +57,5 @@ path 'engines' do
   gem 'social'
   gem 'healty'
   gem 'regularization'
+  gem 'technical_assistance'
 end

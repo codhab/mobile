@@ -11,25 +11,7 @@
   = f.input :address, label:'Endereço (Se você não encontrou seu endereço, digite no campo abaixo)'
   = f.input :subject_id, :as => :hidden, :input_html => { :value => params[:subject_id] , name:'subject_id'}
   = f.input :content, as: :text,label:'Mensagem', input_html:{ rows: 2 }
-  = f.submit "Prosseguir", class: "ui button green fluid"
--# .divider
--# .ui.grid.container
--#   .column
--#     .ui.raised.segment
--#       %a.ui.red.ribbon.label.bold Importante
--#       %span
--#         %br/
--#         %br/
--#         .text-justify
--#           %p Declaro estar ciente da obrigatoriedade da atualização dos meus dados cadastrais junto à CODHAB sempre que ocorrer alteração de telefone, endereço, dependentes ou renda.
--#           Declaro ter conhecimento completo da
-
--#           %b.yellow{style: 'text-decoration: underline'}
--#             %a{href: 'http://www.codhab.df.gov.br/uploads/archive/files/3239b1f0464376f64e267eae43b2cfcb.pdf', target: '_blank'} Lei 3.877/2006
--#           e das exigências e critérios para participação dos programas habitacionais do Distrito Federal.
--#           %p Declaro que resido no Distrito Federal há pelo menos 5 anos consecutivos, possuo renda inferior a 12 salários mínimos, não sou usufrutuário(a) de imóvel residencial do Distrito Federal e que não sou, nem nunca fui proprietário(a), promitente comprador(a) ou cessionário(a) de imóvel residencial no Distrito Federal.
--#           %p Responsabilizo-me civil e criminalmente pela veracidade dessas declarações e tenho conhecimento das penalidades existentes por falsa declaração, conforme dispõe o artigo 299 do Código Penal.
-
+  = f.submit "Prosseguir", class: "ui button green fluid", data: { disable_with: t(:disable_with)}
 :javascript
   $(document).ready(function(){
     $("#city_id").on('change', function(){
@@ -62,10 +44,10 @@
       block_id  = $("#by_block").val();
       group_id  = $(this).val();
       $.getJSON("#{unit_path}?city_id=" +  city_id + "&by_block=" + block_id + "&by_group=" + group_id, function(data) {
+      console.log(data)
         var options = "<option value>selecione...</option>";
-
         $.each(data, function(key, val) {
-          options += "<option value='" + val.unit + "'>" + val.unit + "</option>";
+          options += "<option value='" + val.id + "'>" + val.unit + "</option>";
         });
 
           $("#by_unit").html(options);

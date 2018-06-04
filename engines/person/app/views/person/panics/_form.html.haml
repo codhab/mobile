@@ -1,0 +1,8 @@
+= simple_form_for @panic, remote: true do |f|
+  .fields
+    .sixteen.wide.field
+      = f.input :station_id, as: :select, label: false, collection: Person::Station.where(status: true).order(:name), value_method: :id, prompt: 'Selecione'
+  %br/
+  .fields
+    .sixteen.wide.field
+      = f.button :submit, "Selecionar Posto", class: 'ui green button', data: { disable_with: t(:disabled_button) }

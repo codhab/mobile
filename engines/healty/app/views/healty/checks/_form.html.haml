@@ -1,0 +1,11 @@
+= simple_form_for [@allotment, @unit,@check], url: @check.new_record? ? allotment_unit_checks_path(@allotment, @unit) : allotment_unit_checks_path(@allotment, @unit, @check), method: @check.new_record? ? :post : :put do |f|
+  = f.input :name, label: "Nome completo"
+  = f.input :cpf, label: "CPF", input_html: { class: 'cpf'}
+  = f.input :born, as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil}, label: "Data de nascimento"
+  = f.input :telephone, label: "Telefone"
+  = f.input :celphone, label: "Celular"
+  = f.input :lat_lng, label: "Longitude & Latitude"
+  = f.input :password, label: "Senha"
+  = f.input :password_confirmation, label: "Confirmação de senha"
+  = f.submit "Salvar", class: 'ui button green fluid'
+  = link_to "Cancelar", allotment_unit_checks_path(@allotment, @unit), class: 'ui button black fluid'

@@ -1,0 +1,53 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{allotments_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Selagens
+    .sub-title
+      %p #{@allotment.name}
+      #{@unit.address}
+.big-divider
+.ui.container-fluid
+  .ui.grid
+    %h4
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td
+                = link_to "<i class='ui pencil icon'></i>".html_safe, new_allotment_unit_check_path(@allotment, @unit), class: 'ui button green icon tiny'
+                Dados do morador
+                %hr/
+              %td
+                %p
+                  %b Nome:
+                  %br/
+                  Fulano da Silva
+                %p
+                  %b CPF:
+                  %br/
+                  000.000.000-00
+                %p
+                  %b Data de nascimento:
+                  %br/
+                  01/01/1990
+                %p
+                  %b Telefone:
+                  %br/
+                  99999999999
+  .ui.grid
+    %h4
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            %tr
+              %td Imagens
+              %td
+                = simple_form_for url_for do |f|
+                  = f.input :image, as: :file, label: false
+                %hr/
+              %td= link_to "Visualizar imagem 1", "#", style: 'color: black'
+              %td= link_to "Visualizar imagem 2", "#", style: 'color: black'

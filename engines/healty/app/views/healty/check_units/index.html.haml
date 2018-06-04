@@ -1,0 +1,20 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{allotments_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Selagens
+    .sub-title Blocos de Selagem
+.big-divider
+.ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %table.ui.celled.table
+          %tbody
+            - @units.each do |unit|
+              %tr
+                %td
+                %td
+                  %p
+                    %b= link_to unit.address, allotment_unit_checks_path(@allotment, unit), style: 'color: black'

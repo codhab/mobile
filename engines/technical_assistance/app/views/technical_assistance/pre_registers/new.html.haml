@@ -1,0 +1,26 @@
+.ui.grid
+  .fifthteen.wide.mobile.column.text-center
+    = image_tag ('/images/titulo_melhorias.png')
+.divider
+  .fifthteen.wide.mobile.colum.text-center
+    %h2
+      Pré-Cadastro
+    %br
+  .fifthteen.wide.mobile.colum.text-center
+    .green_title
+      = render 'form'
+
+:css
+  .green_title{
+    padding:20px 10px;
+  }
+  .green_title label{
+    color:#fff!important;
+    text-align:left;
+  }
+  .ui.form .required.field>.checkbox:after, .ui.form .required.field>label:after, .ui.form .required.fields.grouped>label:after, .ui.form .required.fields:not(.grouped)>.field>.checkbox:after, .ui.form .required.fields:not(.grouped)>.field>label:after{
+    display:none;
+  }
+  .green_title .ui.button{
+    background-color:#fff;
+  }
