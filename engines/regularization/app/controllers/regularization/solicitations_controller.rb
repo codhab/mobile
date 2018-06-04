@@ -17,7 +17,7 @@ module Regularization
       if params[:by_cpf].present?
         if @verify.present?
           redirect_to error_path
-        else          
+        else
           redirect_to new_solicitation_path(subject_id: params[:subject_id], cpf: cpf)
         end
       end
@@ -83,12 +83,13 @@ module Regularization
 
     def set_params
 
-      params.require(:regularization_solicitation).permit(:name, :phone,:cpf, :subject_id, :content, :city_id , :address, :email, :unit_id)
+      params.require(:regularization_solicitation).permit(:name, :phone, :cpf, :subject_id, :content,
+                                                          :city_id, :address, :email, :unit_id,
+                                                          :telephone, :celphone)
     end
 
     def set_solicitation
       @solicitation = Core::Regularization::Solicitation.find(params[:id])
     end
-
   end
 end
