@@ -1,3 +1,5 @@
+
+gem 'lightbox2-rails'
 source 'http://rubygems.org'
 
 gem 'rails', '~> 5.0.2'
@@ -21,6 +23,8 @@ gem 'onesignal'
 gem 'has_scope'
 gem 'simple_captcha', github: 'igormarjes/simple-captcha'
 gem 'bcrypt'
+
+gem 'lightbox2-rails'
 
 
 gem 'core', github: 'codhab/core', branch: :master

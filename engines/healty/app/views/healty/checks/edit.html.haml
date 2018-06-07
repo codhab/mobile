@@ -1,0 +1,16 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{allotments_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Selagens
+    .sub-title
+      %p #{@allotment.name}
+      #{@unit.address}
+.big-divider
+.ui.container-fluid
+  .ui.grid
+    %h4
+    .row
+      .column.segment
+        = render 'form'
