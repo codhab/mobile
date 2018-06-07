@@ -26,7 +26,7 @@ module Regularization
     def new
       @verify_reg = Core::Candidate::Cadastre.where(cpf: params[:cpf])
                                        .where(program_id: [3, 6]).first
-        @solicitation = Core::Regularization::Solicitation.new
+      @solicitation = Core::Regularization::Solicitation.new
 
     end
 
@@ -82,12 +82,13 @@ module Regularization
 
     def set_params
 
-      params.require(:regularization_solicitation).permit(:name, :phone,:cpf, :subject_id, :content, :city_id , :address, :email, :unit_id)
+      params.require(:regularization_solicitation).permit(:name, :phone, :cpf, :subject_id, :content,
+                                                          :city_id, :address, :email, :unit_id,
+                                                          :telephone, :celphone)
     end
 
     def set_solicitation
       @solicitation = Core::Regularization::Solicitation.find(params[:id])
     end
-
   end
 end

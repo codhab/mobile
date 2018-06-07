@@ -4,6 +4,6 @@ module Regularization
 
     def index
     end
-    
+
   end
 end
