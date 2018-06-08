@@ -17,11 +17,11 @@ module Attendance
     validates :rg, :rg_org, :rg_uf, presence: true 
     validates :arrival_df, :adapted_property, :mother_name, presence: true, if: 'self.program_id != 13'
     validates :cid, presence: true, if: 'self.special_condition_id == 2 && self.program_id != 13'
-    validates :spouse_name, presence: true, if: 'self.program_id == 13 && ([2,7].include?(self.civil_state_id))'
-    validates :spouse_cpf, cpf: true, presence: true, if: 'self.program_id == 13 && ([2,7].include?(self.civil_state_id))'
+    validates :spouse_name, presence: true, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
+    validates :spouse_cpf, cpf: true, presence: true, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
     
     # Adaptacao para suprir atendimento aos candidatos de realocacao, program_id: 13 
-    after_save :set_dependent, if: 'self.program_id == 13 && ([2,7].include?(self.civil_state_id))'
+    after_save :set_dependent, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
     
     def spouse_name
       if self.custom_dependent_mirrors.where(kinship_id: 6).present?

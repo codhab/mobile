@@ -27,7 +27,7 @@
 
     - case params[:type].to_s
     - when 'cadastre'
-      - if current_cadastre.program_id == 13
+      - if [12,13].include?(current_cadastre.program_id)
         = render 'cadastre_reallocation'
       - else
         = render 'cadastre'
