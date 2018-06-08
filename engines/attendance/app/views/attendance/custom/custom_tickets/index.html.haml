@@ -1,5 +1,11 @@
 .ui.grid#custom
   - if @ticket.nil?
-    = render 'welcome'
+    - if current_cadastre.program_id == 13
+      = render 'welcome_reallocation'
+    - else
+      = render 'welcome'
   - else
-    = render 'ticket'
+    - if current_cadastre.program_id == 13
+      = render 'ticket_reallocation'
+    - else
+      = render 'ticket'

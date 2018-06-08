@@ -27,7 +27,10 @@
 
     - case params[:type].to_s
     - when 'cadastre'
-      = render 'cadastre'
+      - if current_cadastre.program_id == 13
+        = render 'cadastre_reallocation'
+      - else
+        = render 'cadastre'
     - when 'dependent'
       = render 'dependent'
     - when 'income'

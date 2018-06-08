@@ -26,9 +26,7 @@ gem 'bcrypt'
 
 gem 'lightbox2-rails'
 
-
 gem 'core', github: 'codhab/core', branch: :master
-
 
 group :development, :test do
   gem 'byebug', platform: :mri

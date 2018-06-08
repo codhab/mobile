@@ -16,7 +16,7 @@ class CadastrePresenter < ApplicationPresenter
   end
 
   def humanize_first_name
-    self.name.split(' ')[0].humanize
+    self.name.split(' ')[0]
   end
 
   def humanize_complete_name

@@ -23,6 +23,15 @@
           %i.icon.check.huge.gray{style: 'color: white !important'}
       .text-center
         Habilitação
+
+  - if current_cadastre.program_id == 13
+    .column
+      .ui.segment.text-center{style: 'background-color: #18af25 !important'}
+        %a{href: "#{attendance.custom_custom_tickets_path}"}
+          %i.icon.retweet.huge.gray{style: 'color: white !important'}
+      .text-center
+        Atualização de informações
+
   .column
     .ui.segment.text-center
       - if current_cadastre.notifications.unread.present?
@@ -42,7 +51,7 @@
   -#     .text-center
   -#       Aluguel Legal
 
-  - if @ticket_policy.allow_other_update? || current_cadastre.current_situation.situation_status_id == 74
+  - if (@ticket_policy.allow_other_update? || current_cadastre.current_situation.situation_status_id == 74) && current_cadastre.program_id != 13 
     .column
       .ui.segment.text-center
         %a{href: "#{attendance.new_ticket_path(context_id: 5)}"}
