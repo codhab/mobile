@@ -36,10 +36,10 @@ module Attendance
 
       def set_params
         params.require(:custom_cadastre_mirror)
-              .permit(:rg, :born, :born_uf, :place_birth, 
-                      :gender, :civil_state_id, :rg_org, :rg_uf, 
-                      :arrival_df, :special_condition_id, 
-                      :special_condition_type_id, :nis, :cid, 
+              .permit(:rg, :born, :born_uf, :place_birth,
+                      :gender, :civil_state_id, :rg_org, :rg_uf,
+                      :arrival_df, :special_condition_id,
+                      :special_condition_type_id, :nis, :cid,
                       :adapted_property, :mother_name,
                       :spouse_name, :spouse_cpf)
       end
