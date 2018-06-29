@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post  '/auth',          to: 'sessions#new'
 
   get  '/authenticate',   to: 'sessions#authenticate'
+  get  '/logout',         to: 'sessions#logout'
 
   mount Attendance::Engine           => '/attendance',              as: :attendance
   mount Candidate::Engine            => '/candidate',               as: :candidate

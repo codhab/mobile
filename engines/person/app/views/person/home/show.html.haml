@@ -1,10 +1,10 @@
 .ui.grid.container
-  .column{style: 'width: 25%'}
+  .column{style: 'width: 20%'}
     - if @staff.avatar?
       = link_to image_tag("#{@staff.avatar_url}", class: 'ui mini circular image big-yellow-border custom-avatar-tiny '), '#'
     - else
       = link_to image_tag('http://www.codhab.df.gov.br/sample/avatar.jpg', class: 'ui mini circular image big-yellow-border custom-avatar-tiny '), '#'
-  .column{style: 'width: 75%'}
+  .column{style: 'width: 65%'}
     .title-header
       #{@staff.hello}
       %p.mini-text
@@ -12,6 +12,8 @@
       %p
         %span.ui.label.yellow.mini.font-black
           #{@staff.name}
+  .column{style: 'width: 15%'}
+    %a{href: "/logout"} Sair
 .row
   .column.wide.four
     .big-divider

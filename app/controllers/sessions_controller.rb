@@ -39,6 +39,11 @@ class SessionsController < ActionController::Base
     end
   end
 
+  def logout
+    session[:staff_id] = nil
+    redirect_to root_path
+  end
+
 
   def create
 
