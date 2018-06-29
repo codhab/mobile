@@ -22,7 +22,7 @@
           %p
             %b Situação do sorteio:
             %br/
-            - if [1,2].include? @interest.allotment_id
+            - if [2,3,4,6].include? @interest.allotment_id
               %span.bold{style: 'color: green'} Sorteio já realizado!
             - else
               %span.bold{style: 'color: blue'} Sorteio ainda não realizado!

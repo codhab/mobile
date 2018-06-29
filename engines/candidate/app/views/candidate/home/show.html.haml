@@ -16,13 +16,22 @@
 .divider
 .ui.three.column.grid.container.black
   /- if current_cadastre.id == 245419 || current_cadastre.cadastre_convocations.where(status: true, convocation_id: 1649).present?
-  - if current_cadastre.id == 245419 || current_cadastre.current_situation.situation_status_id == 3
+  - if current_cadastre.id == 245419 || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 3)
     .column
       .ui.segment.text-center{style: 'background-color: #0892ff !important'}
         %a{href: "#{attendance.custom_custom_tickets_path}"}
           %i.icon.check.huge.gray{style: 'color: white !important'}
       .text-center
         Habilitação
+
+  - if [12,13].include?(current_cadastre.program_id)
+    .column
+      .ui.segment.text-center{style: 'background-color: #18af25 !important'}
+        %a{href: "#{attendance.custom_custom_tickets_path}"}
+          %i.icon.retweet.huge.gray{style: 'color: white !important'}
+      .text-center
+        Atualização de informações
+
   .column
     .ui.segment.text-center
       - if current_cadastre.notifications.unread.present?
@@ -42,7 +51,7 @@
   -#     .text-center
   -#       Aluguel Legal
 
-  - if @ticket_policy.allow_other_update? || current_cadastre.current_situation.situation_status_id == 74
+  - if (@ticket_policy.allow_other_update? || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 74)) && ![12,13].include?(current_cadastre.program_id)
     .column
       .ui.segment.text-center
         %a{href: "#{attendance.new_ticket_path(context_id: 5)}"}

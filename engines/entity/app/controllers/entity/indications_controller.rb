@@ -5,16 +5,16 @@ module Entity
     before_action :set_units
 
     def index
-      redirect_to action: :new
+      @enterprises = current_entity.enterprises
     end
 
     def new
-      @enterprise = current_entity.enterprises.last 
+      @enterprise = current_entity.enterprises.find(params[:enterprise_id])
       @indication = Core::Entity::Indication.new(enterprise_id: @enterprise.id)
     end
 
     def create
-      @enterprise = current_entity.enterprises.last 
+      @enterprise = current_entity.enterprises.find(params[:enterprise_id])
       @indication = Core::Entity::Indication.new(set_params)
 
       @indication.enterprise_id = @enterprise.id

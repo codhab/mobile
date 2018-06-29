@@ -1,0 +1,88 @@
+= simple_form_for @cadastre_mirror, url: custom_custom_ticket_custom_cadastre_path(@ticket,@cadastre_mirror), method: :put do |f|
+
+  - if @cadastre_mirror.errors.any?
+    .ui.label.red
+      Verifique os dados informados, existe informação faltando ou incorreta.
+    %br
+    %br
+    %br
+  #step_one
+    %label
+      %b Nome:
+    %p= @ticket.cadastre_mirror.name
+    %label
+      %b CPF:
+    %p= @ticket.cadastre_mirror.cpf
+    = f.input :born, as: :string, label: 'Data de nascimento', input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil }
+    = f.input :born_uf, label: "UF de nascimento", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: 'Selecione...'
+    = f.input :place_birth, label: "Cidade de nascimento"
+    = f.input :gender, label: 'Sexo', as: :select, collection: Core::Candidate::Cadastre.genders, include_blank: false
+    = f.input :civil_state_id, label: "Estado Civil", as: :select, collection: Core::Candidate::CivilState.where(status:true), include_blank: 'Selecione...', input_html: { id: 'civil_state_id' }
+    %br
+    = link_to "Próxima página", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button yellow fluid step_one_next'
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+  #step_two{style: 'display: none'}
+    = f.input :rg, label: "Nº Documento de identificação"
+    = f.input :rg_org, label: "Órgão expedidor"
+    = f.input :rg_uf, label: "UF Documento de identificação", as: :select, collection: Core::Address::State.order(:name), label_method: :acronym, include_blank: false
+    = f.input :arrival_df, as: :string, label: 'Data de chegada ao DF', input_html: { class: 'date', value: f.object.arrival_df.present? ? localize(f.object.arrival_df) : nil }
+    = link_to "Página anterior", "javascript:void(0)", onclick: "show_step('step_one')", class: 'ui button'
+    = link_to "Próxima página", "javascript:void(0)", onclick: "show_step('step_three')", class: 'ui button yellow', style: 'float: right'
+  #step_three{style: 'display: none'}
+    = f.input :special_condition_id, collection: {"Sim": 2, "Não": 1}, label: 'Possui deficiência?', as: :select, include_blank: false, input_html: { id: 'special_condition_id'}
+    #special_condition_type_id{ style: "#{f.object.special_condition_id == 2 ? 'display: block;' : 'display: none;'}"}
+      = f.input :special_condition_type_id, label: "Tipo de deficiência", as: :select, collection: Core::Candidate::SpecialConditionType.all, include_blank: false
+    #spouse{style: [2,7].include?(f.object.civil_state_id) ? 'display: block' : 'display: none;' }
+      = f.input :spouse_name, label: "Nome (Cônjuge)"
+      = f.input :spouse_cpf, label: "CPF (Cônjuge)", input_html: { class: 'cpf' }
+    %br/
+    %br/
+    = link_to "Página anterior", "javascript:void(0)", onclick: "show_step('step_two')", class: 'ui button'
+    = f.submit "Próxima página", class: 'ui button yellow next', style: 'float: right'
+/    = link_to "Próxima etapa", new_custom_custom_ticket_custom_document_path(type: 'cadastre')
+
+
+
+:javascript
+  $(document).ready(function() {
+    $(".step_one_next").show();
+
+    $("#civil_state_id").on('change', function() {
+      if($(this).val() == '2' || $(this).val() == '7') {
+        $("#spouse").show();
+      } else {
+        $("#spouse").hide();
+      }
+    });
+
+    $("#special_condition_id").on('change', function(){
+      if($(this).val() == '2') {
+        $('#cid').show();
+        $("#special_condition_type_id").show();
+      } else {
+        $('#cid').hide();
+        $("#special_condition_type_id").hide();
+      }
+    })
+  })
+
+  function show_step(step) {
+    if(step == 'step_one') {
+      $("#label").show();
+    } else {
+      $("#label").hide();
+    }
+
+
+    $("#step_one").hide()
+    $("#step_two").hide()
+    $("#step_three").hide()
+    $("#step_four").hide()
+    $("#"+step).fadeIn();
+  }

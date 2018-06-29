@@ -17,26 +17,34 @@
           %tbody
             %tr
               %td
-                = link_to "<i class='ui pencil icon'></i>".html_safe, new_allotment_unit_check_path(@allotment, @unit), class: 'ui button green icon tiny'
+                - if @unit.checks.present?
+                  = link_to "<i class='ui pencil icon'></i>".html_safe, edit_allotment_unit_check_path(@allotment, @unit, @unit.checks.last), class: 'ui button green icon tiny'
+                - else
+                  = link_to "<i class='ui pencil icon'></i>".html_safe, new_allotment_unit_check_path(@allotment, @unit), class: 'ui button green icon tiny'
                 Dados do morador
                 %hr/
-              %td
-                %p
-                  %b Nome:
-                  %br/
-                  Fulano da Silva
-                %p
-                  %b CPF:
-                  %br/
-                  000.000.000-00
-                %p
-                  %b Data de nascimento:
-                  %br/
-                  01/01/1990
-                %p
-                  %b Telefone:
-                  %br/
-                  99999999999
+              - if @unit.checks.present?
+                - @unit.checks.each do |check|
+                  %td
+                    %p
+                      %b Nome:
+                      %br/
+                      = check.name
+                    %p
+                      %b CPF:
+                      %br/
+                      = check.cpf
+                    %p
+                      %b Data de nascimento:
+                      %br/
+                      = check.born.strftime("%d/%m/%Y") rescue nil
+                    %p
+                      %b Telefone:
+                      %br/
+                      = check.telephone
+              - else
+                %td
+                  %i Morador não identificado
   .ui.grid
     %h4
     .row
@@ -49,5 +57,5 @@
                 = simple_form_for url_for do |f|
                   = f.input :image, as: :file, label: false
                 %hr/
-              %td= link_to "Visualizar imagem 1", "#", style: 'color: black'
-              %td= link_to "Visualizar imagem 2", "#", style: 'color: black'
+              - @unit.check_images.each_with_index do |image, index|
+                %td= link_to "Visualizar imagem #{index + 1}", "#", style: 'color: black'

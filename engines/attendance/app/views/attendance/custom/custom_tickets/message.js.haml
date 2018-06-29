@@ -1,2 +1,5 @@
-$('.ui.modal').html("#{escape_javascript(render 'message')}");
+- if [12,13].include?(current_cadastre.program_id)
+  $('.ui.modal').html("#{escape_javascript(render 'message_reallocation')}");
+- else
+  $('.ui.modal').html("#{escape_javascript(render 'message')}");
 $('.ui.modal').modal('show');
