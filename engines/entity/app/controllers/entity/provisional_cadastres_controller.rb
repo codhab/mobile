@@ -4,15 +4,18 @@ module Entity
   class ProvisionalCadastresController < ApplicationController
 
     def new
+      @enterprise = current_entity.enterprises.find(params[:enterprise_id])
       @provisional = Entity::ProvisionalCadastre.new
+      @provisional.enterprise_id = @enterprise.id
     end
-
+    
     def create
-      @provisional = Entity::ProvisionalCadastre.new(set_params)
+      @enterprise   = current_entity.enterprises.find(params[:enterprise_id])
+      @provisional  = Entity::ProvisionalCadastre.new(set_params)
       @provisional.entity_id = current_entity.id 
+      @provisional.enterprise_id = @enterprise.id
       
       if @provisional.save
-          
         flash[:success] = t :success
         redirect_to indications_path
       else

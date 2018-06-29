@@ -34,7 +34,7 @@
                 = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
                   = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
                   - if @indication.cpf_create
-                    = link_to "Deseja cadastrar o candidato?", new_provisional_cadastre_path, class: 'ui button blue fluid'
+                    = link_to "Deseja cadastrar o candidato?", new_provisional_cadastre_path(enterprise_id: @enterprise.id), class: 'ui button blue fluid'
                     /= f.submit "Indicar candidato", class: 'ui button green fluid'
                   - else
                     = f.submit "Indicar candidato", class: 'ui button green fluid'
