@@ -17,16 +17,21 @@ module Attendance
     validates :rg, :rg_org, :rg_uf, presence: true
     validates :arrival_df, :adapted_property, :mother_name, presence: true, if: 'self.program_id != 13'
     validates :cid, presence: true, if: 'self.special_condition_id == 2 && self.program_id != 13'
-    validates :spouse_name, presence: true, if: '[13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
-    validates :spouse_cpf, cpf: true, presence: true, if: '[13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
+    validates :spouse_name, presence: true, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
+    validates :spouse_cpf, cpf: true, presence: true, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
 
     # Adaptacao para suprir atendimento aos candidatos de realocacao, program_id: 13
-    after_save :set_dependent, if: '[13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
+    after_save :set_dependent, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
 
     def spouse_name
+      
       if self.custom_dependent_mirrors.where(kinship_id: 6).present?
         spouse = self.custom_dependent_mirrors.where(kinship_id: 6).last
-        @spouse_name = spouse.name
+        if @spouse_name == spouse.name 
+          @spouse_name = spouse.name
+        else 
+          @spouse_name
+        end
       else
         @spouse_name
       end
@@ -35,7 +40,13 @@ module Attendance
     def spouse_cpf
       if self.custom_dependent_mirrors.where(kinship_id: 6).present?
         spouse = self.custom_dependent_mirrors.where(kinship_id: 6).last
-        @spouse_cpf = spouse.cpf
+        
+        if @spouse_cpf == spouse.cpf
+          @spouse_cpf = spouse.cpf
+        else 
+          @spouse_cpf
+        end
+
       else
         @spouse_cpf
       end
@@ -51,6 +62,11 @@ module Attendance
           kinship_id: 6
         })
         dependent.save!(validate: false)
+      else 
+        dependent = self.custom_dependent_mirrors.last 
+        dependent.cpf  = self.spouse_cpf
+        dependent.name = self.spouse_name
+        dependent.save
       end
     end
 
