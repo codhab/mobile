@@ -15,8 +15,8 @@ module Attendance
 
     validates :born, :born_uf, :place_birth, :gender, :civil_state_id, presence: true
     validates :rg, :rg_org, :rg_uf, presence: true
-    validates :arrival_df, :adapted_property, :mother_name, presence: true, if: 'self.program_id != 13'
-    validates :cid, presence: true, if: 'self.special_condition_id == 2 && self.program_id != 13'
+    validates :arrival_df, presence: true, unless: '[12,13].include?(self.program_id)'
+    validates :cid, presence: true, if: 'self.special_condition_id == 2 && !([12,13].include?(self.program_id))'
     validates :spouse_name, presence: true, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
     validates :spouse_cpf, cpf: true, presence: true, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
 
@@ -24,12 +24,12 @@ module Attendance
     after_save :set_dependent, if: '[12,13].include?(self.program_id) && ([2,7].include?(self.civil_state_id))'
 
     def spouse_name
-      
+
       if self.custom_dependent_mirrors.where(kinship_id: 6).present?
         spouse = self.custom_dependent_mirrors.where(kinship_id: 6).last
-        if @spouse_name == spouse.name 
+        if @spouse_name == spouse.name
           @spouse_name = spouse.name
-        else 
+        else
           @spouse_name
         end
       else
@@ -40,10 +40,10 @@ module Attendance
     def spouse_cpf
       if self.custom_dependent_mirrors.where(kinship_id: 6).present?
         spouse = self.custom_dependent_mirrors.where(kinship_id: 6).last
-        
+
         if @spouse_cpf == spouse.cpf
           @spouse_cpf = spouse.cpf
-        else 
+        else
           @spouse_cpf
         end
 
@@ -62,11 +62,11 @@ module Attendance
           kinship_id: 6
         })
         dependent.save!(validate: false)
-      else 
-        dependent = self.custom_dependent_mirrors.last 
+      else
+        dependent = self.custom_dependent_mirrors.last
         dependent.cpf  = self.spouse_cpf
         dependent.name = self.spouse_name
-        dependent.save
+        dependent.save!(validate: false)
       end
     end
 
