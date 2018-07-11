@@ -16,7 +16,7 @@
             %br
 
             Se seu CPF estiver divergente, procure um dos nossos postos de atendimento presencial. Caso o nome esteja divergente, corrigiremos de acordo com a documentação enviada.
-      - if current_cadastre.program_id == 13
+      - if [12,13].include?(current_cadastre.program_id)
         = render 'form_reallocation'
       - else
         = render 'form'
