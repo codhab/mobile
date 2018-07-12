@@ -3,50 +3,61 @@
     color: black !important;
     text-decoration: underline !important;
   }
+- if Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).where('supervisor_date is not null and attendant_date is not null and supervisor is true').present?
+  .ui.grid
+    .two.wide.mobile.column
+      %a{href: "#{candidate.root_path}"}
+        %i.big.arrow.left.icon
+    .thirteen.wide.mobile.column.text-center
+      .title-header Atendimento
+      .sub-title Processo de habilitação
+      .divider
+    .ui.label.green.fluid{style: 'text-align: center; font-size: 14px'}
+      %p Parabéns, sua atualização foi deferida.
+- else
+  .ui.grid
+    .two.wide.mobile.column
+      %a{href: "#{candidate.root_path}"}
+        %i.big.arrow.left.icon
+    .thirteen.wide.mobile.column.text-center
+      .title-header Atendimento
+      .sub-title Processo de habilitação
+      .divider
 
-.ui.grid
-  .two.wide.mobile.column
-    %a{href: "#{candidate.root_path}"}
-      %i.big.arrow.left.icon
-  .thirteen.wide.mobile.column.text-center
-    .title-header Atendimento
-    .sub-title Processo de habilitação
-    .divider
+    - if (@ticket.action_one  && @ticket.action_four && !@ticket.request)
+      .ui.label.green.fluid{style: 'text-align: justify; font-size: 14px'}
+        %p Parabéns, você concluiu as 2 etapas do atendimento.
+        %p Posteriormente, você receberá uma notificação pelo aplicativo sobre sua atualização no programa habitacional do DF.
+    - elsif !@ticket.request
+      .ui.label.blue{style: 'margin-bottom: 30px'}
+        %p{style: 'text-align: justify; font-size: 14px !important'}
+          Para finalizar o atendimento é necessário que você conclua as 2 etapas abaixo:
+    - else
+      .ui.label.yellow.fluid{style: 'text-align: justify; font-size: 14px; color: black !important;'}
+        #message{style: 'text-align: justify; font-size: 14px !important; font-weight: 100 !important;'}
+          %p{style: 'text-align: justify; font-size: 14px !important;'}
+            %b Atenção!
+            - @ticket.requests.where(closed:  false).each do |request|
+              = request.description.html_safe
 
-  - if (@ticket.action_one  && @ticket.action_four && !@ticket.request)
-    .ui.label.green.fluid{style: 'text-align: justify; font-size: 14px'}
-      %p Parabéns, você concluiu as 2 etapas do atendimento.
-      %p Posteriormente, você receberá uma notificação pelo aplicativo sobre sua atualização no programa habitacional do DF.
-  - elsif !@ticket.request
-    .ui.label.blue{style: 'margin-bottom: 30px'}
-      %p{style: 'text-align: justify; font-size: 14px !important'}
-        Para finalizar o atendimento é necessário que você conclua as 2 etapas abaixo:
-  - else
-    .ui.label.yellow.fluid{style: 'text-align: justify; font-size: 14px; color: black !important;'}
-      #message{style: 'text-align: justify; font-size: 14px !important; font-weight: 100 !important;'}
-        %p{style: 'text-align: justify; font-size: 14px !important;'}
-          %b Atenção!
-          - @ticket.requests.where(closed:  false).each do |request|
-            = request.description.html_safe
+    %table.ui.table.celled
+      %tbody{style: "#{@ticket.action_one ? 'background-color: #51a551' : ''}"}
+        %tr
+          %td
+            - if @ticket.action_one
+              %i.icon.check{style: 'color: white'}
+              = link_to "Dados básicos", custom_custom_ticket_message_path(@ticket, step: 'cadastre'), remote: true, style: "#{@ticket.action_one ? 'color: white' : ''}"
+            - else
+              %i.icon.warning{style: 'color: gray'}
+              = link_to "Dados básicos", edit_custom_custom_ticket_custom_cadastre_path(@ticket,   @ticket.cadastre_mirror_id), style: "#{@ticket.action_one ? 'color: white' : ''}"
+            %br
 
-  %table.ui.table.celled
-    %tbody{style: "#{@ticket.action_one ? 'background-color: #51a551' : ''}"}
-      %tr
-        %td
-          - if @ticket.action_one
-            %i.icon.check{style: 'color: white'}
-            = link_to "Dados básicos", custom_custom_ticket_message_path(@ticket, step: 'cadastre'), remote: true, style: "#{@ticket.action_one ? 'color: white' : ''}"
-          - else
-            %i.icon.warning{style: 'color: gray'}
-            = link_to "Dados básicos", edit_custom_custom_ticket_custom_cadastre_path(@ticket,   @ticket.cadastre_mirror_id), style: "#{@ticket.action_one ? 'color: white' : ''}"
-          %br
-
-    %tbody{style: "#{@ticket.action_four ? 'background-color: #51a551' : ''}"}
-      %tr
-        %td
-          - if @ticket.action_four
-            %i.icon.check{style: 'color: white'}
-            = link_to "Contatos pessoais", custom_custom_ticket_message_path(@ticket, step: 'contact'), remote: true, style: "#{@ticket.action_four ? 'color: white' : ''}"
-          - else
-            %i.icon.warning{style: 'color: gray'}
-            = link_to "Contatos pessoais", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
+      %tbody{style: "#{@ticket.action_four ? 'background-color: #51a551' : ''}"}
+        %tr
+          %td
+            - if @ticket.action_four
+              %i.icon.check{style: 'color: white'}
+              = link_to "Contatos pessoais", custom_custom_ticket_message_path(@ticket, step: 'contact'), remote: true, style: "#{@ticket.action_four ? 'color: white' : ''}"
+            - else
+              %i.icon.warning{style: 'color: gray'}
+              = link_to "Contatos pessoais", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
