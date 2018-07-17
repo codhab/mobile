@@ -1,0 +1,14 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Indicação ao Empreendimento
+    .sub-title Recusa de indicação
+.ui.grid.container
+  .column
+    = simple_form_for @indication, url: not_accepted_path, method: :put do |f|
+      = f.input :id, as: :hidden, input_html:{ value: params[:id]}
+      = f.input :accepted_observation, label: 'Motivo da recusa'
+      .mini-margin
+      = f.submit "Recusar Empreendimento", class: 'ui button green fluid', data: { disable_with: t(:disable_with) }

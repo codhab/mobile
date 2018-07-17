@@ -2,11 +2,16 @@ Candidate::Engine.routes.draw do
 
   root 'home#show'
 
+  get 'accept', to: 'home#accept', as: 'accept'
+  get 'not_accept', to: 'home#not_accept', as: 'not_accept'
+  put 'not_accepted', to: 'home#not_accepted'
+
   resources :requeriments
   resources :legal_rents, only: [:new]
   resources :cadastres, only: [:show] do
     get '/search', to: 'cadastres#search', as: :search, on: :collection
     get '/result', to: 'cadastres#result', as: :result, on: :collection
+
     collection do
       get 'detail',       to: 'cadastres#detail'
       get 'pontuation',   to: 'cadastres#pontuation'

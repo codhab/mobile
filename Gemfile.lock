@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 9a70f80f5a5dc37ad9bfd9569e3b78655b4d9dc9
+  revision: 2a242663972d4ad97606f535fed2270cbcb0f0f9
   branch: master
   specs:
     core (0.1.0)
@@ -178,8 +178,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery-validation-rails (1.16.0)
-    js_regex (2.2.1)
-      regexp_parser (>= 0.4.11, <= 0.5.0)
+    js_regex (2.2.2)
+      regexp_parser (>= 0.5.0, <= 0.6.0)
     kgio (2.11.2)
     lightbox2-rails (2.8.2.1)
       railties (>= 3.1)
@@ -267,7 +267,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stackprof (0.2.11)
+    stackprof (0.2.12)
     temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -278,7 +278,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.12)
+    uglifier (4.1.14)
       execjs (>= 0.3.0, < 3)
     unicorn (5.4.0)
       kgio (~> 2.6)

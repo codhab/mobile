@@ -14,143 +14,159 @@
           #{current_cadastre.current_situation_name}
 .ui.grid.container
 .divider
-.ui.three.column.grid.container.black
-  /- if current_cadastre.id == 245419 || current_cadastre.cadastre_convocations.where(status: true, convocation_id: 1649).present?
-  - if current_cadastre.id == 245419 || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 3)
-    .column
-      .ui.segment.text-center{style: 'background-color: #0892ff !important'}
-        %a{href: "#{attendance.custom_custom_tickets_path}"}
-          %i.icon.check.huge.gray{style: 'color: white !important'}
-      .text-center
-        Habilitação
-
-  - if [12,13].include?(current_cadastre.program_id)
-    - if Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).where('supervisor_date is not null and attendant_date is not null and supervisor is true').present?
+.ui.one.column.grid.container.black
+  - if params[:m].present?
+    %p
+      %span.ui.label.blue.medium.font-black.fluid
+        = params[:m]
+  - indication = current_cadastre.enterprise_cadastres.where('inactive is not true and accepted_date is null').last
+  - indication_active = current_cadastre.enterprise_cadastres.where('inactive is not true').last
+  - if indication.present?
+    %p
+      %span.ui.label.green.medium.font-black
+        = "Você foi indicado no dia: #{indication.created_at.strftime('%d/%m/%Y') rescue nil} para o empreendimento: #{indication.enterprise.name rescue nil}, você aceita participar do empreendimento?"
+    .ui{style: 'margin-left: 30%'}
+      = link_to "Sim", accept_path(id: indication.id), class: 'ui mini button green', style: 'color: white !important'
+      = link_to "Não", not_accept_path(id: indication.id), class: 'ui mini button red', style: 'color: white !important'
+- if (indication_active.present? && indication_active.accepted_date.present?) || !indication_active.present?
+  .divider
+  .ui.three.column.grid.container.black
+    /- if current_cadastre.id == 245419 || current_cadastre.cadastre_convocations.where(status: true, convocation_id: 1649).present?
+    - if current_cadastre.id == 245419 || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 3)
       .column
-        .ui.segment.text-center{style: 'background-color: #1869af !important'}
+        .ui.segment.text-center{style: 'background-color: #0892ff !important'}
           %a{href: "#{attendance.custom_custom_tickets_path}"}
             %i.icon.check.huge.gray{style: 'color: white !important'}
         .text-center
-          Atualização de informações (Deferido)
-    - else
+          Habilitação
+
+    - if [12,13].include?(current_cadastre.program_id)
+      - if Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).where('supervisor_date is not null and attendant_date is not null and supervisor is true').present?
+        .column
+          .ui.segment.text-center{style: 'background-color: #1869af !important'}
+            %a{href: "#{attendance.custom_custom_tickets_path}"}
+              %i.icon.check.huge.gray{style: 'color: white !important'}
+          .text-center
+            Atualização de informações (Deferido)
+      - else
+        .column
+          .ui.segment.text-center{style: 'background-color: #18af25 !important'}
+            %a{href: "#{attendance.custom_custom_tickets_path}"}
+              %i.icon.retweet.huge.gray{style: 'color: white !important'}
+          .text-center
+            Atualização de informações
+
+    .column
+      .ui.segment.text-center
+        - if current_cadastre.notifications.unread.present?
+          .floating.ui.red.label{style:"top: -0.8em; left: 100%;"}
+            = current_cadastre.notifications.unread.count
+        %a{href: "#{attendance.notifications_path}"}
+          %i.icon.alarm.huge.gray
+      .text-center
+        Notificações
+
+
+    -# - if current_cadastre.general.present? && current_cadastre.general.is_older && [4,54,67].include?(current_cadastre.general.situation_status_id) && current_cadastre.income.to_f <= 1800.0
+    -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+    -#     .ui.segment.text-center{style: 'background-color: rgb(129, 195, 65) !important'}
+    -#       %a{href: "#{candidate.new_legal_rent_path}"}
+    -#         %i.icon.home.huge.gray.text-center.text-center{style: 'color: white !important;'}
+    -#     .text-center
+    -#       Aluguel Legal
+
+    - if (@ticket_policy.allow_other_update? || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 74)) && ![12,13].include?(current_cadastre.program_id)
       .column
-        .ui.segment.text-center{style: 'background-color: #18af25 !important'}
-          %a{href: "#{attendance.custom_custom_tickets_path}"}
-            %i.icon.retweet.huge.gray{style: 'color: white !important'}
+        .ui.segment.text-center
+          %a{href: "#{attendance.new_ticket_path(context_id: 5)}"}
+            %i.icon.edit.huge
         .text-center
-          Atualização de informações
-
-  .column
-    .ui.segment.text-center
-      - if current_cadastre.notifications.unread.present?
-        .floating.ui.red.label{style:"top: -0.8em; left: 100%;"}
-          = current_cadastre.notifications.unread.count
-      %a{href: "#{attendance.notifications_path}"}
-        %i.icon.alarm.huge.gray
-    .text-center
-      Notificações
-
-
-  -# - if current_cadastre.general.present? && current_cadastre.general.is_older && [4,54,67].include?(current_cadastre.general.situation_status_id) && current_cadastre.income.to_f <= 1800.0
-  -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-  -#     .ui.segment.text-center{style: 'background-color: rgb(129, 195, 65) !important'}
-  -#       %a{href: "#{candidate.new_legal_rent_path}"}
-  -#         %i.icon.home.huge.gray.text-center.text-center{style: 'color: white !important;'}
-  -#     .text-center
-  -#       Aluguel Legal
-
-  - if (@ticket_policy.allow_other_update? || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 74)) && ![12,13].include?(current_cadastre.program_id)
+          Atualizar Meus Dados
+    - if @ticket_policy.allow_regularization_update?
+      .column
+        .ui.segment.text-center
+          %a{href: "#{attendance.new_ticket_path(context_id: 4)}"}
+            %i.icon.edit.huge
+        .text-center
+          Atualizar Meus Dados
+    - if @ticket_policy.allow_able_update?
+      .column
+        .ui.segment.text-center
+          %a{href: "#{attendance.new_ticket_path(context_id: 3)}"}
+            %i.icon.edit.huge
+        .text-center
+          Atualizar Meus Dados
+    - if @ticket_policy.allow_recadastre_update?
+      .column
+        .ui.segment.text-center.semantic-black
+          %a{href: "#{attendance.new_ticket_path(context_id: 1)}"}
+            %i.icon.retweet.huge.gray.yellow
+        .text-center
+          Atualização Cadastral
+    /- if @ticket_policy.allow_convoked_update?
+    /  .column
+    /    .ui.segment.text-center
+    /      %a{href: "#{attendance.new_ticket_path(context_id: 2)}"}
+    /        %i.icon.checkmark.huge
+    /    .text-center
+    /      Habilitação
     .column
       .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path(context_id: 5)}"}
-          %i.icon.edit.huge
+        %a{href: "#{attendance.tickets_path}"}
+          %i.icon.refresh.huge.gray
       .text-center
-        Atualizar Meus Dados
-  - if @ticket_policy.allow_regularization_update?
-    .column
-      .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path(context_id: 4)}"}
-          %i.icon.edit.huge
-      .text-center
-        Atualizar Meus Dados
-  - if @ticket_policy.allow_able_update?
-    .column
-      .ui.segment.text-center
-        %a{href: "#{attendance.new_ticket_path(context_id: 3)}"}
-          %i.icon.edit.huge
-      .text-center
-        Atualizar Meus Dados
-  - if @ticket_policy.allow_recadastre_update?
-    .column
-      .ui.segment.text-center.semantic-black
-        %a{href: "#{attendance.new_ticket_path(context_id: 1)}"}
-          %i.icon.retweet.huge.gray.yellow
-      .text-center
-        Atualização Cadastral
-  /- if @ticket_policy.allow_convoked_update?
-  /  .column
-  /    .ui.segment.text-center
-  /      %a{href: "#{attendance.new_ticket_path(context_id: 2)}"}
-  /        %i.icon.checkmark.huge
-  /    .text-center
-  /      Habilitação
-  .column
-    .ui.segment.text-center
-      %a{href: "#{attendance.tickets_path}"}
-        %i.icon.refresh.huge.gray
-    .text-center
-      Minhas Atualizações
-  - if @ticket_policy.allow_chats?
-    .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
-      .ui.segment.text-center
-        %a{href: "#{attendance.chats_path}"}
-          %i.icon.comment.outline.huge.gray.text-center
-      .text-center
-        Minhas Conversas
-  .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-    .ui.segment.text-center
-      %a{href: "#{attendance.requeriments_path}"}
-        %i.icon.file.text.outline.huge.gray.text-center.text-center
-    .text-center
-      Meus Requerimentos
-  -# - if @ticket_policy.allow_to_manifestation?
-  -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-  -#     .ui.segment.text-center
-  -#       %a{href: "#{attendance.open_doors_path}"}
-  -#         %i.icon.building.huge.gray.text-center.text-center
-  -#     .text-center
-  -#       Portas abertas
-
-  - if @ticket_policy.allow_to_question?
+        Minhas Atualizações
+    - if @ticket_policy.allow_chats?
+      .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
+        .ui.segment.text-center
+          %a{href: "#{attendance.chats_path}"}
+            %i.icon.comment.outline.huge.gray.text-center
+        .text-center
+          Minhas Conversas
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
       .ui.segment.text-center
-        %a{href: "#{attendance.new_form_path(form_id: 6)}"}
-          %i.icon.help.circle.outline.huge.gray.text-center.text-center
+        %a{href: "#{attendance.requeriments_path}"}
+          %i.icon.file.text.outline.huge.gray.text-center.text-center
       .text-center
-        Questinário
+        Meus Requerimentos
+    -# - if @ticket_policy.allow_to_manifestation?
+    -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+    -#     .ui.segment.text-center
+    -#       %a{href: "#{attendance.open_doors_path}"}
+    -#         %i.icon.building.huge.gray.text-center.text-center
+    -#     .text-center
+    -#       Portas abertas
 
-  - if @ticket_policy.allow_to_question_two?
-    .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
-      .ui.segment.text-center
-        %a{href: "#{attendance.new_form_path(form_id: 7)}"}
-          %i.icon.help.circle.outline.huge.gray.text-center.text-center
-      .text-center
-        Pesquisa
-
-
-
-
-- if @ticket_policy.allow_to_question_two_modal?
-  .ui.modal{style: 'display: none'}
-    .header.text-center
-      Aviso
-    .image.content
-      .description
-        .ui.header
-        %h3.text-center
-          %p Notamos que você ainda não preencheu a pesquisa.
+    - if @ticket_policy.allow_to_question?
+      .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+        .ui.segment.text-center
+          %a{href: "#{attendance.new_form_path(form_id: 6)}"}
+            %i.icon.help.circle.outline.huge.gray.text-center.text-center
         .text-center
-          = link_to "Toque para preencher", attendance.new_form_path(form_id: 7) , class: 'ui button yellow fluid'
+          Questinário
+
+    - if @ticket_policy.allow_to_question_two?
+      .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
+        .ui.segment.text-center
+          %a{href: "#{attendance.new_form_path(form_id: 7)}"}
+            %i.icon.help.circle.outline.huge.gray.text-center.text-center
+        .text-center
+          Pesquisa
+
+
+
+
+  - if @ticket_policy.allow_to_question_two_modal?
+    .ui.modal{style: 'display: none'}
+      .header.text-center
+        Aviso
+      .image.content
+        .description
+          .ui.header
+          %h3.text-center
+            %p Notamos que você ainda não preencheu a pesquisa.
+          .text-center
+            = link_to "Toque para preencher", attendance.new_form_path(form_id: 7) , class: 'ui button yellow fluid'
 
 
   :javascript

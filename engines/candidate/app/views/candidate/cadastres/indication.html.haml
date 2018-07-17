@@ -32,6 +32,24 @@
                         Situação da indicação
                       .description
                         = indication.inactive == true ? "Indicação Inativa" : "Indicação Ativa"
+              - if indication.accepted == true &&  indication.accepted_date.present?
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          Aceito pelo candidato?
+                        .description
+                          = "Sim em: #{indication.accepted_date.strftime('%d/%m/%Y') rescue nil}"
+              - if indication.accepted == false &&  indication.accepted_date.present?
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          Aceito pelo candidato?
+                        .description
+                          = "Não em: #{indication.accepted_date.strftime('%d/%m/%Y') rescue nil}"
               - if indication.inactive == true
                 %tr
                   %td
@@ -41,6 +59,17 @@
                           Data de inativação
                         .description
                           = indication.inactive_date.strftime('%d/%m/%Y') rescue nil
+                %tr
+                  %td
+                    .ui.list
+                      .item
+                        %a.header
+                          Observação
+                        .description
+                          - situation = indication.enterprise_cadastre_situations.joins(:enterprise_situation_status).where('candidate_enterprise_situation_statuses.situation_action_id = 2').last rescue nil
+                          = situation.enterprise_situation_status.name rescue nil
+                          %br
+                          = situation.observation rescue nil
   - else
     .column
       .ui.segment
