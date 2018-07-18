@@ -23,11 +23,30 @@
   - indication_active = current_cadastre.enterprise_cadastres.where('inactive is not true').last
   - if indication.present?
     %p
-      %span.ui.label.green.medium.font-black
-        = "Você foi indicado no dia: #{indication.created_at.strftime('%d/%m/%Y') rescue nil} para o empreendimento: #{indication.enterprise.name rescue nil}, você aceita participar do empreendimento?"
-    .ui{style: 'margin-left: 30%'}
-      = link_to "Sim", accept_path(id: indication.id), class: 'ui mini button green', style: 'color: white !important'
-      = link_to "Não", not_accept_path(id: indication.id), class: 'ui mini button red', style: 'color: white !important'
+      %span.ui.label.green.font-black{style: 'font-size: 14px !important; text-align: center;'}
+        Você foi indicado em #{indication.created_at.strftime('%d/%m/%Y') rescue nil} para o empreendimento: 
+        %br/
+        %br/
+        %b{style: 'font-size: 20px !important'} #{indication.enterprise.name rescue nil}
+        %br/
+        %br/
+        você aceita participar?
+    
+    .ui{style: 'margin:0 auto'}
+      = link_to "Sim", accept_path(id: indication.id), class: 'ui  button green', style: 'color: white !important; font-size: 18px', data: { disable_with: 'Processandom aguarde...'}
+      %span{style: 'margin-left: 30px !important'}
+      = link_to "Não", not_accept_path(id: indication.id), class: 'ui  button red', style: 'color: white !important; font-size: 18px', data: { disable_with: 'Processando aguarde...'}
+    %br
+    %p{style: 'text-align: center'} 
+      %br
+      %b Declaro estar ciente das informações abaixo e da opção marcada referente à participação no empreendimento oferecido.
+    .ui.segment{style: 'text-align: justify;font-size: 13px !important;'}
+      %h2{style:'text-align: center !important'} 
+        %b Atenção
+      %p A CODHAB informa que todo candidato que recusar um imóvel permanece na fila, com a mesma pontuação, até ser indicado para um novo empreendimento. 
+      %p O candidato pode fazer apenas duas recusas. Caso haja a terceira, o candidato passará para a condição de desistente do programa habitacional. 
+      %p No caso de candidato classificado na lista de vulneráveis, não poderá haver nenhuma recusa.
+      %p OBS: As recusas passaram a ser contadas a partir de 31/03/2017. 
 - if (indication_active.present? && indication_active.accepted_date.present?) || !indication_active.present?
   .divider
   .ui.three.column.grid.container.black
