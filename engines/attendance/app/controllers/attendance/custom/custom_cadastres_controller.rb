@@ -10,7 +10,7 @@ module Attendance
 
       def update
 
-        if @cadastre_mirror.update_attributes!(set_params)
+        if @cadastre_mirror.update(set_params)
           redirect_to new_custom_custom_ticket_custom_document_path(type: 'cadastre')
         else
           render action: :edit
