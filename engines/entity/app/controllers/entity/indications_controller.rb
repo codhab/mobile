@@ -9,12 +9,16 @@ module Entity
     end
 
     def new
-      @enterprise = current_entity.enterprises.find(params[:enterprise_id])
+      if params[:enterprise_id].present?
+        session[:enterprise_id] = params[:enterprise_id]
+      end
+      
+      @enterprise = current_entity.enterprises.find(session[:enterprise_id])
       @indication = Core::Entity::Indication.new(enterprise_id: @enterprise.id)
     end
 
     def create
-      @enterprise = current_entity.enterprises.find(params[:enterprise_id])
+      @enterprise = current_entity.enterprises.find(session[:enterprise_id])
       @indication = Core::Entity::Indication.new(set_params)
 
       @indication.enterprise_id = @enterprise.id
@@ -58,7 +62,7 @@ module Entity
     private
 
     def set_params
-      params.require(:entity_indication).permit(:cpf)
+      params.require(:entity_indication).permit(:cpf, :enterprise_id)
     end
 
     def set_units
