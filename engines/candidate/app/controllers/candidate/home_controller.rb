@@ -17,7 +17,7 @@ module Candidate
       @indication.accepted_date = Time.now
       @indication.save
       @message = "Indicação aceita com sucesso."
-      redirect_to root_path(m: @message)
+      #redirect_to root_path(m: @message)
     end
 
     def not_accept

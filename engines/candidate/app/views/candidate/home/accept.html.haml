@@ -1,0 +1,38 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{candidate.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Indicação ao Empreendimento
+    .sub-title Aceite de indicação
+.ui.grid.container
+  .column
+    // Crixá
+    - if @indication.enterprise_id == 182
+      %h3{style: 'text-align: center'}
+        Agende seu atendimento, no Canal 156 ou portal da CODHAB, para formalizar dossiê.
+    
+    // Itapoã
+    - if @indication.enterprise_id == 212
+      %h3{style: 'text-align: center'}
+        Aguarde o contato da construtora responsável.
+    
+    //Residencial Julieta
+    - if @indication.enterprise_id == 22
+      %h3{style: 'text-align: center'}
+        Entre em contato com a Construtora GCE, pelo telefone:33639039, para conhecer o empreendimento.
+    
+    //Nova Petrópolis
+    - if [140, 179].include?(@indication.enterprise_id) 
+      %h3{style: 'text-align: center'}
+        Agende seu atendimento, no Canal 156 ou portal da CODHAB, para formalizar dossiê.
+    
+    //Outro
+    - unless [182,212,22,140,179].include?(@indication.enterprise_id)
+      %h3{style: 'text-align: center'}
+        Seu aceite foi registrado com sucesso.
+    
+    %br/
+    %br/
+
+    = link_to "Retornar para o início", root_path, class: 'ui button yellow fluid'
