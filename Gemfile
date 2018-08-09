@@ -39,8 +39,6 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'derailed_benchmarks'
   gem 'stackprof'
-  gem 'guard-livereload'
-  gem 'guard-rails', require: false
 end
 
 group :production do

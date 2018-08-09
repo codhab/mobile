@@ -13,7 +13,7 @@
       %span{style: 'text-align: center'}
         %i Para abertura de novo requerimento aguarde a resposta dos protocolos já iniciados.
     - else
-      - if [3,4].include?(current_cadastre.current_situation_id) 
+      - if ![3,4].include?(current_cadastre.current_situation_id) 
         %span{style: 'text-align: center'}
           %i A abertura de novo requerimento só poderá ser realizada por candidatos que estiverem na situação de "HABILITADO" e "CONVOCADO PARA ENTREGA DE DOCUMENTAÇÃO".
       - else
