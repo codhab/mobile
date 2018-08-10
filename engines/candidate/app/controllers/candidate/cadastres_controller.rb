@@ -16,7 +16,7 @@ module Candidate
       @cadastre = Core::Candidate::CadastrePresenter.new(@cadastre)
     end
 
-    def show
+    def show      
     end
 
     def detail

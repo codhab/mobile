@@ -8,6 +8,7 @@ module Candidate
       @ticket_presenter = Core::Attendance::CadastrePresenter.new(current_cadastre)
       @ticket_policy    = Core::Attendance::CadastrePolicy.new(@ticket_presenter)
       @ticket_policy    = Core::Project::CadastrePolicy.new(@ticket_policy)
+      @document = Core::Document::DataPrint.where(cpf: current_cadastre.cpf, status: true).last
     end
 
     def accept
