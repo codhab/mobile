@@ -1,12 +1,15 @@
 .ui.grid
-  .fifthteen.wide.mobile.column.text-center
+  .two.wide.mobile.column
+    %a{href: "#{regularization.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
     .title-header Requerimentos
     .sub-title Acompanhe seu Requerimento
 .big-divider
 .ui.grid.container
   .column.content-form
     = simple_form_for url_for, method: :get do |f|
-      = f.input :by_cpf, label: "CPF", input_html: {class: 'cpf', name: 'by_cpf'}
+      = f.input :by_cpf, label: "CPF", input_html: {class: 'cpf', name: 'by_cpf', value: params[:by_cpf]}
       = f.submit "Pesquisar", name: nil, class: 'ui button green fluid'
 .ui.container-fluid
 .ui.grid

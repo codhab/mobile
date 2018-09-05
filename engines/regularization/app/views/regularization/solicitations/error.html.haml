@@ -1,18 +1,25 @@
 .ui.grid
-  .fifthteen.wide.mobile.column.text-center
+  .two.wide.mobile.column
+    %a{href: "#{regularization.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
     .title-header Erro
     .sub-title CPF cadastrado na CODHAB
 .big-divider
 .ui.grid.container
   .column.content-form
-    %p
-      Verificamos que você já possui um CPF cadastrado em outro programa na 
-      %b
-        CODHAB.
-      Para abrir um requerimento você precisa logar na área do usuário utilizando seu CPF e sua Senha cadastrada.
+    - if @verify.present?
+      %p
+        Verificamos que você já possui um CPF cadastrado em outro programa na
+        %b
+          CODHAB.
+        Para abrir um requerimento você precisa logar na área do usuário utilizando seu CPF e sua Senha cadastrada.
 
-    .sub-title{style: 'text-align: center '}
-      %b
-        Veja o exemplo abaixo
-    %br
-    = image_tag('/images/erro-img.png', width:'100%')
+      .sub-title{style: 'text-align: center '}
+        %b
+          Veja o exemplo abaixo
+      %br
+      = image_tag('/images/erro-img.png', width:'100%')
+    - else
+      %p Você já possui um requerimento aberto, aguarde a resposta da CODHAB para a abertura de um novo requerimento.
+      %p Acompanhe seu requerimento #{link_to "aqui", monitoring_path(by_cpf: params[:cpf])}

@@ -16,6 +16,7 @@
 .big-divider
 .ui.grid.container
 	.column.content-form
+		%p Certifique-se de que encaminhou todos os documentos relacionados #{link_to "aqui", "http://www.codhab.df.gov.br/pagina/204", target: '_blank'} para análise do seu processo de regularização.
 		%br
 		= link_to 'Finalizar', complete_path, class: 'ui button green fluid'
 .ui.modal
@@ -23,7 +24,7 @@
 		= image_tag '/loading_reg.gif', class: 'gifimage'
 		%h2.loading_title
 			Carregando Arquivo.
-			
+
 
 :css
 	.loading_title{
