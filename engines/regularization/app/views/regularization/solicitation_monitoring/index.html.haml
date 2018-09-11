@@ -36,4 +36,18 @@
                 %h4.ui.image.header
                   .content
                     Resposta:
-                    = cpf.solicitation_answers.first.answer rescue 'Sem resposta no momento'
+                    = cpf.solicitation_answers.where('request_id is null').first.answer rescue 'Sem resposta no momento'
+            -if cpf.solicitation_requests.present?
+              - cpf.solicitation_requests.each do |request|
+                %tr
+                  %td
+                    %h4.ui.image.header
+                      .content
+                        = "Solicitação N° #{request.id}: "
+                        = request.observation
+                %tr
+                  %td
+                    %h4.ui.image.header
+                      .content{style: 'color: blue'}
+                        = "Resposta da Solicitação N° #{request.id}: "
+                        = request.solicitation_answers.last.answer rescue 'Sem resposta no momento'

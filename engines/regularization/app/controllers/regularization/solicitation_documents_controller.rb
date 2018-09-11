@@ -11,14 +11,12 @@ module Regularization
 
     def new
       @solicitation_document = @solicitation.solicitation_documents.new
-    
     end
-
 
     def create
       @solicitation_document = @solicitation.solicitation_documents.new(set_params)
       if @solicitation_document.save
-        redirect_to new_solicitation_document_path(@solicitation)
+        redirect_to new_solicitation_document_path(@solicitation, request_id: @solicitation_document.request_id)
       else
         render :new
       end
@@ -34,7 +32,7 @@ module Regularization
     private
 
     def set_params
-      params.require(:solicitation_document).permit(:solicitation_id, :attachment)
+      params.require(:solicitation_document).permit(:solicitation_id, :attachment, :request_id)
     end
 
     def set_solicitation
@@ -44,7 +42,6 @@ module Regularization
 
     def set_solicitation_document
       @solicitation_document = Core::Regularization::SolicitationDocument.find(params[:id])
-
     end
 
   end

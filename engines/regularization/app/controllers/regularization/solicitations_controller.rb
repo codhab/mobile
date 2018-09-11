@@ -19,7 +19,7 @@ module Regularization
         if @verify.present?
           redirect_to error_path
         elsif @req_open.present?
-          redirect_to error_path(cpf: cpf)
+          redirect_to new_solicitation_solicitation_request_path(solicitation_id: @req_open.last.id)
         else
           redirect_to new_solicitation_path(subject_id: params[:subject_id], cpf: cpf)
         end
