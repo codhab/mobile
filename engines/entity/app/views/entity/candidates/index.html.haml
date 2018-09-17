@@ -1,0 +1,20 @@
+.ui.grid
+  .two.wide.mobile.column
+    %a{href: "#{entity.root_path}"}
+      %i.big.arrow.left.icon
+  .thirteen.wide.mobile.column.text-center
+    .title-header Candidatos Indicados 
+    .sub-title Listagem de usuários
+.ui.container
+  %table.ui.celled.table
+    %tbody
+      - @candidates.each do |c|
+        %tr
+          %td= c.candidate.name
+          %td= c.current_situation_name
+          %td= c.candidate.cpf
+          - if c.enterprise_cadastre.present?
+            %td= c.enterprise_cadastre.enterprise.name rescue nil
+            %td= c.enterprise_cadastre.inactive ? "Indicação :Inativa" : "Indicação: Ativa" rescue nil
+          - else
+            %td Não indicado
