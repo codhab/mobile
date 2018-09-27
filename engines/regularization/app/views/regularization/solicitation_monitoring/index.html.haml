@@ -11,43 +11,45 @@
     = simple_form_for url_for, method: :get do |f|
       = f.input :by_cpf, label: "CPF", input_html: {class: 'cpf', name: 'by_cpf', value: params[:by_cpf]}
       = f.submit "Pesquisar", name: nil, class: 'ui button green fluid'
-.ui.container-fluid
-.ui.grid
-  .row
-    .column.segment
-      %h3 Respostas de requerimentos
-      - @cpfs.each do |cpf|
-        %table.ui.celled.table
-          %tbody
-            %tr
-              %td
-                %h4.ui.image.header
-                  .content
-                    Protocolo:
-                    = cpf.id
-            %tr
-              %td
-                %h4.ui.image.header
-                  .content
-                    Solicitação:
-                    = cpf.content.html_safe
-            %tr
-              %td
-                %h4.ui.image.header
-                  .content
-                    Resposta:
-                    = cpf.solicitation_answers.where('request_id is null').first.answer rescue 'Sem resposta no momento'
-            -if cpf.solicitation_requests.present?
-              - cpf.solicitation_requests.each do |request|
-                %tr
-                  %td
-                    %h4.ui.image.header
-                      .content
-                        = "Solicitação N° #{request.id}: "
-                        = request.observation
-                %tr
-                  %td
-                    %h4.ui.image.header
-                      .content{style: 'color: blue'}
-                        = "Resposta da Solicitação N° #{request.id}: "
-                        = request.solicitation_answers.last.answer rescue 'Sem resposta no momento'
+- if @cpfs.present?
+  .ui.container-fluid
+  .ui.grid
+    .row
+      .column.segment
+        %h3 Respostas de requerimentos
+        - @cpfs.each do |cpf|
+          %table.ui.celled.table
+            %tbody
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      Protocolo:
+                      = cpf.id
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      Solicitação:
+                      = cpf.content.html_safe
+              %tr
+                %td
+                  %h4.ui.image.header
+                    .content
+                      Resposta:
+                      = cpf.solicitation_answers.where('request_id is null').first.answer rescue 'Sem resposta no momento'
+              -if cpf.solicitation_requests.present?
+                - cpf.solicitation_requests.each do |request|
+                  %tr
+                    %td
+                      %h4.ui.image.header
+                        .content
+                          = "Solicitação N° #{request.id}: "
+                          = request.observation
+                  %tr
+                    %td
+                      %h4.ui.image.header
+                        .content{style: 'color: blue'}
+                          = "Resposta da Solicitação N° #{request.id}: "
+                          = request.solicitation_answers.last.answer rescue 'Sem resposta no momento'
+ 

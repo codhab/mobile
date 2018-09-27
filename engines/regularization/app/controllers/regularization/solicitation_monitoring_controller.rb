@@ -7,7 +7,6 @@ module Regularization
     def index
       cpf = params[:by_cpf].gsub('-','').gsub('.','') if params[:by_cpf].present?
       @cpfs = Core::Regularization::Solicitation.where(cpf: cpf)
-      # @answer = Core::Regularization::SolicitationAnswer.where(solicitation_id: cpf.id)
     end
 
   end

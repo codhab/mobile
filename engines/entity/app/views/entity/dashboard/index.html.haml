@@ -28,6 +28,13 @@
           %i.icon.building.huge.gray
       .text-center
         Indicação
+  - if current_entity.enterprises.present?
+    .column
+      .ui.segment.text-center
+        %a{href: "#{entity.candidates_path}"}
+          %i.icon.users.huge.gray
+      .text-center
+        Candidatos Indicados
   - if current_entity.allow_accredited?
     .column
       .ui.segment.text-center
