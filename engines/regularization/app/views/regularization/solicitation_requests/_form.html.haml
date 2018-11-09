@@ -1,0 +1,7 @@
+%p
+  Você já possui o requerimento n°
+  = @solicitation.id
+  aberto. Favor preencher o campo abaixo para uma nova solicitação.
+= simple_form_for @request, url: solicitation_solicitation_requests_path(solicitation_id: @solicitation.id) do |f|
+  = f.input :observation, label: 'Solicitação'
+  = f.submit "Salvar", class: "ui button green fluid", data: { disable_with: t(:disable_with)}

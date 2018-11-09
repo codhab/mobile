@@ -1,4 +1,5 @@
 = simple_form_for @solicitation_document, url: solicitation_documents_path(@solicitation.id) do |f|
+	= f.input :request_id, as: :hidden, input_html: {value: params[:request_id]}
 	= f.input :attachment, as: :file, label: 'Upload', input_html: { onchange: "$('.ui.modal').modal('show');$(this.form).submit();" }
 .ui.container-fluid
 	.ui.grid

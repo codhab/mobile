@@ -3,6 +3,7 @@ Candidate::Engine.routes.draw do
   root 'home#show'
 
   get 'accept', to: 'home#accept', as: 'accept'
+  get 'form',   to: 'home#form',   as: 'form'
   get 'not_accept', to: 'home#not_accept', as: 'not_accept'
   put 'not_accepted', to: 'home#not_accepted'
 

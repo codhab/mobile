@@ -13,6 +13,13 @@
       Requerimento de Regularização
   .column
     .ui.text-center
+      %a{href: "#{solicitations_path(subject_id: 3)}"}
+        -# %i.icon.calendar.huge.gray
+        = image_tag ('http://www.codhab.df.gov.br/uploads/archive/files/8d44c2e9420eef21cca843bfd3ad0f13.png')
+    .text-center
+      Transferência de Titularidade
+  .column
+    .ui.text-center
       %a{href: "#{solicitations_path(subject_id: 2)}"}
         -# %i.icon.plane.huge
         = image_tag ('/images/contract.png')
