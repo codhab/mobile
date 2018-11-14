@@ -66,7 +66,7 @@
     -@doc1 = Attendance::CustomTicket.find_by(cadastre_id: current_cadastre.id)
     /- if current_cadastre.id == 245419 || current_cadastre.cadastre_convocations.where(status: true, convocation_id: 1649).present?
     - if current_cadastre.id == 245419 || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 3)
-      - if current_cadastre.cadastre_convocations.where(status: true).last.convocation_id != 1678 || @doc1.closed
+      - if current_cadastre.cadastre_convocations.where(status: true).last.convocation_id != 1678 || @doc1.closed || @doc1.request == true
         .column
           .ui.segment.text-center{style: 'background-color: #0892ff !important'}
             %a{href: "#{attendance.custom_custom_tickets_path}"}
