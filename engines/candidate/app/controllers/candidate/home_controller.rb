@@ -21,6 +21,9 @@ module Candidate
       #redirect_to root_path(m: @message)
     end
 
+    def form
+    end
+
     def not_accept
       @indication = current_cadastre.enterprise_cadastres.find(params[:id])
     end

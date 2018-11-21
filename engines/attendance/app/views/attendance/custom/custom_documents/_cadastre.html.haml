@@ -216,7 +216,7 @@
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_11' }
 
 
-- if @ticket.cadastre_mirror.civil_state_id == 2
+- if [2,3].include?(@ticket.cadastre_mirror.civil_state_id)
   .ui.segment
     %h4#cas Anexe a certidão de casamento.
     - unless @ticket.documents.where(document_type_id: 12).present?
