@@ -3,19 +3,18 @@
     %a{href: "#{entity.root_path}"}
       %i.big.arrow.left.icon
   .thirteen.wide.mobile.column.text-center
-    .title-header Indicação de candidatos 
+    .title-header Indicação de candidatos
     .sub-title Listagem de empreendimentos
 .ui.container
   %table.ui.celled.table
     %tbody
-      
       - if @enterprises.present?
         - @enterprises.each do |enterprise|
           %tr
             %td
             %td
               %p
-                %b= link_to enterprise.name.to_s.mb_chars.upcase, new_indication_path(enterprise_id: enterprise.id), style: 'color: black !important'
+                %b= link_to "#{enterprise.name.to_s.mb_chars.upcase} - #{enterprise.edict_number.to_s.mb_chars.upcase}", new_indication_path(enterprise_id: enterprise.id), style: 'color: black !important'
               %p
                 %i (Toque para iniciar a indicação)
       - else
