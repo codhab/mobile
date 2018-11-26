@@ -1,7 +1,8 @@
 = simple_form_for @pre_register do |f|
   = f.input :name,label:'Nome', input_html:{placeholder: 'Nome Completo'}
   = f.input :cpf,label:'CPF', input_html: {class: 'cpf'}
-  = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.federal_district, input_html: { id: 'city_id', name: 'city_id'}, include_blank: 'Filtrar por Cidade'
+  = f.input :telphone, label:'Telefone'
+  = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.where(id:[825,814]), input_html: { id: 'city_id', name: 'city_id'}, include_blank: 'Filtrar por Cidade'
   = f.input :address,label:'Endereço', input_html:{placeholder: 'Endereço Completo'}
   = f.input :cad,label:'CADÚnico', input_html:{placeholder: 'Nº do CADÚnico se possuir'}
   = f.submit "Cadastrar", class: "ui button white fluid", data: { disable_with: t(:disable_with)}
