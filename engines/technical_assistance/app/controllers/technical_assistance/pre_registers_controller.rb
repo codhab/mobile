@@ -17,13 +17,13 @@ module TechnicalAssistance
       @pre_register.city_id = params[:city_id]
 
         if @pre_register.save
-          redirect_to done_path
+          redirect_to pre_register_path(@pre_register)
         else
           render :new
         end
 
     end
-    def done
+    def show
     end
 
     private
@@ -33,7 +33,7 @@ module TechnicalAssistance
     end
 
     def set_pre_register
-      @pre_register = Core::TechnicalAssistance::PreRegister.find(params[:id])
+      @pre_register = TechnicalAssistance::PreRegister.find(params[:id])
     end
   end
 end
