@@ -57,19 +57,19 @@ module Attendance
 
       def term_one
         @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
-        @ticket.update(term_one: true)
+        @ticket.update(term_one: true, term_one_date: Time.now)
         redirect_to custom_custom_tickets_path
       end
 
       def term_two
         @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
-        @ticket.update(term_two: true)
+        @ticket.update(term_two: true, term_two_date: Time.now)
         redirect_to custom_custom_tickets_path
       end
 
       def term_three
         @ticket = Attendance::CustomTicket.find(params[:custom_ticket_id])
-        @ticket.update(term_three: true)
+        @ticket.update(term_three: true, term_three_date: Time.now)
         redirect_to custom_custom_tickets_path
       end
 
