@@ -1,4 +1,4 @@
-  .ui.grid
+.ui.grid
   .two.wide.mobile.column
     %a{href: "#{candidate.root_path}"}
       %i.big.arrow.left.icon
@@ -53,7 +53,7 @@
                         %br
                         = link_to "Revisar documentação", ticket_update_dependent_path(@ticket), class: 'ui button blue tiny', style: 'color: white !important'
 
-        - if @ticket.action_allow?  && ![12,13].include?(@ticket.cadastre.program_id) 
+        - if @ticket.action_allow?  && ![12,13].include?(@ticket.cadastre.program_id)
           %tr
             %td
               %h4.ui.image.header
