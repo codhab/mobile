@@ -6,7 +6,7 @@
     .title-header Atualização Cadastral
     .sub-title Protocolo #{@ticket.protocol}
 
-  - if @ticket.on_attendance?
+  - if @ticket.on_attendance? && !(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id == 1679)
     .sixteen.wide.column
       .ui.message.info.text-center
         %b= @ticket.situation.external_name
@@ -53,7 +53,7 @@
                         %br
                         = link_to "Revisar documentação", ticket_update_dependent_path(@ticket), class: 'ui button blue tiny', style: 'color: white !important'
 
-        - if @ticket.action_allow?  && ![12,13].include?(@ticket.cadastre.program_id) 
+        - if @ticket.action_allow?  && ![12,13].include?(@ticket.cadastre.program_id)
           %tr
             %td
               %h4.ui.image.header
@@ -105,7 +105,7 @@
             .text-center
               %p
                 %i Nenhuma mensagem registrada.
-  - if !@ticket.on_attendance?
+  - if !@ticket.on_attendance? && !(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id == 1679)
     .sixteen.wide.column
       .ui.raised.segment
         %a.ui.red.ribbon.label.bold Importante
