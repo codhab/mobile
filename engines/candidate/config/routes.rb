@@ -6,7 +6,7 @@ Candidate::Engine.routes.draw do
   get 'form',   to: 'home#form',   as: 'form'
   get 'not_accept', to: 'home#not_accept', as: 'not_accept'
   put 'not_accepted', to: 'home#not_accepted'
-
+  get 'help', to: 'home#help'
   resources :requeriments
   resources :legal_rents, only: [:new]
   resources :cadastres, only: [:show] do

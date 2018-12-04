@@ -87,6 +87,12 @@
                   %i.icon.check.huge.gray{style: 'color: white !important'}
               .text-center
                 Habilitação
+            .column
+              .ui.segment.text-center{style: 'background-color: #ffcb08 !important'}
+                %a{href: "#{candidate.help_path}"}
+                  %i.icon.help.circle.huge.gray{style: 'color: white !important'}
+              .text-center
+                Dúvidas
 
     - if [12,13].include?(current_cadastre.program_id)
       - if Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).where('supervisor_date is not null and attendant_date is not null and supervisor is true').present?
