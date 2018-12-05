@@ -24,6 +24,9 @@ module Candidate
     def form
     end
 
+    def help
+    end
+
     def not_accept
       @indication = current_cadastre.enterprise_cadastres.find(params[:id])
     end
