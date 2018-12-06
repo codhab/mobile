@@ -15,6 +15,14 @@
       %br/
       %br/
 
+    - if @ticket.cadastre_mirror.income.to_f >= 2379.97
+      %div
+        %label.ui.icon.button.fluid{:for => 'document_1'}
+          %i.photo.icon
+          Declaração IR
+        = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_1' }
+      %br
+
     %div
       %label.ui.icon.button.fluid{:for => 'document_1'}
         %i.photo.icon
