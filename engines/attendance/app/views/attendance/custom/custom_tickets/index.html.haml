@@ -6,7 +6,10 @@
       - else
         = render 'welcome'
     - else
-      - if [12,13].include?(current_cadastre.program_id)
-        = render 'ticket_reallocation'
-      - else
-        = render 'ticket'
+       - if ([1679, 1678].include?(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id)) && @ticket.requests.present?
+         = render 'ticket'
+       - else 
+        - if [12,13].include?(current_cadastre.program_id)
+          = render 'ticket_reallocation'
+        - else
+          = render 'ticket'
