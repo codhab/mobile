@@ -1,13 +1,10 @@
 .ui.grid#custom
   - if current_cadastre.cadastre_convocations.present?
     - if ([1679, 1678].include?(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id))
-      - if @ticket.nil?
-        = render 'welcome'
+      - if @ticket.requests.present?
+        = render 'ticket'
       - else
-        - if @ticket.requests.present?
-          = render 'ticket'
-        - else
-          Sem permissão para acessar o conteúdo desta página
+        Sem permissão para acessar o conteúdo desta página
     - else
       - if @ticket.nil?
         - if [12,13].include?(current_cadastre.program_id)
@@ -19,4 +16,3 @@
           = render 'ticket_reallocation'
         - else
           = render 'ticket'     
-      
