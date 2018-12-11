@@ -1,6 +1,6 @@
 .ui.grid#custom
   - if !(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id == 1679)
-    - if @ticket.nil? 
+    - if @ticket.nil?
       - if [12,13].include?(current_cadastre.program_id)
         = render 'welcome_reallocation'
       - else
