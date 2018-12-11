@@ -3,6 +3,22 @@
   = f.input :cpf,label:'CPF', input_html: {class: 'cpf'}
   = f.input :telphone, label:'Telefone'
   = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.where(id:[825,835]), input_html: { id: 'city_id', name: 'city_id'}, include_blank: 'Filtrar por Cidade'
+  = f.input :burgh_id, label: 'Bairro', as: :select, collection: [], input_html: { id: 'burgh_id', name: 'burgh_id'}, include_blank: 'Filtrar por Bairro'
   = f.input :address,label:'Endereço', input_html:{placeholder: 'Endereço Completo'}
   = f.input :cad,label:'CADÚnico', input_html:{placeholder: 'Nº do CADÚnico se possuir'}
   = f.submit "Cadastrar", class: "ui button white fluid", data: { disable_with: t(:disable_with)}
+
+:javascript
+  $(document).ready(function(){
+    $("#city_id").on('change', function(){
+      id = $(this).val();
+      $.getJSON("#{burgh_path}?city_id=" +  id, function(data) {
+        var options = "<option value>selecione...</option>";
+
+        $.each(data, function(key, val) {
+          options += "<option value='" + val.id + "'>" + val.name + "</option>";
+        });
+        $("#burgh_id").html(options);
+      });
+    });
+  });

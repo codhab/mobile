@@ -26,6 +26,10 @@ module Regularization
       end
     end
 
+    def solicitation_error
+      @verify = true
+    end
+
     def new
       @verify_reg = Core::Candidate::Cadastre.where(cpf: params[:cpf])
                                        .where(program_id: [3, 6]).first
