@@ -3,9 +3,22 @@
     - if [12,13].include?(current_cadastre.program_id)
       = render 'welcome_reallocation'
     - else
+<<<<<<< HEAD
       = render 'welcome'
   - else
     - if [12,13].include?(current_cadastre.program_id)
       = render 'ticket_reallocation'
     - else
       = render 'ticket'     
+=======
+      - if @ticket.nil?
+        - if [12,13].include?(current_cadastre.program_id)
+          = render 'welcome_reallocation'
+        - else
+          = render 'welcome'
+      - else
+        - if [12,13].include?(current_cadastre.program_id)
+          = render 'ticket_reallocation'
+        - else
+          = render 'ticket'
+>>>>>>> dce9813f412f980d244ca6ccb8c04a323528b3d9

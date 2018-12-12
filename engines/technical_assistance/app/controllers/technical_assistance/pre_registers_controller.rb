@@ -23,13 +23,19 @@ module TechnicalAssistance
         end
 
     end
-    def show
+
+    def show; end
+
+    def burgh
+      city = params[:city_id]
+      render json: @burgh = Core::Address::Burgh.where(city_id: city)
     end
 
     private
 
     def set_params
-      params.require(:pre_register).permit(:name,:cpf, :cad, :city_id , :address, :email, :latitude, :longitude)
+      params.require(:pre_register).permit(:name, :cpf, :cad, :city_id , :address, :email,
+                                           :burgh_id, :latitude, :longitude)
     end
 
     def set_pre_register
