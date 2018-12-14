@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: 0aad5e3110a6bc00ac73526236687387611877f8
+  revision: 4e775d3af377fa7d4034b891372407fb025724c1
   branch: master
   specs:
     core (0.1.0)
@@ -316,4 +316,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.6
