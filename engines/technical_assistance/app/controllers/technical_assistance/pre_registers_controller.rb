@@ -35,7 +35,7 @@ module TechnicalAssistance
 
     def set_params
       params.require(:pre_register).permit(:name, :cpf, :cad, :city_id , :address, :email,
-                                           :burgh_id, :latitude, :longitude)
+                                           :burgh_id, :latitude, :longitude, :telphone)
     end
 
     def set_pre_register
