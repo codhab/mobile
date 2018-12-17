@@ -15,6 +15,7 @@ module TechnicalAssistance
       @pre_register = TechnicalAssistance::PreRegister.new(set_params)
       @pre_register.cpf = @pre_register.cpf.gsub('-','').gsub('.','')
       @pre_register.city_id = params[:city_id]
+      @pre_register.burgh_id = params[:burgh_id]
 
         if @pre_register.save
           redirect_to pre_register_path(@pre_register)
