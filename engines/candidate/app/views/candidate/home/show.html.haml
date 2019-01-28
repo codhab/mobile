@@ -63,11 +63,11 @@
 - if (indication_active.present? && indication_active.accepted_date.present?) || !indication_active.present? || !indication.present?
   .divider
   .ui.three.column.grid.container.black
-    - @convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where(convocation_id: 1678)
+    - @convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where(convocation_id: 1683)
 
     - if current_cadastre.id == 245419 || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 3)
       
-      - if current_cadastre.cadastre_convocations.present? && current_cadastre.cadastre_convocations.where(status: true).present?
+      - if current_cadastre.cadastre_convocations.present? && current_cadastre.cadastre_convocations.where(status: true).present? && Attendance::CustomTicket.where(cadastre_id: @convocation).present?
         .column
           .ui.segment.text-center{style: 'background-color: #0892ff !important'}
             %a{href: "#{attendance.custom_custom_tickets_path}"}
