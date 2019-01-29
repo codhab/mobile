@@ -2,8 +2,8 @@ module Attendance
   class CustomTicket < ActiveRecord::Base # :nodoc:
     self.table_name = 'extranet.attendance_custom_tickets'
 
-    belongs_to :cadastre, class_name: 'Attendance::CustomCadastre', foreign_key: :cadastre_id
-    belongs_to :cadastre_mirror, class_name: 'Attendance::CustomCadastreMirror', foreign_key: :cadastre_mirror_id
+    belongs_to :cadastre,        required: false, class_name: 'Attendance::CustomCadastre', foreign_key: :cadastre_id
+    belongs_to :cadastre_mirror, required: false, class_name: 'Attendance::CustomCadastreMirror', foreign_key: :cadastre_mirror_id
 
     has_many :documents, class_name: 'Attendance::CustomTicketDocument', foreign_key: :custom_ticket_id
     has_many :requests, class_name: 'Attendance::TicketRequest'
