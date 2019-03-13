@@ -52,9 +52,9 @@
               %br/
               %b Indicações realizadas (#{@enterprise.candidates.count})
             %td.text-center
-              Ativas (#{@enterprise.candidates.where('inactive is true').count})
+              Ativas (#{@enterprise.candidates.where('inactive is false').count})
               |
-              Inativas (#{@enterprise.candidates.where('inactive is false').count})
+              Inativas (#{@enterprise.candidates.where('inactive is true').count})
 
             %td
               - if Entity::ProvisionalCandidate.where(entity_id: current_entity.id).present?
