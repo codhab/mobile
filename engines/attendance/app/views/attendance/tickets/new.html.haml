@@ -6,7 +6,7 @@
     .title-header Atualização Cadastral
     .sub-title Protocolo #{@ticket.protocol}
 
-  - if @ticket.on_attendance? && !(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id == 1679)
+  - if @ticket.on_attendance? && (!current_cadastre.cadastre_convocations.where(status: true).present? || !(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id == 1679))
     .sixteen.wide.column
       .ui.message.info.text-center
         %b= @ticket.situation.external_name
@@ -105,7 +105,7 @@
             .text-center
               %p
                 %i Nenhuma mensagem registrada.
-  - if !@ticket.on_attendance? && !(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id == 1679)
+  - if !@ticket.on_attendance? && (!current_cadastre.cadastre_convocations.where(status: true).present? || !(current_cadastre.cadastre_convocations.where(status: true).last.convocation_id == 1679))
     .sixteen.wide.column
       .ui.raised.segment
         %a.ui.red.ribbon.label.bold Importante
