@@ -64,22 +64,24 @@
   .divider
   .ui.three.column.grid.container.black
     - @convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where('convocation_id in (1683,1685)')
+    
+    - if !current_cadastre.current_procedural.present? || (current_cadastre.current_procedural.present? && ![8,4].include?(current_cadastre.current_procedural.procedural_status_id))
 
-    - if current_cadastre.id == 245419 || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 3)
-      
-      - if current_cadastre.cadastre_convocations.present? && current_cadastre.cadastre_convocations.where(status: true).present? && (current_cadastre.cadastre_convocations.last.convocation_id != 1685 && current_cadastre.cadastre_convocations.last.convocation_id != 1683 || Attendance::CustomTicket.where(cadastre_id: @convocation).present?)
-        .column
-          .ui.segment.text-center{style: 'background-color: #0892ff !important'}
-            %a{href: "#{attendance.custom_custom_tickets_path}"}
-              %i.icon.check.huge.gray{style: 'color: white !important'}
-          .text-center
-            Habilitação
-        .column
-          .ui.segment.text-center{style: 'background-color: #ffcb08 !important'}
-            %a{href: "#{candidate.help_path}"}
-              %i.icon.help.circle.huge.gray{style: 'color: white !important'}
-          .text-center
-            Dúvidas
+      - if current_cadastre.id == 245419 || (current_cadastre.current_situation.present? && current_cadastre.current_situation.situation_status_id == 3)
+        
+        - if current_cadastre.cadastre_convocations.present? && current_cadastre.cadastre_convocations.where(status: true).present? && (current_cadastre.cadastre_convocations.last.convocation_id != 1685 && current_cadastre.cadastre_convocations.last.convocation_id != 1683 || Attendance::CustomTicket.where(cadastre_id: @convocation).present?)
+          .column
+            .ui.segment.text-center{style: 'background-color: #0892ff !important'}
+              %a{href: "#{attendance.custom_custom_tickets_path}"}
+                %i.icon.check.huge.gray{style: 'color: white !important'}
+            .text-center
+              Habilitação
+          .column
+            .ui.segment.text-center{style: 'background-color: #ffcb08 !important'}
+              %a{href: "#{candidate.help_path}"}
+                %i.icon.help.circle.huge.gray{style: 'color: white !important'}
+            .text-center
+              Dúvidas
 
     - if [12,13].include?(current_cadastre.program_id)
       - if Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).where('supervisor_date is not null and attendant_date is not null and supervisor is true').present?

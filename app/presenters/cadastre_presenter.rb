@@ -53,6 +53,20 @@ class CadastrePresenter < ApplicationPresenter
     current_situation.situation_status_id rescue nil
   end
 
+  # => cadastre_procedural
+
+  def current_procedural
+    self.cadastre_procedurals.order('created_at ASC').last rescue nil
+  end
+
+  def current_procedural_name
+    current_procedural.situation_status.name.mb_chars.upcase rescue nil
+  end
+
+  def current_procedural_id
+    current_procedural.situation_status_id rescue nil
+  end
+
   # => convocation
 
   def current_convocation
