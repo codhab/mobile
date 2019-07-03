@@ -40,7 +40,7 @@
   - indication_clebson = current_cadastre.enterprise_cadastres.where('inactive is not true')
   - indication_active = current_cadastre.enterprise_cadastres.where('inactive is not true').last
 
-  - if !occurrence_solved.present? && !indication_clebson.present? && !indication_all.present? && current_cadastre.current_situation.situation_status_id == 4 && [14,72].include?(current_cadastre.current_procedural.procedural_status_id) && (convocation.present? && convocation.convocation_id > 1524) 
+  - if (current_cadastre.income > 1800.01 &&  current_cadastre.income < 11448 ) && !occurrence_solved.present? && !indication_clebson.present? && !indication_all.present? && current_cadastre.current_situation.situation_status_id == 4 && [14,72].include?(current_cadastre.current_procedural.procedural_status_id) && (convocation.present? && convocation.convocation_id > 1524) 
     %p
       %span.ui.label.green.font-black{style: 'font-size: 16px !important; text-align: center;'}
         Você deseja manifestar interesse em participar do empreendimento 
