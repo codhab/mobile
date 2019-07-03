@@ -9,6 +9,8 @@ Candidate::Engine.routes.draw do
   get 'help', to: 'home#help'
   resources :requeriments
   resources :legal_rents, only: [:new]
+  resources :enterprises, only: [:new, :show, :create]
+  get 'success', to: 'enterprises#success', as: 'success'
   resources :cadastres, only: [:show] do
     get '/search', to: 'cadastres#search', as: :search, on: :collection
     get '/result', to: 'cadastres#result', as: :result, on: :collection
