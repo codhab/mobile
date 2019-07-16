@@ -13,7 +13,8 @@ module Candidate
 
             cadastre_id: self.cadastre_id,
             enterprise_id: 22,
-            indication_type_id: 55,
+            indication_type_id: 1,
+            indication_situation_id: 1,
             manifestation_date: Time.now,
             accepted: true,
             accepted_date: Time.now,
@@ -26,7 +27,8 @@ module Candidate
 
             cadastre_id: self.cadastre_id,
             enterprise_id: 22,
-            indication_type_id: 55,
+            indication_type_id: 1,
+            indication_situation_id: 1,
             manifestation_date: Time.now,
             accepted: false,
             accepted_date: Time.now,
