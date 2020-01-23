@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/codhab/core.git
-  revision: afa0c655746e74991b5ac62f8c00c58d9e653b6d
+  revision: 2fd224fa8c31b9466d26df8180a0918dd70966a3
   branch: master
   specs:
     core (0.1.0)
@@ -126,7 +126,7 @@ GEM
     file_validators (2.3.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
-    friendly_id (5.2.5)
+    friendly_id (5.3.0)
       activerecord (>= 4.0.0)
     get_process_mem (0.2.3)
     globalid (0.4.2)
