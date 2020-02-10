@@ -80,7 +80,7 @@
 - if (indication_active.present? && indication_active.accepted_date.present?) || !indication_active.present? || !indication.present?
   .divider
   .ui.three.column.grid.container.black
-    - @convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where('convocation_id in (1683,1688,1467,1671)')
+    - @convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where('convocation_id in (1688,1467,1671)')
     
     - if !current_cadastre.current_procedural.present? || (current_cadastre.current_procedural.present? && ![8,4].include?(current_cadastre.current_procedural.procedural_status_id))
 
