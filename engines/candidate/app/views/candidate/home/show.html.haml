@@ -176,13 +176,13 @@
           %i.icon.refresh.huge.gray
       .text-center
         Minhas Atualizações
-    - if @ticket_policy.allow_chats?
-      .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
-        .ui.segment.text-center
-          %a{href: "#{attendance.chats_path}"}
-            %i.icon.comment.outline.huge.gray.text-center
-        .text-center
-          Minhas Conversas
+    -# - if @ticket_policy.allow_chats?
+    -#   .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "right"} }
+    -#     .ui.segment.text-center
+    -#       %a{href: "#{attendance.chats_path}"}
+    -#         %i.icon.comment.outline.huge.gray.text-center
+    -#     .text-center
+    -#       Minhas Conversas
     .column{data: { intro: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar ", position: "top"} }
       .ui.segment.text-center
         %a{href: "#{attendance.requeriments_path}"}
