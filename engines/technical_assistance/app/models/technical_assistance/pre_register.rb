@@ -2,8 +2,8 @@ module TechnicalAssistance
   class PreRegister < ApplicationRecord
     self.table_name = 'generic.social_work_candidate_schedules'
     belongs_to :city,          required: false, class_name: 'Core::Address::City'
-    belongs_to :burgh,         required: false, class_name: 'Core::Address::Burgh'
-    validates :address, :name, :city_id, :burgh_id, presence: true
+    belongs_to :burgh,         required: false, class_name: 'Core::Address::Burgh', foreign_key: :burgh_id
+    validates :address, :name, :city_id, :telephone, presence: true
     validates :cpf, cpf: true, presence: true, uniqueness: true
 
     after_commit :set_order

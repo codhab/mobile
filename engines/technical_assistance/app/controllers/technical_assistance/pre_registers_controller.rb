@@ -17,7 +17,7 @@ module TechnicalAssistance
       @pre_register.city_id = params[:city_id]
       @pre_register.burgh_id = params[:burgh_id]
 
-        if @pre_register.save
+        if @pre_register.save!
           redirect_to pre_register_path(@pre_register)
         else
           render :new
