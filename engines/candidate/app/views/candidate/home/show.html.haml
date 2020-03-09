@@ -38,19 +38,37 @@
   - indication = current_cadastre.enterprise_cadastres.where('enterprise_id not in (59,64,70,71) and inactive is not true and accepted_date is null').last
   - indication_clebson = current_cadastre.enterprise_cadastres.where('inactive is not true')
   - indication_active = current_cadastre.enterprise_cadastres.where('inactive is not true').last
-  - indication_julieta = current_cadastre.enterprise_cadastres.where(enterprise_id: 22)
-  -# - if !indication_julieta.present? && (current_cadastre.income.to_f > 1800.01 && current_cadastre.income.to_f < 11448 ) && !occurrence_solved.present? && !indication_clebson.present? && current_cadastre.current_situation.situation_status_id == 4 && [14,72].include?(current_cadastre.current_procedural.procedural_status_id) && (convocation.present? && convocation.convocation_id > 1524) 
-  -#   %p
-  -#     %span.ui.label.green.font-black{style: 'font-size: 16px !important; text-align: center;'}
-  -#       Você deseja manifestar interesse em participar do empreendimento 
-  -#       %br/
-  -#       %br/
-  -#       %span{style: 'font-size: 20px !important; text-align: center;'}
-  -#         Residencial Julieta?
-  -#   .ui{style: 'margin:0 auto'}
-  -#     = link_to "Sim", new_enterprise_path(cadastre_id: current_cadastre.id, acept_id: 1), class: 'ui  button green', style: 'color: white !important; font-size: 18px', data: { disable_with: 'Processandom aguarde...'}
-  -#     %span{style: 'margin-left: 30px !important'}
-  -#     = link_to "Não", new_enterprise_path(cadastre_id: current_cadastre.id, acept_id: 2), class: 'ui  button red', style: 'color: white !important; font-size: 18px', data: { disable_with: 'Processando aguarde...'}
+  - indication_crixa = current_cadastre.enterprise_cadastres.where(enterprise_id: 182)
+
+  - if !indication_crixa.present? && (current_cadastre.income.to_f < 1800.01 ) && !occurrence_solved.present? && !indication_clebson.present? && current_cadastre.current_situation.situation_status_id == 4 && [14,72].include?(current_cadastre.current_procedural.procedural_status_id) && (convocation.present? && convocation.convocation_id > 1524) 
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %p
+      %span.ui.label.green.font-black{style: 'font-size: 16px !important; text-align: center;'}
+        Você deseja manifestar interesse em participar do empreendimento 
+        %br/
+        %br/
+        %span{style: 'font-size: 20px !important; text-align: center;'}
+          São Sebastião - Crixá
+    .ui{style: 'margin:0 auto'}
+      = link_to "Sim", new_enterprise_path(cadastre_id: current_cadastre.id, accept: 'sim'), class: 'ui  button green', style: 'color: white !important; font-size: 18px', data: { disable_with: 'Processandom aguarde...'}
+      %span{style: 'margin-left: 30px !important'}
+      = link_to "Não", new_enterprise_path(cadastre_id: current_cadastre.id, accept: 'não'), class: 'ui  button red', style: 'color: white !important; font-size: 18px', data: { disable_with: 'Processando aguarde...'}
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
   - if indication.present?
     %p
       %span.ui.label.green.font-black{style: 'font-size: 14px !important; text-align: center;'}
