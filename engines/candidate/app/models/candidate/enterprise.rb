@@ -16,16 +16,18 @@ module Candidate
             manifestation_date: Time.current,
             accepted: true,
             accepted_date: Time.current,
+            indication_situation_id: 2,
             inactive: false
           )
           enterprise_cadastre.save(validate: false)
-
+          
         else
           enterprise_cadastre = Core::Candidate::EnterpriseCadastre.new(
             cadastre_id: self.cadastre_id,
             enterprise_id: 182,
             indication_type_id: 999,
             manifestation_date: Time.current,
+            indication_situation_id: 2,
             accepted: false,
             accepted_date: Time.current,
             inactive: true,
