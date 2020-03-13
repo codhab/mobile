@@ -45,7 +45,7 @@
       %p
         %span.ui.label.green{style: 'font-size: 16px !important; text-align: center;'}
           Sua manifestação de interesse para Parque dos Ipês - Crixá foi registrada. 
-  - if !indication_crixa.present? && (current_cadastre.income.to_f < 1800.01 ) &&  current_cadastre.current_situation.situation_status_id == 4 && [14,72].include?(current_cadastre.current_procedural.procedural_status_id) && (convocation.present? && convocation.convocation_id > 1524) 
+  - if (Date.current < Date.parse('2020-03-15')) && (!indication_crixa.present? && (current_cadastre.income.to_f < 1800.01 ) &&  current_cadastre.current_situation.situation_status_id == 4 && [14,72].include?(current_cadastre.current_procedural.procedural_status_id) && (convocation.present? && convocation.convocation_id > 1524)) 
     %br/
     %br/
     %br/
