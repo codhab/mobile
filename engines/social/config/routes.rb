@@ -25,8 +25,8 @@ Social::Engine.routes.draw do
   resources :contacts
   resources :requeriments
 
-  resources :chats
-  resources :chat_comments
-  get 'new_comment',          to: 'chat_comments#new_comment',          as: :new_comment
-  post 'create_comment',       to: 'chat_comments#create_comment',       as: :create_comment
+  #resources :chats
+  #esources :chat_comments
+  #get 'new_comment',          to: 'chat_comments#new_comment',          as: :new_comment
+  #post 'create_comment',       to: 'chat_comments#create_comment',       as: :create_comment
 end
