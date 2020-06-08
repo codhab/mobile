@@ -25,7 +25,7 @@
             = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_path(@ticket, dependent.id)
           %td
             = dependent.kinship.name rescue nil
-            - if (dependent.kinship_id != 6) || params[:del] == 's'
+            - if ((dependent.kinship_id != 6) || params[:del] == 's') || !@ticket.cadastre.dependents.where(cpf: dependent.cpf).present?
               %br
               %br
               = link_to "Remover", custom_custom_ticket_custom_dependent_path(@ticket, dependent.id), method: :delete, class: 'ui button red tiny', data: { disable_with: "Removendo, aguarde..."}
