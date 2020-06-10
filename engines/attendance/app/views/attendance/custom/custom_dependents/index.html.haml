@@ -25,6 +25,7 @@
             = link_to dependent.name, edit_custom_custom_ticket_custom_dependent_path(@ticket, dependent.id)
           %td
             = dependent.kinship.name rescue nil
+            %br/
             = link_to "Remover", custom_custom_ticket_custom_dependent_path(@ticket, dependent.id), method: :delete, class: 'ui button red tiny', data: { disable_with: "Removendo, aguarde..."}
   %br
   - if !@ticket.action_two
