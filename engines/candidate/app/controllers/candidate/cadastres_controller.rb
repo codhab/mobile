@@ -49,7 +49,8 @@ module Candidate
     end
 
     def address
-      @address = current_cadastre.current_cadastre_address
+      @address = current_cadastre.current_cadastre_address 
+      @address = %w(reserva distribuído).include?(@address.situation_id.to_s) ? @address : nil
     end
 
     def occurrence
