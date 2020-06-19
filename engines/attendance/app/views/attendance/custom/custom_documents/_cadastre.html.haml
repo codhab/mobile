@@ -54,10 +54,10 @@
     - if @ticket.documents.where(document_type_id: 3).present?
       - @ticket.documents.where(document_type_id: 3).each_with_index do |document, index|
 
-        - if ((index + 2014) > 2018)
+        - if ((index + 2016) > 2020)
           = link_to "+  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
         - else
-          = link_to "#{index + 2014}  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+          = link_to "#{index + 2016}  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
 
       %br/
@@ -69,33 +69,33 @@
     - if count < 1
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
-        2014
+        2016
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
     - if count < 2
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
-        2015
+        2017
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
     - if count < 3
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
-        2016
+        2018
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
 
     - if count < 4
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
-        2017
+        2019
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
 
     - if count < 5
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
-        2018
+        2020
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
 
