@@ -13,7 +13,7 @@
 		.sub-title Processo de habilitação
 		.divider
 
-	- if (@ticket.action_one && @ticket.action_two && @ticket.action_three && @ticket.action_four && @ticket.action_five && !@ticket.request)
+	- if (@ticket.action_one && @ticket.action_two && @ticket.action_three && @ticket.action_four && !@ticket.request)
 		.ui.label.green.fluid{style: 'text-align: justify; font-size: 14px'}
 			%p Parabéns, você concluiu as 5 etapas do atendimento.
 			%p Favor aguardar a análise dos documentos enviados.
@@ -21,7 +21,7 @@
 	- elsif !@ticket.request
 		.ui.label.blue{style: 'margin-bottom: 30px'}
 			%p{style: 'text-align: justify; font-size: 14px !important'}
-				Para finalizar o atendimento é necessário que você conclua as 5 etapas abaixo:
+				Para finalizar o atendimento é necessário que você conclua as 4 etapas abaixo:
 	- else
 		.ui.label.yellow.fluid{style: 'text-align: justify; font-size: 14px; color: black !important;'}
 			#message{style: 'text-align: justify; font-size: 14px !important; font-weight: 100 !important;'}
@@ -70,15 +70,15 @@
 						%i.icon.warning{style: 'color: gray'}
 						= link_to "Contatos pessoais", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
 
-		%tbody{style: "#{@ticket.action_five ? 'background-color: #51a551' : ''}"}
-			%tr
-				%td
-					- if @ticket.action_five
-						%i.icon.check{style: 'color: white'}
-						= link_to "Certidões dos cartórios", custom_custom_ticket_message_path(@ticket, step: 'document'), remote: true, style: "#{@ticket.action_five ? 'color: white' : ''}"
-					- else
-						%i.icon.warning{style: 'color: gray'}
-						= link_to "Certidões dos cartórios", new_custom_custom_ticket_custom_document_path(@ticket, type: 'document'), style: "#{@ticket.action_five ? 'color: white' : ''}"
+		-# %tbody{style: "#{@ticket.action_five ? 'background-color: #51a551' : ''}"}
+		-# 	%tr
+		-# 		%td
+		-# 			- if @ticket.action_five
+		-# 				%i.icon.check{style: 'color: white'}
+		-# 				= link_to "Certidões dos cartórios", custom_custom_ticket_message_path(@ticket, step: 'document'), remote: true, style: "#{@ticket.action_five ? 'color: white' : ''}"
+		-# 			- else
+		-# 				%i.icon.warning{style: 'color: gray'}
+		-# 				= link_to "Certidões dos cartórios", new_custom_custom_ticket_custom_document_path(@ticket, type: 'document'), style: "#{@ticket.action_five ? 'color: white' : ''}"
 
 	%br
 	%br
@@ -105,44 +105,7 @@
 				9. Comprovante de residência no DF, últimos 5 anos (ano a ano); Atenção: é necessário comprovante para cada um dos últimos cinco anos;
 			%p
 				10. Comprovante de tempo de domicílio no DF (chegada ao DF);
-			%p
-				11. Certidões Negativas de todos os Cartórios de Registro de Imóveis do Distrito Federal.
-
-			%p
-				%h5
-					Atenção: As imagens devem obrigatoriamente ser de documentos originais.
-
-			%p
-				%h5
-					Você poderá escolher um dos cartórios abaixo e requerer as 9 certidões em um só local
-
-			%p
-				Certidão do Cartório do 1º Ofício de Registro de Imóveis
-				Ed. Venâncio 2000 – 1º Andar – Sl 140-B
-			%p
-				Certidão do Cartório do 2º Ofício de Registro de Imóveis
-				Ed. Venâncio 2000 – 1º Andar – Sl 140-C
-			%p
-				Certidão do Cartório do 3º Ofício de Registro de Imóveis
-				QS 1 Rua 210 Lt 40 Sl 915/928 Torre B – Taguatinga Shopping
-			%p
-				Certidão do Cartório do 4º Ofício de Registro de Imóveis
-				EQ 31/33 Lote 05 Ed. Consei Sl 210/2012 – Guará II.  
-			%p
-				Certidão do Cartório do 5º Ofício de Registro de Imóveis
-				Qd 07 Lts 990/995 – 1°  andar – Setor  Leste Industrial/Gama
-			%p
-				Certidão do Cartório do 6º Ofício de Registro de Imóveis
-				CNM 01 Bloco H, 1º Andar – Ceilândia Centro
-			%p
-				Certidão do Cartório do 7º Ofício de Registro de Imóveis
-				Qd 05 Área Reservada 01 Loja 01 Ed. Mirante da Serra Lj 01 – Sobradinho  
-			%p
-				Certidão do Cartório do 8º Ofício de Registro de Imóveis
-				Av. Independência, Plaza Shopping, Sala 13 Setor – Comercial Central – Planaltina
-			%p
-				Certidão do Cartório do 9º Ofício de Registro de Imóveis
-				Qd 12 Lt 08 – Setor Tradicional – Brazlândia
+		
 			%p
 				%h5
 					Atenção

@@ -2,6 +2,8 @@ module Attendance
   class CustomTicket < ActiveRecord::Base # :nodoc:
     self.table_name = 'extranet.attendance_custom_tickets'
 
+    attribute :action_five, :boolean, default: true
+
     belongs_to :cadastre,        required: false, class_name: 'Attendance::CustomCadastre', foreign_key: :cadastre_id
     belongs_to :cadastre_mirror, required: false, class_name: 'Attendance::CustomCadastreMirror', foreign_key: :cadastre_mirror_id
 
@@ -12,21 +14,21 @@ module Attendance
 
     validates :cadastre_id, uniqueness: true
 
-
+    
     def finalized?
       self.action_one &&
       self.action_two &&
       self.action_three &&
-      self.action_four &&
-      self.action_five
+      self.action_four #&&
+      #self.action_five
     end
 
     def disable_link
       self.action_one &&
       self.action_two &&
       self.action_three &&
-      self.action_four &&
-      self.action_five
+      self.action_four #&&
+      #self.action_five
     end
 
     def allow_cadastre
@@ -129,7 +131,7 @@ module Attendance
     end
 
     def closed
-      self.action_one && self.action_two && self.action_three && self.action_four && self.action_five
+      self.action_one && self.action_two && self.action_three && self.action_four #&& self.action_five
     end
 
     private
