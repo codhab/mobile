@@ -42,10 +42,10 @@
     = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_2' }
 
 .ui.segment
-  %h4#cpf Declaração de não propriedade de imóvel (Para emissão do formulário acesse site da CODHAB, Aba Habitação > Formulários)
+  %h4#declar Declaração de não propriedade de imóvel (Para emissão do formulário acesse site da CODHAB, Aba Habitação > Formulários)
   - unless @ticket.documents.where(document_type_id: 45).present?
     .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
-  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 45, anchor: 'cpf') do |f|
+  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 45, anchor: 'declar') do |f|
     - if @ticket.documents.where(document_type_id: 45).present?
       - @ticket.documents.where(document_type_id: 45).each_with_index do |document, index|
         = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'cpf'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
@@ -56,10 +56,10 @@
       %i  Nenhum arquivo enviado.
       %br/
       %br/
-    %label.ui.icon.button.fluid{:for => 'document_2'}
+    %label.ui.icon.button.fluid{:for => 'document_45'}
       %i.photo.icon
       Enviar novo arquivo
-    = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_2' }
+    = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_45' }
 
 .ui.segment
   %h4#resid
