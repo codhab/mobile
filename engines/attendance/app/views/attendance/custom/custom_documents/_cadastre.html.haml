@@ -191,7 +191,7 @@
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_6' }
 
 
-- if @ticket.cadastre_mirror.civil_state_id == 1
+- if [1,7].include?(@ticket.cadastre_mirror.civil_state_id)
   .ui.segment
     %h4#cert Anexe sua certidão de nascimento
     - unless @ticket.documents.where(document_type_id: 7).present?
