@@ -8,7 +8,7 @@
 %br
 %br
 - @index = 1
-- 9.times do
+- 1.times do
   .ui.segment
     %h4{id: "carto#{@index}"} #{@index}º Ofício
     - unless @ticket.documents.where(document_type_id: @index + 20).present?

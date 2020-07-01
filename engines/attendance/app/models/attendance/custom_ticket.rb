@@ -14,21 +14,33 @@ module Attendance
 
     validates :cadastre_id, uniqueness: true
 
+
+    def allow_special_document?
+      (self.created_at <= Date.parse("2020-06-26"))
+    end
     
+    def required_special_document?
+      if (self.created_at <= Date.parse("2020-06-26"))
+        self.action_five
+      else
+        true
+      end
+    end
+
     def finalized?
       self.action_one &&
       self.action_two &&
       self.action_three &&
-      self.action_four #&&
-      #self.action_five
+      self.action_four &&
+      required_special_document?
     end
 
     def disable_link
       self.action_one &&
       self.action_two &&
       self.action_three &&
-      self.action_four #&&
-      #self.action_five
+      self.action_four &&
+      required_special_document?
     end
 
     def allow_cadastre
@@ -43,7 +55,7 @@ module Attendance
         return false if !self.documents.where(document_type_id: 6).present?
       end
 
-      if self.cadastre_mirror.civil_state_id == 1
+      if [1,7].include?(self.cadastre_mirror.civil_state_id)
         return false if !self.documents.where(document_type_id: 7).present?
       end
 
@@ -131,7 +143,7 @@ module Attendance
     end
 
     def closed
-      self.action_one && self.action_two && self.action_three && self.action_four #&& self.action_five
+      self.action_one && self.action_two && self.action_three && self.action_four && required_special_document?
     end
 
     private
