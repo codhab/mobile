@@ -70,7 +70,7 @@
 						%i.icon.warning{style: 'color: gray'}
 						= link_to "Contatos pessoais", edit_custom_custom_ticket_custom_contact_path(@ticket, @ticket.cadastre_mirror_id), style: "#{@ticket.action_four ? 'color: white' : ''}"
 
-		- if @ticket.required_special_document?
+		- if @ticket.allow_special_document?
 			%tbody{style: "#{@ticket.action_five ? 'background-color: #51a551' : ''}"}
 				%tr
 					%td
