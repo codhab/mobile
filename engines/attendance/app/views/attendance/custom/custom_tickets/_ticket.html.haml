@@ -76,10 +76,10 @@
 					%td
 						- if @ticket.action_five
 							%i.icon.check{style: 'color: white'}
-							= link_to "Certidões dos cartórios", custom_custom_ticket_message_path(@ticket, step: 'document'), remote: true, style: "#{@ticket.action_five ? 'color: white' : ''}"
+							= link_to "Certidões dos cartórios (Opcional)", custom_custom_ticket_message_path(@ticket, step: 'document'), remote: true, style: "#{@ticket.action_five ? 'color: white' : ''}"
 						- else
 							%i.icon.warning{style: 'color: gray'}
-							= link_to "Certidões dos cartórios", new_custom_custom_ticket_custom_document_path(@ticket, type: 'document'), style: "#{@ticket.action_five ? 'color: white' : ''}"
+							= link_to "Certidões dos cartórios (Opcional)", new_custom_custom_ticket_custom_document_path(@ticket, type: 'document'), style: "#{@ticket.action_five ? 'color: white' : ''}"
 
 	%br
 	%br

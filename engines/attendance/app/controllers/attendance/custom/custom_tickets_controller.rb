@@ -91,7 +91,7 @@ module Attendance
               when 'contact'
                 @ticket.update(action_four: false)
               when 'document'
-                #@ticket.update(action_five: false)
+                @ticket.update(action_five: false)
               end
 
               redirect_to custom_custom_tickets_path
