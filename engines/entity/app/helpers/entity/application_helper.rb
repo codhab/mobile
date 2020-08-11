@@ -28,7 +28,13 @@ module Entity
 
     def temp_entity_current_situation(cnpj)
       begin
-        ::Entity::TempCooperative.find_by(cnpj: cnpj).temp_cooperative_situations.order(created_at: :desc).first.situation.name
+        text = ::Entity::TempCooperative.find_by(cnpj: cnpj).temp_cooperative_situations.order(created_at: :desc).first.situation.name
+
+        if text == 'deferido'
+          text = 'Credenciada'
+        else
+          text = 'Não credenciada'
+        end
       rescue
         'Sem informação'
       end
