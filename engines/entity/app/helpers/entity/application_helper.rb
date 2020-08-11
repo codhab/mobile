@@ -26,6 +26,12 @@ module Entity
       link_to("<i class='plus icon'></i> Adicionar arquivo".html_safe, '#', class: "add_fields ui #{class_disabled} button blue fluid icon mini", data: {id: id, fields: fields.gsub("\n", "")})
     end
 
+    def temp_entity_current_situation(cnpj)
+      ::Entity::TempCooperative.find_by(cnpj: cnpj).temp_cooperative_situations.order(created_at: :desc).first.situation.name
+    rescue
+      'Sem informação'
+    end
+
 
   end
 end
