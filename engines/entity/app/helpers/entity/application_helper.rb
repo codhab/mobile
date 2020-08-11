@@ -27,9 +27,11 @@ module Entity
     end
 
     def temp_entity_current_situation(cnpj)
-      ::Entity::TempCooperative.find_by(cnpj: cnpj).temp_cooperative_situations.order(created_at: :desc).first.situation.name
-    rescue
-      'Sem informação'
+      begin
+        ::Entity::TempCooperative.find_by(cnpj: cnpj).temp_cooperative_situations.order(created_at: :desc).first.situation.name
+      rescue
+        'Sem informação'
+      end
     end
 
 
