@@ -16,7 +16,8 @@ module Attendance
 
 
     def allow_special_document?
-      (self.created_at <= Date.parse("2020-06-26"))
+      true
+      #(self.created_at <= Date.parse("2020-06-26"))
     end
     
     def required_special_document?

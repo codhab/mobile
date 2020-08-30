@@ -35,6 +35,8 @@ module Entity
         else
           text = 'Não credenciada'
         end
+
+        text
       rescue
         'Sem informação'
       end
