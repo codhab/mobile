@@ -30,7 +30,7 @@ module Attendance
     end
 
     def is_major?
-      (self.age >= 14)
+      (self.age >= 8)
     rescue
       false
     end

@@ -5,7 +5,8 @@
     .sub-title #{current_entity.name}
     .divider
     .sub-title
-      .ui.label.blue #{current_entity.current_situation_name}
+      .ui.label.blue 
+        = temp_entity_current_situation(current_entity.cnpj)
 .divider
 .ui.three.column.grid.container.black
   .column
@@ -42,13 +43,13 @@
           %i.icon.file.huge.gray
       .text-center
         Requerimentos
-  - if current_entity.allow_accredited?
-    .column
-      .ui.segment.text-center
-        %a{href: "#{entity.chats_path}"}
-          %i.icon.chat.huge.gray
-      .text-center
-        Conversas
+  -# - if current_entity.allow_accredited?
+  -#   .column
+  -#     .ui.segment.text-center
+  -#       %a{href: "#{entity.chats_path}"}
+  -#         %i.icon.chat.huge.gray
+  -#     .text-center
+  -#       Conversas
   - if current_entity.allow_accredited?
     .column
       .ui.segment.text-center

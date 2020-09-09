@@ -1,10 +1,9 @@
 = simple_form_for @dependent, url: @dependent.new_record? ? custom_custom_ticket_custom_dependents_path(@ticket) : custom_custom_ticket_custom_dependent_path(@ticket, @dependent), method: @dependent.new_record? ? 'post' : 'put'  do |f|
-  = f.input :name, label: 'Nome', input_html: { disabled: true, disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6)}
-
+  = f.input :name, label: 'Nome'
   - if !@dependent.cpf.present? && @dependent.kinship_id == 6 && !@dependent.new_record?
-    = f.input :cpf, label: 'CPF (obrigatório para maiores de 14 anos)', input_html: { class: 'cpf'}
+    = f.input :cpf, label: 'CPF (obrigatório para maiores de 8 anos)', input_html: { class: 'cpf'}
   - else
-    = f.input :cpf, label: 'CPF (obrigatório para maiores de 14 anos)', input_html: { class: 'cpf', disabled: (!@dependent.new_record? &&  f.object.kinship_id == 6)}
+    = f.input :cpf, label: 'CPF (obrigatório para maiores de 8 anos)', input_html: { class: 'cpf'}
   = f.input :rg, label: "Documento de identificação (obrigatório para maiores de 18 anos)"
   = f.input :rg_org, label: "Órgão expedidor (obrigatório para maiores de 18 anos)"
   = f.input :born, label: "Data de nascimento", as: :string, input_html: { class: 'date', value: f.object.born.present? ? localize(f.object.born) : nil }

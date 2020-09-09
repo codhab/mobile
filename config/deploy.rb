@@ -9,9 +9,10 @@ if ENV['SERVER'] == 'B'
   set :domain, '10.233.38.20'
 else
   set :domain, '10.233.38.18'
+  set :rvm_use_path, '/usr/local/rvm/scripts/rvm'
+  invoke :'rvm:use', '2.5.0'
 end
 
-set :rvm_use_path, '/usr/local/rvm/scripts/rvm'
 
 if ENV["STAGE"] == "dev"
   set :deploy_to, '/var/www/application/development/apps/mobile'
@@ -34,7 +35,7 @@ task :setup do
 end
 
 task :environment do
-  invoke :'rvm:use', '2.4.0'
+  invoke :'rvm:use', '2.5.0'
 end
 
 task :deploy do

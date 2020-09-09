@@ -29,7 +29,7 @@
         Enviar novo arquivo
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: "document_#{@index}" }
 
-  - if @ticket.documents.where(document_type_id: 5).count >= 8
+  - if @ticket.documents.where(document_type_id: 5).count >= 1
     = link_to "Finalizar etapa", custom_custom_ticket_dependent_path(@ticket), class: 'ui button yellow fluid', disabled: true
 
   - @index += 1

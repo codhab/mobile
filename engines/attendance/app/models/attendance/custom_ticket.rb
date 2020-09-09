@@ -2,6 +2,8 @@ module Attendance
   class CustomTicket < ActiveRecord::Base # :nodoc:
     self.table_name = 'extranet.attendance_custom_tickets'
 
+    attribute :action_five, :boolean, default: true
+
     belongs_to :cadastre,        required: false, class_name: 'Attendance::CustomCadastre', foreign_key: :cadastre_id
     belongs_to :cadastre_mirror, required: false, class_name: 'Attendance::CustomCadastreMirror', foreign_key: :cadastre_mirror_id
 
@@ -13,12 +15,25 @@ module Attendance
     validates :cadastre_id, uniqueness: true
 
 
+    def allow_special_document?
+      true
+      #(self.created_at <= Date.parse("2020-06-26"))
+    end
+    
+    def required_special_document?
+      if (self.created_at <= Date.parse("2020-06-26"))
+        self.action_five
+      else
+        true
+      end
+    end
+
     def finalized?
       self.action_one &&
       self.action_two &&
       self.action_three &&
       self.action_four &&
-      self.action_five
+      required_special_document?
     end
 
     def disable_link
@@ -26,7 +41,7 @@ module Attendance
       self.action_two &&
       self.action_three &&
       self.action_four &&
-      self.action_five
+      required_special_document?
     end
 
     def allow_cadastre
@@ -41,7 +56,7 @@ module Attendance
         return false if !self.documents.where(document_type_id: 6).present?
       end
 
-      if self.cadastre_mirror.civil_state_id == 1
+      if [1,7].include?(self.cadastre_mirror.civil_state_id)
         return false if !self.documents.where(document_type_id: 7).present?
       end
 
@@ -129,7 +144,7 @@ module Attendance
     end
 
     def closed
-      self.action_one && self.action_two && self.action_three && self.action_four && self.action_five
+      self.action_one && self.action_two && self.action_three && self.action_four && required_special_document?
     end
 
     private

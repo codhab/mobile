@@ -42,8 +42,28 @@
     = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_2' }
 
 .ui.segment
+  %h4#declar Declaração de não propriedade de imóvel (Para emissão do formulário acesse site da CODHAB, Aba Habitação > Formulários)
+  - unless @ticket.documents.where(document_type_id: 45).present?
+    .ui.label.red.tiny{style: 'margin-bottom: 12px'} Pendente
+  = simple_form_for @document,url: custom_custom_ticket_custom_documents_path(type: 'cadastre', document_type_id: 45, anchor: 'declar') do |f|
+    - if @ticket.documents.where(document_type_id: 45).present?
+      - @ticket.documents.where(document_type_id: 45).each_with_index do |document, index|
+        = link_to "#{index + 1} <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'cpf'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+
+      %br/
+      %br/
+    - else
+      %i  Nenhum arquivo enviado.
+      %br/
+      %br/
+    %label.ui.icon.button.fluid{:for => 'document_45'}
+      %i.photo.icon
+      Enviar novo arquivo
+    = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_45' }
+
+.ui.segment
   %h4#resid
-    Comprovante de residência no DF nos últimos 5 anos. Atenção anexar documentos nos anos de 2014 a 2018 - ano a ano.
+    Comprovante de residência no DF nos últimos 5 anos. Atenção anexar documentos nos anos de 2015 a 2019 - ano a ano.
     %a{href: "javascript:void(0)", onclick: 'open_arrival_df_modal();'}
       Clique aqui.
   - unless @ticket.documents.where(document_type_id: 3).present?
@@ -54,10 +74,10 @@
     - if @ticket.documents.where(document_type_id: 3).present?
       - @ticket.documents.where(document_type_id: 3).each_with_index do |document, index|
 
-        - if ((index + 2014) > 2018)
+        - if ((index + 2015) > 2020)
           = link_to "+  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
         - else
-          = link_to "#{index + 2014}  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
+          = link_to "#{index + 2015}  <i class='file icon'></i>".html_safe, custom_custom_image_path(document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: 'resid'), remote: true, class: 'ui button blue icon', style: 'margin-bottom: 10px'
 
 
       %br/
@@ -69,33 +89,33 @@
     - if count < 1
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
-        2014
+        2015
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
     - if count < 2
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
-        2015
-      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
-
-    - if count < 3
-      %label.ui.icon.button.fluid{:for => 'document_3'}
-        %i.photo.icon
         2016
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
-
-    - if count < 4
+    - if count < 3
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
         2017
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
 
-    - if count < 5
+    - if count < 4
       %label.ui.icon.button.fluid{:for => 'document_3'}
         %i.photo.icon
         2018
+      = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
+
+
+    - if count < 5
+      %label.ui.icon.button.fluid{:for => 'document_3'}
+        %i.photo.icon
+        2019
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_3' }
 
 
@@ -171,7 +191,7 @@
       = f.input :attachment, as: :hidden, label: false, as: :file, input_html: { style: 'display: none', class: 'upload', id: 'document_6' }
 
 
-- if @ticket.cadastre_mirror.civil_state_id == 1
+- if [1,7].include?(@ticket.cadastre_mirror.civil_state_id)
   .ui.segment
     %h4#cert Anexe sua certidão de nascimento
     - unless @ticket.documents.where(document_type_id: 7).present?

@@ -14,6 +14,7 @@ module Attendance
 
       def new
         @ticket = Attendance::CustomTicket.new(cadastre_id: current_cadastre.id)
+        @ticket.action_five = true
         @ticket.save
       end
 
