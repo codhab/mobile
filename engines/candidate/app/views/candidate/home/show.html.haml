@@ -123,21 +123,6 @@
             .text-center
               Dúvidas
 
-    - if [12,13].include?(current_cadastre.program_id)
-      - if Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).where('supervisor_date is not null and attendant_date is not null and supervisor is true').present?
-        .column
-          .ui.segment.text-center{style: 'background-color: #1869af !important'}
-            %a{href: "#{attendance.custom_custom_tickets_path}"}
-              %i.icon.check.huge.gray{style: 'color: white !important'}
-          .text-center
-            Atualização de informações (Deferido)
-      - else
-        .column
-          .ui.segment.text-center{style: 'background-color: #18af25 !important'}
-            %a{href: "#{attendance.custom_custom_tickets_path}"}
-              %i.icon.retweet.huge.gray{style: 'color: white !important'}
-          .text-center
-            Atualização de informações
 
     .column
       .ui.segment.text-center
