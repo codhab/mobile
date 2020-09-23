@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_cadastre
   helper_method :current_entity
+  helper_method :special_token
 
   def page_not_found
     redirect_to main_app.root_path if controller_name != "candidates"
@@ -20,6 +21,10 @@ class ApplicationController < ActionController::Base
   private
 
   def current_entity
+  end
+
+  def special_token
+    session[:special_token]
   end
 
   def current_cadastre
@@ -34,6 +39,7 @@ class ApplicationController < ActionController::Base
     elsif params[:token].present?
       cadastre = ::Core::Candidate::Cadastre.find_by(special_token: params[:token])
       session[:user_id] = cadastre.id
+      session[:special_token] = true
     else
       cadastre = ::Core::Candidate::Cadastre.find(session[:user_id])
     end

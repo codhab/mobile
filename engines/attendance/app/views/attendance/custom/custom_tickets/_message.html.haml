@@ -1,4 +1,4 @@
-- if @ticket.closed && !@ticket.request
+- if (@ticket.closed && !@ticket.request) && special_token.nil?
   .header.text-center
     Atendimento finalizado
   .content{style: 'text-align: center'}
@@ -11,4 +11,4 @@
   .content{style: 'text-align: center'}
     %p Esta etapa já foi concluída por você.
     %br
-    = link_to "Alterar dados da etapa", custom_custom_ticket_message_path(@ticket, reboot: true, step: params[:step]), class: 'ui button blue fluid', data: { disable_with: 'Processando, aguarde...'}
+    = link_to "Alterar/Visualizar dados da etapa", custom_custom_ticket_message_path(@ticket, reboot: true, step: params[:step]), class: 'ui button blue fluid', data: { disable_with: 'Processando, aguarde...'}
