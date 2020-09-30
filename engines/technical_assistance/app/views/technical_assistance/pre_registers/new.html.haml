@@ -8,7 +8,10 @@
     %br
   .fifthteen.wide.mobile.colum.text-center
     .green_title
-      = render 'form'
+      - if Date.current >= Date.parse('2020-10-01')
+        = render 'form'
+      - else
+        Cadastro disponível apartir de 14h do dia 01 de outubro 2020 
 
 :css
   .green_title{

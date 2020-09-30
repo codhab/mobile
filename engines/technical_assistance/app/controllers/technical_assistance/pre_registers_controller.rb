@@ -13,15 +13,12 @@ module TechnicalAssistance
 
     def create
       @pre_register = TechnicalAssistance::PreRegister.new(set_params)
-      @pre_register.cpf = @pre_register.cpf.gsub('-','').gsub('.','')
-      @pre_register.city_id = params[:city_id]
-      @pre_register.burgh_id = params[:burgh_id]
 
-        if @pre_register.save
-          redirect_to pre_register_path(@pre_register)
-        else
-          render :new
-        end
+      if @pre_register.save
+        redirect_to pre_register_path(@pre_register)
+      else
+        render :new
+      end
 
     end
 
@@ -35,8 +32,8 @@ module TechnicalAssistance
     private
 
     def set_params
-      params.require(:pre_register).permit(:name, :cpf, :cad, :city_id , :address, :email,
-                                           :burgh_id, :latitude, :longitude, :telphone)
+      params.require(:pre_register).permit(:name, :cpf, :cad, :city_id, :address, :email,
+                                           :burgh_id, :latitude, :longitude, :phone, :special_condition)
     end
 
     def set_pre_register
