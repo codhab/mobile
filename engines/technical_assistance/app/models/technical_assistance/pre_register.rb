@@ -3,7 +3,7 @@ module TechnicalAssistance
     self.table_name = 'extranet.technical_assistance_pre_registers'
     belongs_to :city,          required: false, class_name: 'Core::Address::City'
     belongs_to :burgh,         required: false, class_name: 'Core::Address::Burgh', foreign_key: :burgh_id
-    validates  :address, :name, :city_id, :phone, :special_condition, presence: true
+    validates  :address, :name, :city_id, :phone, :cad, :special_condition, presence: true
     
     validates :cpf, cpf: true, presence: true, uniqueness: true
 
