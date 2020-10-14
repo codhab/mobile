@@ -2,7 +2,7 @@
 = simple_form_for @pre_register do |f|f
   = f.input :name,label:'Nome', input_html:{placeholder: 'Nome Completo'}
   = f.input :cpf,label:'CPF', input_html: {class: 'cpf'}
-  = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.federal_district, input_html: { id: 'city_id'}, include_blank: 'Selecione a cidade'
+  = f.input :city_id, label: 'Cidade', as: :select, collection: Core::Address::City.where(id: 807), input_html: { id: 'city_id'}, include_blank: 'Selecione a cidade'
   = f.input :address,label:'Endereço', input_html:{placeholder: 'Endereço Completo'}
   = f.input :phone, as: :integer, label:'Telefone', placeholder: "Informe seu telefone"
   = f.input :cad,label:'CAD Único', input_html:{placeholder: 'Nº do CADÚnico se possuir'}
