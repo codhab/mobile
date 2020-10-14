@@ -1,5 +1,5 @@
 .image.content.text-center
-  = image_tag @document.attachment, width: '300', style: 'margin: 0 auto !important'
+  = link_to image_tag(@document.attachment, width: '300', style: 'margin: 0 auto !important', alt: "Visualização do arquivo, clique para abrir ou baixar caso PDF"), @document.attachment, target: '_blank'
 .actions
   = link_to "Remover este arquivo", custom_custom_ticket_custom_document_path(@document.custom_ticket_id, @document, dependent_mirror_id: params[:dependent_mirror_id], type: params[:type], anchor: params[:anchor]), method: :delete, class: 'ui button red fluid',style: 'margin-left: 0 !important', data: { disable_with: 'Processando, aguarde...'}
   .ui.deny.button.fluid{style: 'margin-left: 0 !important'}
