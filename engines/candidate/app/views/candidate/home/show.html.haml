@@ -35,7 +35,7 @@
   - occurrence_solved = current_cadastre.occurrences.where(solved: false)
   - convocation = current_cadastre.cadastre_convocations.where(status: true).last
   - indication_all = current_cadastre.enterprise_cadastres.where('enterprise_id = 22')
-  - indication = current_cadastre.enterprise_cadastres.where('enterprise_id not in (59,64,70,71) and inactive is not true and accepted_date is null and indication_type_id <> 999').last
+  - indication = current_cadastre.enterprise_cadastres.where('enterprise_id not in (59,64,70,71) and inactive is not true and accepted_date is null and indication_type_id <> 999 and indication_type_id <> 2').last
   - indication_clebson = current_cadastre.enterprise_cadastres.where('inactive is not true')
   - indication_active = current_cadastre.enterprise_cadastres.where('inactive is not true').last
   - indication_crixa = current_cadastre.enterprise_cadastres.where(enterprise_id: 182, indication_type_id: 999)
