@@ -104,8 +104,10 @@
   .divider
   .ui.three.column.grid.container.black
     - @jc = Candidate::PreHabilitado.find_by(cadastre_id: current_cadastre.id) rescue nil
+    - @cooperative_convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where('convocation_id in (1806)') rescue nil 
 
-    - if Date.current < Date.parse('2021-01-01') || Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).present? || !@jc.nil?
+    - if Date.current < Date.parse('2021-01-01') || Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).present? || !@jc.nil? || !@cooperative_convocation.nil?
+      
       - @convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where('convocation_id in (1688,1467,1671,1683)')
       
       - if !current_cadastre.current_procedural.present? || (current_cadastre.current_procedural.present? && ![8,4].include?(current_cadastre.current_procedural.procedural_status_id))
