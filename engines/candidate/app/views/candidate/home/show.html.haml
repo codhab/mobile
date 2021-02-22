@@ -103,11 +103,11 @@
 - if (indication_active.present? && indication_active.accepted_date.present?) || !indication_active.present? || !indication.present?
   .divider
   .ui.three.column.grid.container.black
-    -# - @jc_indication = Candidate::EnterpriseCadastre.where(cadastre_id: current_cadastre.id, indication_type_id: 999).last rescue nil
+    - @jc_indication = Candidate::EnterpriseCadastre.where(cadastre_id: current_cadastre.id, indication_type_id: 999).last rescue nil
     - @jc = Candidate::PreHabilitado.find_by(cadastre_id: current_cadastre.id) rescue nil
     - @cooperative_convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where('convocation_id in (1809,1808,1806,1807,1683)') rescue nil 
 
-    - if Date.current < Date.parse('2021-01-01') || Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).present? || !@jc.nil? || !@cooperative_convocation.nil?
+    - if Date.current < Date.parse('2021-01-01') || Attendance::CustomTicket.where(cadastre_id: current_cadastre.id).present? || !@jc.nil? || !@cooperative_convocation.nil? || !@jc_indication.nil?
       
       - @convocation = current_cadastre.cadastre_convocations.select(:cadastre_id).where('convocation_id in (1688,1467,1671,1683)')
       
