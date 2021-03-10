@@ -58,7 +58,7 @@ module Entity
       @enterprise = current_entity.enterprises.find(session[:enterprise_id])
       ::Entity::EnterpriseTerm.where(enterprise_id: @enterprise.id).find_or_create_by(entity_id: current_entity.id)
       
-      redirect_to new_indication_path
+      redirect_to new_indication_path(enterprise_id: @enterprise.id)
     end
 
     def edit
