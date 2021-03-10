@@ -3,7 +3,7 @@ require_dependency 'entity/application_controller'
 # TRAVA IDS [7,8,9,10,12,32,33,44,45]
 module Entity
   class IndicationsController < ApplicationController
-    before_action :set_units
+    before_action :set_units, except: :accept_term
 
     def index
       @enterprises = current_entity.enterprises
