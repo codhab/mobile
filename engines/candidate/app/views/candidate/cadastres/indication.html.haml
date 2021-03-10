@@ -8,7 +8,7 @@
 .big.divider
 .ui.container
   - if @indications.present?
-    - @indications.where.not(indication_type_id: 999).order(created_at: :desc).each_with_index do |indication, i|
+    - @indications.where.not(indication_type_id: [999,998,997,996]).order(created_at: :desc).each_with_index do |indication, i|
       .ui.styled.accordion
         %div{ class: i == 0 ? 'title active' : 'title'}
           %i.dropdown.icon
