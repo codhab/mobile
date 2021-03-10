@@ -32,7 +32,6 @@
                 /= f.submit "Indicar candidato", class: 'ui button green fluid'
               - else
                 = f.submit "Indicar candidato", class: 'ui button green fluid'
-                  %hr/
           %td.text-center
             %br/
             %h4 Qtd. de unidades disponíveis (#{(@enterprise.units - @enterprise.candidates.where('inactive is false').count) rescue 0})
@@ -41,10 +40,10 @@
             %b Novos cadastros realizados (#{Entity::ProvisionalCandidate.where(entity_id: current_entity.id).count})
             %br/
             %b Indicações realizadas (#{@enterprise.candidates.count})
-              %td.text-center
-                Ativas (#{@enterprise.candidates.where('inactive is false').count})
-                |
-                Inativas (#{@enterprise.candidates.where('inactive is true').count})
+          %td.text-center
+            Ativas (#{@enterprise.candidates.where('inactive is false').count})
+            |
+            Inativas (#{@enterprise.candidates.where('inactive is true').count})
 
           %td
             %h4 Novos cadastros
