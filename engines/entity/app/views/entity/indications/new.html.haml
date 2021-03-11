@@ -9,7 +9,7 @@
 .ui.container
   - if ::Entity::EnterpriseTerm.find_by(enterprise_id: @enterprise.id, entity_id: current_entity.id).nil? && @enterprise.required_term && params[:term] == "1"
   
-    %p CONTEUDO DO TERMO
+    = render 'term'
 
     %br/
     %br/
