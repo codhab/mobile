@@ -6,7 +6,7 @@
     .title-header Indicação
     .sub-title
       Formulário de indicação
-.ui.container
+.ui.container{style: 'margin-bottom: 100px;'}
   - if ::Entity::EnterpriseTerm.find_by(enterprise_id: @enterprise.id, entity_id: current_entity.id).nil? && @enterprise.required_term && params[:term] == "1"
   
     = render 'term'
@@ -14,7 +14,7 @@
     %br/
     %br/
     = link_to "Li e aceito os termos acima", entity.indication_accept_term_path(@enterprise.id), class: 'ui button green fluid', data: { confirm: 'Tem certeza que deseja aceitar os termos?'}
-  
+    
   - else
     %table.ui.celled.table
       %tbody
