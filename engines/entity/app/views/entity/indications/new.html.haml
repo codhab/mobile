@@ -7,7 +7,7 @@
     .sub-title
       Formulário de indicação
 .ui.container{style: 'margin-bottom: 100px;'}
-  - if ::Entity::EnterpriseTerm.find_by(enterprise_id: @enterprise.id, entity_id: current_entity.id).nil? && @enterprise.required_term && params[:term] == "1"
+  - if ::Entity::EnterpriseTerm.find_by(enterprise_id: @enterprise.id, entity_id: current_entity.id).nil? && @enterprise.required_term
   
     = render 'term'
 
@@ -50,22 +50,7 @@
             |
             Inativas (#{@enterprise.candidates.where('inactive is true').count})
 
-          %td
-            %h4 Novos cadastros
-            - if Entity::ProvisionalCandidate.where(entity_id: current_entity.id).present?
-              - Entity::ProvisionalCandidate.where(entity_id: current_entity.id).each do |pr|
-                - cadastre = Core::Candidate::Cadastre.find(pr.candidate_id) rescue nil
-                %td
-                %td
-                  %p
-                    %b= cadastre.name rescue nil
-                  %p
-                    %b= cadastre.cpf rescue nil
-                  %p
-                    .ui.label.blue
-                      Novo cadastro
-                    .ui.label.black
-                      = cadastre.cadastre_situations.last.situation_status.name rescue nil
+          
           - if @enterprise.candidates.present?
             %td
               %br/
