@@ -39,7 +39,7 @@
                 = f.submit "Indicar candidato", class: 'ui button green fluid'
           %td.text-center
             %br/
-            %h4 Qtd. de unidades disponíveis (#{(@enterprise.units - @enterprise.candidates.where('inactive is false').count) rescue 0})
+            %h4 Qtd. total de unidades (#{(@enterprise.units)})
             %br/
             %br/
             %b Novos cadastros realizados (#{Entity::ProvisionalCandidate.where(entity_id: current_entity.id).count})
