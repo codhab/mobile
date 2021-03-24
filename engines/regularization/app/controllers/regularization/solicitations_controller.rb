@@ -13,7 +13,7 @@ module Regularization
     def index
       cpf = params[:by_cpf].gsub('-','').gsub('.','') if params[:by_cpf].present?
       @verify = Core::Candidate::Cadastre.where(cpf: cpf)
-                                         .where.not(program_id: [3, 6])
+                                         .where.not(program_id: [3, 6, 8])
       @req_open = Core::Regularization::Solicitation.where(cpf: cpf, answer_status: false)
       if params[:by_cpf].present?
         if @verify.present?
