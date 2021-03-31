@@ -6,73 +6,55 @@
     .title-header Indicação
     .sub-title
       Formulário de indicação
-.ui.container
-  %table.ui.celled.table
-    %tbody
-      %tr
-        %td
-        %td.text-center
-          %h3 #{@enterprise.name}
-          - @payment = Core::Brb::Invoice.where("name like '%#{current_entity.cnpj.to_s.format_cnpj}%' and payment is not null").count
-          %hr/
+.ui.container{style: 'margin-bottom: 100px;'}
+  - if ::Entity::EnterpriseTerm.find_by(enterprise_id: @enterprise.id, entity_id: current_entity.id).nil? && @enterprise.required_term
+  
+    = render 'term'
 
-          - if @indication.cadastre_id.present?
-            %td.text-center
-              %h4 Candidato selecionado
-              %p= @unit.cadastre.name
-              %p= @unit.cadastre.cpf
-              %p.ui.label.blue= @unit.cadastre.presenter.current_situation_name
-              %td
-                %hr/
-            %td.text-center
-              = link_to "Efetivar indicação", indication_confirm_path(@unit), class: 'ui button green '
-              = link_to "Remover candidato", indication_cancel_path(@unit), class: 'ui button red '
-              %hr/
-          - else
-            - if 1 == 1 # (@payment > 1)
-              %td
-                = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
-                  = f.input :enterprise_id, as: :hidden, input_html: { value: f.object.enterprise_id.blank? ? params[:enterpise_id] : f.object.enterprise_id  }
-                  = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
-                  - if @indication.cpf_create
-                    = link_to "Deseja cadastrar o candidato?", new_provisional_cadastre_path(enterprise_id: @enterprise.id), class: 'ui button blue fluid'
-                    /= f.submit "Indicar candidato", class: 'ui button green fluid'
-                  - else
-                    = f.submit "Indicar candidato", class: 'ui button green fluid'
-                %hr/
-            - else
-              %p Não é possível realizar indicação de candidatos no momento.
-              %p Existem pendências financeiras no cadastro da entidade.Favor entrar em contato com a CODHAB.
-            %td.text-center
-              %br/
-              %h4 Qtd. de unidades disponíveis (#{@enterprise.units})
-              %br/
-              %br/
-              %b Novos cadastros realizados (#{Entity::ProvisionalCandidate.where(entity_id: current_entity.id).count})
-              %br/
-              %b Indicações realizadas (#{@enterprise.candidates.count})
-            %td.text-center
-              Ativas (#{@enterprise.candidates.where('inactive is false').count})
-              |
-              Inativas (#{@enterprise.candidates.where('inactive is true').count})
+    %br/
+    %br/
+    = link_to "Li e aceito os termos acima", entity.indication_accept_term_path(@enterprise.id), class: 'ui button green fluid', data: { confirm: 'Tem certeza que deseja aceitar os termos?'}
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    
+  - else
+    %table.ui.celled.table
+      %tbody
+        %tr
+          %td
+          %td.text-center
+            %h3 #{@enterprise.name}
+            
+            = simple_form_for @indication, url: indications_path(enterprise_id: @enterprise.id) do |f|
+              = f.input :enterprise_id, as: :hidden, input_html: { value: f.object.enterprise_id.blank? ? params[:enterpise_id] : f.object.enterprise_id  }
+              = f.input :cpf, label: "CPF", placeholder: "Informe o CPF do candidato", input_html: { class: 'cpf'}
+           
+              - if @indication.cpf_create
+                = link_to "Deseja cadastrar o candidato?", new_provisional_cadastre_path(enterprise_id: @enterprise.id), class: 'ui button blue fluid'
+                /= f.submit "Indicar candidato", class: 'ui button green fluid'
+              - else
+                = f.submit "Indicar candidato", class: 'ui button green fluid'
+          %td.text-center
+            %br/
+            %h4 Qtd. total de unidades (#{(@enterprise.units)})
+            %br/
+            %br/
+            %b Novos cadastros realizados (#{Entity::ProvisionalCandidate.where(entity_id: current_entity.id).count})
+            %br/
+            %b Indicações realizadas (#{@enterprise.candidates.count})
+          %td.text-center
+            Ativas (#{@enterprise.candidates.where('inactive is false').count})
+            |
+            Inativas (#{@enterprise.candidates.where('inactive is true').count})
 
-            %td
-              - if Entity::ProvisionalCandidate.where(entity_id: current_entity.id).present?
-                - Entity::ProvisionalCandidate.where(entity_id: current_entity.id).each do |pr|
-                  - cadastre = Core::Candidate::Cadastre.find(pr.candidate_id) rescue nil
-                  %td
-                  %td
-                    %p
-                      %b= cadastre.name rescue nil
-                    %p
-                      %b= cadastre.cpf rescue nil
-                    %p
-                      .ui.label.blue
-                        Novo cadastro
-                      .ui.label.black
-                        = cadastre.cadastre_situations.last.situation_status.name rescue nil
+          
           - if @enterprise.candidates.present?
             %td
+              %br/
+              %h4 Indicações
               - @enterprise.candidates.order('created_at DESC').each do |log|
                 %tr
                   %td

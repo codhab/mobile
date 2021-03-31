@@ -52,7 +52,7 @@
         /%input#hidden-new-file{:style => "display: none", :type => "file"}/
 
 
-- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).age >= 14
+- if @ticket.cadastre_mirror.dependent_mirrors.find(params[:dependent_mirror_id]).age >= 8
   .ui.segment
     %h4#cpf CPF
     - unless @ticket.documents.where(document_type_id: 18).where(dependent_mirror_id: params[:dependent_mirror_id]).present?

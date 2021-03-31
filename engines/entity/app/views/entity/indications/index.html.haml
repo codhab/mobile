@@ -9,7 +9,7 @@
   %table.ui.celled.table
     %tbody
       - if @enterprises.present?
-        - @enterprises.where(enable: true).each do |enterprise|
+        - @enterprises.where(enable: true, status: true).each do |enterprise|
           %tr
             %td
             %td

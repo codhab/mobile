@@ -3,7 +3,7 @@ require_dependency 'entity/application_controller'
 # TRAVA IDS [7,8,9,10,12,32,33,44,45]
 module Entity
   class IndicationsController < ApplicationController
-    before_action :set_units
+    before_action :set_units, except: :accept_term
 
     def index
       @enterprises = current_entity.enterprises
@@ -52,6 +52,13 @@ module Entity
       })
 
       redirect_to new_indication_path(indication_id: @unit.id)
+    end
+    
+    def accept_term
+      @enterprise = current_entity.enterprises.find(session[:enterprise_id])
+      ::Entity::EnterpriseTerm.where(enterprise_id: @enterprise.id).find_or_create_by(entity_id: current_entity.id)
+      
+      redirect_to new_indication_path(enterprise_id: @enterprise.id)
     end
 
     def edit

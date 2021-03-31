@@ -16,6 +16,7 @@ Entity::Engine.routes.draw do
 
   resources :forms
   resources :indications do
+    get 'accept_term'
     get 'confirm'
     get 'cancel'
   end

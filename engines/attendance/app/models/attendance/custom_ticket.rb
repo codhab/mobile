@@ -85,7 +85,7 @@ module Attendance
         return false if !self.documents.where(document_type_id: 17, dependent_mirror_id: dependent.id).present?
       end
 
-      if dependent.age >= 14
+      if dependent.age >= 8
         return false if !self.documents.where(document_type_id: 18, dependent_mirror_id: dependent.id).present?
       end
 
